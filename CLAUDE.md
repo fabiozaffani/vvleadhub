@@ -21,6 +21,7 @@ Fonte única de instruções do agente neste repositório (D-7). Se algo aqui co
 
 - Construa **pela ordem do roadmap** (03 §7) e declare pronto **somente** pelos critérios de aceite da fase (03 §7.1). Não pule de fase.
 - PRs pequenos e temáticos; conventional commits; todo bug corrigido ganha teste (09 §3).
+- **Qualidade de diff:** todo PR roda `/code-review` antes do merge — sem exceção de tamanho. `/simplify` roda quando o diff atender a qualquer um: > 150 linhas líquidas de código real (excluindo lockfile, seeds, migrações geradas e snapshots) · 5+ arquivos de código tocados · abstração nova criada (componente, helper, tipo em `contracts`) · o PR cresceu além do escopo planejado. Pequenas correções e inserções pontuais dispensam o `/simplify`.
 - Tudo que é business-concreto é **dado, não código** (02 §1) — espaços, serviços, campanhas, moldes e objetivos entram por registro/seed, nunca hardcoded. Exceção registrada: TipoDeAssunto novo = collection nova (02 §2.2).
 - Blocos conhecem **capacidades, nunca instâncias** (02 §4): zero `switch` por nome de Assunto.
 - Eventos seguem o schema canônico (05 §4) sem campos ad-hoc; novo destino = novo adapter puro + testes.

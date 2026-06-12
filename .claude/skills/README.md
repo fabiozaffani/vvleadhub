@@ -31,6 +31,17 @@ Ao atualizar uma vendorizada: re-baixar da fonte, refazer a revisão de seguran�
 
 Quando o tooling real existir (lighthouserc, axe no CI, dependency-cruiser), atualizar `audit-quality` e `checklist-fase` com os comandos exatos do repo.
 
+## Mapa de qualidade — qual ferramenta, quando
+
+| Régua | Ferramenta | Quando | Quem dispara |
+|---|---|---|---|
+| Runtime do site buildado (CWV + axe) | `/audit-quality` | Sob demanda, por rota; sempre nos gates de fase | Fundador |
+| Diff do PR — bugs | `/code-review` (nativa) | **Todo PR antes do merge**, sem exceção de tamanho | Agente (regra no CLAUDE.md) |
+| Diff do PR — simplificação/reuso | `/simplify` (nativa) | Threshold do CLAUDE.md: > 150 linhas líquidas de código real · 5+ arquivos · abstração nova · escopo cresceu | Agente (regra no CLAUDE.md) |
+| Fase pronta | `/checklist-fase` | Fim de fase, antes de promover preview | Fundador |
+
+Decisão registrada: `/code-review` e `/simplify` **não** foram embutidas na `audit-quality` — réguas de naturezas diferentes (produto buildado × diff), cadências diferentes (rota × PR), e as nativas já existem; embrulhar seria indireção sem capacidade nova. O fluxo único de qualidade vive como regra no `CLAUDE.md` (sempre presente), não como skill (trigger probabilístico).
+
 ## Decisões: não instalar (para não rediscutir)
 
 - **obra/superpowers** e metodologias totalizantes — o repo já tem metodologia própria (CLAUDE.md + roadmap 03 §7); duas "constituições" conflitam.
