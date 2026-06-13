@@ -73,10 +73,11 @@ Distinção dura: **Bloco ≠ component.** Bloco é a unidade editorial do 02/04
 
 ## 3. Testes (pirâmide pragmática)
 
-- **Unit (obrigatório):** funções puras da cola fina — adapters `map(event)`, normalização de lead, dedup D-11, geração de xcode. Vitest.
+- **Unit (obrigatório):** funções puras da cola fina — adapters `map(event)`, normalização de lead, dedup D-11, geração de xcode. **Runner: `node:test` (built-in, zero dependência)** — não Vitest: o firewall do Replit bloqueia o vitest (403 em toda versão) e o Replit é o builder primário (D-16). Para TS, compila antes e roda o emitido (`tsc` → `node --test "dist/**/*.test.js"`), como em `packages/contracts`.
 - **Integração:** contrato lead→Kommo (Kommo mockado), webhook de desfecho→loop, ingestão de lead form nativo (D-13), purge de cache no publish.
 - **E2E (mínimo vital, Playwright):** caminho de conversão — LP renderiza → CTA → form → card mock criado com xcode; e A/B sem flicker (asserção de zero CLS na variante).
 - **A11y:** axe-core nas rotas-chave do site (home, 1 LP, 1 post) no CI.
+- **Validar tooling contra o firewall do Replit cedo:** Playwright (baixa browsers), `@lhci/cli` e `@axe-core/playwright` podem ser bloqueados como o vitest. Fazer o smoke-test de instalação na primeira WO que os usa (WO-03) — se bloquear, escalar/achar alternativa antes do gate depender deles.
 - Regra: bug corrigido = teste que o reproduz, junto no PR.
 
 ## 4. CI/CD e gates (o fiscal das regras)

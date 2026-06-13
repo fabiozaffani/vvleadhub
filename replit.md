@@ -18,6 +18,7 @@ Construa **pela ordem das work-orders** (`docs/tasks/fase-0.md`), uma de cada ve
 - **Contratos:** schema de evento e contrato de lead vêm de `packages/contracts` (05 §4 / 04 §7) — não redefina campos ad-hoc.
 - **Segredos só em Replit Secrets** (nomes em `.env.example`); nunca em código/log/commit. **Sem preço** em copy público (INV-05); experiência integrada (INV-03); exclusividade pela história (INV-07).
 - **Diferidos com gancho:** `consent` pass-through, `correlation_id` reservado, opt-in mínimo — mantenha, não implemente antes da hora.
+- **Testes = `node:test`** (built-in, zero download); **não reintroduza vitest** — o firewall do Replit o bloqueia (403). Ambiente já preparado no repo: `.npmrc` com `manage-package-manager-versions=false` (pnpm 10 do Replit lê o lockfile v9), eslint ignora `.local`/`.cache`/`.upm`.
 - **DoD mecânico:** `pnpm verify` verde antes de declarar pronto; bug corrigido = teste junto no PR.
 
 ---

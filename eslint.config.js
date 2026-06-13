@@ -14,6 +14,11 @@ export default tseslint.config(
       "**/.output/**",
       "**/coverage/**",
       "packages/contracts/generated/**",
+      // Diretórios injetados pelo Replit (não existem no repo/CI) — evita ruído de lint local.
+      "**/.local/**",
+      "**/.cache/**",
+      "**/.upm/**",
+      "**/.config/**",
     ],
   },
   js.configs.recommended,
