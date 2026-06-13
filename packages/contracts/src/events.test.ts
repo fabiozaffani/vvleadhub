@@ -1,6 +1,10 @@
-import { describe, expect, it } from "vitest";
+import { describe, it } from "node:test";
+import assert from "node:assert/strict";
 import { canonicalEventSchema, EVENT_NAMES } from "./events.js";
 import { leadContractSchema, leadOutcomeSchema } from "./lead.js";
+
+// Runner: node:test (built-in, zero dependência). vitest é bloqueado pelo firewall do
+// Replit — e o Replit é o builder primário (D-16), então testes não dependem de download.
 
 describe("schema canônico de evento (05 §4/§13)", () => {
   it("aceita o exemplo do doc, com click_ids (D-14)", () => {
@@ -24,7 +28,7 @@ describe("schema canônico de evento (05 §4/§13)", () => {
       },
       params: { depth_pct: 75 },
     });
-    expect(ok.success).toBe(true);
+    assert.equal(ok.success, true);
   });
 
   it("rejeita event_name fora do catálogo", () => {
@@ -37,20 +41,28 @@ describe("schema canônico de evento (05 §4/§13)", () => {
       consent: { analytics: true, marketing: false },
       context: { url: "https://x.com", utm: {} },
     });
-    expect(bad.success).toBe(false);
+    assert.equal(bad.success, false);
   });
 
   it("cobre os marcos de visita do funil M-04 (D-14)", () => {
     for (const name of ["visita_agendada", "visita_realizada", "no_show"] as const) {
-      expect(EVENT_NAMES).toContain(name);
+      assert.ok(EVENT_NAMES.includes(name));
     }
   });
 });
 
 describe("contrato de lead → Kommo (04 §7)", () => {
   it("exige telefone E.164 (chave de dedup D-11)", () => {
-    expect(leadContractSchema.safeParse({ phone: "19999999999", objective: "handoff_whatsapp", utm: {}, timestamp: "2026-06-10T14:03:11.221Z" }).success).toBe(false);
-    expect(
+    assert.equal(
+      leadContractSchema.safeParse({
+        phone: "19999999999",
+        objective: "handoff_whatsapp",
+        utm: {},
+        timestamp: "2026-06-10T14:03:11.221Z",
+      }).success,
+      false,
+    );
+    assert.equal(
       leadContractSchema.safeParse({
         name: null,
         phone: "+5519999999999",
@@ -60,7 +72,8 @@ describe("contrato de lead → Kommo (04 §7)", () => {
         objective: "handoff_whatsapp",
         timestamp: "2026-06-10T14:03:11.221Z",
       }).success,
-    ).toBe(true);
+      true,
+    );
   });
 
   it("desfecho do loop carrega valor por faixa (D-14)", () => {
@@ -71,6 +84,6 @@ describe("contrato de lead → Kommo (04 §7)", () => {
       card_id: "card-1",
       timestamp: "2026-06-10T14:03:11.221Z",
     });
-    expect(ok.success).toBe(true);
+    assert.equal(ok.success, true);
   });
 });

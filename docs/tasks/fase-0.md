@@ -52,6 +52,7 @@ Monorepo + enforcement por máquina. **Não delegar — é a base.**
 - **Refs:** 03 §4, 04, 07, Design Guidelines, skill `react-best-practices` (ilhas).
 
 **WO-03 · site — SEO/CWV baseline + ligar o gate de qualidade** _(Replit Agent)_
+- **Pré-passo (firewall do Replit):** smoke-test de instalação de `playwright` (+ download de browser), `@lhci/cli` e `@axe-core/playwright`. Se algum for bloqueado (403, como o vitest), **pare e escale** — o gate não pode depender de ferramenta que o ambiente não instala (09 §3).
 - **Objetivo:** JSON-LD, sitemap/robots/canonical/OG; Lighthouse + axe verdes; ativar o job `quality` do CI (adicionar `site` rotas ao `lighthouserc`, script `test:a11y`).
 - **Arquivos:** `site/**`, `lighthouserc.json`.
 - **Aceite (03 §7.1):** Lighthouse CI verde (home, 1 espaço, 1 post) no orçamento §4; axe sem violações; structured data validando (Rich Results Test).

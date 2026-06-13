@@ -36,3 +36,10 @@ Thumbs.db
 
 # Payload / generated runtime
 admin/.payload/
+
+# Diretórios injetados pelo Replit (não versionar)
+.local/
+.cache/
+.upm/
+.replit
+replit.nix

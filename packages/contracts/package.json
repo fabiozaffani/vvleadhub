@@ -14,12 +14,12 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "test": "vitest run"
+    "test": "tsc -p tsconfig.json && node --test \"dist/**/*.test.js\""
   },
   "dependencies": {
     "zod": "^3.24.1"
   },
   "devDependencies": {
-    "vitest": "^2.1.8"
+    "@types/node": "^22.10.2"
   }
 }
