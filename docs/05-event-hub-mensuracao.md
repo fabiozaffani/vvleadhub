@@ -168,6 +168,10 @@ Click-to-WhatsApp é formato de primeira classe no segmento (Brasil, mobile, Wha
 
 **O que se perde sem `ctwa_clid` (menos do que parece):** origem de campanha/anúncio **não se perde** (UTMs na Tracking data do card). Perde-se o join determinístico clique↔lead. Mas para CTWA o **telefone é substituto forte**: o Meta correta o handoff clique→conversa e guarda a ponte `ctwa_clid`↔telefone↔conversa do lado dele — fecha "conversa iniciada" nativamente e, quando devolvemos a conversão qualificada via CAPI **chaveada por telefone hasheado**, resolve de volta ao clique. Match bem melhor que público web frio. O `ctwa_clid` só seria mais determinístico nas bordas.
 
+**Dois pipelines opostos — não confundir (esclarece dúvida recorrente):** (a) **reporting** Meta→nós (Ads Manager / Marketing Insights API, *pull*): cliques, "conversas iniciadas", custo, e a **lacuna de abandono**; (b) **otimização** nós→Meta (CAPI, *push*): conversões de qualificação chaveadas por telefone. O CAPI **não mede abandono** — só otimiza/atribui fundo de funil. O abandono lê-se do reporting, sem enviar nada de volta.
+
+**"Abriu e não enviou" não é evento — é ausência de evento.** O Meta só mede o **clique** e a **conversa iniciada** (= primeira mensagem **enviada**; é nela que o `referral` é anexado). Entre os dois há caixa-preta não instrumentada: quem abre e não envia não gera mensagem, logo não toca Kommo nem o HUB — **invisível para nós por construção**. O cohort = `cliques − conversas iniciadas`, **ambos métricas nativas do Ads Manager** (não se deriva cruzando nossos telefones). Disponível só em **agregado por campanha/anúncio** — nunca por pessoa (quem abandonou é anônimo: o Meta tem só o clique, nós não temos nada). Se quisermos no painel, é um job de *pull* da Insights API (não o CAPI); diagnóstico de criativo/expectativa, não otimização (o objetivo "conversas" do Meta já enviesa para prováveis-remetentes). Não construir nada custom para perseguir esse número.
+
 **Desenho v1 (registrado):**
 - **Entrada:** UTMs nativos no Tracking data → origem/campanha gravada no card e refletida no painel. Setup do mesmo BM + permissão de leitura de metadados é **pré-requisito de Fase 3** (critério no 03 §7.1) — sem ele a Tracking data nem popula. UTM/nomes de campanha distintos de CTWA vs link-ad para o painel separar por card.
 - **Loop de volta:** nossos eventos (`lead_qualificado` com valor — §9) seguem via CAPI **casados por telefone hasheado** — match degradado sem `ctwa_clid`, porém funcional. A Conversion API da Kommo entra em **teste de sandbox**; se o comportamento for aceitável (evento certo, sem duplicar com os nossos), assume o sinal de otimização específico do CTWA.
@@ -219,6 +223,19 @@ Lê do store, **agregando por `type` de Assunto e por Assunto** (ambos dados —
 - Atribuição por canal/UTM (lead **qualificado**, não só clique).
 - Session replay (se Opção A), PII mascarada, respeitando consentimento.
 
+### 12.1 Single pane of glass — ingestão de reporting de plataforma (D-17)
+
+O Tracker Hub (06 §3) é o **ponto único de leitura de marketing**: o time não tabula entre Meta/Google/Pinterest/TikTok/YouTube pra cruzar número. Duas camadas, naturezas opostas — **não confundir**:
+
+- **L1 — diferencial (nosso, *pull* do nosso store):** tudo acima nesta §12 — atribuição closed-loop *por card* (lead→qualificado→visita→ganho + valor) por canal/UTM. Custom; nada off-the-shelf entrega o join eventos web + desfecho Kommo + valor.
+- **L2 — reporting de plataforma (commodity, novo — *pull* das APIs das plataformas):** investimento, impressões, cliques, CPM, conversas iniciadas, **lacuna de abandono CTWA** (§9.3). Direção oposta às Destinations (que são *push*). É o que hoje força o tab-hopping.
+
+**Escopo faseado (D-1 — não hand-buildar o commodity):**
+- **Fase 3, Nível 1 (vale possuir — cruza com o diferencial):** puxar **investimento por canal/dia** (slice pequeno e estável de cada API: custo por campanha por dia) e blendar com qualificado+valor (L1) → **CAC e custo-por-lead-qualificado por canal** no painel. É o número que decide verba; o valor está no *join*, não no dado cru. Pull agendado na cola fina via `pg-boss` (§10), gravado em `app` (agregados diários, não evento-a-evento).
+- **Nível 2 (superfície completa de reporting):** **não** manter N integrações à mão. **Inclinação PostHog-first (D-17, fundador 13/06):** convergir no PostHog (já D-3) — **check de cobertura de ingestão de custo na Fase 1** (03 §7.1; esp. Pinterest/TikTok BR); se furar, **Windsor.ai** como connector barato *canalizado ao pane* (dado do connector → `app`/store → Tracker Hub, nunca só o dashboard deles), e Looker Studio como stopgap grátis no Google. **Build-vs-buy fecha na Fase 3 com custo como input** (liga 99 §3.5); há tempo, não bloqueia.
+
+**Guardrail (inegociável — liga 99 §2.3.2):** métrica reportada pela plataforma ≠ métrica nossa por card (modelos e janelas de atribuição diferentes). O painel **rotula a fonte de cada número** (plataforma X vs. nosso store/Kommo); **nunca** soma "conversões" entre plataformas nem as compara com nossos cards como mesmo denominador. Centralização sem rótulo de fonte é "confiantemente errado" — pior que tab-hopping.
+
 ---
 
 ## 13. Catálogo de eventos canônicos
@@ -233,6 +250,7 @@ Lê do store, **agregando por `type` de Assunto e por Assunto** (ambos dados —
 - **D-5** (LGPD) — diferido; consent gate como pass-through. Sync de audiências (§9.2) gated pelo opt-in mínimo desde o dia 1.
 - **D-14** — **fechado: atribuição de plataforma** — click IDs no contrato (§3/§4), CTWA (§9.3), valores por faixa e SLA ≤ 72h no loop (§9), eventos de visita (§13).
 - **D-15** — **fechado: split de ingestão** — analytics via proxy CF→PostHog; `/collect` para eventos de negócio (§3).
+- **D-17** — **fechado: single pane of glass** — painel ingere reporting de plataforma (§12.1); Nível 1 (CAC por canal) na Fase 3, superfície completa via connector com build-vs-buy na Fase 3.
 - **Join key** — `correlation_id` reservado; value-mapping diferido.
 
 ---

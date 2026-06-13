@@ -51,7 +51,8 @@ Visualização do estado real do sistema (read-only, sensível → Admin):
 - **Status do sistema:** saúde do site, do HUB, da fila e dos jobs; uptime; **CWV atual** vs. orçamento (03).
 - **Usuários:** quem existe, papéis, sessões ativas, trilha de auditoria (§6).
 - **Inventário de integrações:** cada destino conectado/erro/última sincronização (vem da saúde do 05 §11.3).
-- *Dono:* 03 (infra/status) e 05 (saúde de integração); o Hub renderiza.
+- **Marketing — single pane of glass (D-17, 05 §12.1):** painel unificado que **rotula a fonte de cada métrica** — L1 (nosso, por card: CAC e custo-por-lead-qualificado por canal, funil M-04) ao lado de L2 (reporting puxado das plataformas: investimento, impressões, cliques, abandono CTWA). Nunca soma conversões entre plataformas nem as compara com nossos cards como mesmo denominador. Tira o time do tab-hopping entre Meta/Google/Pinterest/YouTube.
+- *Dono:* 03 (infra/status) e 05 (saúde de integração + §12.1 reporting); o Hub renderiza.
 
 ### 3.3 Eventos & Integrações — *o que está acontecendo agora / teste*
 A parte "tracker" propriamente dita, operando as capacidades do 05 §11:
