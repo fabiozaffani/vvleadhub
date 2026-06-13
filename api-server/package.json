@@ -10,10 +10,12 @@
   },
   "dependencies": {
     "@vvf/contracts": "workspace:*",
-    "drizzle-orm": "^0.36.0"
+    "drizzle-orm": "^0.36.0",
+    "pg": "^8.21.0"
   },
   "devDependencies": {
     "@types/node": "^22.10.2",
+    "@types/pg": "^8.20.0",
     "drizzle-kit": "^0.28.0"
   },
   "//": "Express 5, pg, pg-boss (fila no schema app), Zod nas bordas entram na Fase 0b — ver docs/tasks/fase-0.md."

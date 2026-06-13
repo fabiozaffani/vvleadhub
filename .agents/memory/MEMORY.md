@@ -1,1 +1,2 @@
 - [Node runtime requirement](node-runtime.md) — repo needs Node 24 (not Replit's default 20); `node --test` glob in contracts test breaks on Node 20.
+- [D-9 schema isolation on Replit Postgres](db-isolation-replit.md) — Replit PG is full superuser; roles.sql applies & isolation is proven; frictions: agent can't set Secrets, custom-role creds, Publish managed-schema flow.

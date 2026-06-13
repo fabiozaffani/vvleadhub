@@ -1,0 +1,44 @@
+Você é o builder primário deste repositório (decisão D-16).
+
+LEIA ANTES DE QUALQUER CÓDIGO, nesta ordem:
+AGENTS.md (sua conduta — fonte única) → replit.md (seu papel + invioláveis + notas
+de ambiente) → docs/brand/vvf-system-context.md → docs/brand/vvf-design-guidelines.md
+→ docs/00-indice-regras.md → 01 → 02 → 03 → docs/tasks/README.md →
+docs/tasks/fase-0.md (work-orders) → docs/tasks/composicao-paginas.md (a planta das páginas).
+
+ESTADO DO REPO: a Fase 0a (gaiola) já está pronta na main — monorepo pnpm (site/ Astro,
+admin/ Payload, api-server/ Express, packages/contracts), CI com travas de fronteira,
+`pnpm verify` como definição de pronto. Ambiente Replit já tratado (.npmrc; testes em
+node:test — NÃO reintroduza vitest). Ainda não há app: é o que você vai construir (Fase 0b).
+
+COMO TRABALHAR:
+- Uma work-order por vez, cada uma na sua branch + Pull Request. `pnpm verify` VERDE antes
+  de abrir o PR. Conventional commits. Não commite direto na main.
+- Respeite as fronteiras (o CI quebra se violar): runtimes não se importam entre si; tipos
+  cruzados só via packages/contracts; site nunca toca Postgres; cada schema é migrado só
+  pelo dono (D-9).
+- Marca: SEM preço em copy público (INV-05); tom de marca (sereno, 2ª pessoa, "sem
+  surpresas"); tokens + Playfair/Work Sans; sem emojis nem ícones decorativos; mobile-first.
+  Conteúdo da v1 = placeholders MARCADOS — não invente fotos, números ou depoimentos como fato.
+- PARE E ME PERGUNTE (não decida sozinho): qualquer mudança em packages/contracts ou docs/;
+  o fallback do isolamento de banco da WO-06 se o Postgres gerenciado restringir roles;
+  qualquer decisão fechada (D-1..D-17) que pareça errada; promoção a produção.
+
+OBJETIVO DESTA RODADA (execute em ordem, até o site rodar; siga para a próxima sem esperar,
+exceto nos pontos de "pare e pergunte"):
+1. WO-06 — provisione o Postgres + os 3 runtimes no Replit, configure os Secrets (nomes do
+   .env.example), e APLIQUE E PROVE o isolamento de schema D-9 (infra/db/roles.sql). Se o
+   Postgres gerenciado (Neon) restringir CREATE ROLE/REVOKE, PARE e me escale.
+2. WO-01 — Payload base no schema payload + seed dos registros do 02 (3 TiposDeAssunto;
+   5 espaços com categoria; serviços com papel: padrão|adicional; objetivos).
+3. WO-02 — site Astro (output:'server') com a HOME e o BLOG INDEX exatamente na ordem de
+   docs/tasks/composicao-paginas.md (home: Hero → números → 4 espaços → form #contato;
+   blog: "Nosso Journal" + filtro + grid), com o chrome global (header com "Agende uma
+   visita", footer NAP), renderizando da API do Payload, mobile-first, conteúdo placeholder.
+4. CONFIGURE o workflow do Replit para rodar o site (e o admin) e DEIXE RODANDO, para eu ver
+   a home no ar.
+5. WO-03 — baseline SEO/CWV + ligue o gate de qualidade. PRIMEIRO faça o smoke-test de
+   instalação de Playwright, @lhci/cli e @axe-core/playwright contra o firewall do Replit;
+   se algum for bloqueado (403), PARE e me escale.
+
+Comece pela WO-06. A cada PR, diga o que entregou e o que VERIFICOU (com evidência).
