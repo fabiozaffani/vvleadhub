@@ -23,7 +23,7 @@ Monorepo + enforcement por máquina. **Não delegar — é a base.**
 
 ---
 
-## Fase 0b — Fundação (delegável por faixa)
+## Fase 0b — Fundação (build pelo Replit Agent)
 
 > **Restrições de build (armadilhas conhecidas — recomendação da auditoria; algumas viram emenda de doc P1 com aval):**
 > 1. Astro em **`output: 'server'`** (adapter Node) + cache no Cloudflare + **purge por URL** no publish. NÃO `output:'static'`/"SSG-ISR" (Astro não tem ISR; "publicar reflete no site" depende de purge).
@@ -35,37 +35,39 @@ Monorepo + enforcement por máquina. **Não delegar — é a base.**
 > 7. Hospedagem: três deployments + subdomínios (`www`, `admin.`, `api.`/`t.`) no DNS Cloudflare — não path-proxy.
 > 8. `api-server`: definir CORS explícito (origem do site/admin), nunca `*` reflexivo; CSP no site com origens de script declaradas.
 
-### Composer (`site/` + `admin/`)
+### Work-orders de build — Replit Agent (builder primário, todas as WO abaixo)
 
-**WO-01 · admin — Payload base + registros do 02** _(faixa: Composer)_
+> **Cursor Composer e Claude Code não recebem WO de build** (D-16). Entram como auxiliares: Claude Code roda `/code-review` em cada PR do Replit + `/audit-quality`/`/checklist-fase` nos gates; Cursor para debug/leitura/correção pontual. Auditoria e melhoria são tarefas escopadas à parte, não WOs do roadmap. Cada WO continua com `Arquivos:` enxutos — é disciplina de PR focado, mesmo com um único builder.
+
+**WO-01 · admin — Payload base + registros do 02** _(Replit Agent)_
 - **Objetivo:** Payload (Next-hosted) no schema `payload` (D-9), com as collections do registro do 02 e RBAC (D-12).
 - **Arquivos:** `admin/**` (não tocar `site/`, `api-server/`, `packages/contracts`).
 - **Aceite (03 §7.1):** registros seedados (3 TiposDeAssunto; 5 espaços com `categoria`; serviços com `papel: padrão|adicional`; Objetivos incl. `agendar_visita`); `payload generate:types` desaguando em `packages/contracts/generated` (via PR gated, ou script que o fundador aprova).
 - **Refs:** 06, 02, D-1/D-9/D-12. **Atenção vocabulário:** `papel: padrão|adicional` (00 §6) — o 06 §5 tem um resíduo `mínimo`; o canônico é `padrão`.
 
-**WO-02 · site — Astro base + design system + institucional/blog** _(faixa: Composer)_
+**WO-02 · site — Astro base + design system + institucional/blog** _(Replit Agent)_
 - **Objetivo:** site `output:'server'`, tokens espelho das Design Guidelines, layouts, páginas institucionais + blog base renderizando da API do Payload.
 - **Arquivos:** `site/**`.
 - **Aceite (03 §7.1):** páginas renderizando do Payload; paridade visual (tokens, Playfair+Work Sans, foco/skip-link/reduced-motion). Restrições de build 1–4.
 - **Refs:** 03 §4, 04, 07, Design Guidelines, skill `react-best-practices` (ilhas).
 
-**WO-03 · site — SEO/CWV baseline + ligar o gate de qualidade** _(faixa: Composer)_
+**WO-03 · site — SEO/CWV baseline + ligar o gate de qualidade** _(Replit Agent)_
 - **Objetivo:** JSON-LD, sitemap/robots/canonical/OG; Lighthouse + axe verdes; ativar o job `quality` do CI (adicionar `site` rotas ao `lighthouserc`, script `test:a11y`).
 - **Arquivos:** `site/**`, `lighthouserc.json`.
 - **Aceite (03 §7.1):** Lighthouse CI verde (home, 1 espaço, 1 post) no orçamento §4; axe sem violações; structured data validando (Rich Results Test).
 - **Refs:** skills `seo-schema-org`, `a11y-axe`, `audit-quality`; 03 §4.
 
-**WO-04 · site+admin — publish→purge + preview de draft** _(faixa: Composer)_
+**WO-04 · site+admin — publish→purge + preview de draft** _(Replit Agent)_
 - **Objetivo:** hook de publish do Payload lista URLs afetadas → purge no Cloudflare (resolve 2.2.4); rota `/preview` no Astro com token assinado (resolve 2.2.6).
 - **Arquivos:** `admin/src/hooks/**`, `site/src/pages/preview/**`, `site/src/lib/**`.
 - **Aceite (03 §7.1):** publicar no Payload reflete no site; preview de draft funcionando. Restrição de build 6.
 
-**WO-05 · conteúdo — páginas legais + inventário** _(faixa: Composer/fundador)_
+**WO-05 · conteúdo — páginas legais + inventário** _(Replit Agent / fundador)_
 - **Aceite (03 §7.1):** páginas legais publicadas (placeholder jurídico **aprovado pelo fundador**); inventário (`docs/conteudo/inventario.md`) com dono/prazo; 5 espaços com **galeria real** (sem banco — §5 do Contexto). _O 🔴 remanescente é o preenchimento do inventário (fundador)._
 
-### Replit Agent (`api-server/` + infra)
+### (continuação — infra & api-server, mesmo builder)
 
-**WO-06 · infra — provisionamento + isolamento de banco (D-9)** _(faixa: Replit Agent)_
+**WO-06 · infra — provisionamento + isolamento de banco (D-9)** _(Replit Agent)_
 - **Objetivo:** provisionar Postgres + os 3 deployments sob subdomínios (Cloudflare na frente), configurar Secrets, e **aplicar e verificar o isolamento de schema do D-9**.
 - **Arquivos:** `infra/**`, configs de deploy/Secrets do Replit. **Não tocar código de produto.**
 - **Secrets:** nomes EXATOS do `.env.example` (`DATABASE_URL_APP`, `DATABASE_URL_PAYLOAD`, `PAYLOAD_SECRET`, `R2_*`, `CF_API_TOKEN`, `SERVICE_TOKEN_SECRET`, …). Não inventar variações.
@@ -77,10 +79,10 @@ Monorepo + enforcement por máquina. **Não delegar — é a base.**
 - **Gate humano:** o isolamento é verificado pelo fundador (ou pelo `/code-review` do Claude Code) antes de confiar — o agente **não** se auto-certifica aqui.
 - **Aceite:** monorepo sobe no Replit; CI verde; subdomínios roteando (restrição de build 7); **isolamento D-9 provado (passo 2 com evidência) — ou fallback escalado ao fundador**.
 
-**WO-07 · api-server — esqueleto + observabilidade + OpenAPI** _(faixa: Replit Agent)_
+**WO-07 · api-server — esqueleto + observabilidade + OpenAPI** _(Replit Agent)_
 - **Objetivo:** Express 5 em camadas (09 §1.1); `/health` por runtime; Sentry + pino; `openapi.yaml` como fonte + codegen → `packages/contracts/generated` com drift-check no CI. (`/collect` e cola Kommo são F1.)
 - **Arquivos:** `api-server/**`; `packages/contracts/generated/**` só por PR gated.
-- **Aceite (parcial F0/F1):** `/health` ok; Sentry nos 3 runtimes (coordenar com Composer); OpenAPI gerando sem drift. Restrição de build 8.
+- **Aceite (parcial F0/F1):** `/health` ok; Sentry nos 3 runtimes (um projeto por runtime — 09 §6); OpenAPI gerando sem drift. Restrição de build 8.
 
 ---
 

@@ -34,16 +34,16 @@
 
 Três agentes podem tocar este repositório. Cada um lê um arquivo diferente; todos apontam para este. **Mantenha os três sincronizados quando uma regra muda** (o ponteiro carrega o resumo dos invioláveis inline).
 
-| Agente | Lê | Faixa de trabalho (D-16) |
+| Agente | Lê | Papel (D-16) |
 |---|---|---|
-| **Cursor Composer 2.5** | `AGENTS.md` (nativo) + `.cursor/rules/*.mdc` (escopo por pasta) | dono de `site/` + `admin/` |
-| **Replit Agent** | `replit.md` (e o reescreve como memória — mantê-lo pré-semeado) | dono de `api-server/` + infra/deploy/secrets do Replit |
-| **Claude Code** | `CLAUDE.md` | revisão + gates (`/code-review`, `/checklist-fase`, `/audit-quality`) nos PRs dos outros dois |
+| **Replit Agent** | `replit.md` (e o reescreve como memória — mantê-lo pré-semeado) | **builder primário** — desenvolve o app inteiro (`site/` · `admin/` · `api-server/` · infra/deploy/secrets), todas as fases |
+| **Cursor Composer 2.5** | `AGENTS.md` (nativo) + `.cursor/rules/*.mdc` (escopo por pasta) | **auxiliar/backup** — debug, leitura de arquivos, commits, correções pontuais (uso eventual do fundador) |
+| **Claude Code** | `CLAUDE.md` | **auxiliar/backup** — auditoria, revisão e melhoria: `/code-review` nos PRs do Replit, `/audit-quality`·`/checklist-fase` nos gates, e trabalho de maior volume onde tokens mais baratos ajudam |
 
-- **Encontro só em `packages/contracts`** — alterado sob `CODEOWNERS` (aval do fundador). Mudança de contrato nunca passa sem olho humano.
-- **Faixa = arquivo permitido no work-order.** Um agente não escreve fora da sua faixa sem um work-order que explicitamente o autorize. Dois agentes nunca tocam o mesmo pacote na mesma fase.
-- **`/code-review` em PR de Composer/Replit:** roda pela faixa do Claude Code antes do merge (ou pelo gate de review do CI). A regra "todo PR passa por review" vale para os três — só muda quem dispara.
-- A divisão de faixas acima é o modelo de operação corrente; ajustá-la é editar `docs/tasks/fase-0.md` (e o `.cursor/rules`/`replit.md` correspondentes), não improvisar no meio de uma tarefa.
+- **Um builder, dois auxiliares.** O Replit Agent constrói; Cursor e Claude Code entram para **auditar, revisar, melhorar e debugar** — não para tocar o build em paralelo. Quando um auxiliar editar código, segue as mesmas regras (fronteiras, marca, `pnpm verify`) e trabalha em **tarefa escopada / PR própria**, sem pisar em trabalho do Replit em andamento.
+- **Encontro gated:** `packages/contracts` e `docs/` mudam só sob `CODEOWNERS` (aval do fundador). Mudança de contrato afeta tudo — nunca passa sem olho humano.
+- **`/code-review` em todo PR antes do merge** (papel do Claude Code, ou gate de review do CI). A regra "todo PR passa por review" vale para qualquer autor — Replit ou auxiliar.
+- Os papéis acima são o modelo de operação corrente (D-16); ajustá-los é editar `docs/tasks/fase-0.md` (e os ponteiros `.cursor/rules`/`replit.md`/`CLAUDE.md`), não improvisar no meio de uma tarefa.
 
 ## Quando perguntar ao fundador (aval obrigatório)
 
