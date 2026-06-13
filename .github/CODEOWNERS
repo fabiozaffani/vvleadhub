@@ -1,0 +1,11 @@
+# Aval do fundador obrigatório nestes caminhos (AGENTS.md "Quando perguntar").
+# Mudança de contrato afeta os três runtimes; doc é canônico; conduta é a fonte de regras.
+
+/packages/contracts/   @fabiozaffani
+/docs/                 @fabiozaffani
+/AGENTS.md             @fabiozaffani
+/CLAUDE.md             @fabiozaffani
+/replit.md             @fabiozaffani
+/.cursor/rules/        @fabiozaffani
+/.github/              @fabiozaffani
+/infra/                @fabiozaffani

@@ -92,7 +92,7 @@ Criar experimento a partir de uma base (LP/bloco), definir variantes, alocação
 
 ## 10. Decisões & diferidos (fonte: 00 §6)
 
-- **D-1 / D-3** (ferramenta de experimentação/analytics) — abertas; o modelo é agnóstico.
+- **D-1 / D-3** — **fechadas** (Payload / PostHog — 00 §7). O modelo permanece agnóstico à ferramenta: o requisito é o comportamento server-side (avaliação local de flag p/ não custar TTFB nas LPs sob teste — ver §1), não o produto.
 - Significância e amostra mínima default — `[a definir]` no setup do primeiro experimento.
 
 ---

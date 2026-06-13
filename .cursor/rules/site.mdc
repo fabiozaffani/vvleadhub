@@ -1,0 +1,25 @@
+---
+description: Regras do site/ (Astro) — performance, blocos, marca aplicada.
+globs: site/**
+---
+
+# site/ — Astro (público)
+
+Dono: Cursor Composer. Specs: 03 (arquitetura/SEO), 04 (LPs/blocos), 07 (blog), 09 §1.1 (estrutura), Design Guidelines (visual).
+
+## Render e performance (gate de CWV — 03 §4)
+- **`output: 'server'` com adapter Node** + cache agressivo no Cloudflare e **purge por URL no publish** (NÃO "SSG/ISR" — Astro não tem ISR; estático-na-prática vem do cache do edge). O hook de publish do Payload lista as URLs afetadas (página + listagens + sitemap).
+- **Zero JS por default.** Ilha React só onde há interação real. Rotas de marketing não hidratam.
+- **Sem Framer Motion no site** para entradas/scroll-reveal — use CSS + IntersectionObserver. Framer Motion só dentro de ilha que já é interativa por outro motivo.
+- **shadcn/ui é do `admin/`, não do site.** No site, componente próprio com os tokens.
+- Imagens via pipeline D-10 (R2 + Cloudflare Images) e `astro:assets` — **não** `next/image` (não é Next). AVIF/WebP responsivo, dimensões explícitas (CLS), `fetchpriority="high"` + preload no LCP.
+- Fontes self-hosted (`@fontsource` Playfair Display + Work Sans), preload dos pesos principais, fallback métrico — não bloquear render.
+
+## Estrutura (09 §1.1)
+`pages/` (rota = URL) · `layouts/` · `blocks/` (1 pasta/bloco: `.astro` + props Zod + capacidades) · `components/` (UI menor, NÃO editorial) · `lib/` (cliente Payload, collector, `seo/`, `ab/`) · `styles/` (tokens espelho de `brand/`).
+- **Bloco ≠ component.** Bloco é unidade editorial registrada (02/04), montável no admin, com capacidades por TipoDeAssunto e degradação graciosa (02 §4) — zero `switch` por instância. Component nunca aparece no editor.
+- Espelho 1:1 dos blocos com `admin/blocks/`; o schema de props de cada bloco vem de `packages/contracts`.
+
+## Conteúdo e tipos
+- Tipos das respostas do Payload vêm de `packages/contracts/generated` (`payload generate:types` → contracts). **Não** escreva tipos de resposta à mão.
+- A11y: WCAG 2.1 AA; classes de foco `.vv-focus*`, skip-link, `prefers-reduced-motion` (override `animation:none + transform:none` em stills). Contraste: dourado claro `#C69F3F` falha em texto pequeno — texto usa verde `#143C37` ou dourado escuro `#7D5900` (Guidelines §2/§8).

@@ -33,8 +33,8 @@ flowchart TB
     subgraph CF["Cloudflare (DNS · CDN · WAF · cache)"]
     end
 
-    subgraph Replit["Monorepo (Replit) — proxy por caminho"]
-        SITE["site (Astro, SSR/SSG)<br/>institucional · LPs · blog · bio pages"]
+    subgraph Replit["Monorepo (Replit) — 3 deployments · subdomínios"]
+        SITE["site (Astro, output:'server')<br/>institucional · LPs · blog · bio pages"]
         ADMIN["admin (Payload CMS / Next)<br/>conteúdo + Tracker Hub (06)"]
         API["api-server (Express + Postgres/Drizzle)<br/>/collect · cola Kommo · loop fechado · links xcode"]
     end
@@ -60,6 +60,8 @@ Fronteiras de propriedade:
 - **PostHog:** dono de store/análise/experimentos e do **fan-out** a plataformas de mídia via Destinations (catálogo de conectores a confirmar na implementação; o que faltar entra como webhook→api-server).
 - **Kommo:** dono da conversa, cadências, funil SDR/Closer, qualificação. A plataforma nunca reconstrói isso.
 
+**Hosting (resolve "proxy por caminho" — auditoria de delegação jun/2026):** os três runtimes são **deployments separados sob subdomínios** roteados no DNS da Cloudflare (`www` → site · `admin.` → admin · `api.`/`t.` → api-server), não um path-proxy num único repl. O `t.` é o domínio first-party do analytics (proxy reverso → PostHog, D-15). Mantém as fronteiras de runtime físicas e simplifica cache/WAF por host.
+
 ---
 
 ## 3. Stack
@@ -68,7 +70,7 @@ Fronteiras de propriedade:
 |---|---|---|
 | Site público | **Astro** (SSR/SSG/ilhas React) | mínimo JS por padrão → CWV agressivo por construção; A/B server-side sem flicker |
 | Admin/CMS | **Payload CMS** (Next-hosted) | blocks, versionamento, live preview, RBAC prontos; Postgres adapter (Drizzle por baixo) |
-| API operacional | **Express 5 + PostgreSQL + Drizzle** | já existente; contrato **OpenAPI** como fonte de verdade + codegen |
+| API operacional | **Express 5 + PostgreSQL + Drizzle** | build novo (greenfield — D-7); contrato **OpenAPI** como fonte de verdade + codegen → `packages/contracts/generated` |
 | Eventos/análise | **PostHog** | self-hosted ou cloud, sob domínio próprio |
 | Linguagem | TypeScript end-to-end | contratos tipados = AI-buildable |
 | Edge | **Cloudflare** | CDN/WAF/cache/rate-limit na frente dos três runtimes |
@@ -78,7 +80,7 @@ Fronteiras de propriedade:
 
 ## 4. SEO & performance (o site)
 
-**Renderização:** institucional e blog em SSG/ISR; LPs com variante de A/B resolvida **no servidor** (zero flicker); admin sem indexação.
+**Renderização:** Astro em **`output: 'server'`** (adapter Node). Institucional e blog são **prerenderizados** por página (`export const prerender = true`) e servidos do **cache do Cloudflare**; LPs com variante de A/B resolvidas **no servidor** (zero flicker, SSR por hit). **Sem ISR** — Astro não tem ISR: o "incremental" é o **purge por URL no publish** (item 2.2.4), não revalidação por TTL. Admin sem indexação. *(Clarificação da auditoria de delegação jun/2026: "SSG/ISR" era vocabulário de Next; em Astro o estático-na-prática vem de prerender + cache de edge + purge.)*
 
 **Orçamento de CWV (hard gate de deploy):** LCP < 2,5s (alvo < 1,8s) · INP < 200ms · CLS < 0,1 · JS inicial em rota de marketing mínimo (Astro: zero por padrão) · imagens AVIF/WebP responsivas servidas pelo pipeline D-10 (R2 + Cloudflare Images, on-the-fly) · fontes conforme **Design Guidelines** (`brand/vvf-design-guidelines.md` §3): Playfair Display (títulos) + Work Sans (corpo) — exceção registrada ao brand guide; Sloop Script Pro fora de uso. Carregamento não-bloqueante.
 
@@ -104,6 +106,8 @@ Propriedade: conteúdo no Payload; operacional (leads, links, log de dispatch) n
 ## 6. Segurança & infra
 
 HTTPS/HSTS · WAF e rate-limit (especialmente `/collect`) no Cloudflare · credenciais em secrets (nunca no client) · RBAC + auditoria no admin (06 §6) · backups do Postgres · observabilidade dos três runtimes · proteção de formulário (honeypot + rate-limit) sem fricção visível.
+
+**CSP & CORS (auditoria de delegação jun/2026 — agente nunca acerta sozinho):** o site publica **Content-Security-Policy** com as origens de script declaradas explicitamente (self + PostHog via proxy `t.` + pixels permitidos) — nada de `unsafe-inline` para script sem nonce. O api-server define **CORS por allowlist** das origens do site/admin (subdomínios próprios) — nunca `*` reflexivo, nunca refletir o `Origin` recebido. Ambos entram como config versionada, não ad-hoc.
 
 ---
 

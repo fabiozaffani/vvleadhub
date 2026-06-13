@@ -92,7 +92,7 @@ Fronteiras de runtime e propriedade (03 §2) · contrato único de evento com te
 | 6.1 | Payload × admin existente | **D-1 reconfirmada:** Payload. O admin do protótipo não é migrado. |
 | 6.2 | Doc As-Is inexistente | **Dispensado** — não há migração; o protótipo serve só como referência visual/funcional. |
 | 6.3 | Fase 0 como migração | **Mantida como build** (03 §7 vale como está). Paridade visual garantida pelas Design Guidelines (spec), não por cópia de código. |
-| 6.4 | replit.md vs CLAUDE.md | **CLAUDE.md é a fonte única** de instruções do agente no repo novo. Se o protótipo continuar existindo em paralelo, o `replit.md` dele não governa o build. |
+| 6.4 | replit.md vs CLAUDE.md | **Superado por D-16:** a fonte única tool-neutral é `AGENTS.md`; `CLAUDE.md`/`replit.md`/`.cursor/rules` são ponteiros com os invioláveis inline. O `replit.md` do repo novo é **pré-semeado** com a faixa do Replit Agent + invioláveis (ele se reescreve como memória — não pode se auto-governar). |
 | 6.5 | "Variant B" ad-hoc | **Moot** — variantes do protótipo não migram; o que valer a pena renasce dentro do motor do 08, medido. |
 | 6.6 | Blog sem imagens de capa | **Permanece** — reforça 1.4 (inventário de conteúdo), independente de greenfield. |
 

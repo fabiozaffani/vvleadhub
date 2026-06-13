@@ -1,0 +1,13 @@
+{
+  "name": "@vvf/admin",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@vvf/contracts": "workspace:*"
+  },
+  "//": "Payload + Next entram na Fase 0b. Lembrar transpilePackages: ['@vvf/contracts'] no next.config — ver docs/tasks/fase-0.md."
+}

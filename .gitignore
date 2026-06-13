@@ -1,0 +1,38 @@
+# dependencies
+node_modules/
+.pnpm-store/
+
+# build output
+dist/
+build/
+.astro/
+.next/
+.output/
+.vercel/
+.turbo/
+
+# env / secrets (NUNCA commitar — só .env.example)
+.env
+.env.*
+!.env.example
+
+# logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# test / coverage
+coverage/
+.nyc_output/
+test-results/
+playwright-report/
+.lighthouseci/
+
+# editor / OS
+.DS_Store
+Thumbs.db
+.idea/
+*.swp
+
+# Payload / generated runtime
+admin/.payload/

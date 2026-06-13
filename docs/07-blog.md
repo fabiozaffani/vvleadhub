@@ -11,7 +11,7 @@
 
 1. **Autoridade por clusters, não posts soltos.** SEO de casamento premium é jogo de autoridade temática: pilar + satélites + internal linking forte.
 2. **Conteúdo é dado.** Posts, clusters e metadados de SEO são editáveis no 06 — sem deploy.
-3. **Performance herdada.** SSG/ISR, imagens otimizadas, fontes self-hosted; o orçamento de CWV do 03 vale aqui.
+3. **Performance herdada.** Prerender + cache do edge (purge no publish — não ISR; ver 03 §4), imagens otimizadas, fontes self-hosted; o orçamento de CWV do 03 vale aqui.
 4. **O blog converte.** Não é vitrine: é topo/meio de funil que encaminha para LP/WhatsApp (§9).
 5. **Marca por construção.** Edição brand-locked (tokens §5, guardrails §4). Conteúdo de IA, se usado, passa pelo lint de marca (06 §8).
 
@@ -70,7 +70,7 @@ Para "espaço de casamento em <cidade>", o **map pack** decide mais que o orgân
 
 ## 6. Performance
 
-- SSG/ISR (estático com revalidação), servido do edge.
+- Prerenderizado (Astro `prerender`), servido do cache do edge; revalidação por **purge no publish** (não ISR — 03 §4).
 - Imagens AVIF/WebP responsivas (`next/image` ou equivalente); lazy abaixo da dobra.
 - Fontes conforme Design Guidelines §3 (Playfair + Work Sans; exceção registrada), carregamento não-bloqueante.
 - JS mínimo em rota de conteúdo; sem libs pesadas. CWV como gate (03).
@@ -109,7 +109,7 @@ Posts são criados/editados no 06: rich-text, mídia, campos de SEO, escolha de 
 
 ## 11. Decisões & diferidos (fonte: 00 §6)
 
-- **D-1** (CMS) — aberto; modelo de post é agnóstico.
+- **D-1** (CMS) — **fechada: Payload** (00 §6/§7); modelo de post permanece agnóstico (conteúdo é dado).
 - Geração de conteúdo por IA — opção, não requisito; sempre via lint de marca (06 §8). Sem decisão travada.
 
 ---
@@ -120,5 +120,5 @@ Posts são criados/editados no 06: rich-text, mídia, campos de SEO, escolha de 
 - **INV-03 (experiência integrada):** conteúdo conduz à experiência completa, nunca a um componente isolado ✓
 - **INV-05 (sem preço):** nenhum gancho de preço/promoção ✓
 - **INV-09 (replicável):** clusters e posts por dado; internal linking automático por Assunto ✓
-- **Performance:** SSG/ISR + CWV como gate ✓
+- **Performance:** prerender + cache do edge (purge no publish) + CWV como gate ✓
 - **§3.3 (legado/histórias):** pauta ancora no vetor ideológico quando couber ✓

@@ -1,0 +1,24 @@
+---
+description: Regras do admin/ (Payload CMS / Next) — convenção nativa, RBAC, Tracker Hub.
+globs: admin/**
+---
+
+# admin/ — Payload CMS (Next-hosted)
+
+Dono: Cursor Composer. Specs: 06 (admin/Tracker Hub), 02 (primitivas), 05 (capacidades operadas), D-9/D-12.
+
+## Convenção (09 §1.1)
+Siga a **convenção nativa do Payload** — não invente estrutura própria onde o framework já tem:
+- `collections/` — 1 arquivo por entidade do 02 (`subjects`, `subject-types`, `lps`, `templates`, `posts`, `media`…).
+- `blocks/` — **espelho 1:1 dos blocos do `site/`** (mesmo schema de props, de `packages/contracts`).
+- `access/` — RBAC (D-12: auth nativa do Payload, users collection própria, sem provedor externo). Papéis: Marketing / Admin / Editor / Leitura (06 §6).
+- `views/` — Tracker Hub (React custom dentro do admin), consumindo PostHog (API/embed) e a cola fina do api-server.
+- `hooks/` — purge de cache no publish (lista URLs afetadas → Cloudflare por URL), webhooks.
+
+## Regras duras
+- **TipoDeAssunto novo = collection nova = código** (PR pequeno, evento raro). **Instância de Assunto = dado** (sem deploy). Nunca hardcode espaço/serviço/campanha (02 §1).
+- **Banco (D-9):** o Payload é dono e migra **só** o schema `payload`. **Nunca** leia/escreva o schema `app` (operacional) direto — dado operacional vem da API do api-server.
+- **Edição brand-locked:** editor não deixa sair dos tokens nem dos guardrails de copy (sem preço, experiência integrada, exclusividade pela história). Marca por construção.
+- Live preview do Payload aponta para a rota `/preview` do site (Astro SSR) com token assinado (segredo compartilhado) + `noindex` — não exponha draft por query param aberto.
+- shadcn/ui (estilo new-york, baseColor neutral) é aqui. Tokens das Design Guidelines.
+- Tracker Hub **opera** capacidades de outros docs (eventos = 05; status = 03); não redefine nada. Modo teste/replay/saúde restritos a Admin; eventos `test:true` segregados de ponta a ponta.

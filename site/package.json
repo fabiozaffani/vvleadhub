@@ -1,0 +1,13 @@
+{
+  "name": "@vvf/site",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@vvf/contracts": "workspace:*"
+  },
+  "//": "Astro + adapter Node (output:'server') e demais deps entram na Fase 0b — ver docs/tasks/fase-0.md."
+}

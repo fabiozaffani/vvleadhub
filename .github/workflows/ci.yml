@@ -1,0 +1,91 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: verify (typecheck · lint · boundaries · test · build)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: pnpm verify
+        run: pnpm verify
+
+  secrets-scan:
+    name: gitleaks (segredos fora do código)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  commitlint:
+    name: conventional commits
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: validar commits do PR
+        run: pnpm dlx commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }} --verbose
+
+  quality:
+    name: CWV + a11y (gate de fase — ativa quando o site tem rotas)
+    runs-on: ubuntu-latest
+    needs: verify
+    steps:
+      - uses: actions/checkout@v4
+      - name: detectar rotas do site
+        id: routes
+        run: |
+          if ls site/src/pages/*.astro site/src/pages/**/*.astro >/dev/null 2>&1; then
+            echo "has_routes=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_routes=false" >> "$GITHUB_OUTPUT"
+            echo "site ainda sem rotas (Fase 0a). Gate de CWV/axe ativa na Fase 0b — ver docs/tasks/fase-0.md."
+          fi
+      - uses: pnpm/action-setup@v4
+        if: steps.routes.outputs.has_routes == 'true'
+      - uses: actions/setup-node@v4
+        if: steps.routes.outputs.has_routes == 'true'
+        with:
+          node-version-file: ".nvmrc"
+          cache: pnpm
+      - if: steps.routes.outputs.has_routes == 'true'
+        run: pnpm install --frozen-lockfile
+      - name: build do site (produção)
+        if: steps.routes.outputs.has_routes == 'true'
+        run: pnpm --filter site build
+      - name: Lighthouse CI (orçamento em lighthouserc.json)
+        if: steps.routes.outputs.has_routes == 'true'
+        run: pnpm dlx @lhci/cli autorun
+      - name: axe (WCAG 2.1 AA)
+        if: steps.routes.outputs.has_routes == 'true'
+        run: pnpm --filter site test:a11y
