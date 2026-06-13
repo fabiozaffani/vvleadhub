@@ -45,6 +45,7 @@ Notas:
 - **Pilar:** página/post abrangente sobre o tema (ex.: "como planejar um casamento no interior").
 - **Satélites:** posts específicos que linkam de volta ao pilar e entre si.
 - **Internal linking** orienta autoridade para os pilares e dos pilares para as LPs (via `assuntos_relacionados`).
+- **Formato âncora: "casamentos reais"** (auditoria growth) — um casamento real por post: o espaço, a história do casal, a experiência conduzida. É simultaneamente o melhor conteúdo de busca do segmento (casais pesquisam o espaço pelo nome + "casamento real"), prova social viva e matéria-prima de nutrição via Kommo. Cada post referencia o Assunto `espaço` correspondente (internal linking automático para a LP). **Exige termo de uso de imagem do casal** — item do inventário de conteúdo (`docs/conteudo/inventario.md`); sem termo, não publica.
 
 ---
 
@@ -55,6 +56,15 @@ Notas:
 - URLs limpas e estáveis: `/blog/{slug}` (slug não muda após publicar; mudança gera `301`).
 - `hreflang` pt-BR (preparado para futuro internacional).
 - Heading hierarchy semântica; alt text descritivo nas imagens.
+
+### 5.1 SEO local (elevado pela auditoria growth — fecha 99 §2.4.3)
+
+Para "espaço de casamento em <cidade>", o **map pack** decide mais que o orgânico tradicional — o investimento em clusters não substitui isto:
+
+- **Google Business Profile por espaço** (categoria correta, fotos reais, descrição em tom de marca), reivindicado/criado até o fim da Fase 1 (critério em 03 §7.1).
+- **NAP idêntico** em todo lugar: site, structured data (skill `seo-schema-org` §5) e GBP — divergência custa ranking local.
+- **Reviews acoplados ao NPS (M-01):** quando a medição de NPS estiver rodando, resposta com nota alta dispara o convite de avaliação no GBP — é a sinergia entre a meta de qualidade e o ativo de SEO local. (Não usar `AggregateRating` self-serving no markup do próprio site — o Google ignora desde 2019; a estrela vem do GBP.)
+- Operação contínua (responder avaliações, posts no perfil) é pós-go-live (00 §4.9); a **estrutura** — perfis criados, NAP consistente, gancho NPS→review — é pré-go-live.
 
 ---
 

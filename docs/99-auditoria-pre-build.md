@@ -16,7 +16,7 @@
 | 1.1 | ~~CLAUDE.md~~ — **ENTREGUE** (raiz do repo; registrado no 00 §2). | ✅ | fechado |
 | 1.2 | ~~Critérios de aceite por fase~~ — **ENTREGUE** (03 §7.1, checklists verificáveis por fase). | ✅ | fechado |
 | 1.3 | ~~O Contexto VVF não está no conjunto~~ — **RESOLVIDO:** camada de marca integrada em `docs/brand/` (System Context + Design Guidelines), registrada no 00 §1. *Pendente apenas:* anexar os mapas de growth (citados no 04/06). | 🟢 (restante) | 00 §1 ✓ |
-| 1.4 | **Inventário de conteúdo inexistente** — a maior dependência não-técnica: a IA constrói a máquina, mas **não pode inventar** copy em tom de marca, fotos reais dos espaços (o §5 do Contexto proíbe banco de imagens), depoimentos, vídeos, textos institucionais. Sem um inventário (o que existe, o que falta, quem produz, até quando), a Fase 0 entrega um site lindo e vazio. | 🔴 | workstream paralelo (não é doc técnico) |
+| 1.4 | **Inventário de conteúdo inexistente** — a maior dependência não-técnica: a IA constrói a máquina, mas **não pode inventar** copy em tom de marca, fotos reais dos espaços (o §5 do Contexto proíbe banco de imagens), depoimentos, vídeos, textos institucionais. Sem um inventário (o que existe, o que falta, quem produz, até quando), a Fase 0 entrega um site lindo e vazio. **Mecanismo criado (auditoria growth jun/2026):** `docs/conteudo/inventario.md` estruturado + critério de aceite na Fase 0 (03 §7.1: 5 espaços com galeria real seedada). **Falta: fundador preencher dono/prazo por item.** | 🔴 (só o preenchimento) | `docs/conteudo/inventario.md` |
 | 1.5 | ~~Nenhuma referência visual~~ — **RESOLVIDO em grande parte:** o `vvf-design-guidelines.md` é o design system aplicado (tokens, componentes, movimento, regras fazer/nunca), com implementação de referência em `artifacts/valeverde`. Resta apenas composição por Molde (hierarquia de blocos por página), que pode ser proposta pela IA e curada por você. | 🟢 | brand layer ✓ |
 | 1.6 | ~~Loop de validação humana~~ — **ENTREGUE** (preview como palco de validação — 09 §5; promoção manual + aval obrigatório — CLAUDE.md; critérios por fase — 03 §7.1). | ✅ | fechado |
 
@@ -41,24 +41,24 @@
 | 2.2.4 | **Invalidação de cache na publicação** — publicar no Payload precisa derrubar o cache do Cloudflare/Astro das páginas afetadas (webhook → purge). Sem isso, conteúdo editado demora a aparecer e o time perde confiança no admin. | 🟡 F0 | 03 |
 | 2.2.5 | ~~Auth service-to-service~~ — **RESOLVIDO (D-12):** JWT do Payload validado pelo api-server + tokens de serviço escopados; `/collect` público com rate-limit; usuário final fora do escopo v1 (Clerk designado p/ futuro). Aplicado em 06 §6 e 05 §10. | ✅ | fechado |
 | 2.2.6 | **Live preview cross-runtime** — o preview do Payload apontando para o site Astro exige rota de draft/preview no Astro. Citado como feature, mecânica não spec'ada. | 🟡 F0 | 06 |
-| 2.2.7 | **Proxy do collector** — o desenho manda eventos a `/collect` (api-server) que repassa ao PostHog. Validar: proxy reverso simples ou SDK apontado a host próprio? Carga no api-server? | 🟡 F1 | 05 |
+| 2.2.7 | ~~Proxy do collector~~ — **RESOLVIDO (D-15):** split de ingestão — analytics do SDK via proxy reverso no Cloudflare → PostHog Cloud (padrão suportado; CF já está na frente por D-2); `/collect` (api-server) fica só com eventos de negócio + cola Kommo. Analytics desacoplado da disponibilidade do Express/Replit. Aplicado em 05 §2/§3 e 03 §2. | ✅ | fechado |
 
 ### 2.3 Dados, leads & integrações
 | # | Lacuna | Sev | Destino |
 |---|---|---|---|
 | 2.3.1 | ~~Dedup/merge de lead~~ — **RESOLVIDO (D-11):** Kommo fonte de verdade; telefone E.164 como chave; upsert-e-anexar; loop por card. Aplicado em 04 §7 e 05 §9. *Nuance de reativação a validar com a SDR na implementação.* | ✅ | fechado |
-| 2.3.2 | **Leads off-site invisíveis ao painel** — os fluxos de Instagram DM → Kommo (mapas de growth) nunca tocam o site: não geram evento web. O funil M-04 no painel (05 §12) vai **subnotificar** por desenho. Não é defeito, mas precisa estar explícito para ninguém comparar números errados. | 🟡 F3 | 05 §12 (nota) |
+| 2.3.2 | **Leads off-site invisíveis ao painel** — os fluxos de Instagram DM → Kommo (mapas de growth) nunca tocam o site: não geram evento web. *Atenuado pela D-14: a criação de card emite `lead` em todos os caminhos (05 §9), então leads de DM/CTWA aparecem no painel — sem contexto de página/jornada web.* Resta a nota explícita no 05 §12: funil web (page_view→handoff) ≠ funil de leads (cards) — não comparar como se fossem o mesmo denominador. | 🟡 F3 | 05 §12 (nota) |
 | 2.3.3 | **Tabela de roteamento WhatsApp** — qual número recebe o handoff de cada LP/espaço/campanha (por SDR? por espaço?). Os mapas dizem "WhatsApp da SDR"; a plataforma precisa da tabela como dado (admin). | 🟡 F2 | 04 + 06 |
 | 2.3.4 | **Especificação formal do xcode** — a taxonomia `CP-X-GRL-SEG-…` é citada mas nunca spec'ada (gramática dos segmentos). O gerador de links (06 §7) não pode ser construído sem ela. | 🟡 F2 | 06 §7 (anexo) |
 | 2.3.5 | **Webhooks do Kommo: confiabilidade** — entrega garantida? Reprocessamento se a cola estiver fora? (a fila/dead-letter cobre o lado nosso; falta validar o lado Kommo: re-tentativa, assinatura/segurança do webhook). | 🟡 F3 | 05 §9 |
-| 2.3.6 | **Notificação speed-to-lead: canal e provedor** — "notificação instantânea ao SDR" sem definir o meio (WhatsApp? e-mail? push do Kommo?) nem provedor de e-mail transacional, se houver. | 🟡 F2 | 04 §5 |
+| 2.3.6 | **Notificação speed-to-lead: canal e provedor** — *requisito agora spec'ado no 04 §5 (auditoria growth): ≤ 5 min, push do Kommo como default, salesbot fora de horário comercial.* Resta a escolha concreta de canal/provedor na implementação. | 🟡 F2 | 04 §5 ✓ (requisito) |
 
 ### 2.4 Qualidade transversal
 | # | Lacuna | Sev | Destino |
 |---|---|---|---|
 | 2.4.1 | ~~Acessibilidade~~ — **ENTREGUE** (09 §8: alvo WCAG 2.1 AA + regra do dourado formalizada + axe no CI). *Levar a regra do dourado também para as Design Guidelines (edição da camada de marca — dono: fundador).* | ✅ | fechado |
 | 2.4.2 | ~~SEO de migração~~ — **RESOLVIDO (resposta do fundador):** há site no ar com blog indexado de performance razoável → **mapa de 301 obrigatório, diferido para o cutover** (tarefa registrada no 03 §4 e no log de diferidos do 00). Baixa prioridade declarada. | ✅ (diferido c/ gancho) | fechado |
-| 2.4.3 | **SEO local** — nada sobre Google Business Profile por espaço, NAP consistente, reviews — para "espaço de casamento em <região>", o pack local pode valer mais que o orgânico tradicional. | 🟢 | 07 (ou doc de SEO ops) |
+| 2.4.3 | ~~SEO local~~ — **RESOLVIDO (auditoria growth jun/2026):** elevado de 🟢 a estrutural — era a maior inversão de prioridade do conjunto (map pack decide mais que o orgânico para "espaço de casamento em <cidade>"). Spec em 07 §5.1 (GBP por espaço, NAP = structured data, reviews acoplados ao NPS/M-01) + critério de aceite na Fase 1 (03 §7.1). Operação contínua segue pós-go-live (00 §4.9). | ✅ | fechado |
 
 ---
 
@@ -73,7 +73,7 @@
 | 3.5 | **Custos operacionais** — nenhum modelo: PostHog (cloud por evento vs. self-host + ops), Replit produção, Cloudflare (Workers/R2/Images se adotados), plano do Kommo com API/webhooks, custo por conversa do WhatsApp. Nada disso muda a arquitetura, mas muda o D-3 (cloud vs self-host) e o bolso. | 🟡 F1 | 00 §6 (sub-decisões) |
 | 3.6 | **Páginas legais no lançamento** — LGPD (build) está diferida, ok; mas política de privacidade/termos como *páginas* tendem a ser esperadas num site institucional desde o dia 1 (e exigidas por plataformas de ads para aprovar campanhas — Meta costuma checar política de privacidade no domínio). Conteúdo é jurídico, não técnico. | 🟡 F0 | conteúdo jurídico + 03 |
 | 3.7 | **Métricas-alvo do site** — reclassificado **pós-go-live** (00 §4.9): primeiro trimestre = coleta de baseline, decisão consciente. | 🟢 pós-go-live | operação |
-| 3.8 | **Critério de "revisitar o hosting"** — D-2 diz "revisita-se na escala" sem definir o gatilho (tráfego? p95 de latência? custo?). Gatilho vago = decisão adiada para sempre. | 🟢 | 00 §6 |
+| 3.8 | ~~Critério de "revisitar o hosting"~~ — **RESOLVIDO (auditoria growth jun/2026):** gatilho concreto registrado na D-2 (00 §7): p95 de TTFB de LP > 600 ms por 7 dias · qualquer incidente de perda de eventos na ingestão · custo mensal fora do plano. | ✅ | fechado |
 
 ---
 
@@ -101,6 +101,35 @@ Fronteiras de runtime e propriedade (03 §2) · contrato único de evento com te
 ## 6. Varredura competitiva (lead-gen multi-plataforma) — incorporada
 
 Varredura de mercado contra o objetivo de maximizar geração de leads (Meta/IG, Google/YouTube, TikTok, Pinterest) validou a arquitetura (CAPI+loop fechado, CTWA, speed-to-lead, CWV = estado-da-arte) e identificou 5 gaps, todos incorporados via **D-13**: ingestão de lead forms nativos (05 §9.1), sync de audiências (05 §9.2), Objetivo `agendar_visita` (02), `VideoObject` (03/07), `origin_channel: marketplace` (04).
+
+## 6.1 Auditoria adversarial de growth (jun/2026) — incorporada
+
+Segunda varredura adversarial (papel: especialista em lead gen/growth), com aval do fundador em 12/06/2026. Veredito: arquitetura validada (nenhuma D-1..D-13 reaberta); o padrão dos achados foi **plumbing de atribuição das plataformas subestimada** + 4 erros de sequenciamento. Tudo incorporado:
+
+| Achado | Resolução |
+|---|---|
+| F1 — click IDs ausentes de evento/contrato (zero menções no repo; retrofit impossível) | **D-14(a)** — 04 §6/§7, 05 §3/§4, critério F1 |
+| F2 — CTWA citado (§6) mas sem spec: `referral`/`ctwa_clid`, CAPI de business messaging | **D-14(b)** — 05 §9.3 novo; Kommo validado em 12/06 (não expõe `ctwa_clid` — desenho v1: UTMs nativos + loop por telefone + gatilho de escalada) |
+| F3 — loop sem dimensão tempo nem aritmética de volume (janelas de dias; ~90 leads/semana não sustentam evento raro por ad set) | **D-14(d)** — 05 §9: SLA ≤ 72h, otimização primária em `lead` |
+| F4 — valores de conversão ausentes (INV-05 não se aplica: telemetria ≠ comunicação) | **D-14(c)** — 05 §9: faixas da matriz M-02; aval do fundador registrado |
+| F5 — eventos de visita fora do catálogo (funil M-04 não fechava no painel) | **D-14(e)** — 05 §9/§13, critério F3 |
+| F6 — vazamento handoff→conversa invisível no caminho A | 04 §5 + 05 §9: card emite `lead`; funil mede clique vs card |
+| S1 — Google Ads na F3 atrás de TikTok/Pinterest (demand capture depois de demand gen) | 03 §7: import GA4 no Google Ads na F1; nativo (EC4L/`gclid`) na F3; Pinterest rebaixado a opcional |
+| S2 — A/B de LP cedo demais para o volume (~7,2k visitantes/teste ≈ meses) | 08 §7: gate de volume pré-arme (projeção > 8 semanas = não arma); flags mantidas na F2 |
+| S3 — SEO local rebaixado a 🟢 (ver 2.4.3) | 07 §5.1 + critério F1 (GBP/NAP); reviews acoplados ao NPS |
+| S4 — sync de audiências sem nenhum consentimento até a F4 | 05 §9.2: gated pelo opt-in mínimo desde o dia 1 (gancho D-5, sem antecipar o build) |
+| R1 — conteúdo (1.4) sem dono/prazo/gate | `docs/conteudo/inventario.md` + critério F0; resta preenchimento (fundador) |
+| R2 — `/collect` como proxy de tudo no Express/Replit (2.2.7) | **D-15** — split de ingestão via proxy CF |
+| R3 — speed-to-lead sem requisito (2.3.6) | 04 §5: ≤ 5 min + salesbot fora de horário |
+| Nit — canibalização LP × página institucional | 04 §9: um Assunto = uma página indexada (canônica) |
+| Nit — `EventVenue` não é subtipo de LocalBusiness | skill `seo-schema-org`: multi-type `["EventVenue","LocalBusiness"]` |
+| Nit — falta o formato âncora do nicho no blog | 07 §4: cluster "casamentos reais" (com termo de imagem) |
+| Nit — portais sem webhook sem mecânica de ingestão | 04 §7 + 05 §9.1: parse de e-mail ou manual etiquetado (decidir na F3) |
+| Nit — gatilho de hosting vago (3.8) | D-2 emendada com gatilho concreto |
+
+**Validações pendentes de implementação (não bloqueiam docs):** ~~suporte do Kommo ao `referral`/`ctwa_clid`~~ — **validado em 12/06/2026** (pesquisa do fundador na doc oficial: não expõe; desenho v1 registrado no 05 §9.3) · nuance do SLA ≤ 72h com a SDR (F3, como D-11; enforcement spec'ado — timer na cola fina/Digital Pipeline) · canal/provedor do speed-to-lead (2.3.6 — blocos da Kommo mapeados: webhook push + Salesbot + Digital Pipeline; a API de Events é pull/auditoria, não serve).
+
+**Conteúdo × build (decisão do fundador, 12/06/2026):** conteúdo final **não bloqueia** o build — placeholders marcados valem em dev/preview e a troca por asset real é pré-condição do veredicto de fase, não do trabalho diário (política completa em `docs/conteudo/inventario.md`). Marketing acionado; prioridade de entrega: 1 espaço completo primeiro.
 
 ## 7. Resolução sugerida (ordem)
 

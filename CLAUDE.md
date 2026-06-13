@@ -5,7 +5,7 @@ Fonte única de instruções do agente neste repositório (D-7). Se algo aqui co
 ## Antes de qualquer código
 
 1. Leia, nesta ordem: `docs/brand/vvf-system-context.md` → `docs/brand/vvf-design-guidelines.md` → `docs/00-indice-regras.md` → `docs/01` → `02` → `03` → e a spec da tarefa (04–09).
-2. O `docs/00` é o documento de controle: glossário canônico, log de decisões (D-1..D-13) e diferidos. **Decisões fechadas não se rediscutem** — implementam-se. Se uma decisão parecer errada na prática, pare e pergunte ao fundador; não contorne em silêncio.
+2. O `docs/00` é o documento de controle: glossário canônico, log de decisões (D-1..D-15) e diferidos. **Decisões fechadas não se rediscutem** — implementam-se. Se uma decisão parecer errada na prática, pare e pergunte ao fundador; não contorne em silêncio.
 3. Em conflito entre docs: camada de marca > 01 > 02 > 03 > demais (00 §5).
 
 ## Regras invioláveis
@@ -29,7 +29,7 @@ Fonte única de instruções do agente neste repositório (D-7). Se algo aqui co
 
 ## Quando perguntar ao fundador (aval obrigatório)
 
-- Qualquer mudança em decisão fechada (D-1..D-13) ou em invariante.
+- Qualquer mudança em decisão fechada (D-1..D-15) ou em invariante.
 - Trade-off não coberto pelos docs (registre a pergunta + recomendação; não decida sozinho).
 - Promoção de preview → produção (loop de validação humana).
 

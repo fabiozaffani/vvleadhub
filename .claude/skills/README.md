@@ -26,8 +26,8 @@ Ao atualizar uma vendorizada: re-baixar da fonte, refazer a revisão de seguran�
 
 | Skill futura | Criar na | Conteúdo previsto |
 |---|---|---|
-| `eventos-tracking` | Fase 1 | Schema canônico de eventos (05 §4), catálogo (05 §13), "novo destino = adapter puro + testes", `test:true`/sandbox obrigatório (05 §11) |
-| `nova-lp` | Fase 2 | Procedimento de LP por campanha: Molde + Assunto + Objetivo, capacidades dos Blocos (02 §4), eventos com `correlation_id`, checklist (sem preço, opt-in mínimo, consent pass-through) |
+| `eventos-tracking` | Fase 1 | Schema canônico de eventos (05 §4) **incluindo `click_ids` (D-14 — nasce com a skill, sem retrofit)**, catálogo completo (05 §13, com eventos de visita), split de ingestão D-15 (analytics via proxy CF × `/collect`), caminho CTWA (05 §9.3), "novo destino = adapter puro + testes", `test:true`/sandbox obrigatório (05 §11) |
+| `nova-lp` | Fase 2 | Procedimento de LP por campanha: Molde + Assunto + Objetivo, capacidades dos Blocos (02 §4), eventos com `correlation_id` + `click_ids`, regra de canônico (04 §9 — um Assunto = uma página indexada; LP extra = `noindex`/canonical), checklist (sem preço, opt-in mínimo, consent pass-through) |
 
 Quando o tooling real existir (lighthouserc, axe no CI, dependency-cruiser), atualizar `audit-quality` e `checklist-fase` com os comandos exatos do repo.
 

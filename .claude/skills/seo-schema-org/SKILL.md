@@ -28,11 +28,11 @@ metadata:
 | Página | Tipo(s) | Notas |
 |---|---|---|
 | Site todo (uma vez, home/layout) | `Organization` + `WebSite` | logo, `sameAs` (Instagram etc.), telefone |
-| Página de espaço | `EventVenue` (subtipo de LocalBusiness/Place) | endereço, geo, foto; sem `priceRange` |
+| Página de espaço | `["EventVenue", "LocalBusiness"]` (multi-type) | `EventVenue` é `Place > CivicStructure` — **não** é LocalBusiness; o multi-type garante o tratamento de negócio local do Google. Endereço, geo, foto; sem `priceRange`. Nunca `AggregateRating` self-serving (Google ignora desde 2019 — a estrela vem do GBP) |
 | Post de blog | `BlogPosting` (ou `Article`) | autor, datas, publisher; imagem se houver |
 | Post/página com vídeo | `VideoObject` | previsto na D-13; thumbnail, duração, uploadDate |
 | Toda página interna | `BreadcrumbList` | trilha real de navegação |
-| LP de campanha | herda o tipo do Assunto (espaço → `EventVenue`) | LPs efêmeras podem ficar `noindex` — confirmar na spec 04 antes de investir em markup |
+| LP de campanha | herda o tipo do Assunto (espaço → `EventVenue`+`LocalBusiness`) | LPs efêmeras são `noindex` e LPs extras de um Assunto apontam canonical para a página evergreen (04 §9 — um Assunto = uma página indexada): markup completo só na canônica |
 | Evento público (se houver, ex.: open house) | `Event` | local = o `EventVenue`; sem `offers` |
 
 **FAQPage:** rich result restrito pelo Google (ago/2023) a sites governamentais/saúde — não esperar rich result; o markup ainda é válido e pode ajudar AEO/GEO, usar com expectativa correta.
@@ -58,7 +58,7 @@ metadata:
 ```json
 {
   "@context": "https://schema.org",
-  "@type": "EventVenue",
+  "@type": ["EventVenue", "LocalBusiness"],
   "name": "[Nome do espaço — do registro Assunto tipo espaço]",
   "url": "[URL canônica da página]",
   "image": "[foto principal — pipeline D-10]",

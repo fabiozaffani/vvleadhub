@@ -80,15 +80,18 @@ Adicionar Bloco = novo componente + registro; não toca no motor.
 ## 5. Caminho de conversão (CTA → Kommo)
 
 **Modelo A — deep-link WhatsApp:** CTA abre `wa.me/...?text=<msg com xcode>`; integração WhatsApp↔Kommo cria o card. Menos fricção; default mobile/pago.
+*Vazamento conhecido:* parte dos cliques nunca vira mensagem (troca de app, texto apagado — o que também mata o xcode). Por isso a **conversão real do caminho A é a criação do card** — o webhook do Kommo emite `lead` ao HUB (05 §9) e o funil mede `whatsapp_handoff` (clique) vs `lead` (card), expondo o vazamento em vez de escondê-lo.
 **Modelo B — captura na LP:** form curto (nome + WhatsApp) → api-server → card no Kommo + **notificação instantânea ao SDR (speed-to-lead)** — velocidade de resposta é a maior alavanca do topo do funil (M-04).
 
-A partir do card, cadência/follow-up/qualificação = Kommo (fronteira do 03 §2).
+**Speed-to-lead (requisito, não desejo):** notificação ao SDR em **≤ 5 min** da criação do card, pelo canal de maior atenção (push do Kommo; canal/provedor definitivo na implementação — 99 §2.3.6). **Fora do horário comercial** (noites e fins de semana — quando casais navegam), resposta automática via salesbot do Kommo acolhe e segura o lead até o primeiro contato humano; o relógio do SLA humano começa na abertura do expediente.
+
+A partir do card, cadência/follow-up/qualificação = Kommo (fronteira do 03 §2). **CTWA** (anúncio→WhatsApp direto, sem LP) é caminho de primeira classe spec'ado no 05 §9.3 — entra pela mesma integração WhatsApp↔Kommo, com atribuição por `referral`/`ctwa_clid` (D-14).
 
 ---
 
 ## 6. Propagação de origem (xcode/UTM)
 
-1. LP lê `utm_*` + `xcode` da URL (taxonomia `CP-…` em uso) e persiste em cookie first-party.
+1. LP lê `utm_*` + `xcode` da URL (taxonomia `CP-…` em uso) **+ click IDs das plataformas** (`fbclid`→`fbc` + `fbp` do pixel, `gclid`, `ttclid`, `epik` — D-14) e persiste tudo em cookie first-party. Click ID não tem retrofit: o clique que não foi capturado está perdido para sempre — por isso nasce na Fase 1, junto do collector.
 2. Injeta no deep-link (A) e no payload do form (B).
 3. Persiste no contrato de lead (§7) e no card.
 4. **Links gerados no 06 §7** (xcode/UTM + redirect WhatsApp) — resolve a pendência dos mapas de growth.
@@ -107,6 +110,7 @@ A partir do card, cadência/follow-up/qualificação = Kommo (fronteira do 03 §
   "origin_channel": "meta|google|tiktok|pinterest|youtube|assessor|organic|bio|marketplace",
   "utm": { "source": "", "medium": "", "campaign": "", "content": "", "term": "" },
   "xcode": "CP-...",
+  "click_ids": { "fbc": "", "fbp": "", "gclid": "", "ttclid": "", "epik": "" },
   "correlation_id": "reservado (diferido)",
   "event_type": "casamento|aniversario|debutante|corporativo",
   "subjects": [ { "ref": "acqua", "type": "espaço" } ],
@@ -121,7 +125,7 @@ A partir do card, cadência/follow-up/qualificação = Kommo (fronteira do 03 §
 
 Bidirecional: lead entra; desfecho (`Ganho`/`Perdido`+motivo) volta via api-server e alimenta o loop fechado (05 §9).
 
-**Captura fora do site (D-13):** leads de formulários nativos das plataformas entram pelo mesmo contrato via webhook→api-server (05 §9.1), com `origin_channel` da plataforma e metadados do form no lugar do contexto de página. Leads de marketplaces/portais (ex.: portais de casamento) usam `origin_channel: marketplace`.
+**Captura fora do site (D-13/D-14):** leads de formulários nativos das plataformas entram pelo mesmo contrato via webhook→api-server (05 §9.1), com `origin_channel` da plataforma e metadados do form no lugar do contexto de página. Leads de **CTWA** (anúncio→WhatsApp, sem tocar o site) entram pela integração WhatsApp↔Kommo com `referral`/`ctwa_clid` no lugar do xcode de página (05 §9.3). Leads de marketplaces/portais (ex.: portais de casamento) usam `origin_channel: marketplace`; portais sem webhook (entrega por e-mail/painel) entram por parse de e-mail na cola fina **ou** entrada manual etiquetada no Kommo — mecânica decidida na Fase 3, até lá manual etiquetado.
 
 **Identidade e dedup (D-11):** Kommo = fonte de verdade; `app.leads` = log operacional (toda conversão registrada, com seu xcode/UTM — atribuição first/last-touch preservada). Chave = telefone E.164. Upsert-e-anexar: card aberto recebe a nova interação como nota + notificação ao SDR (nunca card duplicado); card Perdido segue regra de reativação ("Pipeline Recuperável" — validar nuance com a SDR na implementação).
 
@@ -135,7 +139,9 @@ Server-side, sem flicker; níveis página/bloco/flag; métrica primária = lead 
 
 ## 9. Performance & SEO da LP
 
-Orçamento de CWV por LP (gate de publish — 03 §4), mobile como referência. **Indexação seletiva:** LPs evergreen (espaços, serviços, hospedagem) indexadas com structured data (`EventVenue`/`LocalBusiness`, `FAQPage`); campanhas efêmeras e Bio Pages `noindex` (evita thin/duplicado).
+Orçamento de CWV por LP (gate de publish — 03 §4), mobile como referência. **Indexação seletiva:** LPs evergreen (espaços, serviços, hospedagem) indexadas com structured data (`EventVenue`+`LocalBusiness`, `FAQPage`); campanhas efêmeras e Bio Pages `noindex` (evita thin/duplicado).
+
+**Regra de canônico — anti-canibalização (auditoria growth): um Assunto = uma página indexada.** A página evergreen do Assunto (ex.: `/espacos/acqua`) é a canônica — indexada, com structured data e blocos de conversão. Qualquer LP adicional do mesmo Assunto (campanha, variação para tráfego pago) publica `noindex` **ou** com `canonical` apontando para a evergreen. Nunca duas páginas indexadas competindo pela mesma query; o editor (06) valida isso no publish.
 
 ---
 

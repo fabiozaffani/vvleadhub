@@ -70,6 +70,8 @@ Separadas de experimentos:
 - **Significância-alvo** definida no setup (ex.: 95%).
 - Sem decisão em ciclo incompleto; sem "peeking" repetido como gatilho de parada.
 - Variantes perdedoras são desligadas; a vencedora vira o novo default no 06.
+- **Gate de volume — pré-arme (auditoria growth/D-14):** antes de armar, projetar a duração com o tráfego real da LP: n ≈ 16·p(1−p)/δ² por variante (ex.: baseline 10% de conversão e MDE de +20% relativo ⇒ ~3,6k visitantes/variante ≈ 7,2k no teste). **Projeção acima de ~8 semanas = experimento não arma** — a alavanca de otimização vai para teste de criativo/oferta dentro da plataforma de mídia (onde há volume de impressão) e para CRO qualitativo via session replay (que o PostHog já entrega). O motor existe para quando o tráfego sustentar; a cultura de teste não pode queimar ciclos onde a matemática não fecha.
+- **Métrica primária × volume (D-14):** `lead_qualificado` como primária só é viável com volume; com tráfego de nicho, a primária é `lead` e o qualificado entra como guardrail/leitura secundária.
 
 ---
 

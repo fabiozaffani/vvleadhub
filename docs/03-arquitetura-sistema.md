@@ -20,6 +20,8 @@ Monorepo no **Replit** com três runtimes desacoplados: **site público em Astro
 | D-3 | **PostHog** (captura, store, funis, replay, flags/experimentos **e Destinations** como dispatcher) |
 | D-4 | **Kommo** (CRM + WhatsApp central), bidirecional |
 | D-6 | **WhatsApp via Kommo** (resolvido por consequência) |
+| D-14 | **Atribuição de plataforma:** click IDs first-party desde a Fase 1, CTWA (05 §9.3), valores por faixa + SLA ≤ 72h no loop, eventos de visita |
+| D-15 | **Split de ingestão:** analytics via proxy CF → PostHog; `/collect` só para eventos de negócio + cola |
 | — | Diferidos com gancho: LGPD (consent pass-through + opt-in mínimo) · join key (campo `correlation_id` reservado) |
 
 ---
@@ -43,7 +45,8 @@ flowchart TB
 
     CF --> SITE & ADMIN & API
     SITE -->|conteúdo (OpenAPI/local)| ADMIN
-    SITE -->|eventos| API
+    SITE -->|analytics (proxy CF first-party — D-15)| PH
+    SITE -->|eventos de negócio| API
     API --> PH
     PH -->|Destinations| ADS
     API <-->|lead in / desfecho out| KOMMO
@@ -51,7 +54,7 @@ flowchart TB
 ```
 
 Fronteiras de propriedade:
-- **site (Astro):** renderização pública. Zero lógica de API própria; consome conteúdo do Payload e envia eventos ao `/collect`.
+- **site (Astro):** renderização pública. Zero lógica de API própria; consome conteúdo do Payload. Eventos: analytics do SDK via proxy reverso no Cloudflare → PostHog (D-15 — não passa pelo api-server); **eventos de negócio** (lead, conversões) ao `/collect`.
 - **admin (Payload):** dono do **conteúdo** (Assuntos, LPs, blocos, posts, mídia, registros) + shell do Tracker Hub (views custom). Detalhe no 06.
 - **api-server (Express):** dono da **operação** — endpoint `/collect`, cola Kommo (lead in/desfecho out), disparo de conversão qualificada, geração de links xcode. Detalhe no 05.
 - **PostHog:** dono de store/análise/experimentos e do **fan-out** a plataformas de mídia via Destinations (catálogo de conectores a confirmar na implementação; o que faltar entra como webhook→api-server).
@@ -107,9 +110,9 @@ HTTPS/HSTS · WAF e rate-limit (especialmente `/collect`) no Cloudflare · crede
 ## 7. Roadmap faseado (sequência de build p/ Claude Code)
 
 - **Fase 0 — Fundação:** monorepo (site Astro + admin Payload + api-server) · registros do 02 no Payload · design system (§5 do Contexto) · páginas institucionais + blog base · baseline SEO/CWV. *Entrega: site no ar, performante, indexável.*
-- **Fase 1 — Eventos:** collector + `/collect` + PostHog + Destinations (Meta, GA4) · consent pass-through. *Entrega: mensuração first-party + 2 canais.*
-- **Fase 2 — Leads & LPs:** editor block-based · LP Retrofit (campanha viva) · contrato de lead → Kommo · speed-to-lead · links xcode no admin · A/B server-side. *Entrega: máquina de lead com teste.*
-- **Fase 3 — Cobertura & loop:** TikTok + Pinterest + Google Ads/YouTube · **loop fechado Kommo→ads** · **ingestão de lead forms nativos + sync de audiências (D-13)** · Tracker Hub completo (realtime, teste, saúde). *Entrega: mídia completa + console.*
+- **Fase 1 — Eventos:** collector (analytics via proxy CF — D-15) + `/collect` + PostHog + Destinations (Meta, GA4) · **click IDs/UTM/xcode em cookie first-party (D-14 — sem retrofit possível)** · conversão GA4 importada no Google Ads (demand capture apto desde já) · **GBP por espaço, NAP = structured data** (pré-requisito de mídia, como as páginas legais) · consent pass-through. *Entrega: mensuração first-party + Meta e Google aptos.*
+- **Fase 2 — Leads & LPs:** editor block-based · LP Retrofit (campanha viva) · contrato de lead → Kommo · speed-to-lead · links xcode no admin · feature flags server-side + motor de A/B instalado, **experimentos de LP atrás do gate de volume (08 §7)**. *Entrega: máquina de lead.*
+- **Fase 3 — Cobertura & loop:** Google Ads nativo (EC4L/OCI com `gclid`) + YouTube + TikTok · **CTWA com atribuição (05 §9.3)** · **loop fechado Kommo→ads** com valores por faixa e eventos de visita (D-14) · **ingestão de lead forms nativos + sync de audiências (D-13)** · Tracker Hub completo (realtime, teste, saúde) · Pinterest: opcional, avaliado no fim da fase (não bloqueia). *Entrega: mídia completa + console.*
 - **Fase 4 — Escala & diferidos:** hardening de performance · build LGPD (CMP, gating real) · value-mapping do join key · revisitar hosting se a escala apertar.
 
 ---
@@ -124,10 +127,14 @@ HTTPS/HSTS · WAF e rate-limit (especialmente `/collect`) no Cloudflare · crede
 - [ ] sitemap/robots/canonical/OG gerados; structured data validando (Rich Results Test)
 - [ ] Publicar no Payload reflete no site (purge/revalidação funcionando — item 2.2.4); preview de draft funcionando (06)
 - [ ] Páginas legais publicadas (placeholder jurídico aprovado pelo fundador — exigência de aprovação de ads)
+- [ ] Inventário de conteúdo ativo (`docs/conteudo/inventario.md`) com dono e prazo por item; os 5 espaços seedados com **galeria real** (fotos próprias — §5 do Contexto proíbe banco)
 
 **Fase 1 — Eventos:**
-- [ ] Collector batched emitindo o catálogo (05 §13) → `/collect` → PostHog; `subjects[]`/`objective` presentes; campo `consent` pass-through e `correlation_id` reservado
+- [ ] Collector batched emitindo o catálogo (05 §13); analytics via proxy CF → PostHog e eventos de negócio → `/collect` (D-15); `subjects[]`/`objective` presentes; campo `consent` pass-through e `correlation_id` reservado
+- [ ] **Click IDs (D-14)**: `fbc`/`fbp`, `gclid`, `ttclid` capturados em cookie first-party e presentes no evento e no contrato de lead
 - [ ] Round-trip de teste Meta (Test Events) e GA4 (debug) verde via modo `test:true` — sem tocar produção
+- [ ] Conversão GA4 importada/marcada como conversão no Google Ads (Google Search apto a otimizar por lead)
+- [ ] GBP dos espaços reivindicado/criado; NAP idêntico ao structured data do site (07 §5.1)
 - [ ] Rate-limit + validação de schema no `/collect`; Sentry capturando nos 3 runtimes
 
 **Fase 2 — Leads & LPs:**
@@ -135,13 +142,16 @@ HTTPS/HSTS · WAF e rate-limit (especialmente `/collect`) no Cloudflare · crede
 - [ ] LP publicada converte: deep-link WhatsApp com xcode E form → card no Kommo com contrato completo (04 §7)
 - [ ] **Dedup D-11 demonstrado**: 2ª conversão do mesmo telefone anexa ao card (não duplica) + notificação SDR
 - [ ] Gerador de links xcode/UTM + redirect WhatsApp no admin
-- [ ] A/B server-side: variantes renderizadas sem flicker (CLS = 0 na troca), `experiment_exposure` no PostHog; ativar experimento tira a LP do full-page cache automaticamente e encerrar devolve (D-8)
+- [ ] A/B server-side: variantes renderizadas sem flicker (CLS = 0 na troca), `experiment_exposure` no PostHog; ativar experimento tira a LP do full-page cache automaticamente e encerrar devolve (D-8); **gate de volume do 08 §7 implementado** (experimento só arma com projeção de duração viável)
 
 **Fase 3 — Cobertura & loop:**
-- [ ] TikTok/Pinterest/Google Ads com round-trip de teste verde; dedupe pixel↔server por `event_id`
-- [ ] **Loop fechado demonstrado**: desfecho no Kommo (sandbox) → conversão qualificada disparada por card (1×) aos canais
+- [ ] Google Ads (EC4L/OCI com `gclid`) e TikTok com round-trip de teste verde; dedupe pixel↔server por `event_id`; Pinterest somente se aprovado na avaliação da fase
+- [ ] **Loop fechado demonstrado**: desfecho no Kommo (sandbox) → conversão qualificada disparada por card (1×) aos canais, **com valor por faixa (M-02) no payload** (D-14)
+- [ ] **CTWA (D-14, desenho v1 — 05 §9.3)**: WABA + conta de anúncios no mesmo Business Manager com permissão de metadados concedida; UTMs de anúncio CTWA visíveis no Tracking data do card; loop de volta testado em sandbox (Conversion API da Kommo avaliada × eventos próprios casados por telefone, sem duplicação)
+- [ ] **Eventos de visita (D-14)**: `visita_agendada`/`visita_realizada`/`no_show` fluindo do Kommo ao painel — funil M-04 completo
+- [ ] SLA de qualificação ≤ 72h acordado com a SDR e refletido no pipeline (D-14)
 - [ ] Ingestão de lead form nativo (Meta sandbox) → card no Kommo com origem correta (D-13)
-- [ ] Sync de audiência (segmento de teste, PII hasheada) aceito por ao menos 1 plataforma (D-13)
+- [ ] Sync de audiência (segmento de teste, PII hasheada, **somente leads com opt-in registrado** — 05 §9.2) aceito por ao menos 1 plataforma (D-13)
 - [ ] Tracker Hub: inspetor realtime filtra por `test`; saúde por destino; replay restrito a Admin
 
 **Fase 4 — Escala & diferidos (etapa final):**

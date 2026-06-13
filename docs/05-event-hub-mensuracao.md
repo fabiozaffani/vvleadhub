@@ -34,7 +34,9 @@ flowchart TB
     GLUE["Cola fina (api-server)<br/>loop fechado · conversão qualificada"]
     RT["Realtime → Tracker Hub (06)"]
 
-    C --> I --> G
+    C -->|analytics: proxy CF first-party (D-15)| PH
+    C -->|eventos de negócio| I
+    I --> G
     G -->|sempre, anonimiza se preciso| PH
     PH -->|se consent.marketing| DST --> ADS
     PH -.live events.-> RT
@@ -55,6 +57,10 @@ Captura sem bloquear render:
 - `experiment_exposure`
 
 Características: **batched**, `navigator.sendBeacon`, `event_id` por evento (dedupe), `anonymous_id`/`session_id` em cookie first-party, carregamento deferido.
+
+**Split de ingestão (D-15):** o tráfego de analytics do SDK vai por **proxy reverso no Cloudflare** (domínio first-party → PostHog Cloud — padrão suportado pelo PostHog; o Cloudflare já está na frente por D-2), **sem tocar o api-server**. O `/collect` fica com o que é de negócio: `lead`, conversões, eventos server-side e tudo que alimenta Kommo/loop. Beacon de analytics nunca depende da disponibilidade do Express/Replit — perda silenciosa de evento é "surpresa" (INV-08).
+
+**Click IDs (D-14):** o collector persiste, junto de UTM/xcode, os click IDs das plataformas (`fbclid`→`fbc` + `fbp` do pixel, `gclid`, `ttclid`, `epik`) em cookie first-party — eles viajam no contexto do evento (§4) e no contrato de lead (04 §7). Sem eles, o match quality do CAPI/EC4L despenca; e click ID não tem retrofit.
 
 ---
 
@@ -77,6 +83,7 @@ Vocabulário pós-rename (02): `subjects[]` + `objective`, **nunca** `venue`.
     "referrer": "...",
     "utm": { "source": "", "medium": "", "campaign": "", "content": "" },
     "xcode": "CP-...",
+    "click_ids": { "fbc": "", "fbp": "", "gclid": "", "ttclid": "", "epik": "" },
     "correlation_id": "reservado (join key — value-mapping diferido)",
     "lp": { "id": "", "molde": "", "variant": "a" },
     "subjects": [ { "ref": "acqua", "type": "espaço" } ],
@@ -129,20 +136,43 @@ O PostHog **Cloud** (com captura first-party via proxy pelo domínio próprio; r
 
 ## 9. Loop fechado (Kommo → HUB → mídia)
 
-1. Kommo emite desfecho — `Ganho` / `Perdido` + motivo / `Pipeline Recuperável` — via webhook à cola fina (api-server).
-2. A cola grava no PostHog (painel) **e** dispara conversão qualificada aos canais pagos (CAPI/offline conversions), casando por `event_id`/telefone/`correlation_id`.
-3. Sem isso, Meta/Google otimizam por clique/preenchimento, não por lead qualificado.
-4. **Dedup do loop (D-11):** `lead_qualificado`/`ganho` disparam **por card** (idempotência pela identidade do card no Kommo), nunca por interação — evita reportar conversão duplicada e inflar o CPA artificialmente.
+1. **Criação de card emite `lead`** (webhook Kommo → cola fina → PostHog) em **todos** os caminhos — inclusive o A (`wa.me`), onde parte dos cliques nunca vira mensagem: a conversão real é o card, não o clique; o funil mede `whatsapp_handoff` vs `lead` e expõe o vazamento (04 §5). *Mecanismo: webhooks da Kommo (push) — a API de Events dela é pull/auditoria histórica e não serve a tempo real.*
+2. Kommo emite os marcos do funil — `visita_agendada` / `visita_realizada` / `no_show` (D-14) — e o desfecho — `Ganho` / `Perdido` + motivo / `Pipeline Recuperável` — via webhook à cola fina (api-server).
+3. A cola grava no PostHog (painel) **e** dispara conversão qualificada aos canais pagos (CAPI/offline conversions/EC4L), casando por `click_ids`/telefone/`event_id`/`correlation_id`.
+4. Sem isso, Meta/Google otimizam por clique/preenchimento, não por lead qualificado.
+5. **Dedup do loop (D-11):** `lead_qualificado`/`ganho` disparam **por card** (idempotência pela identidade do card no Kommo), nunca por interação — evita reportar conversão duplicada e inflar o CPA artificialmente.
+6. **Tempo é requisito (D-14):** o ciclo de venda é longo, mas a janela útil de otimização das plataformas é de **dias** — `ganho` chega tarde e serve a reporting/audiências, não a bidding. O sinal de qualidade que otimiza é `lead_qualificado` com **SLA de qualificação ≤ 72h** (acordado com a SDR; nuance na implementação, como D-11). *Enforcement é nosso, não da Kommo (que não monitora SLA nativamente): timer na cola fina via webhook de card, ou automação no Digital Pipeline/Salesbot.* E a aritmética de volume manda: no alvo M-03/M-04 (~90 leads/semana na conta inteira), evento raro não sustenta learning phase por ad set — **otimização primária roda em `lead`**; qualificado entra como sinal secundário/consolidado.
+7. **Valores (D-14):** `lead_qualificado`/`ganho` carregam **valor por faixa** derivado da matriz M-02 (configuração × dia) para value-based bidding — a plataforma aprende a puxar perfil de sábado/pacote cheio, não volume barato. É telemetria server-side às plataformas, não comunicação: **INV-05 intacto** (aval registrado na D-14).
 
-Eventos adicionais ao catálogo: `lead_qualificado`, `ganho`, `perdido` (origem: Kommo).
+Eventos adicionais ao catálogo (origem: Kommo): `lead` (criação de card), `lead_qualificado`, `visita_agendada`, `visita_realizada`, `no_show`, `ganho`, `perdido`.
 
 ### 9.1 Ingestão de lead forms nativos (D-13)
 
 Leads gerados **dentro das plataformas** (Meta Instant Forms/Lead Ads, TikTok Lead Generation, Google Lead Form assets, Pinterest Lead Ads) nunca tocam o site. Caminho: webhook da plataforma → api-server (cola fina) → normalização para o contrato de lead (04 §7, com `origin_channel` da plataforma e metadados do formulário) → **dedup D-11** (telefone E.164, upsert-e-anexar) → card no Kommo. Consequências: (a) o loop fechado cobre esses leads sem trabalho extra (dispara por card); (b) a atribuição os enxerga (campanha/form id no lugar do xcode de página); (c) campanhas de lead form viram formato utilizável sem furo de funil. Evento `lead` correspondente é emitido ao PostHog para o painel.
 
+**Portais/marketplaces sem webhook** (ex.: portais de casamento que entregam lead por e-mail/painel): parse de e-mail na cola fina **ou** entrada manual etiquetada no Kommo (`origin_channel: marketplace`) — mecânica decidida na Fase 3; até lá, entrada manual etiquetada. O dedup D-11 e o loop cobrem ambos os casos (disparam por card).
+
 ### 9.2 Sync de audiências (D-13)
 
-Capacidade da cola fina (ou Destinations, onde houver conector): exportar **segmentos do funil** — ex.: cards `Ganho`, `lead_qualificado`, visitantes de alta intenção — como **custom audiences** (Meta Customer List, Google Customer Match, TikTok Audiences) com PII **hasheada**. É o que semeia lookalikes de alta qualidade, a prática nº 1 dos playbooks do segmento. Respeita o consent gate (D-5) quando ativo; sync é incremental e idempotente.
+Capacidade da cola fina (ou Destinations, onde houver conector): exportar **segmentos do funil** — ex.: cards `Ganho`, `lead_qualificado`, visitantes de alta intenção — como **custom audiences** (Meta Customer List, Google Customer Match, TikTok Audiences) com PII **hasheada**. É o que semeia lookalikes de alta qualidade, a prática nº 1 dos playbooks do segmento. Sync é incremental e idempotente.
+
+**Gate desde o dia 1 (auditoria growth):** o sync exporta **somente leads com o opt-in mínimo do form registrado** (o gancho da D-5 que já existe por decisão) — exportar PII sem nenhum registro de consentimento é o flanco LGPD mais exposto do sistema, e fechá-lo custa zero. Quando o consent gate pleno ativar (Fase 4), ele assume; isso não antecipa o build diferido da D-5, só usa o gancho existente.
+
+### 9.3 CTWA — anúncio→WhatsApp direto (D-14)
+
+Click-to-WhatsApp é formato de primeira classe no segmento (Brasil, mobile, WhatsApp-first) e **não passa pelo site**: sem página, sem xcode de URL, sem cookie. Caminho: anúncio CTWA → conversa no WhatsApp (Kommo) → card.
+
+**Validação Kommo (12/06/2026 — pesquisa na doc oficial + API):** a Kommo **não expõe `referral`/`ctwa_clid`** ao integrador — nem na API de Chats, nem no metadata de unsorted da categoria `chats` (só a categoria `forms` traz `referer`/`visitor_uid`). O que ela entrega de fato: (a) **UTMs do anúncio CTWA na aba "Tracking data" do card** (integração nativa WhatsApp Cloud API) — exige WABA e conta de anúncios no **mesmo Meta Business Manager** + permissão de leitura de metadados de anúncio na integração; (b) uma **WhatsApp Conversion API própria** (eventos de lead/compra de volta à Meta) — caixa-preta, sem `ctwa_clid` para o integrador.
+
+**Desenho v1 (registrado):**
+- **Entrada:** UTMs nativos no Tracking data → origem/campanha gravada no card e refletida no painel. Setup do mesmo BM + permissão é **pré-requisito de Fase 3** (critério no 03 §7.1).
+- **Loop de volta:** nossos eventos (`lead_qualificado` com valor — §9) seguem via CAPI **casados por telefone hasheado** — match degradado sem `ctwa_clid`, porém funcional. A Conversion API da Kommo entra em **teste de sandbox**; se o comportamento for aceitável (evento certo, sem duplicar com os nossos), assume o sinal de otimização específico do CTWA.
+- **Gatilho de escalada (decisão futura, não build):** escala-se quando (i) CTWA sustentar fatia relevante do investimento pago — referência: ≥ ~25% por 2 meses consecutivos — **e** (ii) a atribuição v1 se provar insuficiente (eventos phone-matched com aceitação/match ruins **ou** Conversion API da Kommo reprovada no sandbox). O v1 produz o dado que decide isso: CPL/qualidade de CTWA vs LP-handoff medidos por card no painel.
+- **Forma da escalada (registrada — não é B1/middleware total):** o webhook do Cloud API é exclusivo por número — capturar o `referral` do número principal implicaria virar o broker de toda a conversa das SDRs, colidindo com a fronteira do 03 §2 ("Kommo é dono da conversa") e com INV-08. A escalada correta é **número dedicado ao tráfego CTWA** via Cloud API/BSP próprio + bridge escopado para o Kommo (canal custom via API de Chats), `ctwa_clid` persistido em campo personalizado (`PATCH /api/v4/leads/{id}`) e CAPI de business messaging nosso. O número principal das SDRs **nunca** passa por middleware nosso; o dedup D-11 unifica os dois números pelo telefone do lead. Custos do caminho: bridge a manter + quality rating/aquecimento do segundo número.
+- **Dedup:** D-11 cobre normalmente (telefone E.164; dispara por card).
+- Round-trip de teste em sandbox é critério de aceite da Fase 3 (03 §7.1).
+
+**Janela de 72h (Meta):** conversa iniciada por CTWA abre o *free entry point* de 72h — mensagem livre, sem custo e sem template aprovado durante a janela; depois dela vale a janela padrão de 24h e template pago. Converge com o SLA ≤ 72h do §9: qualificar dentro da janela é sinal de otimização no prazo **e** conversa ainda gratuita.
 
 ---
 
@@ -186,14 +216,16 @@ Lê do store, **agregando por `type` de Assunto e por Assunto** (ambos dados —
 
 ## 13. Catálogo de eventos canônicos
 
-`page_view` · `route_change` · `page_enter` · `page_exit` · `scroll_depth` · `cta_click` · `whatsapp_handoff` · `form_start` · `form_field` · `form_submit` · `lead` · `experiment_exposure` · `lead_qualificado` · `ganho` · `perdido`.
+`page_view` · `route_change` · `page_enter` · `page_exit` · `scroll_depth` · `cta_click` · `whatsapp_handoff` · `form_start` · `form_field` · `form_submit` · `lead` · `experiment_exposure` · `lead_qualificado` · `visita_agendada` · `visita_realizada` · `no_show` · `ganho` · `perdido`.
 
 ---
 
 ## 14. Decisões & diferidos (fonte: 00 §6)
 
 - **D-3** — **fechado: PostHog** (incl. Destinations). Catálogo de conectores a confirmar na implementação; fallback definido (§8).
-- **D-5** (LGPD) — diferido; consent gate como pass-through.
+- **D-5** (LGPD) — diferido; consent gate como pass-through. Sync de audiências (§9.2) gated pelo opt-in mínimo desde o dia 1.
+- **D-14** — **fechado: atribuição de plataforma** — click IDs no contrato (§3/§4), CTWA (§9.3), valores por faixa e SLA ≤ 72h no loop (§9), eventos de visita (§13).
+- **D-15** — **fechado: split de ingestão** — analytics via proxy CF→PostHog; `/collect` para eventos de negócio (§3).
 - **Join key** — `correlation_id` reservado; value-mapping diferido.
 
 ---
