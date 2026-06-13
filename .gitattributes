@@ -1,0 +1,17 @@
+# Normaliza fim de linha — dev em Windows + agentes em Linux. Evita diff/CRLF caótico.
+* text=auto eol=lf
+
+# Binários: nunca normalizar
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.avif binary
+*.gif binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.pdf binary
+
+# Lockfile: tratado como gerado em diffs/merge
+pnpm-lock.yaml -diff linguist-generated=true

@@ -1,0 +1,13 @@
+---
+description: packages/contracts — única fonte de tipos cruzados; alteração gated por CODEOWNERS.
+globs: packages/contracts/**
+---
+
+# packages/contracts — a única ponte entre runtimes
+
+Este pacote é a **única** fonte de tipos compartilhados entre `site`, `admin` e `api-server` (09 §1/§2). É o ponto de encontro das duas faixas (Composer e Replit Agent).
+
+- **Alteração aqui exige aval do fundador (CODEOWNERS).** Mudar um contrato afeta os três runtimes — não é mudança local. Se sua tarefa precisa de um campo novo, pare e proponha ao fundador antes.
+- `events.ts` = schema canônico de evento (05 §4) · `lead.ts` = contrato de lead → Kommo (04 §7) · `generated/` = tipos do OpenAPI (api-server) e do `payload generate:types` — **nunca editados à mão**.
+- Validação de borda com Zod; os schemas daqui são a verdade, runtimes derivam (`z.infer`), não recopiam.
+- CI falha se o gerado divergir do commitado (drift-check do OpenAPI e dos tipos do Payload).

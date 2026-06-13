@@ -1,0 +1,28 @@
+---
+description: Invioláveis VVF — sempre ativos. Fonte completa em AGENTS.md.
+alwaysApply: true
+---
+
+# Invioláveis VVF (sempre ativos)
+
+A fonte única de conduta é `AGENTS.md` na raiz — **leia-o antes de qualquer código**, junto com `docs/brand/*` → `00` → `01` → `02` → `03` → a spec da tarefa → o work-order em `docs/tasks/`. Em conflito, `AGENTS.md` vence. Decisões fechadas (D-1..D-16) e invariantes não se rediscutem.
+
+## Faixa do Cursor Composer (D-16)
+Você é dono de **`site/`** (Astro) e **`admin/`** (Payload/Next). **Não escreva `api-server/`** (é do Replit Agent). Encontro só em `packages/contracts` — gated por CODEOWNERS. Tudo por branch + PR; `main` é protegida.
+
+## Regras que quebram o build se violadas
+- **Fronteiras (dependency-cruiser no CI):** `site` não importa de `admin`/`api-server` e vice-versa — só de `packages/*`. Tipos cruzados **só** via `packages/contracts`. `site` **jamais** importa lib de banco nem toca Postgres (D-9): consome a API do Payload e manda eventos ao `/collect`.
+- **Segredos** só em Secrets do ambiente (`.env.example` lista os nomes). `gitleaks` no CI.
+- **Conventional commits** (commitlint no CI). `pnpm verify` verde antes de "pronto".
+
+## Marca e copy (invioláveis)
+- **Sem preço/promoção** em copy público — nem placeholder (INV-05).
+- **Nunca vender componente isolado** (INV-03); exclusividade pela **história do casal**, não "customização ilimitada" (INV-07).
+- **UI:** tokens + Playfair Display (títulos) + Work Sans (corpo); **sem emojis, sem ícones decorativos**, pt-BR (Design Guidelines). Exceções registradas não se revertem.
+- Copy público = tom de marca (sereno, segunda pessoa); doc/análise = tom de trabalho.
+
+## Vocabulário (00 §6)
+`Arquétipo` é só da marca. No código: `subject`/`subjectType`/`objective`/`template` = Assunto/TipoDeAssunto/Objetivo/Molde. Proibidos: `venue`, `Foco`, "intenção × unidade".
+
+## Diferidos — manter o gancho, não implementar
+LGPD (`consent` pass-through), join key (`correlation_id` reservado), opt-in mínimo no form. Não implemente antes da etapa final; não remova.
