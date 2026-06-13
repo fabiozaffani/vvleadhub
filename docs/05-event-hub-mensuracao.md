@@ -164,8 +164,12 @@ Click-to-WhatsApp é formato de primeira classe no segmento (Brasil, mobile, Wha
 
 **Validação Kommo (12/06/2026 — pesquisa na doc oficial + API):** a Kommo **não expõe `referral`/`ctwa_clid`** ao integrador — nem na API de Chats, nem no metadata de unsorted da categoria `chats` (só a categoria `forms` traz `referer`/`visitor_uid`). O que ela entrega de fato: (a) **UTMs do anúncio CTWA na aba "Tracking data" do card** (integração nativa WhatsApp Cloud API) — exige WABA e conta de anúncios no **mesmo Meta Business Manager** + permissão de leitura de metadados de anúncio na integração; (b) uma **WhatsApp Conversion API própria** (eventos de lead/compra de volta à Meta) — caixa-preta, sem `ctwa_clid` para o integrador.
 
+**Dois canais de tracking (não confundir):** (1) **texto pré-preenchido** do anúncio — aparece na caixa do cliente, **editável/apagável**: canal frágil, não usar para atribuição; (2) **objeto `referral`** — `ctwa_clid`/`source_id`/`source_url` colados à primeira mensagem **no nível do protocolo**, o cliente não toca: canal robusto. O `referral` **não viaja pela mensagem** — então não há o que parsear no texto. O gap do v1 não é fragilidade; é que **o Kommo consome o `referral` e não o expõe via API** (só os UTMs na aba Tracking data).
+
+**O que se perde sem `ctwa_clid` (menos do que parece):** origem de campanha/anúncio **não se perde** (UTMs na Tracking data do card). Perde-se o join determinístico clique↔lead. Mas para CTWA o **telefone é substituto forte**: o Meta correta o handoff clique→conversa e guarda a ponte `ctwa_clid`↔telefone↔conversa do lado dele — fecha "conversa iniciada" nativamente e, quando devolvemos a conversão qualificada via CAPI **chaveada por telefone hasheado**, resolve de volta ao clique. Match bem melhor que público web frio. O `ctwa_clid` só seria mais determinístico nas bordas.
+
 **Desenho v1 (registrado):**
-- **Entrada:** UTMs nativos no Tracking data → origem/campanha gravada no card e refletida no painel. Setup do mesmo BM + permissão é **pré-requisito de Fase 3** (critério no 03 §7.1).
+- **Entrada:** UTMs nativos no Tracking data → origem/campanha gravada no card e refletida no painel. Setup do mesmo BM + permissão de leitura de metadados é **pré-requisito de Fase 3** (critério no 03 §7.1) — sem ele a Tracking data nem popula. UTM/nomes de campanha distintos de CTWA vs link-ad para o painel separar por card.
 - **Loop de volta:** nossos eventos (`lead_qualificado` com valor — §9) seguem via CAPI **casados por telefone hasheado** — match degradado sem `ctwa_clid`, porém funcional. A Conversion API da Kommo entra em **teste de sandbox**; se o comportamento for aceitável (evento certo, sem duplicar com os nossos), assume o sinal de otimização específico do CTWA.
 - **Por que o redirect estilo `wa.link` não se aplica ao CTWA nativo:** o anúncio CTWA não tem campo de URL de destino — o número é escolhido no dropdown do Business Manager e o app abre o WhatsApp nativamente, com o `referral` por baixo. Não há hop HTTP onde inserir um interstitial. O truque de redirect (capturar clique → `wa.me`) só existe em **link/URL**, não no formato CTWA.
 - **Escada de captura (ranqueada — escala-se por evidência do painel, não por antecipação):**
@@ -181,7 +185,7 @@ Click-to-WhatsApp é formato de primeira classe no segmento (Brasil, mobile, Wha
 
 ## 10. Confiabilidade
 
-- **Fila/retries**: no caminho Destinations, a entrega/retry é do PostHog; na cola fina (Kommo, loop fechado, fallbacks), fila própria com **idempotência** por `event_id`, retries com backoff e **dead-letter** (exposto na saúde — §11).
+- **Fila/retries**: no caminho Destinations, a entrega/retry é do PostHog; na cola fina (Kommo, loop fechado, fallbacks), fila própria com **idempotência** por `event_id`, retries com backoff e **dead-letter** (exposto na saúde — §11). **Tecnologia (auditoria de delegação jun/2026): `pg-boss` sobre o Postgres existente (schema `app`)** — zero infra nova (sem Redis), dead-letter consultável pelo Tracker Hub; jobs em `api-server/src/jobs/` (09 §1.1).
 - **Dedupe** pixel↔server por `event_id`.
 - Observabilidade do HUB e da fila; rate-limit no endpoint de coleta (`/collect` é público por design — D-12; proteção é rate-limit + validação de schema + WAF, não auth).
 

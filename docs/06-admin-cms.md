@@ -82,7 +82,7 @@ A parte "tracker" propriamente dita, operando as capacidades do 05 §11:
 - **Descontinuar** Assunto = `status: descontinuado` → LPs vinculadas em despublish/redirect automático (02 §5). Nunca página órfã indexada.
 - **TipoDeAssunto** novo exige schema + comportamento distintos (guardrail anti-sopa — 02 §10).
 - **Fonte de verdade:** reflete o domínio (01). "Buffet" no admin é a representação do domínio Buffet.
-- Registro inicial (01): `espaço` (`categoria: festa|hospedagem`), `serviço` (`papel: mínimo|adicional`), `campanha` (`período` + `relacionados[]`).
+- Registro inicial (01): `espaço` (`categoria: festa|hospedagem`), `serviço` (`papel: padrão|adicional`), `campanha` (`período` + `relacionados[]`).
 
 ---
 

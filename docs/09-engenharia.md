@@ -9,18 +9,18 @@
 
 ```
 /
-├── CLAUDE.md                  ← manual de conduta do agente (fonte única — D-7)
-├── docs/                      ← este conjunto (00–08, 99, brand/)
-├── site/                      ← Astro (público; SSR/SSG; zero credencial de banco)
+├── AGENTS.md                  ← manual de conduta do agente (fonte única — D-16; CLAUDE.md/replit.md/.cursor/rules são ponteiros)
+├── docs/                      ← este conjunto (00–09, 99, brand/) + tasks/ (work-orders)
+├── infra/                     ← provisionamento (db/roles.sql — isolamento de schema D-9)
+├── site/                      ← Astro (público; output:'server'; zero credencial de banco)
 ├── admin/                     ← Payload + Next (conteúdo + Tracker Hub views)
 ├── api-server/                ← Express 5 + Drizzle (cola fina: /collect, Kommo, loop, links)
 └── packages/
-    ├── contracts/             ← schema de evento (05 §4), contrato de lead (04 §7),
-    │                            tipos gerados do OpenAPI — ÚNICA fonte de tipos cruzados
-    └── ui/                    ← (opcional) componentes compartilhados admin↔preview
+    └── contracts/             ← schema de evento (05 §4), contrato de lead (04 §7),
+                                 tipos gerados (OpenAPI + payload generate:types) — ÚNICA fonte de tipos cruzados
 ```
 
-Regras: nomes de pasta exatamente estes; cada runtime tem `package.json` próprio; nada fora do workspace pnpm.
+Regras: nomes de pasta exatamente estes; cada runtime tem `package.json` próprio; nada fora do workspace pnpm. **`packages/ui` foi cortado da v1** (auditoria de delegação jun/2026): site Astro e admin React mal compartilham UI real, e "(opcional)" para um agente lê-se "construa". Criar só com dor dupla comprovada.
 
 ### 1.1 Arquitetura interna dos runtimes (estrutura e camadas)
 
