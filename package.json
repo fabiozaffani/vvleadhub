@@ -6,7 +6,7 @@
   "description": "VVF — plataforma de geração de leads (monorepo). Conduta do agente: AGENTS.md.",
   "packageManager": "pnpm@9.15.0",
   "engines": {
-    "node": ">=20.11.0"
+    "node": ">=21"
   },
   "scripts": {
     "verify": "pnpm typecheck && pnpm lint && pnpm boundaries && pnpm test && pnpm build",

@@ -1,0 +1,1 @@
+- [Node runtime requirement](node-runtime.md) — repo needs Node 24 (not Replit's default 20); `node --test` glob in contracts test breaks on Node 20.

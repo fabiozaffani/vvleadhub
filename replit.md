@@ -23,3 +23,10 @@ Construa **pela ordem das work-orders** (`docs/tasks/fase-0.md`), uma de cada ve
 
 ---
 <!-- Notas de ambiente do Replit Agent abaixo desta linha. Não edite o que está acima. -->
+
+## Ambiente Replit (setup do import)
+
+- **Node 24** (módulo `nodejs-24` no `.replit`) — obrigatório: o `.nvmrc` pede 24 e o teste do `packages/contracts` usa `node --test "dist/**/*.test.js"`, cujo glob só é expandido a partir do Node 21+. No Node 20 o teste falha por não achar o arquivo.
+- **pnpm 10** (ship do Replit) lê o lockfile v9 — ok por causa do `.npmrc` (`manage-package-manager-versions=false`). Não fixar/rebaixar.
+- Estado atual = scaffold da Fase 0a (guardrails + `packages/contracts`). Os runtimes `site/` (Astro), `admin/` (Payload/Next) e `api-server/` (Express) ainda são stubs — entram na Fase 0b por work-order (`docs/tasks/fase-0.md`). **Ainda não há servidor/frontend para rodar nem workflow/porta a configurar.**
+- DoD do ambiente: `pnpm install` && `pnpm verify` verde (typecheck · lint · boundaries · test · build).
