@@ -46,10 +46,10 @@ Monorepo + enforcement por máquina. **Não delegar — é a base.**
 - **Refs:** 06, 02, D-1/D-9/D-12. **Atenção vocabulário:** `papel: padrão|adicional` (00 §6) — o 06 §5 tem um resíduo `mínimo`; o canônico é `padrão`.
 
 **WO-02 · site — Astro base + design system + institucional/blog** _(Replit Agent)_
-- **Objetivo:** site `output:'server'`, tokens espelho das Design Guidelines, layouts, páginas institucionais + blog base renderizando da API do Payload.
+- **Objetivo:** site `output:'server'`, tokens espelho das Design Guidelines, layouts, **home + blog index conforme a planta (`docs/tasks/composicao-paginas.md`)**, renderizando da API do Payload.
 - **Arquivos:** `site/**`.
-- **Aceite (03 §7.1):** páginas renderizando do Payload; paridade visual (tokens, Playfair+Work Sans, foco/skip-link/reduced-motion). Restrições de build 1–4.
-- **Refs:** 03 §4, 04, 07, Design Guidelines, skill `react-best-practices` (ilhas).
+- **Aceite (03 §7.1):** home e blog na **ordem de blocos da planta** (Hero → números → 4 espaços → form; blog: Nosso Journal + filtro + grid); chrome global (header com "Agende uma visita", footer NAP); paridade visual (tokens, Playfair+Work Sans, foco/skip-link/reduced-motion); **mobile-first**; conteúdo como placeholders marcados. Restrições de build 1–4.
+- **Refs:** **`docs/tasks/composicao-paginas.md`** (planta), 03 §4, 04 §4 (Blocos), 07, Design Guidelines, skill `react-best-practices` (ilhas).
 
 **WO-03 · site — SEO/CWV baseline + ligar o gate de qualidade** _(Replit Agent)_
 - **Pré-passo (firewall do Replit):** smoke-test de instalação de `playwright` (+ download de browser), `@lhci/cli` e `@axe-core/playwright`. Se algum for bloqueado (403, como o vitest), **pare e escale** — o gate não pode depender de ferramenta que o ambiente não instala (09 §3).
