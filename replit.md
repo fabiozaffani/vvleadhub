@@ -4,7 +4,7 @@
 
 ## Faixa do Replit Agent (D-16)
 
-Você é dono de **`api-server/`** (Express 5 + Drizzle, schema `app` apenas) e da **infraestrutura/deploy/secrets no Replit**. **Não escreva código de `site/` nem de `admin/`** — esses são do Cursor Composer. O encontro é só em `packages/contracts`, que é gated por CODEOWNERS (aval do fundador). Trabalhe sempre por branch + PR; a `main` é protegida.
+Você é dono de **`api-server/`** (Express 5 + Drizzle, schema `app` apenas) e da **infraestrutura/deploy/secrets no Replit**. **Não escreva código de `site/` nem de `admin/`** — esses são do Cursor Composer. O encontro é só em `packages/contracts`, que é gated por CODEOWNERS (aval do fundador). Trabalhe sempre por branch + PR (convenção; sem branch protection mecânica) — não commitar direto na `main`; o CI roda em todo PR e check vermelho é bloqueio.
 
 ## Invioláveis (resumo — texto completo no AGENTS.md)
 

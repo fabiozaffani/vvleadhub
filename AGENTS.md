@@ -22,7 +22,7 @@
 
 - Construa **pela ordem do roadmap** (03 §7) e declare pronto **somente** pelos critérios de aceite da fase (03 §7.1). Não pule de fase.
 - PRs pequenos e temáticos; conventional commits (validados por `commitlint` no CI); todo bug corrigido ganha teste (09 §3).
-- **Nada vai direto para a `main`.** Todo trabalho entra por branch + Pull Request. A `main` é protegida; os status checks do CI são obrigatórios. Não há caminho de escrita direta na `main` para nenhum agente.
+- **Todo trabalho entra por branch + Pull Request**, com `/code-review` antes do merge. Não há branch protection mecânica (decisão do fundador) — a disciplina é por convenção: não commitar direto na `main`. O CI roda em **todo PR** (typecheck/lint/boundaries/test/build); **check vermelho é bloqueio**, mesmo sem o merge estar travado por máquina.
 - **Definition of done mecânico:** antes de declarar qualquer tarefa pronta, rode `pnpm verify` na raiz (typecheck + lint + boundaries + test + build) e ele precisa passar. "Parece ok" não existe.
 - **Qualidade de diff:** todo PR passa por `/code-review` antes do merge — sem exceção de tamanho. Quem dispara depende do harness (ver §Governança multi-agente). `/simplify` roda quando o diff atender a qualquer um: > 150 linhas líquidas de código real (excluindo lockfile, seeds, migrações geradas e snapshots) · 5+ arquivos de código tocados · abstração nova criada (componente, helper, tipo em `contracts`) · o PR cresceu além do escopo planejado. Pequenas correções dispensam o `/simplify`.
 - Tudo que é business-concreto é **dado, não código** (02 §1) — espaços, serviços, campanhas, moldes e objetivos entram por registro/seed, nunca hardcoded. Exceção registrada: TipoDeAssunto novo = collection nova (02 §2.2).
