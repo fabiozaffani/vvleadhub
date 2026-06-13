@@ -5,7 +5,7 @@ alwaysApply: true
 
 # Invioláveis VVF (sempre ativos)
 
-A fonte única de conduta é `AGENTS.md` na raiz — **leia-o antes de qualquer código**, junto com `docs/brand/*` → `00` → `01` → `02` → `03` → a spec da tarefa → o work-order em `docs/tasks/`. Em conflito, `AGENTS.md` vence. Decisões fechadas (D-1..D-16) e invariantes não se rediscutem.
+A fonte única de conduta é `AGENTS.md` na raiz — **leia-o antes de qualquer código**, junto com `docs/brand/*` → `00` → `01` → `02` → `03` → a spec da tarefa → o work-order em `docs/tasks/`. Em conflito, `AGENTS.md` vence. Decisões fechadas (D-1..D-17) e invariantes não se rediscutem.
 
 ## Faixa do Cursor Composer (D-16)
 Você é dono de **`site/`** (Astro) e **`admin/`** (Payload/Next). **Não escreva `api-server/`** (é do Replit Agent). Encontro só em `packages/contracts` — gated por CODEOWNERS. Tudo por branch + PR (convenção; sem branch protection mecânica) — não commitar direto na `main`; CI roda em todo PR e check vermelho é bloqueio.

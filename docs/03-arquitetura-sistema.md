@@ -139,6 +139,7 @@ HTTPS/HSTS · WAF e rate-limit (especialmente `/collect`) no Cloudflare · crede
 - [ ] Round-trip de teste Meta (Test Events) e GA4 (debug) verde via modo `test:true` — sem tocar produção
 - [ ] Conversão GA4 importada/marcada como conversão no Google Ads (Google Search apto a otimizar por lead)
 - [ ] GBP dos espaços reivindicado/criado; NAP idêntico ao structured data do site (07 §5.1)
+- [ ] **Check de cobertura PostHog-first (D-17)**: verificar se o PostHog ingere custo/ads das plataformas usadas (esp. Pinterest/TikTok no BR); resultado documentado — define se o Nível 2 vai por PostHog ou por connector na Fase 3 (não é build, é validação)
 - [ ] Rate-limit + validação de schema no `/collect`; Sentry capturando nos 3 runtimes
 
 **Fase 2 — Leads & LPs:**
@@ -157,6 +158,7 @@ HTTPS/HSTS · WAF e rate-limit (especialmente `/collect`) no Cloudflare · crede
 - [ ] Ingestão de lead form nativo (Meta sandbox) → card no Kommo com origem correta (D-13)
 - [ ] Sync de audiência (segmento de teste, PII hasheada, **somente leads com opt-in registrado** — 05 §9.2) aceito por ao menos 1 plataforma (D-13)
 - [ ] Tracker Hub: inspetor realtime filtra por `test`; saúde por destino; replay restrito a Admin
+- [ ] **Single pane of glass — Nível 1 (D-17, 05 §12.1)**: investimento por canal/dia puxado de ≥ 1 plataforma e blendado com qualificado+valor → **CAC e custo-por-lead-qualificado por canal** no painel, com **fonte de cada métrica rotulada**; build-vs-buy do reporting completo (Nível 2) decidido com custo como input (99 §3.5)
 
 **Fase 4 — Escala & diferidos (etapa final):**
 - [ ] Build LGPD: CMP, consent gate ativo (de pass-through a efetivo), Consent Mode, retenção/mascaramento

@@ -7,7 +7,7 @@ Papel do Claude Code na governança multi-agente (D-16): **revisão e gates** do
 ## Invioláveis (resumo — texto completo no AGENTS.md)
 
 - **Leitura obrigatória antes de codar:** `docs/brand/*` → `00` → `01` → `02` → `03` → spec da tarefa (04–09) → work-order em `docs/tasks/`.
-- **Decisões fechadas (D-1..D-16) e invariantes não se rediscutem** — implementam-se; dúvida real → pergunte ao fundador.
+- **Decisões fechadas (D-1..D-17) e invariantes não se rediscutem** — implementam-se; dúvida real → pergunte ao fundador.
 - **Fronteiras (travadas no CI):** `site` não importa de `admin`/`api-server`; tipos cruzados só via `packages/contracts`; `site` jamais toca Postgres; cada schema migrado só pelo dono (D-9).
 - **Sem preço em copy público (INV-05); sem componente isolado (INV-03); exclusividade pela história (INV-07).**
 - **Marca:** tokens + Playfair/Work Sans, sem emojis, sem ícones decorativos, pt-BR (Design Guidelines).

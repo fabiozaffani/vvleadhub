@@ -5,7 +5,7 @@
 ## Antes de qualquer código
 
 1. Leia, nesta ordem: `docs/brand/vvf-system-context.md` → `docs/brand/vvf-design-guidelines.md` → `docs/00-indice-regras.md` → `docs/01` → `02` → `03` → e a spec da tarefa (04–09).
-2. O `docs/00` é o documento de controle: glossário canônico, log de decisões (D-1..D-16) e diferidos. **Decisões fechadas não se rediscutem** — implementam-se. Se uma decisão parecer errada na prática, pare e pergunte ao fundador; não contorne em silêncio.
+2. O `docs/00` é o documento de controle: glossário canônico, log de decisões (D-1..D-17) e diferidos. **Decisões fechadas não se rediscutem** — implementam-se. Se uma decisão parecer errada na prática, pare e pergunte ao fundador; não contorne em silêncio.
 3. Em conflito entre docs: camada de marca > 01 > 02 > 03 > demais (00 §5).
 4. Leia o work-order da sua tarefa em `docs/tasks/` antes de escrever qualquer linha. Não existe "construa a Fase N" — existe um work-order por tarefa, com escopo, arquivos permitidos e critérios de aceite.
 
@@ -47,7 +47,7 @@ Três agentes podem tocar este repositório. Cada um lê um arquivo diferente; t
 
 ## Quando perguntar ao fundador (aval obrigatório)
 
-- Qualquer mudança em decisão fechada (D-1..D-16) ou em invariante.
+- Qualquer mudança em decisão fechada (D-1..D-17) ou em invariante.
 - Trade-off não coberto pelos docs (registre a pergunta + recomendação; não decida sozinho).
 - Promoção de preview → produção (loop de validação humana).
 - Qualquer alteração em `packages/contracts` ou `docs/` (gated por CODEOWNERS).
