@@ -65,10 +65,17 @@ Monorepo + enforcement por máquina. **Não delegar — é a base.**
 
 ### Replit Agent (`api-server/` + infra)
 
-**WO-06 · infra — provisionamento** _(faixa: Replit Agent)_
-- **Objetivo:** rodar `infra/db/roles.sql`; configurar Secrets (`.env.example`); três deployments + subdomínios atrás do Cloudflare; CI verde no Replit.
-- **Arquivos:** `infra/**`, configs de deploy do Replit. Não tocar código de produto.
-- **Aceite:** monorepo sobe no Replit; CI verde; subdomínios roteando. Restrição de build 7.
+**WO-06 · infra — provisionamento + isolamento de banco (D-9)** _(faixa: Replit Agent)_
+- **Objetivo:** provisionar Postgres + os 3 deployments sob subdomínios (Cloudflare na frente), configurar Secrets, e **aplicar e verificar o isolamento de schema do D-9**.
+- **Arquivos:** `infra/**`, configs de deploy/Secrets do Replit. **Não tocar código de produto.**
+- **Secrets:** nomes EXATOS do `.env.example` (`DATABASE_URL_APP`, `DATABASE_URL_PAYLOAD`, `PAYLOAD_SECRET`, `R2_*`, `CF_API_TOKEN`, `SERVICE_TOKEN_SECRET`, …). Não inventar variações.
+- **Isolamento D-9 — CRÍTICO (passo destrutivo se errado):** "banco provisionado" **não conta como pronto** sem isto:
+  1. Aplicar `infra/db/roles.sql` (dois schemas `payload`/`app`; dois roles que não enxergam o schema um do outro).
+  2. **Provar:** conectar com o role do api-server (`DATABASE_URL_APP`) e confirmar que `app` é acessível e `payload` **não** é (ex.: ler/criar tabela em `payload` deve falhar por permissão); o mesmo cruzado para o role do Payload. **Anexar a saída como evidência.**
+- **Fallback (Postgres gerenciado do Replit é Neon — pode restringir `CREATE ROLE`/`REVOKE`/`ALTER SCHEMA OWNER`):** se o `roles.sql` não aplicar, **pare e escale ao fundador**. Opções: (a) um Postgres/dois schemas com isolamento só no nível de app (`schemaFilter` + dependency-cruiser) — registrar que a trava de banco não pôde ser aplicada; (b) dois bancos separados (um por schema) — **desvia de "um Postgres" (D-9) → exige aval do fundador**. Não decidir sozinho.
+- **Defesa-em-profundidade (independe do role):** o `schemaFilter: ["app"]` do `api-server/drizzle.config.ts` já impede o `drizzle-kit` de gerar migração destrutiva contra `payload`. Manter, mesmo com o role funcionando.
+- **Gate humano:** o isolamento é verificado pelo fundador (ou pelo `/code-review` do Claude Code) antes de confiar — o agente **não** se auto-certifica aqui.
+- **Aceite:** monorepo sobe no Replit; CI verde; subdomínios roteando (restrição de build 7); **isolamento D-9 provado (passo 2 com evidência) — ou fallback escalado ao fundador**.
 
 **WO-07 · api-server — esqueleto + observabilidade + OpenAPI** _(faixa: Replit Agent)_
 - **Objetivo:** Express 5 em camadas (09 §1.1); `/health` por runtime; Sentry + pino; `openapi.yaml` como fonte + codegen → `packages/contracts/generated` com drift-check no CI. (`/collect` e cola Kommo são F1.)
@@ -81,6 +88,7 @@ Monorepo + enforcement por máquina. **Não delegar — é a base.**
 | Critério 03 §7.1 | WO |
 |---|---|
 | Monorepo + travas de fronteira no CI | 0a ✅ |
+| Banco provisionado + isolamento D-9 verificado | WO-06 |
 | Registros do 02 seedados | WO-01 |
 | Institucional + blog do Payload; paridade visual | WO-02 |
 | Lighthouse CI verde + axe | WO-03 |
