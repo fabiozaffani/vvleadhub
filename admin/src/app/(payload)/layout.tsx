@@ -12,7 +12,7 @@ type Args = {
 
 const serverFunction: ServerFunctionClient = async function (args) {
   'use server'
-  const { handleServerFunctions } = await import('@payloadcms/next/utilities')
+  const { handleServerFunctions } = await import('@payloadcms/next/layouts')
   return handleServerFunctions({ ...args, config, importMap })
 }
 

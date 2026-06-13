@@ -2,7 +2,8 @@ import type { Access } from 'payload'
 
 type Role = 'admin' | 'marketing' | 'editor' | 'leitura'
 
-const roleOf = (req: { user?: { role?: Role } | null }): Role | undefined => req.user?.role
+const roleOf = (req: { user?: unknown }): Role | undefined =>
+  (req.user as { role?: Role } | null | undefined)?.role
 
 export const anyone: Access = () => true
 
