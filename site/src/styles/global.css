@@ -1,0 +1,245 @@
+/* Vale Verde — sistema visual aplicado (espelho das Design Guidelines).
+   Tokens em HSL (formato Tailwind H S% L%), consumidos via hsl(var(--token)). */
+
+:root {
+  --background: 30 100% 98%;
+  --foreground: 173 50% 16%;
+  --primary: 173 50% 16%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 43 54% 51%;
+  --secondary-foreground: 173 50% 16%;
+  --accent: 43 54% 51%;
+  --accent-foreground: 173 50% 16%;
+  --card: 0 0% 100%;
+  --card-foreground: 166 53% 16%;
+  --card-border: 166 53% 90%;
+  --border: 166 53% 85%;
+  --muted: 166 20% 90%;
+  --muted-foreground: 166 20% 40%;
+
+  --radius: 30px;
+
+  /* HEX canônicos da marca (§2.3) — foco/superfícies que precisam ler garantido. */
+  --green: #143c37;
+  --green-deep: #031916;
+  --gold: #c69f3f;
+  --gold-dark: #7d5900;
+  --cream: #fffbf7;
+
+  --maxw: 1200px;
+  --gutter: clamp(1.25rem, 5vw, 3rem);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: 'Work Sans', system-ui, -apple-system, sans-serif;
+  font-weight: 400;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.5em;
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ---- Layout helpers -------------------------------------------------------- */
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  padding-block: clamp(3.5rem, 9vw, 7rem);
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: hsl(var(--accent));
+  margin: 0 0 1rem;
+}
+
+.lede {
+  font-size: clamp(1.05rem, 2.4vw, 1.25rem);
+  color: hsl(var(--muted-foreground));
+  max-width: 42ch;
+}
+
+.placeholder-note {
+  font-size: 0.8rem;
+  color: hsl(var(--muted-foreground));
+  font-style: italic;
+}
+
+/* ---- Botões pílula (assinatura visual ~30px) ------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  padding: 0.95rem 2rem;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition:
+    box-shadow 0.5s ease,
+    transform 0.5s ease,
+    background-color 0.4s ease,
+    color 0.4s ease;
+}
+
+.btn-primary {
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+}
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 34px rgba(20, 60, 55, 0.28);
+}
+
+.btn-gold {
+  background: hsl(var(--secondary));
+  color: var(--green);
+}
+.btn-gold:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 34px rgba(198, 159, 63, 0.42);
+}
+
+.btn-outline {
+  background: transparent;
+  border-color: currentColor;
+}
+
+/* ---- Cards ----------------------------------------------------------------- */
+.vv-card {
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--card-border));
+  border-radius: 28px;
+  overflow: hidden;
+  transition:
+    box-shadow 0.8s ease,
+    transform 0.8s ease;
+}
+.vv-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 30px 70px rgba(20, 60, 55, 0.14);
+}
+
+/* ---- Foco acessível (§5) --------------------------------------------------- */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+.vv-focus:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(225, 180, 72, 0.65) !important;
+}
+.vv-focus-light:focus-visible {
+  outline: 2px solid var(--cream);
+  outline-offset: 3px;
+}
+.vv-focus-dark:focus-visible {
+  outline: 2px solid var(--gold-dark);
+  outline-offset: 3px;
+}
+
+/* ---- Skip-link ------------------------------------------------------------- */
+.vv-skip-link {
+  position: fixed;
+  top: -3rem;
+  left: 1rem;
+  z-index: 100;
+  background: var(--green);
+  color: var(--cream);
+  padding: 0.7rem 1.4rem;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.78rem;
+  text-decoration: none;
+  transition: top 0.2s ease;
+}
+.vv-skip-link:focus {
+  top: 1rem;
+}
+
+/* ---- Ken Burns (still animada do hero) ------------------------------------- */
+@keyframes vv-kenburns {
+  from {
+    transform: scale(1.02) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale(1.12) translate3d(0, -2%, 0);
+  }
+}
+.vv-kenburns {
+  animation: vv-kenburns 28s ease-in-out infinite alternate;
+  transform-origin: 50% 45%;
+  will-change: transform;
+}
+
+/* ---- Reduced motion -------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .vv-kenburns {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
+/* ---- CTA sticky mobile: oculta o float global ≤767px (§6) ------------------ */
+@media (max-width: 767px) {
+  html.vv-sticky-cta [data-wa-float] {
+    display: none;
+  }
+}

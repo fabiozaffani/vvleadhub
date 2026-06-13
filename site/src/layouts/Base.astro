@@ -1,0 +1,63 @@
+---
+import '@fontsource/playfair-display/400.css'
+import '@fontsource/playfair-display/600.css'
+import '@fontsource/playfair-display/700.css'
+import '@fontsource/work-sans/300.css'
+import '@fontsource/work-sans/400.css'
+import '@fontsource/work-sans/500.css'
+import '@fontsource/work-sans/600.css'
+import '../styles/global.css'
+
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+import WhatsAppSticky from '../components/WhatsAppSticky.astro'
+
+interface Props {
+  title: string
+  description?: string
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[]
+}
+
+const {
+  title,
+  description = 'Vale Verde — espaços e experiência integrada para casamentos e celebrações inesquecíveis.',
+  jsonLd,
+} = Astro.props
+
+const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin).toString()
+const jsonLdArray = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : []
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content="Vale Verde" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    {
+      jsonLdArray.map((node) => (
+        <script type="application/ld+json" is:inline set:html={JSON.stringify(node)} />
+      ))
+    }
+  </head>
+  <body>
+    <a href="#main" class="vv-skip-link">Pular para o conteúdo</a>
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+    <WhatsAppSticky />
+  </body>
+</html>

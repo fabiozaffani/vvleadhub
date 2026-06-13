@@ -1,0 +1,218 @@
+---
+import Base from '../../layouts/Base.astro'
+import type { Categoria, Media } from '@vvf/contracts/generated'
+import { getPosts, getCategorias } from '../../lib/payload'
+
+const [posts, categorias] = await Promise.all([getPosts(), getCategorias()])
+
+// Filtro por categoria server-side (zero-JS): ?cat=<slug>.
+const catParam = Astro.url.searchParams.get('cat')
+const filtered = catParam
+  ? posts.filter((p) => {
+      const c = p.categoria
+      return c && typeof c === 'object' && (c as Categoria).slug === catParam
+    })
+  : posts
+
+const fmtData = (iso?: string | null) =>
+  iso
+    ? new Date(iso).toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' })
+    : ''
+
+const catNome = (c: Categoria | number | null | undefined) =>
+  c && typeof c === 'object' ? (c as Categoria).nome : ''
+
+const coverOf = (m: unknown): string | null =>
+  m && typeof m === 'object' ? ((m as Media).url ?? null) : null
+---
+
+<Base
+  title="Nosso Journal — Vale Verde"
+  description="Histórias, inspirações e bastidores das celebrações que acontecem no Vale Verde."
+>
+  <section class="journal-hero">
+    <div class="container">
+      <p class="eyebrow journal-eyebrow">Nosso Journal</p>
+      <h1 class="journal-title">Histórias que inspiram a sua</h1>
+      <p class="lede journal-lede">
+        Inspirações, bastidores e cuidados que transformam uma data em memória.
+      </p>
+    </div>
+  </section>
+
+  <section class="section journal">
+    <div class="container">
+      {
+        categorias.length > 0 && (
+          <nav class="filtros" aria-label="Filtrar por categoria">
+            <a
+              href="/blog"
+              class:list={['chip', 'vv-focus', { 'chip-ativo': !catParam }]}
+            >
+              Todos
+            </a>
+            {categorias.map((c) => (
+              <a
+                href={`/blog?cat=${c.slug}`}
+                class:list={['chip', 'vv-focus', { 'chip-ativo': catParam === c.slug }]}
+              >
+                {c.nome}
+              </a>
+            ))}
+          </nav>
+        )
+      }
+
+      {
+        filtered.length > 0 ? (
+          <div class="posts-grid">
+            {filtered.map((post) => {
+              const cover = coverOf(post.coverImage)
+              return (
+                <article class="vv-card post-card">
+                  <a href="#" class="post-link vv-focus" aria-label={post.titulo}>
+                    <div class="post-media">
+                      {cover ? (
+                        <img src={cover} alt={post.titulo} loading="lazy" decoding="async" />
+                      ) : (
+                        <div class="post-media-fallback" aria-hidden="true" />
+                      )}
+                    </div>
+                    <div class="post-body">
+                      {catNome(post.categoria) && (
+                        <span class="post-cat">{catNome(post.categoria)}</span>
+                      )}
+                      <h2 class="post-title">{post.titulo}</h2>
+                      {post.resumo && <p class="post-resumo">{post.resumo}</p>}
+                      {post.publishedAt && (
+                        <time class="post-data" datetime={post.publishedAt}>
+                          {fmtData(post.publishedAt)}
+                        </time>
+                      )}
+                    </div>
+                  </a>
+                </article>
+              )
+            })}
+          </div>
+        ) : (
+          <p class="placeholder-note">
+            Ainda não há publicações nesta categoria.
+          </p>
+        )
+      }
+    </div>
+  </section>
+</Base>
+
+<style>
+  .journal-hero {
+    background: linear-gradient(160deg, var(--green) 0%, var(--green-deep) 100%);
+    color: var(--cream);
+    padding-block: clamp(4rem, 10vw, 7rem);
+  }
+  .journal-eyebrow {
+    color: var(--gold);
+  }
+  .journal-title {
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    font-weight: 700;
+  }
+  .journal-lede {
+    color: rgba(255, 251, 247, 0.9);
+  }
+
+  .filtros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 2.5rem;
+  }
+  .chip {
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 0.5rem 1.1rem;
+    border-radius: 9999px;
+    border: 1px solid hsl(var(--border));
+    color: hsl(var(--foreground));
+    background: hsl(var(--card));
+  }
+  .chip:hover {
+    border-color: hsl(var(--accent));
+  }
+  .chip-ativo {
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    border-color: hsl(var(--primary));
+  }
+
+  .posts-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+  .post-card {
+    overflow: hidden;
+  }
+  .post-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  .post-media {
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+  }
+  .post-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .post-media-fallback {
+    width: 100%;
+    height: 100%;
+    background:
+      radial-gradient(120% 120% at 80% 0%, rgba(198, 159, 63, 0.35), transparent 55%),
+      linear-gradient(160deg, var(--green) 0%, var(--green-deep) 100%);
+  }
+  .post-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    padding: 1.5rem;
+  }
+  .post-cat {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: hsl(var(--accent));
+  }
+  .post-title {
+    font-size: 1.4rem;
+    margin: 0;
+  }
+  .post-resumo {
+    margin: 0;
+    color: hsl(var(--muted-foreground));
+    font-size: 0.95rem;
+  }
+  .post-data {
+    font-size: 0.82rem;
+    color: hsl(var(--muted-foreground));
+  }
+
+  @media (min-width: 768px) {
+    .posts-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 1024px) {
+    .posts-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

@@ -2,7 +2,19 @@
   "extends": "../tsconfig.base.json",
   "compilerOptions": {
     "noEmit": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "allowJs": true,
+    "lib": ["DOM", "DOM.Iterable", "ES2022"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "declaration": false,
+    "sourceMap": false,
+    "plugins": [{ "name": "next" }],
+    "paths": {
+      "@payload-config": ["./payload.config.ts"],
+      "@/*": ["./src/*"]
+    }
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
 }

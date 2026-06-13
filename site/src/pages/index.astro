@@ -1,0 +1,321 @@
+---
+import Base from '../layouts/Base.astro'
+import EspacoCard from '../components/EspacoCard.astro'
+import { getEspacos, selectHomeEspacos } from '../lib/payload'
+
+const espacos = selectHomeEspacos(await getEspacos())
+
+const tiposEvento = ['Casamento', 'Aniversário', 'Debutante', 'Corporativo']
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'Vale Verde Festas',
+  description:
+    'Espaços e experiência integrada para casamentos e celebrações inesquecíveis.',
+  url: new URL('/', Astro.site ?? Astro.url.origin).toString(),
+}
+---
+
+<Base
+  title="Vale Verde — onde o seu para sempre começa"
+  description="Espaços exclusivos e experiência integrada para casamentos e celebrações que ficam para a vida."
+  jsonLd={jsonLd}
+>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg vv-kenburns" aria-hidden="true"></div>
+    <div class="container hero-inner">
+      <p class="eyebrow hero-eyebrow">Excelência em experiência</p>
+      <h1 class="hero-title">Onde o seu para sempre começa</h1>
+      <p class="hero-lede">
+        Da primeira visita ao último brinde, cada detalhe é cuidado por quem
+        celebra junto. As únicas surpresas são as boas.
+      </p>
+      <div class="hero-ctas">
+        <a href="#contato" class="btn btn-gold vv-focus">Agende uma visita</a>
+        <a href="#espacos" class="btn btn-outline hero-outline vv-focus">Conheça o espaço</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- NÚMEROS (placeholders marcados — nunca inventar métricas) -->
+  <section class="section numeros">
+    <div class="container">
+      <div class="numeros-grid">
+        <div class="numero">
+          <span class="numero-valor">—</span>
+          <span class="numero-label">Anos de história</span>
+        </div>
+        <div class="numero">
+          <span class="numero-valor">—</span>
+          <span class="numero-label">Celebrações realizadas</span>
+        </div>
+        <div class="numero">
+          <span class="numero-valor">—</span>
+          <span class="numero-label">Espaços exclusivos</span>
+        </div>
+      </div>
+      <p class="placeholder-note numeros-note">
+        Métricas a confirmar com o inventário — exibidas como placeholder.
+      </p>
+    </div>
+  </section>
+
+  <!-- ESPAÇOS (da API do Payload) -->
+  <section id="espacos" class="section espacos">
+    <div class="container">
+      <p class="eyebrow">O Espaço</p>
+      <h2 class="espacos-title">Ambientes para cada tipo de celebração</h2>
+      <p class="lede espacos-lede">
+        Cada espaço tem sua própria atmosfera. Conheça os ambientes e imagine a
+        sua festa em cada um deles.
+      </p>
+
+      {
+        espacos.length > 0 ? (
+          <div class="espacos-grid">
+            {espacos.map((espaco) => (
+              <EspacoCard espaco={espaco} />
+            ))}
+          </div>
+        ) : (
+          <p class="placeholder-note">
+            Espaços indisponíveis no momento — verifique se o Payload está no ar.
+          </p>
+        )
+      }
+    </div>
+  </section>
+
+  <!-- FORM #contato -->
+  <section id="contato" class="section contato">
+    <div class="container contato-inner">
+      <div class="contato-copy">
+        <p class="eyebrow contato-eyebrow">Agende uma visita</p>
+        <h2 class="contato-title">Vamos conversar sobre a sua celebração</h2>
+        <p class="contato-lede">
+          Conte um pouco sobre o seu evento. Nosso time entra em contato para
+          agendar uma visita e desenhar a experiência com você.
+        </p>
+      </div>
+
+      <form class="contato-form" aria-label="Agende uma visita">
+        <div class="campo campo-honeypot" aria-hidden="true">
+          <label for="empresa">Não preencher</label>
+          <input id="empresa" name="empresa" type="text" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <div class="campo">
+          <label for="nome">Nome</label>
+          <input id="nome" name="nome" type="text" required class="vv-focus" autocomplete="name" />
+        </div>
+        <div class="campo-linha">
+          <div class="campo">
+            <label for="telefone">WhatsApp</label>
+            <input id="telefone" name="telefone" type="tel" required class="vv-focus" autocomplete="tel" />
+          </div>
+          <div class="campo">
+            <label for="email">E-mail</label>
+            <input id="email" name="email" type="email" class="vv-focus" autocomplete="email" />
+          </div>
+        </div>
+        <div class="campo-linha">
+          <div class="campo">
+            <label for="tipo">Tipo de evento</label>
+            <select id="tipo" name="tipo" class="vv-focus">
+              <option value="">Selecione</option>
+              {tiposEvento.map((t) => <option value={t}>{t}</option>)}
+            </select>
+          </div>
+          <div class="campo">
+            <label for="data">Data prevista</label>
+            <input id="data" name="data" type="date" class="vv-focus" />
+          </div>
+        </div>
+        <div class="campo">
+          <label for="mensagem">Mensagem</label>
+          <textarea id="mensagem" name="mensagem" rows="4" class="vv-focus"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary contato-submit vv-focus">
+          Quero agendar uma visita
+        </button>
+        <p class="placeholder-note">
+          O envio será conectado ao back-end na próxima fase.
+        </p>
+      </form>
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* HERO */
+  .hero {
+    position: relative;
+    min-height: clamp(78vh, 88vh, 920px);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    color: var(--cream);
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(130% 120% at 70% 15%, rgba(198, 159, 63, 0.32), transparent 50%),
+      linear-gradient(160deg, var(--green) 0%, var(--green-deep) 100%);
+  }
+  .hero-inner {
+    position: relative;
+    padding-block: 4rem;
+    max-width: 760px;
+  }
+  .hero-eyebrow {
+    color: var(--gold);
+  }
+  .hero-title {
+    font-size: clamp(2.6rem, 7vw, 4.5rem);
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+  }
+  .hero-lede {
+    font-size: clamp(1.05rem, 2.6vw, 1.35rem);
+    color: rgba(255, 251, 247, 0.9);
+    max-width: 46ch;
+    margin-bottom: 2rem;
+  }
+  .hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .hero-outline {
+    color: var(--cream);
+  }
+
+  /* NÚMEROS */
+  .numeros {
+    padding-block: clamp(2.5rem, 6vw, 4rem);
+  }
+  .numeros-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    text-align: center;
+  }
+  .numero {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .numero-valor {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2.2rem, 6vw, 3.2rem);
+    color: hsl(var(--accent));
+    line-height: 1;
+  }
+  .numero-label {
+    font-size: 0.85rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: hsl(var(--muted-foreground));
+  }
+  .numeros-note {
+    text-align: center;
+    margin-top: 1.5rem;
+  }
+
+  /* ESPAÇOS */
+  .espacos-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    max-width: 18ch;
+  }
+  .espacos-lede {
+    margin-bottom: 2.5rem;
+  }
+  .espacos-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  /* CONTATO */
+  .contato {
+    background: hsl(var(--muted) / 0.5);
+  }
+  .contato-inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .contato-title {
+    font-size: clamp(1.8rem, 4.5vw, 2.6rem);
+  }
+  .contato-lede {
+    color: hsl(var(--muted-foreground));
+    max-width: 42ch;
+  }
+  .contato-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--card-border));
+    border-radius: 28px;
+    padding: clamp(1.5rem, 4vw, 2.25rem);
+  }
+  .campo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .campo-linha {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.1rem;
+  }
+  .campo label {
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+  .campo input,
+  .campo select,
+  .campo textarea {
+    font-family: inherit;
+    font-size: 1rem;
+    padding: 0.8rem 1rem;
+    border: 1px solid hsl(var(--border));
+    border-radius: 14px;
+    background: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+  .campo-honeypot {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+  .contato-submit {
+    align-self: flex-start;
+    margin-top: 0.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .espacos-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .campo-linha {
+      grid-template-columns: 1fr 1fr;
+    }
+    .contato-inner {
+      grid-template-columns: 1fr 1fr;
+      align-items: start;
+    }
+  }
+  @media (min-width: 1024px) {
+    .espacos-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>
