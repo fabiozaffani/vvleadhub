@@ -7,5 +7,9 @@ module.exports = {
       "always",
       ["feat", "fix", "docs", "chore", "refactor", "test", "perf", "build", "ci", "style", "revert"],
     ],
+    // Relaxado para repo dirigido por agentes: o tipo importa (changelog); casing do
+    // subject e comprimento de linha do corpo são fricção sem valor em commits detalhados.
+    "subject-case": [0],
+    "body-max-line-length": [0, "always", Infinity],
   },
 };
