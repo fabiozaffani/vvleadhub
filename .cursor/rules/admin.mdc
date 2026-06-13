@@ -5,7 +5,7 @@ globs: admin/**
 
 # admin/ — Payload CMS (Next-hosted)
 
-Dono: Cursor Composer. Specs: 06 (admin/Tracker Hub), 02 (primitivas), 05 (capacidades operadas), D-9/D-12.
+Builder: **Replit Agent** (Cursor/Claude só em auxílio). Estas regras valem para qualquer agente ao tocar `admin/`. Specs: 06 (admin/Tracker Hub), 02 (primitivas), 05 (capacidades operadas), D-9/D-12.
 
 ## Convenção (09 §1.1)
 Siga a **convenção nativa do Payload** — não invente estrutura própria onde o framework já tem:

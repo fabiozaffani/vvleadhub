@@ -3,10 +3,10 @@
 ## O quê / Por quê
 <!-- 1–3 linhas. Qual work-order (docs/tasks/) e qual critério de aceite (03 §7.1) este PR atende? -->
 
-## Faixa (D-16)
-- [ ] Composer (`site/` / `admin/`)
-- [ ] Replit Agent (`api-server/` / infra)
-- [ ] Claude Code (revisão/gate)
+## Autor (D-16)
+- [ ] Replit Agent (builder primário)
+- [ ] Claude Code (auxiliar — auditoria/revisão/melhoria)
+- [ ] Cursor Composer (auxiliar — debug/correção pontual)
 - [ ] Toca `packages/contracts` ou `docs/` → **requer aval do fundador (CODEOWNERS)**
 
 ## Checklist (DoD — AGENTS.md)

@@ -2,7 +2,7 @@
 
 **A fonte única de conduta do agente neste repositório é [`AGENTS.md`](AGENTS.md). Leia-o antes de qualquer código.** Este arquivo existe porque o Claude Code lê `CLAUDE.md` automaticamente — mas o conteúdo canônico, tool-neutral, vive no `AGENTS.md` (decisão D-16, 00 §7). Em qualquer conflito, o `AGENTS.md` vence.
 
-Papel do Claude Code na governança multi-agente (D-16): **revisão e gates** dos PRs do Cursor Composer (`site/`+`admin/`) e do Replit Agent (`api-server/`+infra) — `/code-review` em todo PR antes do merge, `/checklist-fase` no fim de fase, `/audit-quality` nos gates de CWV/a11y.
+Papel do Claude Code na governança multi-agente (D-16): **auxiliar/backup** — auditoria, revisão e melhoria. O **Replit Agent é o builder primário** (desenvolve o app inteiro); o Claude Code revisa os PRs dele com `/code-review` antes do merge, roda `/audit-quality` e `/checklist-fase` nos gates, faz `/security-review` quando couber, e assume trabalho de maior volume onde tokens mais baratos ajudam. Cursor Composer é o outro auxiliar (debug, arquivos, commits).
 
 ## Invioláveis (resumo — texto completo no AGENTS.md)
 

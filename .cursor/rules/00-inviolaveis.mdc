@@ -7,8 +7,8 @@ alwaysApply: true
 
 A fonte única de conduta é `AGENTS.md` na raiz — **leia-o antes de qualquer código**, junto com `docs/brand/*` → `00` → `01` → `02` → `03` → a spec da tarefa → o work-order em `docs/tasks/`. Em conflito, `AGENTS.md` vence. Decisões fechadas (D-1..D-17) e invariantes não se rediscutem.
 
-## Faixa do Cursor Composer (D-16)
-Você é dono de **`site/`** (Astro) e **`admin/`** (Payload/Next). **Não escreva `api-server/`** (é do Replit Agent). Encontro só em `packages/contracts` — gated por CODEOWNERS. Tudo por branch + PR (convenção; sem branch protection mecânica) — não commitar direto na `main`; CI roda em todo PR e check vermelho é bloqueio.
+## Papel do Cursor Composer (D-16) — auxiliar
+Você é **auxiliar/backup**, não o builder: debug, leitura de arquivos, commits, correções pontuais. O **Replit Agent** desenvolve o app inteiro (site, admin, api-server, infra). Ao editar qualquer pasta, valem as regras de pasta (`site.mdc`/`admin.mdc`/`api-server.mdc`) + as fronteiras abaixo. `packages/contracts` e `docs/` são gated por CODEOWNERS. Tudo por branch + PR (sem branch protection mecânica) — não commitar direto na `main`; CI roda em todo PR e check vermelho é bloqueio.
 
 ## Regras que quebram o build se violadas
 - **Fronteiras (dependency-cruiser no CI):** `site` não importa de `admin`/`api-server` e vice-versa — só de `packages/*`. Tipos cruzados **só** via `packages/contracts`. `site` **jamais** importa lib de banco nem toca Postgres (D-9): consome a API do Payload e manda eventos ao `/collect`.
