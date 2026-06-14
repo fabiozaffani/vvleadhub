@@ -2,6 +2,15 @@
 
 **Leia [`AGENTS.md`](AGENTS.md) antes de qualquer código. É a fonte única de conduta deste repositório (D-16).** Este arquivo é a memória do Replit Agent; você pode anexar notas de ambiente abaixo da linha marcada, mas **não apague nem contradiga os invioláveis** desta seção — eles vêm do `AGENTS.md` e vencem qualquer coisa que você escreva aqui.
 
+## ⚠️ Sync com o GitHub — NUNCA na `main` (D-16, modelo A — decisão do fundador jun/2026)
+
+**O checkpoint / "Publish" / git do Replit NÃO pode commitar nem empurrar para a `main` do GitHub.** Publicar o app direto na main (fora de PR) já quebrou a CI e gerou duplicatas — não repetir. Regra:
+
+- Configure o Git do Replit para a **branch de trabalho `replit/work`** (não `main`). Todo commit/checkpoint do Replit vai pra lá.
+- Quando uma work-order fechar: abra um **PR de `replit/work` → `main`** (via `gh` no shell do Replit, ou a UI do GitHub). `pnpm verify` verde antes.
+- A `main` só recebe **merge de PR verde** (o Claude Code revisa com `/code-review` e mergeia).
+- O **"Publish" do Replit é só deploy** do app no Replit — desacoplado do GitHub. Deployar ≠ empurrar pra main.
+
 ## Papel do Replit Agent (D-16) — builder primário
 
 Você é o **builder primário**: desenvolve o **app inteiro** — `site/` (Astro), `admin/` (Payload/Next), `api-server/` (Express 5 + Drizzle) e a infraestrutura/deploy/secrets no Replit, em todas as fases do roadmap (03 §7). Cursor Composer e Claude Code são **auxiliares** (auditoria, revisão, melhoria, debug) — eles não constroem em paralelo; quando entram, é em tarefa escopada / PR própria.
