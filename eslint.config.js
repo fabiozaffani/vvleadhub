@@ -37,5 +37,18 @@ export default tseslint.config(
       globals: { module: "readonly", require: "readonly", process: "readonly", __dirname: "readonly" },
     },
   },
+  {
+    // Configs ESM (.mjs) — astro.config.mjs, next.config.mjs: globals do Node.
+    files: ["**/*.mjs"],
+    languageOptions: {
+      sourceType: "module",
+      globals: { process: "readonly", URL: "readonly", console: "readonly" },
+    },
+  },
+  {
+    // Scripts de seed/CLI podem usar console livremente.
+    files: ["**/seed.ts", "**/scripts/**"],
+    rules: { "no-console": "off" },
+  },
   prettier,
 );
