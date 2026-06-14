@@ -1,0 +1,125 @@
+---
+import type { Espaco, Media } from '@vvf/contracts/generated'
+
+interface Props {
+  espaco: Espaco
+}
+const { espaco } = Astro.props
+
+const first = espaco.galeria?.[0]?.imagem
+const cover = first && typeof first === 'object' ? (first as Media) : null
+const coverUrl = cover?.url ?? null
+const coverAlt = cover?.alt ?? espaco.nome
+
+const categoriaLabel = espaco.categoria === 'hospedagem' ? 'Hospedagem' : 'Espaço de festa'
+---
+
+<article class="vv-card espaco-card">
+  <div class="espaco-media">
+    {
+      coverUrl ? (
+        <img src={coverUrl} alt={coverAlt} loading="lazy" decoding="async" />
+      ) : (
+        <div class="espaco-media-fallback" aria-hidden="true" />
+      )
+    }
+    <span class="espaco-badge">{categoriaLabel}</span>
+  </div>
+  <div class="espaco-body">
+    <h3 class="espaco-title">{espaco.nome}</h3>
+    {espaco.descricao && <p class="espaco-desc">{espaco.descricao}</p>}
+    {
+      espaco.bullets && espaco.bullets.length > 0 && (
+        <ul class="espaco-bullets">
+          {espaco.bullets.slice(0, 3).map((b) => (
+            <li>{b.texto}</li>
+          ))}
+        </ul>
+      )
+    }
+    <a href="#contato" class="btn btn-outline espaco-cta vv-focus">Conheça o espaço</a>
+  </div>
+</article>
+
+<style>
+  .espaco-card {
+    display: flex;
+    flex-direction: column;
+  }
+  .espaco-media {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+  }
+  .espaco-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .espaco-media-fallback {
+    width: 100%;
+    height: 100%;
+    background:
+      radial-gradient(120% 120% at 20% 10%, rgba(198, 159, 63, 0.35), transparent 55%),
+      linear-gradient(160deg, var(--green) 0%, var(--green-deep) 100%);
+  }
+  .espaco-badge {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: rgba(255, 251, 247, 0.92);
+    color: var(--green);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.4rem 0.9rem;
+    border-radius: 9999px;
+  }
+  .espaco-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.6rem;
+  }
+  .espaco-title {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+  .espaco-desc {
+    margin: 0;
+    color: hsl(var(--muted-foreground));
+    font-size: 0.95rem;
+  }
+  .espaco-bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    font-size: 0.9rem;
+    color: hsl(var(--muted-foreground));
+  }
+  .espaco-bullets li {
+    padding-left: 1.1rem;
+    position: relative;
+  }
+  .espaco-bullets li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.6em;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: hsl(var(--accent));
+  }
+  .espaco-cta {
+    margin-top: 0.5rem;
+    align-self: flex-start;
+    padding: 0.7rem 1.5rem;
+    font-size: 0.85rem;
+    color: var(--green);
+  }
+</style>

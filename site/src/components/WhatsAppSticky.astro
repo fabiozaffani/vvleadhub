@@ -1,0 +1,32 @@
+---
+// CTA WhatsApp sticky no mobile (composicao-paginas §2 globais; Guidelines §6).
+// Link provisório → #contato (número real a confirmar — inventário).
+---
+
+<a href="#contato" class="wa-sticky vv-focus" data-wa-float aria-label="Agende uma visita">
+  Agende uma visita
+</a>
+
+<style>
+  .wa-sticky {
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    z-index: 45;
+    display: inline-flex;
+    align-items: center;
+    background: hsl(var(--secondary));
+    color: var(--green);
+    font-weight: 600;
+    font-size: 0.88rem;
+    padding: 0.85rem 1.4rem;
+    border-radius: 9999px;
+    text-decoration: none;
+    box-shadow: 0 14px 34px rgba(198, 159, 63, 0.42);
+  }
+  @media (min-width: 768px) {
+    .wa-sticky {
+      display: none;
+    }
+  }
+</style>
