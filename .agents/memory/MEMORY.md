@@ -1,3 +1,4 @@
 - [Node runtime requirement](node-runtime.md) — repo needs Node 24 (not Replit's default 20); `node --test` glob in contracts test breaks on Node 20.
 - [D-9 schema isolation on Replit Postgres](db-isolation-replit.md) — Replit PG is full superuser; roles.sql applies & isolation is proven; frictions: agent can't set Secrets, custom-role creds, Publish managed-schema flow.
 - [Next+Payload build on Replit](next-payload-build-replit.md) — admin build must use `next build --webpack` (Turbopack hangs); run >2min builds as a workflow, not detached bash (gets reaped).
+- [GitHub PR sync from isolated env](github-pr-sync.md) — platform git UI fails UNAUTHENTICATED; use GITHUB_TOKEN+gh in a /tmp clone (workspace .git untouched); rsync absent (use tar/diff); full verify ~100s.
