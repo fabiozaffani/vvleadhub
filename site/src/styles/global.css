@@ -15,7 +15,9 @@
   --card-border: 166 53% 90%;
   --border: 166 53% 85%;
   --muted: 166 20% 90%;
-  --muted-foreground: 166 20% 40%;
+  /* L40%→33%: texto secundário (ledes/labels/notes) precisa de ≥4.5:1 em superfície clara.
+     A 40% dava ~4.4:1 no fundo da seção contato (reprovava AA — Lighthouse). 33% ≈ 5.5–6:1. */
+  --muted-foreground: 166 22% 33%;
 
   --radius: 30px;
 
@@ -92,7 +94,9 @@ img {
   letter-spacing: 0.18em;
   font-size: 0.78rem;
   font-weight: 600;
-  color: hsl(var(--accent));
+  /* Dourado escuro em superfície clara (AA — Design Guidelines §8 / 09 §8).
+     Eyebrows sobre hero/blog escuros usam dourado claro via override (.hero-eyebrow/.journal-eyebrow). */
+  color: var(--gold-dark);
   margin: 0 0 1rem;
 }
 
