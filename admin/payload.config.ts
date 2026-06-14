@@ -23,7 +23,12 @@ const connectionString = (process.env.DATABASE_URL ?? '')
   .replace(/([?&])sslmode=[^&]*/g, '$1')
   .replace(/[?&]$/, '')
 
-const serverURL = process.env.PAYLOAD_PUBLIC_SERVER_URL ?? 'http://localhost:3000'
+// Em produção, PUBLIC_SITE_URL aponta para o domínio publicado (ex: https://vale-verde.replit.app).
+// Em dev, cai para PAYLOAD_PUBLIC_SERVER_URL (localhost:3000).
+const serverURL =
+  process.env.PUBLIC_SITE_URL ??
+  process.env.PAYLOAD_PUBLIC_SERVER_URL ??
+  'http://localhost:3000'
 
 export default buildConfig({
   serverURL,
