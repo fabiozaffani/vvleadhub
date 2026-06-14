@@ -2,7 +2,12 @@
   "$schema": "https://raw.githubusercontent.com/GoogleChrome/lighthouse-ci/main/docs/configuration.md",
   "ci": {
     "collect": {
+      "comment": "Site é SSR (output:'server', adapter node standalone). lhci sobe o servidor buildado e mede as URLs — não há staticDistDir. O CI roda `pnpm --filter site build` antes (gera site/dist/server/entry.mjs).",
       "numberOfRuns": 3,
+      "startServerCommand": "HOST=127.0.0.1 PORT=4173 node site/dist/server/entry.mjs",
+      "startServerReadyPattern": "listening",
+      "startServerReadyTimeout": 20000,
+      "url": ["http://127.0.0.1:4173/", "http://127.0.0.1:4173/blog"],
       "settings": { "preset": "desktop" }
     },
     "assert": {

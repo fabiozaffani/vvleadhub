@@ -92,7 +92,9 @@ img {
   letter-spacing: 0.18em;
   font-size: 0.78rem;
   font-weight: 600;
-  color: hsl(var(--accent));
+  /* Dourado escuro em superfície clara (AA — Design Guidelines §8 / 09 §8).
+     Eyebrows sobre hero/blog escuros usam dourado claro via override (.hero-eyebrow/.journal-eyebrow). */
+  color: var(--gold-dark);
   margin: 0 0 1rem;
 }
 
