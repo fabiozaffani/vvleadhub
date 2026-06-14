@@ -43,6 +43,7 @@ Três agentes podem tocar este repositório. Cada um lê um arquivo diferente; t
 - **Um builder, dois auxiliares.** O Replit Agent constrói; Cursor e Claude Code entram para **auditar, revisar, melhorar e debugar** — não para tocar o build em paralelo. Quando um auxiliar editar código, segue as mesmas regras (fronteiras, marca, `pnpm verify`) e trabalha em **tarefa escopada / PR própria**, sem pisar em trabalho do Replit em andamento.
 - **Encontro gated:** `packages/contracts` e `docs/` mudam só sob `CODEOWNERS` (aval do fundador). Mudança de contrato afeta tudo — nunca passa sem olho humano.
 - **`/code-review` em todo PR antes do merge** (papel do Claude Code, ou gate de review do CI). A regra "todo PR passa por review" vale para qualquer autor — Replit ou auxiliar.
+- **Sync Replit→GitHub (modelo A — decisão do fundador jun/2026):** o Replit commita numa **branch de trabalho** (`replit/work`), **nunca na `main`**; abre PR pra main. O "Publish" do Replit é **deploy do app**, desacoplado do GitHub. Publicar direto na main (fora de PR) está proibido — já quebrou a CI e gerou duplicatas. Detalhe operacional no `replit.md`.
 - Os papéis acima são o modelo de operação corrente (D-16); ajustá-los é editar `docs/tasks/fase-0.md` (e os ponteiros `.cursor/rules`/`replit.md`/`CLAUDE.md`), não improvisar no meio de uma tarefa.
 
 ## Quando perguntar ao fundador (aval obrigatório)
