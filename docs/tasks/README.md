@@ -11,7 +11,7 @@ Um **roadmap não é um prompt.** "Construa a Fase 0" é como nasce espaguete be
 - **Restrições de build:** as armadilhas conhecidas (ver `fase-0.md`).
 
 ## Regras (AGENTS.md)
-- Tudo por **branch + PR** (convenção; sem branch protection mecânica — decisão do fundador); CI roda em todo PR (check vermelho = bloqueio); `pnpm verify` verde antes de "pronto".
+- Tudo por **branch + PR**; a `main` tem **branch protection** (checks de CI obrigatórios) + **auto-merge** (PR de código mescla no verde via `pnpm ship`; PR de caminho CODEOWNERS fica pro aval do fundador); `pnpm verify` verde antes de "pronto".
 - `/code-review` em todo PR (papel do Claude Code) antes do merge.
 - Faixa = arquivo permitido. **Dois agentes nunca tocam o mesmo pacote na mesma fase.**
 

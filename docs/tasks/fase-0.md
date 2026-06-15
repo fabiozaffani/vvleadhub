@@ -16,7 +16,7 @@ Monorepo + enforcement por máquina. **Não delegar — é a base.**
 - Tooling: tsconfig `strict`, ESLint flat + prettier, `.gitattributes` (eol=lf), renovate, `.env.example`, CODEOWNERS, PR template, lighthouserc.
 
 ### Passos manuais da 0a (fundador — fora do alcance do agente)
-- [x] ~~Branch protection na `main`~~ — **decisão do fundador: não usar.** Disciplina branch+PR é convenção; o CI roda em todo PR e check vermelho é bloqueio (sem trava mecânica de merge).
+- [x] **Branch protection na `main` — LIGADA (jun/2026).** Checks obrigatórios (`verify`, `gitleaks`, `conventional commits`, `CWV+a11y`) + **auto-merge** (PR de código mescla no verde via `pnpm ship`); sem review humano obrigatório e admins com override. **PR que toca CODEOWNERS não é auto-mergeado** (aval do fundador). _(Reverte a decisão original da 0a de não usar — emenda inline na D-16.)_
 - [ ] Rodar `infra/db/roles.sql` no Postgres provisionado (trocar `CHANGE_ME_*` por Secrets).
 - [ ] Confirmar `@fabiozaffani` como usuário dos CODEOWNERS (ajustar se o handle for outro).
 - [ ] gitleaks-action: repo pessoal não exige licença; se migrar para org, setar `GITLEAKS_LICENSE`.
