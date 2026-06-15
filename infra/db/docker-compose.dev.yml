@@ -1,0 +1,35 @@
+# infra/db/docker-compose.dev.yml — Postgres LOCAL de desenvolvimento (NÃO é produção).
+# Produção é provisionada na WO-06 com Secrets reais (D-18); aqui as senhas são
+# descartáveis e o container só escuta em 127.0.0.1.
+#
+# Na primeira subida (volume vazio) o entrypoint do Postgres aplica, em ordem:
+#   01-roles.sql          -> o MESMO infra/db/roles.sql canônico (2 schemas + 2 roles isolados, D-9)
+#   02-dev-passwords.sql  -> troca as senhas CHANGE_ME por uma senha de dev local
+# Assim o isolamento D-9 que roda em produção também roda no loop local, e o roles.sql
+# segue sendo a fonte única — intocado, com CHANGE_ME.
+#
+#   pnpm db:up     sobe        |  pnpm db:down   para
+#   pnpm db:reset  apaga o volume e reaplica os scripts de init na próxima subida
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: vvf-db-dev
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: vvf
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - vvf-db-dev-data:/var/lib/postgresql/data
+      - ./roles.sql:/docker-entrypoint-initdb.d/01-roles.sql:ro
+      - ./02-dev-passwords.sql:/docker-entrypoint-initdb.d/02-dev-passwords.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d vvf"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  vvf-db-dev-data:
