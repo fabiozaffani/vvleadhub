@@ -17,14 +17,15 @@ import { Posts } from './src/collections/Posts'
 
 const dirname = path.dirname(fileURLToPath(import.meta.url))
 
-// D-9: o Postgres do Replit (helium) anuncia sslmode na URL mas não fala SSL.
-// Removemos o parâmetro e desligamos ssl explicitamente.
-const connectionString = (process.env.DATABASE_URL ?? '')
-  .replace(/([?&])sslmode=[^&]*/g, '$1')
-  .replace(/[?&]$/, '')
+// D-9: o Payload conecta com o role ISOLADO `vvf_payload` (DATABASE_URL_PAYLOAD), nunca o
+// superuser — é o que torna o isolamento de schema real em runtime (ver infra/db/roles.sql).
+const connectionString = process.env.DATABASE_URL_PAYLOAD ?? ''
+// SSL por ambiente: DATABASE_SSL=require liga TLS (Postgres gerenciado costuma exigir);
+// default desligado para Postgres local de dev sem SSL.
+const dbSsl = process.env.DATABASE_SSL === 'require' ? { rejectUnauthorized: true } : false
 
-// Em produção, PUBLIC_SITE_URL aponta para o domínio publicado (ex: https://vale-verde.replit.app).
-// Em dev, cai para PAYLOAD_PUBLIC_SERVER_URL (localhost:3000).
+// serverURL: PUBLIC_SITE_URL (domínio publicado) quando setado; em dev cai para
+// PAYLOAD_PUBLIC_SERVER_URL e então localhost:3000.
 const serverURL =
   process.env.PUBLIC_SITE_URL ??
   process.env.PAYLOAD_PUBLIC_SERVER_URL ??
@@ -56,7 +57,7 @@ export default buildConfig({
   // D-9: Payload é dono APENAS do schema `payload`.
   db: postgresAdapter({
     schemaName: 'payload',
-    pool: { connectionString, ssl: false },
+    pool: { connectionString, ssl: dbSsl },
   }),
   sharp,
   cors: [serverURL],

@@ -5,11 +5,11 @@
 
 ---
 
-## 1. Estrutura do monorepo (Replit, pnpm workspaces)
+## 1. Estrutura do monorepo (pnpm workspaces)
 
 ```
 /
-├── AGENTS.md                  ← manual de conduta do agente (fonte única — D-16; CLAUDE.md/replit.md/.cursor/rules são ponteiros)
+├── AGENTS.md                  ← manual de conduta do agente (fonte única — D-16; CLAUDE.md/.cursor/rules são ponteiros)
 ├── docs/                      ← este conjunto (00–09, 99, brand/) + tasks/ (work-orders)
 ├── infra/                     ← provisionamento (db/roles.sql — isolamento de schema D-9)
 ├── site/                      ← Astro (público; output:'server'; zero credencial de banco)
@@ -68,16 +68,16 @@ Distinção dura: **Bloco ≠ component.** Bloco é a unidade editorial do 02/04
 | Tipos cruzados só via `packages/contracts` | idem |
 | `site` sem acesso a Postgres (D-9) | nenhuma lib de DB no `package.json` do site — lint de dependências |
 | Schema `app` só migrado pelo Drizzle; `payload` só pelo Payload (D-9) | migrações vivem cada uma no seu runtime; CI roda `drizzle-kit check` |
-| Segredos nunca no código | gitleaks no CI + Secrets do Replit como única fonte |
+| Segredos nunca no código | gitleaks no CI + Secrets do provedor de hospedagem como única fonte |
 | OpenAPI é o contrato | spec em `api-server/openapi.yaml`; codegen para `packages/contracts`; CI falha se o gerado divergir do commitado |
 
 ## 3. Testes (pirâmide pragmática)
 
-- **Unit (obrigatório):** funções puras da cola fina — adapters `map(event)`, normalização de lead, dedup D-11, geração de xcode. **Runner: `node:test` (built-in, zero dependência)** — não Vitest: o firewall do Replit bloqueia o vitest (403 em toda versão) e o Replit é o builder primário (D-16). Para TS, compila antes e roda o emitido (`tsc` → `node --test "dist/**/*.test.js"`), como em `packages/contracts`.
+- **Unit (obrigatório):** funções puras da cola fina — adapters `map(event)`, normalização de lead, dedup D-11, geração de xcode. **Runner: `node:test` (built-in, zero dependência)** — escolha deliberada: roda em qualquer Node sem adicionar dependência de tooling à árvore. (Nota histórica: a escolha também evitou, no setup original em Replit, um firewall que bloqueava o vitest — restrição não mais vigente após a D-18; o runner permanece por mérito próprio, não há razão para reintroduzir o Vitest.) Para TS, compila antes e roda o emitido (`tsc` → `node --test "dist/**/*.test.js"`), como em `packages/contracts`.
 - **Integração:** contrato lead→Kommo (Kommo mockado), webhook de desfecho→loop, ingestão de lead form nativo (D-13), purge de cache no publish.
 - **E2E (mínimo vital, Playwright):** caminho de conversão — LP renderiza → CTA → form → card mock criado com xcode; e A/B sem flicker (asserção de zero CLS na variante).
 - **A11y:** axe-core nas rotas-chave do site (home, 1 LP, 1 post) no CI.
-- **Validar tooling contra o firewall do Replit cedo:** Playwright (baixa browsers), `@lhci/cli` e `@axe-core/playwright` podem ser bloqueados como o vitest. Fazer o smoke-test de instalação na primeira WO que os usa (WO-03) — se bloquear, escalar/achar alternativa antes do gate depender deles.
+- **Validar tooling pesado no ambiente de CI/runtime cedo:** Playwright (baixa browsers), `@lhci/cli` e `@axe-core/playwright` podem esbarrar em restrições de rede/sandbox do ambiente de execução. Fazer o smoke-test de instalação na primeira WO que os usa (WO-03) — se falhar, escalar/achar alternativa antes do gate depender deles.
 - Regra: bug corrigido = teste que o reproduz, junto no PR.
 
 ## 4. CI/CD e gates (o fiscal das regras)
@@ -92,11 +92,11 @@ Pipeline por PR: `typecheck → lint+boundaries → unit/integração → build 
 
 | Ambiente | O quê | Notas |
 |---|---|---|
-| **dev** | workspace Replit | Postgres de dev; chaves de teste (Clerk-like pattern: `test` keys); PostHog projeto de dev; destinos em modo teste (05 §11) |
+| **dev** | ambiente de dev local | Postgres de dev; chaves de teste (Clerk-like pattern: `test` keys); PostHog projeto de dev; destinos em modo teste (05 §11) |
 | **preview** | deploy de branch/main | onde o fundador valida cada fase (auditoria 1.6) |
 | **prod** | publicado em valeverdefestas.com.br | chaves live; purge/CDN ativos |
 
-Inventário de secrets (Replit Secrets, por ambiente): `DATABASE_URL` · `PAYLOAD_SECRET` · `POSTHOG_KEY/HOST` · `KOMMO_TOKEN/WEBHOOK_SECRET` · `META_CAPI_TOKEN` · `GOOGLE_ADS_*` · `TIKTOK_*` · `PINTEREST_*` · `R2_*` · `CF_API_TOKEN` (purge) · `SERVICE_TOKEN_*` (D-12). Rotação documentada; nenhum segredo em `.env` commitado.
+Inventário de secrets (Secrets do provedor de hospedagem, por ambiente): `DATABASE_URL_APP` (role do api-server) · `DATABASE_URL_PAYLOAD` (role do Payload) — roles isolados por schema (D-9); nunca um `DATABASE_URL` único de superuser · `PAYLOAD_SECRET` · `POSTHOG_KEY/HOST` · `KOMMO_TOKEN/WEBHOOK_SECRET` · `META_CAPI_TOKEN` · `GOOGLE_ADS_*` · `TIKTOK_*` · `PINTEREST_*` · `R2_*` · `CF_API_TOKEN` (purge) · `SERVICE_TOKEN_*` (D-12). Inventário canônico em `.env.example`. Rotação documentada; nenhum segredo em `.env` commitado.
 
 ## 6. Observabilidade
 

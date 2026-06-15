@@ -1,7 +1,7 @@
 # Composição de páginas (planta) — v1
 
 **Status:** proposta a curar pelo fundador (resolve 99 §1.5 — "composição por Molde, proposta pela IA e curada"). **Camada de tom:** trabalho.
-**Fonte:** protótipo atual `lead-generator-hub-valeverdefestas.replit.app` (lido jun/2026) + catálogo de Blocos ([04 §4](../04-landing-pages.md)) + Design Guidelines (`docs/brand/vvf-design-guidelines.md`).
+**Fonte:** protótipo de referência `lead-generator-hub` (lido jun/2026) + catálogo de Blocos ([04 §4](../04-landing-pages.md)) + Design Guidelines (`docs/brand/vvf-design-guidelines.md`).
 **Regra:** preserva **look-and-feel e a disposição dos elementos** do protótipo; **diagramação e animações são ajustáveis**. **Mobile-first sempre.** Conteúdo v1 = **placeholders marcados** (fotos reais e números dependem do inventário — 🔴 1.4; nunca inventar números/depoimentos como fato).
 
 > O protótipo é a **referência de arranjo**, não de código (D-7 greenfield). Reimplementar em Astro com os Blocos registrados (02/04). Todas as páginas (home, LP, blog) usam **o mesmo look-and-feel**.

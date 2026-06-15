@@ -3,10 +3,9 @@
 ## O quê / Por quê
 <!-- 1–3 linhas. Qual work-order (docs/tasks/) e qual critério de aceite (03 §7.1) este PR atende? -->
 
-## Autor (D-16)
-- [ ] Replit Agent (builder primário)
-- [ ] Claude Code (auxiliar — auditoria/revisão/melhoria)
-- [ ] Cursor Composer (auxiliar — debug/correção pontual)
+## Autor (D-16, emendada pela D-18)
+- [ ] Cursor Composer (builder primário)
+- [ ] Claude Code (auxiliar — auditoria/revisão/gates; build escopado quando delegado)
 - [ ] Toca `packages/contracts` ou `docs/` → **requer aval do fundador (CODEOWNERS)**
 
 ## Checklist (DoD — AGENTS.md)

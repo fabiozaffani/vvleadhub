@@ -37,9 +37,12 @@ Thumbs.db
 # Payload / generated runtime
 admin/.payload/
 
-# Diretórios injetados pelo Replit (não versionar)
+# Resíduo de ambiente local / legado de tooling (não versionar)
 .local/
 .cache/
 .upm/
 .replit
 replit.nix
+
+# Proxy de dev legado (Replit single-port) — produção usa subdomínios no Cloudflare (D-18)
+proxy.mjs
