@@ -16,7 +16,12 @@
     "format:write": "prettier --write .",
     "boundaries": "depcruise --config .dependency-cruiser.cjs site admin api-server packages",
     "test": "pnpm -r --if-present test",
-    "build": "pnpm -r --if-present build"
+    "build": "pnpm -r --if-present build",
+    "dev": "pnpm --parallel --stream --filter @vvf/admin --filter @vvf/site dev",
+    "db:up": "docker compose -f infra/db/docker-compose.dev.yml up -d",
+    "db:down": "docker compose -f infra/db/docker-compose.dev.yml down",
+    "db:reset": "docker compose -f infra/db/docker-compose.dev.yml down -v",
+    "seed": "pnpm --filter @vvf/admin seed"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.11.3",
