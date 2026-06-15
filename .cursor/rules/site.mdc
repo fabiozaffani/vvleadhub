@@ -5,7 +5,7 @@ globs: site/**
 
 # site/ — Astro (público)
 
-Builder: **Replit Agent** (Cursor/Claude só em auxílio). Estas regras valem para qualquer agente ao tocar `site/`. Specs: 03 (arquitetura/SEO), 04 (LPs/blocos), 07 (blog), 09 §1.1 (estrutura), Design Guidelines (visual).
+Builder: **Cursor Composer** (Claude Code em auxílio). Estas regras valem para qualquer agente ao tocar `site/`. Specs: 03 (arquitetura/SEO), 04 (LPs/blocos), 07 (blog), 09 §1.1 (estrutura), Design Guidelines (visual).
 
 ## Render e performance (gate de CWV — 03 §4)
 - **`output: 'server'` com adapter Node** + cache agressivo no Cloudflare e **purge por URL no publish** (NÃO "SSG/ISR" — Astro não tem ISR; estático-na-prática vem do cache do edge). O hook de publish do Payload lista as URLs afetadas (página + listagens + sitemap).

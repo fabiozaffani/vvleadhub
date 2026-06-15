@@ -99,7 +99,7 @@ O brand guide (§5) pede **Arial** no corpo de texto e **Sloop Script Pro** para
 - O corpo de texto usa **Work Sans** (não Arial).
 - **Sloop Script Pro não está em uso** ainda.
 
-**Não alterar as fontes em `index.css` por causa do brand guide** — esta é uma decisão registrada. (Ver `replit.md` → User preferences / Brand.)
+**Não alterar as fontes por causa do brand guide** — esta é uma decisão registrada (esta seção; ledger em 99 §3.2). Não se reverte invocando o brand guide.
 
 ### Regras de hierarquia (do brand guide §5)
 
@@ -273,4 +273,3 @@ Quando a barra de CTA sticky mobile (Variant B) está montada (`html.vv-sticky-c
 - `artifacts/valeverde/src/index.css` — fonte de verdade dos tokens, foco, skip-link, cards, Ken Burns e reduced-motion aplicados.
 - `artifacts/valeverde/components.json` — configuração shadcn/ui (estilo, aliases).
 - `docs/brand/vvf-system-context.md` — System Context v2: estratégia, invariantes (§2), tom de voz (§1.1/§4.2) e identidade visual (§5). Fonte de verdade conceitual.
-- `replit.md` → seções *User preferences* e *Brand* — decisões aplicadas e exceções registradas.

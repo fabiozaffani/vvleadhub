@@ -1,11 +1,12 @@
 import { withPayload } from '@payloadcms/next/withPayload'
 
-const replitDomain = process.env.REPLIT_DEV_DOMAIN
+// Origens extras de dev (ex.: preview proxied) via env: DEV_ALLOWED_ORIGINS="host1,host2".
+const devOrigins = process.env.DEV_ALLOWED_ORIGINS?.split(',').filter(Boolean) ?? []
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   transpilePackages: ['@vvf/contracts'],
-  ...(replitDomain ? { allowedDevOrigins: [replitDomain] } : {}),
+  ...(devOrigins.length ? { allowedDevOrigins: devOrigins } : {}),
 }
 
 export default withPayload(nextConfig)

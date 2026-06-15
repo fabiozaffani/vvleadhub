@@ -3,8 +3,8 @@ import assert from "node:assert/strict";
 import { canonicalEventSchema, EVENT_NAMES } from "./events.js";
 import { leadContractSchema, leadOutcomeSchema } from "./lead.js";
 
-// Runner: node:test (built-in, zero dependência). vitest é bloqueado pelo firewall do
-// Replit — e o Replit é o builder primário (D-16), então testes não dependem de download.
+// Runner: node:test (built-in, zero dependência) — escolha deliberada para os testes não
+// dependerem de download (D-18 mantém node:test; não reintroduzir vitest).
 
 describe("schema canônico de evento (05 §4/§13)", () => {
   it("aceita o exemplo do doc, com click_ids (D-14)", () => {

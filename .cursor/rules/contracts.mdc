@@ -5,7 +5,7 @@ globs: packages/contracts/**
 
 # packages/contracts — a única ponte entre runtimes
 
-Este pacote é a **única** fonte de tipos compartilhados entre `site`, `admin` e `api-server` (09 §1/§2). É o ponto de encontro entre o builder (Replit Agent) e os auxiliares (Cursor/Claude) — e o que mais exige cuidado.
+Este pacote é a **única** fonte de tipos compartilhados entre `site`, `admin` e `api-server` (09 §1/§2). É o ponto de encontro entre o builder (Cursor Composer) e o auxiliar (Claude Code) — e o que mais exige cuidado.
 
 - **Alteração aqui exige aval do fundador (CODEOWNERS).** Mudar um contrato afeta os três runtimes — não é mudança local. Se sua tarefa precisa de um campo novo, pare e proponha ao fundador antes.
 - `events.ts` = schema canônico de evento (05 §4) · `lead.ts` = contrato de lead → Kommo (04 §7) · `generated/` = tipos do OpenAPI (api-server) e do `payload generate:types` — **nunca editados à mão**.

@@ -58,7 +58,7 @@ Captura sem bloquear render:
 
 Características: **batched**, `navigator.sendBeacon`, `event_id` por evento (dedupe), `anonymous_id`/`session_id` em cookie first-party, carregamento deferido.
 
-**Split de ingestão (D-15):** o tráfego de analytics do SDK vai por **proxy reverso no Cloudflare** (domínio first-party → PostHog Cloud — padrão suportado pelo PostHog; o Cloudflare já está na frente por D-2), **sem tocar o api-server**. O `/collect` fica com o que é de negócio: `lead`, conversões, eventos server-side e tudo que alimenta Kommo/loop. Beacon de analytics nunca depende da disponibilidade do Express/Replit — perda silenciosa de evento é "surpresa" (INV-08).
+**Split de ingestão (D-15):** o tráfego de analytics do SDK vai por **proxy reverso no Cloudflare** (domínio first-party → PostHog Cloud — padrão suportado pelo PostHog; o Cloudflare já está na frente por D-2), **sem tocar o api-server**. O `/collect` fica com o que é de negócio: `lead`, conversões, eventos server-side e tudo que alimenta Kommo/loop. Beacon de analytics nunca depende da disponibilidade do api-server — perda silenciosa de evento é "surpresa" (INV-08).
 
 **Click IDs (D-14):** o collector persiste, junto de UTM/xcode, os click IDs das plataformas (`fbclid`→`fbc` + `fbp` do pixel, `gclid`, `ttclid`, `epik`) em cookie first-party — eles viajam no contexto do evento (§4) e no contrato de lead (04 §7). Sem eles, o match quality do CAPI/EC4L despenca; e click ID não tem retrofit.
 

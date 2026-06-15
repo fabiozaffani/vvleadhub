@@ -7,7 +7,7 @@
 
 ## 0. TL;DR
 
-Monorepo no **Replit** com três runtimes desacoplados: **site público em Astro** (server-rendered, SEO/CWV máximos), **admin em Payload CMS** (Next-hosted, conteúdo + Tracker Hub) e **api-server Express** (cola fina: collect, Kommo, loop fechado). **Cloudflare na frente** de tudo (DNS/CDN/WAF). **PostHog** como espinha de analytics *e* dispatcher (Destinations). **Kommo** é o CRM/central conversacional — integração bidirecional. Tensão central permanentemente gerenciada: tracking não pode degradar CWV, e CWV é o SEO.
+Monorepo (pnpm workspaces) com três runtimes desacoplados: **site público em Astro** (server-rendered, SEO/CWV máximos), **admin em Payload CMS** (Next-hosted, conteúdo + Tracker Hub) e **api-server Express** (cola fina: collect, Kommo, loop fechado). **Cloudflare na frente** de tudo (DNS/CDN/WAF); runtime/deploy a definir na Fase 0b (D-18). **PostHog** como espinha de analytics *e* dispatcher (Destinations). **Kommo** é o CRM/central conversacional — integração bidirecional. Tensão central permanentemente gerenciada: tracking não pode degradar CWV, e CWV é o SEO.
 
 ---
 
@@ -16,7 +16,7 @@ Monorepo no **Replit** com três runtimes desacoplados: **site público em Astro
 | ID | Decisão |
 |---|---|
 | D-1 | **Híbrido:** custom no diferencial (site, LPs, cola Kommo/loop, Tracker Hub); plataforma madura no commodity (Payload p/ conteúdo+admin; PostHog p/ eventos+análise+dispatch) |
-| D-2 | **Replit como base** (protótipo e produção inicial) + **Cloudflare na frente**; site público **server-rendered em Astro** (condição inegociável); revisita-se na escala |
+| D-2 | **Cloudflare na frente** (DNS/CDN/WAF/edge — intacto); site público **server-rendered em Astro** (condição inegociável). *A base de runtime/deploy original (Replit) foi removida pela D-18 (jun/2026); runtime/deploy a definir na Fase 0b.* |
 | D-3 | **PostHog** (captura, store, funis, replay, flags/experimentos **e Destinations** como dispatcher) |
 | D-4 | **Kommo** (CRM + WhatsApp central), bidirecional |
 | D-6 | **WhatsApp via Kommo** (resolvido por consequência) |
@@ -33,7 +33,7 @@ flowchart TB
     subgraph CF["Cloudflare (DNS · CDN · WAF · cache)"]
     end
 
-    subgraph Replit["Monorepo (Replit) — 3 deployments · subdomínios"]
+    subgraph Runtime["Monorepo — 3 deployments · subdomínios"]
         SITE["site (Astro, output:'server')<br/>institucional · LPs · blog · bio pages"]
         ADMIN["admin (Payload CMS / Next)<br/>conteúdo + Tracker Hub (06)"]
         API["api-server (Express + Postgres/Drizzle)<br/>/collect · cola Kommo · loop fechado · links xcode"]
@@ -60,7 +60,7 @@ Fronteiras de propriedade:
 - **PostHog:** dono de store/análise/experimentos e do **fan-out** a plataformas de mídia via Destinations (catálogo de conectores a confirmar na implementação; o que faltar entra como webhook→api-server).
 - **Kommo:** dono da conversa, cadências, funil SDR/Closer, qualificação. A plataforma nunca reconstrói isso.
 
-**Hosting (resolve "proxy por caminho" — auditoria de delegação jun/2026):** os três runtimes são **deployments separados sob subdomínios** roteados no DNS da Cloudflare (`www` → site · `admin.` → admin · `api.`/`t.` → api-server), não um path-proxy num único repl. O `t.` é o domínio first-party do analytics (proxy reverso → PostHog, D-15). Mantém as fronteiras de runtime físicas e simplifica cache/WAF por host.
+**Hosting (resolve "proxy por caminho" — auditoria de delegação jun/2026):** os três runtimes são **deployments separados sob subdomínios** roteados no DNS da Cloudflare (`www` → site · `admin.` → admin · `api.`/`t.` → api-server), não um path-proxy num único deploy. O `t.` é o domínio first-party do analytics (proxy reverso → PostHog, D-15). Mantém as fronteiras de runtime físicas e simplifica cache/WAF por host.
 
 ---
 
@@ -74,7 +74,7 @@ Fronteiras de propriedade:
 | Eventos/análise | **PostHog** | self-hosted ou cloud, sob domínio próprio |
 | Linguagem | TypeScript end-to-end | contratos tipados = AI-buildable |
 | Edge | **Cloudflare** | CDN/WAF/cache/rate-limit na frente dos três runtimes |
-| Mídia (D-10) | **Cloudflare R2 + Images** | originais no R2 (plugin de storage do Payload; nada no filesystem do Replit); derivados responsivos AVIF/WebP on-the-fly via Images |
+| Mídia (D-10) | **Cloudflare R2 + Images** | originais no R2 (plugin de storage do Payload; nada no filesystem do runtime); derivados responsivos AVIF/WebP on-the-fly via Images |
 
 ---
 
@@ -124,7 +124,7 @@ HTTPS/HSTS · WAF e rate-limit (especialmente `/collect`) no Cloudflare · crede
 ### 7.1 Critérios de aceite por fase (definition of done — verificáveis)
 
 **Fase 0 — Fundação:**
-- [ ] Monorepo com os 3 runtimes + `packages/contracts` sobe no Replit; travas de fronteira ativas no CI (09 §2)
+- [ ] Monorepo com os 3 runtimes + `packages/contracts` builda e sobe no runtime de deploy (provedor a definir na Fase 0b — D-18); travas de fronteira ativas no CI (09 §2)
 - [ ] Registros do 02 seedados (3 TiposDeAssunto; Assuntos: 5 espaços com `categoria`, serviços com `papel`; Objetivos)
 - [ ] Páginas institucionais + blog base renderizando do Payload via API; paridade visual com as Design Guidelines (tokens, Playfair+Work Sans, foco/skip-link/reduced-motion)
 - [ ] **Lighthouse CI verde** (home, 1 página de espaço, 1 post) dentro do orçamento §4; axe sem violações
@@ -179,7 +179,7 @@ Monorepo com fronteiras: `site/` · `admin/` (Payload) · `api-server/` · pacot
 | Tracking degrada CWV/SEO | collector batched + A/B server-side + Destinations server-side; CWV como gate |
 | Reinventar roda (dispatcher/analytics/CMS) | PostHog Destinations + Payload; custom só na cola fina |
 | Catálogo de Destinations não cobrir um canal | fallback: webhook PostHog → api-server → API do canal |
-| Replit limitar na escala | Cloudflare na frente desde o dia 1; D-2 revisitável sem mudar arquitetura |
+| Runtime/host limitar na escala | Cloudflare no edge desde o dia 1; runtimes desacoplados e portáveis — provedor de deploy trocável sem mudar arquitetura (D-18) |
 | Lead morrer por resposta lenta | speed-to-lead (Fase 2) |
 | LGPD adiada virar passivo | ganchos ativos (consent pass-through + opt-in mínimo) desde a Fase 1 |
 | Escopo inflar p/ multi-vertical | `brand`/`event_type` como dimensão; nada ativado antes dos gates |

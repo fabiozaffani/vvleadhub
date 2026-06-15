@@ -1,11 +1,11 @@
 ---
-description: Regras do api-server/ (Express + Drizzle) — builder é o Replit Agent; Cursor só em auxílio.
+description: Regras do api-server/ (Express + Drizzle) — builder é o Cursor Composer; Claude Code em auxílio.
 globs: api-server/**
 ---
 
-# api-server/ — builder: Replit Agent
+# api-server/ — builder: Cursor Composer
 
-O **Replit Agent** constrói o `api-server/` (e o resto do app — D-16). O Cursor é **auxiliar**: toca aqui só em auxílio (debug, correção pontual, auditoria), conhecendo as fronteiras abaixo. Toda edição por branch + PR.
+O **Cursor Composer** constrói o `api-server/` (e o resto do app — D-16/D-18). O **Claude Code** é **auxiliar**: toca aqui em auxílio (debug, correção pontual, auditoria) ou build escopado quando delegado, conhecendo as fronteiras abaixo. Toda edição por branch + PR.
 
 ## Fronteiras (travadas no CI)
 - Camadas (09 §1.1): `routes` (HTTP fino, valida com Zod, chama service) → `services` (lógica pura/testável, sem HTTP) → `repositories` (único lugar que toca o schema `app` via Drizzle) / `integrations` (1 pasta por sistema externo). `routes` nunca importa `repositories`/`integrations` direto.

@@ -41,7 +41,7 @@
 | 2.2.4 | **Invalidação de cache na publicação** — publicar no Payload precisa derrubar o cache do Cloudflare/Astro das páginas afetadas (webhook → purge). Sem isso, conteúdo editado demora a aparecer e o time perde confiança no admin. | 🟡 F0 | 03 |
 | 2.2.5 | ~~Auth service-to-service~~ — **RESOLVIDO (D-12):** JWT do Payload validado pelo api-server + tokens de serviço escopados; `/collect` público com rate-limit; usuário final fora do escopo v1 (Clerk designado p/ futuro). Aplicado em 06 §6 e 05 §10. | ✅ | fechado |
 | 2.2.6 | **Live preview cross-runtime** — o preview do Payload apontando para o site Astro exige rota de draft/preview no Astro. Citado como feature, mecânica não spec'ada. | 🟡 F0 | 06 |
-| 2.2.7 | ~~Proxy do collector~~ — **RESOLVIDO (D-15):** split de ingestão — analytics do SDK via proxy reverso no Cloudflare → PostHog Cloud (padrão suportado; CF já está na frente por D-2); `/collect` (api-server) fica só com eventos de negócio + cola Kommo. Analytics desacoplado da disponibilidade do Express/Replit. Aplicado em 05 §2/§3 e 03 §2. | ✅ | fechado |
+| 2.2.7 | ~~Proxy do collector~~ — **RESOLVIDO (D-15):** split de ingestão — analytics do SDK via proxy reverso no Cloudflare → PostHog Cloud (padrão suportado; CF já está na frente por D-2); `/collect` (api-server) fica só com eventos de negócio + cola Kommo. Analytics desacoplado da disponibilidade do Express/api-server. Aplicado em 05 §2/§3 e 03 §2. | ✅ | fechado |
 
 ### 2.3 Dados, leads & integrações
 | # | Lacuna | Sev | Destino |
@@ -70,7 +70,7 @@
 | 3.2 | ~~Licença da Sloop Script Pro~~ — **RESOLVIDO por exceção registrada** (Design Guidelines §3): corpo em **Work Sans** (open), Sloop **fora de uso**, decisão registrada que não se reverte invocando o brand guide. Docs 03/07 corrigidos para refletir. *Só reabre se a marca decidir adotar a Sloop na web — aí a licença volta a ser pré-requisito.* | ✅ | fechado |
 | 3.3 | **Capacidade de produção de conteúdo** — reclassificado **pós-go-live** (regra de escopo 00 §4.9). Permanece como aviso: estrutura sem conteúdo fica ociosa. | 🟢 pós-go-live | operação |
 | 3.4 | **RACI dos papéis** — reclassificado **pós-go-live** (00 §4.9). O RBAC (arquitetura) está no 06; o mapeamento papel→pessoa é operação. | 🟢 pós-go-live | operação |
-| 3.5 | **Custos operacionais** — nenhum modelo: PostHog (cloud por evento vs. self-host + ops), Replit produção, Cloudflare (Workers/R2/Images se adotados), plano do Kommo com API/webhooks, custo por conversa do WhatsApp. *Acresce (D-17): connector/ELT de reporting (Funnel/Supermetrics/Windsor) é input da decisão build-vs-buy do Nível 2 do single pane — orçar na Fase 3.* Nada disso muda a arquitetura, mas muda o D-3 (cloud vs self-host) e o bolso. | 🟡 F1 | 00 §6 (sub-decisões) |
+| 3.5 | **Custos operacionais** — nenhum modelo: PostHog (cloud por evento vs. self-host + ops), hospedagem do runtime (provedor a definir — D-18), Cloudflare (Workers/R2/Images se adotados), plano do Kommo com API/webhooks, custo por conversa do WhatsApp. *Acresce (D-17): connector/ELT de reporting (Funnel/Supermetrics/Windsor) é input da decisão build-vs-buy do Nível 2 do single pane — orçar na Fase 3.* Nada disso muda a arquitetura, mas muda o D-3 (cloud vs self-host) e o bolso. | 🟡 F1 | 00 §6 (sub-decisões) |
 | 3.6 | **Páginas legais no lançamento** — LGPD (build) está diferida, ok; mas política de privacidade/termos como *páginas* tendem a ser esperadas num site institucional desde o dia 1 (e exigidas por plataformas de ads para aprovar campanhas — Meta costuma checar política de privacidade no domínio). Conteúdo é jurídico, não técnico. | 🟡 F0 | conteúdo jurídico + 03 |
 | 3.7 | **Métricas-alvo do site** — reclassificado **pós-go-live** (00 §4.9): primeiro trimestre = coleta de baseline, decisão consciente. | 🟢 pós-go-live | operação |
 | 3.8 | ~~Critério de "revisitar o hosting"~~ — **RESOLVIDO (auditoria growth jun/2026):** gatilho concreto registrado na D-2 (00 §7): p95 de TTFB de LP > 600 ms por 7 dias · qualquer incidente de perda de eventos na ingestão · custo mensal fora do plano. | ✅ | fechado |
@@ -92,11 +92,11 @@ Fronteiras de runtime e propriedade (03 §2) · contrato único de evento com te
 | 6.1 | Payload × admin existente | **D-1 reconfirmada:** Payload. O admin do protótipo não é migrado. |
 | 6.2 | Doc As-Is inexistente | **Dispensado** — não há migração; o protótipo serve só como referência visual/funcional. |
 | 6.3 | Fase 0 como migração | **Mantida como build** (03 §7 vale como está). Paridade visual garantida pelas Design Guidelines (spec), não por cópia de código. |
-| 6.4 | replit.md vs CLAUDE.md | **Superado por D-16:** a fonte única tool-neutral é `AGENTS.md`; `CLAUDE.md`/`replit.md`/`.cursor/rules` são ponteiros com os invioláveis inline. O `replit.md` do repo novo é **pré-semeado** com o papel do Replit Agent (builder primário do app inteiro — D-16) + invioláveis (ele se reescreve como memória — não pode se auto-governar). |
+| 6.4 | replit.md vs CLAUDE.md | **Superado por D-16:** a fonte única tool-neutral é `AGENTS.md`; `CLAUDE.md`/`replit.md`/`.cursor/rules` são ponteiros com os invioláveis inline. O `replit.md` do repo novo é **pré-semeado** com o papel do Replit Agent (builder primário do app inteiro — D-16) + invioláveis (ele se reescreve como memória — não pode se auto-governar). *— posteriormente removido pela D-18 (jun/2026): Replit saiu da operação (builder e hospedagem); ponteiros remanescentes = `CLAUDE.md`/`.cursor/rules`; builder primário passou a ser o Cursor Composer e o Claude Code virou auxiliar.* |
 | 6.5 | "Variant B" ad-hoc | **Moot** — variantes do protótipo não migram; o que valer a pena renasce dentro do motor do 08, medido. |
 | 6.6 | Blog sem imagens de capa | **Permanece** — reforça 1.4 (inventário de conteúdo), independente de greenfield. |
 
-**Nota sobre as Design Guidelines em modo greenfield:** elas permanecem fonte de verdade **visual** (tokens, componentes, movimento, regras), incluindo as exceções registradas (Work Sans). Os caminhos de arquivo citados nelas (`artifacts/valeverde/src/index.css`, `replit.md`) leem-se como ponteiros para a **implementação de referência**, a reimplementar na stack nova (Astro/Payload) com paridade.
+**Nota sobre as Design Guidelines em modo greenfield:** elas permanecem fonte de verdade **visual** (tokens, componentes, movimento, regras), incluindo as exceções registradas (Work Sans). Os caminhos de arquivo citados nelas (`artifacts/valeverde/src/index.css` e afins) leem-se como ponteiros para a **implementação de referência**, a reimplementar na stack nova (Astro/Payload) com paridade. *(O `replit.md`, antes citado como ponteiro, foi removido pela D-18.)*
 
 ## 6. Varredura competitiva (lead-gen multi-plataforma) — incorporada
 
@@ -119,7 +119,7 @@ Segunda varredura adversarial (papel: especialista em lead gen/growth), com aval
 | S3 — SEO local rebaixado a 🟢 (ver 2.4.3) | 07 §5.1 + critério F1 (GBP/NAP); reviews acoplados ao NPS |
 | S4 — sync de audiências sem nenhum consentimento até a F4 | 05 §9.2: gated pelo opt-in mínimo desde o dia 1 (gancho D-5, sem antecipar o build) |
 | R1 — conteúdo (1.4) sem dono/prazo/gate | `docs/conteudo/inventario.md` + critério F0; resta preenchimento (fundador) |
-| R2 — `/collect` como proxy de tudo no Express/Replit (2.2.7) | **D-15** — split de ingestão via proxy CF |
+| R2 — `/collect` como proxy de tudo no Express/api-server (2.2.7) | **D-15** — split de ingestão via proxy CF |
 | R3 — speed-to-lead sem requisito (2.3.6) | 04 §5: ≤ 5 min + salesbot fora de horário |
 | Nit — canibalização LP × página institucional | 04 §9: um Assunto = uma página indexada (canônica) |
 | Nit — `EventVenue` não é subtipo de LocalBusiness | skill `seo-schema-org`: multi-type `["EventVenue","LocalBusiness"]` |
