@@ -21,7 +21,8 @@
     "db:up": "docker compose -f infra/db/docker-compose.dev.yml up -d",
     "db:down": "docker compose -f infra/db/docker-compose.dev.yml down",
     "db:reset": "docker compose -f infra/db/docker-compose.dev.yml down -v",
-    "seed": "pnpm --filter @vvf/admin seed"
+    "seed": "pnpm --filter @vvf/admin seed",
+    "ship": "gh pr create --fill --base main && gh pr merge --auto --squash --delete-branch"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.11.3",
