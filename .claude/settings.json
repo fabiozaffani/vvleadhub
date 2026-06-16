@@ -7,6 +7,7 @@
           {
             "type": "command",
             "command": "git pull --ff-only || echo \"[session] pull pulou: branch divergente ou alteracoes locais — sincronize a mao\"",
+            "shell": "bash",
             "timeout": 30,
             "statusMessage": "Puxando ultimas mudancas do GitHub..."
           }
