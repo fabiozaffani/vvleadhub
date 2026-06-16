@@ -10,6 +10,9 @@ Skills do Claude Code versionadas no repo (`.claude/skills/`). Regra de ouro (va
 | `checklist-fase` | `/checklist-fase <n>` | Declarar fase pronta só com evidência dos critérios do 03 §7.1 |
 | `audit-quality` | `/audit-quality [rotas]` | Lighthouse CI + axe com o orçamento de CWV do projeto (03 §4) |
 | `a11y-axe` | automática ou `/a11y-axe` | Auditoria WCAG 2.1 AA com `@axe-core/playwright` (Deque oficial) + checklist manual. Estrutura procedural destilada de snapsynapse/skill-a11y-audit (MIT), sem código de terceiro |
+| `work-order` | `/work-order [area\|fase\|spec]` | Recorta um spec/fase em WOs cercados ou emite UM WO no formato canônico (allowlist = fronteira, aceite do 03 §7.1, gate CODEOWNERS) + abre a issue rastreável via `gh`. **Convenção de issue/épico ainda pendente de decisão do fundador (ver tie-in).** |
+| `sync-governanca` | `/sync-governanca [regra\|decisão]` | Mantém a superfície de governança (`AGENTS.md` ↔ ponteiros ↔ 00 §6/§7) coerente quando uma regra/decisão muda; padrão emenda; modo auditoria (sem argumento) varre drift |
+| `auditar` | `/auditar <area>` | Confere uma área inteira contra a spec estrutural dona (impl-vs-spec, **read-only**, consultivo) citando doc+seção+linha; não caça bug, não re-roda CI, não remonta fase. Escopo validado por painel adversarial |
 
 ## Vendorizadas (terceiros, copiadas e revisadas — nunca via marketplace)
 
@@ -39,6 +42,7 @@ Quando o tooling real existir (lighthouserc, axe no CI, dependency-cruiser), atu
 | Diff do PR — bugs | `/code-review` (nativa) | **Todo PR antes do merge**, sem exceção de tamanho | Agente (regra no CLAUDE.md) |
 | Diff do PR — simplificação/reuso | `/simplify` (nativa) | Threshold do CLAUDE.md: > 150 linhas líquidas de código real · 5+ arquivos · abstração nova · escopo cresceu | Agente (regra no CLAUDE.md) |
 | Fase pronta | `/checklist-fase` | Fim de fase, antes de promover preview | Fundador |
+| Subsistema × spec dona (estrutura/contrato) | `/auditar <area>` | Sob demanda · dívida técnica · legado — fora do gate | Agente/fundador (read-only) |
 
 Decisão registrada: `/code-review` e `/simplify` **não** foram embutidas na `audit-quality` — réguas de naturezas diferentes (produto buildado × diff), cadências diferentes (rota × PR), e as nativas já existem; embrulhar seria indireção sem capacidade nova. O fluxo único de qualidade vive como regra no `CLAUDE.md` (sempre presente), não como skill (trigger probabilístico).
 
