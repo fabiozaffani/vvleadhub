@@ -2,19 +2,14 @@
 
 **A fonte única de conduta do agente neste repositório é [`AGENTS.md`](AGENTS.md). Leia-o antes de qualquer código.** Este arquivo existe porque o Claude Code lê `CLAUDE.md` automaticamente — mas o conteúdo canônico, tool-neutral, vive no `AGENTS.md` (decisão D-16, emendada pela D-18; 00 §7). Em qualquer conflito, o `AGENTS.md` vence.
 
-## Doutrina VV-wide (fonte única no vvcore)
-
-@../vvcore/plugins/vvcore/context/ARQUITETURA-IA.md
-
-> **Tipo de repo: `app`.** Engenharia/tooling VV-wide (core compartilhado, memória, config/hooks, git/PR multi-agente) carregada via `@import` do vvcore — editar lá. O específico do VVLEADHUB vive no `AGENTS.md`.
-
-Papel do Claude Code na governança multi-agente (D-16, emendada pela D-18): **auxiliar/backup** — auditoria, revisão e melhoria. O **builder primário é o Cursor Composer** (o fundador desenvolve o app na IDE); o Claude Code revisa os PRs com `/code-review` antes do merge, roda `/audit-quality` e `/checklist-fase` nos gates, faz `/security-review` quando couber, assume build escopado quando delegado, e toca trabalho de maior volume onde tokens mais baratos/contexto longo ajudam. O **Replit foi removido da operação (D-18)** — não há mais builder na nuvem.
-
-## Contexto da empresa (fonte única no vvcore)
+## Fonte única no vvcore (@import)
 
 @../vvcore/plugins/vvcore/context/CONTEXTO-IA.md
+@../vvcore/plugins/vvcore/context/ARQUITETURA-IA.md
 
-> Carregado automaticamente (`@import`) da **fonte única** no vvcore. O antigo `docs/brand/vvf-system-context.md` virou **ponteiro** — editar o canônico **só no vvcore**. As Design Guidelines (`docs/brand/vvf-design-guidelines.md`) continuam locais (específicas do site).
+> **Tipo de repo: `app`.** Carregados via `@import` do vvcore (editar o canônico **só lá**): **negócio** (`CONTEXTO-IA`) e **engenharia/tooling** VV-wide (`ARQUITETURA-IA` — core compartilhado, memória, config/hooks, git/PR multi-agente). O antigo `docs/brand/vvf-system-context.md` virou **ponteiro**; as Design Guidelines (`docs/brand/vvf-design-guidelines.md`) continuam locais. O específico do VVLEADHUB vive no `AGENTS.md`.
+
+Papel do Claude Code na governança multi-agente (D-16, emendada pela D-18): **auxiliar/backup** — auditoria, revisão e melhoria. O **builder primário é o Cursor Composer** (o fundador desenvolve o app na IDE); o Claude Code revisa os PRs com `/code-review` antes do merge, roda `/audit-quality` e `/checklist-fase` nos gates, faz `/security-review` quando couber, assume build escopado quando delegado, e toca trabalho de maior volume onde tokens mais baratos/contexto longo ajudam. O **Replit foi removido da operação (D-18)** — não há mais builder na nuvem.
 
 ## Invioláveis (resumo — texto completo no AGENTS.md)
 
