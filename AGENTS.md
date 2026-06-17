@@ -9,6 +9,14 @@
 3. Em conflito entre docs: camada de marca > 01 > 02 > 03 > demais (00 §5).
 4. Leia o work-order da sua tarefa em `docs/tasks/` antes de escrever qualquer linha. Não existe "construa a Fase N" — existe um work-order por tarefa, com escopo, arquivos permitidos e critérios de aceite.
 
+## Memória do agente
+
+Conhecimento durável e específico deste repo (gotchas técnicos, convenções, decisões operacionais) vive em **`.agents/memory/`** — store única, tool-neutral, versionada. Comece pelo índice [`.agents/memory/MEMORY.md`](.agents/memory/MEMORY.md) e abra o arquivo do fato quando for relevante à tarefa; **não substitui esta doc, alimenta-a**.
+
+- **Claude Code** lê e escreve a pasta nativamente (auto-memória via `autoMemoryDirectory`) — drafta fatos sozinho durante o trabalho.
+- **Cursor e outros** leem o índice por aqui e pelo ponteiro em `.cursor/rules`; registre à mão um fato durável que descobrir (formato nativo `name`/`description`/`type`; detalhe no README da pasta).
+- **Promoção:** fato que vira conduta sobe para este `AGENTS.md` (ou `docs/`); fato que vale em todo repo VV sobe para o **vvcore**.
+
 ## Regras invioláveis
 
 - **Marca:** nenhum copy voltado ao público sai do tom de marca (System Context §4); nenhuma UI sai das Design Guidelines (tokens, tipografia Playfair+Work Sans, sem emojis, sem ícones decorativos, pt-BR). Exceções registradas nas Guidelines não se revertem.
