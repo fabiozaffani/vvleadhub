@@ -14,7 +14,7 @@
           {
             "type": "command",
             "shell": "bash",
-            "command": "D=$(git rev-parse --show-toplevel 2>/dev/null) && V=\"$(dirname \"$D\")/vvcore\" && { [ -d \"$V/.git\" ] || git clone https://github.com/fabiozaffani/vvcore.git \"$V\"; } && bash \"$V/bin/setup-links.sh\" || echo \"[vvcore] bootstrap pulou\"",
+            "command": "D=$(git rev-parse --show-toplevel 2>/dev/null) && V=\"$(dirname \"$D\")/vvcore\" && { if [ -d \"$V/.git\" ]; then git -C \"$V\" pull --ff-only || echo \"[vvcore] pull pulou (divergente/local) — sincronize o vvcore a mao\"; else git clone https://github.com/fabiozaffani/vvcore.git \"$V\"; fi; } && bash \"$V/bin/setup-links.sh\" || echo \"[vvcore] bootstrap pulou\"",
             "timeout": 120,
             "statusMessage": "Sincronizando vvcore (skills compartilhadas)..."
           }
