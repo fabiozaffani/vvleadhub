@@ -4,6 +4,12 @@
 
 Papel do Claude Code na governança multi-agente (D-16, emendada pela D-18): **auxiliar/backup** — auditoria, revisão e melhoria. O **builder primário é o Cursor Composer** (o fundador desenvolve o app na IDE); o Claude Code revisa os PRs com `/code-review` antes do merge, roda `/audit-quality` e `/checklist-fase` nos gates, faz `/security-review` quando couber, assume build escopado quando delegado, e toca trabalho de maior volume onde tokens mais baratos/contexto longo ajudam. O **Replit foi removido da operação (D-18)** — não há mais builder na nuvem.
 
+## Contexto da empresa (fonte única no vvcore)
+
+@../vvcore/plugins/vvcore/context/CONTEXTO-IA.md
+
+> Carregado automaticamente (`@import`) da **fonte única** no vvcore. O antigo `docs/brand/vvf-system-context.md` virou **ponteiro** — editar o canônico **só no vvcore**. As Design Guidelines (`docs/brand/vvf-design-guidelines.md`) continuam locais (específicas do site).
+
 ## Invioláveis (resumo — texto completo no AGENTS.md)
 
 - **Leitura obrigatória antes de codar:** `docs/brand/*` → `00` → `01` → `02` → `03` → spec da tarefa (04–09) → work-order em `docs/tasks/`.
