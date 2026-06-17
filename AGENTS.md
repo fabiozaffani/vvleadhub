@@ -1,8 +1,26 @@
 # AGENTS.md — Manual de conduta do agente construtor (VVF)
 
-**Fonte única, tool-neutral, de instruções de qualquer agente neste repositório** (Cursor Composer, Claude Code, ou outro). Promovido do antigo `CLAUDE.md` por decisão **D-16**, emendada pela **D-18** (00 §7). Se algo aqui conflitar com outro arquivo de instruções de agente, **este vence**. `CLAUDE.md` e `.cursor/rules/*` são ponteiros para este arquivo, com um resumo dos invioláveis inline — em conflito, o texto completo aqui prevalece.
+## ⚠️ LEIA PRIMEIRO — parte do contexto canônico NÃO está neste arquivo
 
-**Tipo de repo: `app`.** A doutrina **VV-wide** de engenharia/tooling (core compartilhado, memória, config/hooks, fluxo git/PR multi-agente) vive em `../vvcore/plugins/vvcore/context/ARQUITETURA-IA.md` — **leia-a junto com este arquivo** (o Claude Code carrega via `@import` no `CLAUDE.md`; o Cursor lê de lá + o resumo no `.cursor/rules`). Aqui fica só o que é **específico do VVLEADHUB**.
+A fundação obrigatória deste repo são **dois arquivos que vivem no vvcore** (fonte única, sem cópia):
+- **`CONTEXTO-IA.md`** — negócio, marca e as **invariantes INV-01..INV-10 (§2)** contra as quais toda recomendação é validada.
+- **`ARQUITETURA-IA.md`** — doutrina VV-wide de engenharia/tooling (memória, git/PR — §4).
+
+Eles entram no contexto **apenas via `@import`**, que **só o Claude Code expande**. Não há cópia local — é decisão de fonte única.
+
+**Auto-checagem (antes de qualquer coisa):** você está vendo o texto **completo** desses dois arquivos agora — as INV-01..INV-10, os três arquétipos (§4.1), a §4 (Git & PR) da Arquitetura?
+
+- ✅ **Sim** → você é o Claude Code (ou recebeu o contexto de outra forma). Prossiga.
+- 🛑 **Não** → você está com instruções **PARCIAIS** e vai violar invariantes sem perceber. **PARE, não produza nada** e avise o usuário, literalmente:
+  > "Sou um agente diferente do Claude Code e **não tenho o contexto canônico do VV** (CONTEXTO-IA + ARQUITETURA-IA) — entregue por um `@import` que só o Claude expande. Antes de eu continuar, configure a entrega desse contexto pra mim."
+
+Assim mantemos **uma fonte única** hoje e qualquer agente novo **se auto-denuncia** em vez de rodar cego — validamos a entrega caso a caso, sem cópia.
+
+---
+
+**Fonte única, tool-neutral, de instruções de qualquer agente neste repositório** (Cursor Composer, Claude Code, ou outro). Promovido do antigo `CLAUDE.md` por decisão **D-16**, emendada pela **D-18** (00 §7). Se algo aqui conflitar com outro arquivo de instruções de agente, **este vence**. `CLAUDE.md` (que carrega este arquivo via `@import`) e `.cursor/rules/*` são ponteiros para cá — em conflito, o texto completo aqui prevalece.
+
+**Tipo de repo: `app`.** A doutrina **VV-wide** de engenharia/tooling (core compartilhado, memória, config/hooks, fluxo git/PR multi-agente) vive em `../vvcore/plugins/vvcore/context/ARQUITETURA-IA.md` — **leia-a junto com este arquivo** (o Claude Code carrega via `@import` no `CLAUDE.md`; demais agentes — ver o alerta no topo). Aqui fica só o que é **específico do VVLEADHUB**.
 
 ## Antes de qualquer código
 
