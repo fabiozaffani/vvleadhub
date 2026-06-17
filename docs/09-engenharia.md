@@ -1,6 +1,6 @@
 # 09 · Engenharia & Convenções
 
-**Status:** draft v1 (recomendações para veto do fundador) · **Camada de tom:** trabalho · **Depende de:** 02, 03
+**Status:** v1 ratificado (jun/2026 — aval do fundador) · **Camada de tom:** trabalho · **Depende de:** 02, 03
 **Responsabilidade única:** como o código é organizado, protegido e verificado — estrutura do monorepo, travas de fronteira, testes, CI/gates, ambientes, observabilidade e disciplina de manutenção. O *quê* construir está em 01–08; aqui está o *como construir sem apodrecer*.
 
 ---
@@ -54,11 +54,34 @@ site/src/
 
 Distinção dura: **Bloco ≠ component.** Bloco é a unidade editorial do 02/04 (registrada, com capacidades por TipoDeAssunto, montável no admin); component é detalhe interno de implementação. Um component nunca aparece no editor.
 
+**Páginas são finas:** uma `page` compõe `layouts`/`blocks`/`components` e delega dados/SEO a `lib/` — sem lógica de negócio nem fetch espalhado na página.
+
+**Sem camada `features/`** (decisão jun/2026): em Astro + CMS a "feature" se expressa em `pages/` + `blocks/` + `lib/`, não numa pasta `features/` (que duplicaria a `pages/`). Composição específica-de-área **não-editorial** mora em `components/<área>/` (ex.: `components/blog/`). Criar `features/` só com dor dupla comprovada — mesma régua que cortou `packages/ui`.
+
 **`admin/` (Payload):** segue a **convenção nativa do framework** — `collections/` (1 arquivo por entidade do 02: subjects, subject-types via código, lps, templates, posts, media…), `blocks/` (espelho 1:1 dos blocos do site), `access/` (RBAC — D-12), `views/` (Tracker Hub), `hooks/` (purge de cache no publish, webhooks). Regra: onde o framework tem convenção, não se inventa estrutura própria.
 
 **`packages/contracts/`:** `events.ts` (schema canônico 05 §4) · `lead.ts` (contrato 04 §7) · `generated/` (tipos do OpenAPI — nunca editados à mão).
 
 **Testes:** colocalizados (`arquivo.test.ts` ao lado do `arquivo.ts`); e2e em `/e2e` na raiz do monorepo.
+
+### 1.2 Convenções de contrato HTTP (api-server)
+
+A forma destas respostas é fixada no `openapi.yaml` (fonte de verdade → codegen p/ `contracts`), não em prosa — esta seção define o padrão que o spec implementa.
+
+**Erro — envelope tipado** (não RFC 7807; consumidores são first-party):
+
+```json
+{ "error": { "code": "VALIDATION_FAILED", "message": "…", "details": [{ "path": "phone", "message": "…" }] }, "request_id": "req_…" }
+```
+
+- `code` = enum estável em `packages/contracts` (o cliente ramifica por `code`, não pelo status): `VALIDATION_FAILED`(422) · `UNAUTHORIZED`(401) · `FORBIDDEN`(403) · `NOT_FOUND`(404) · `CONFLICT`(409 — ex.: dedup D-11) · `RATE_LIMITED`(429) · `INTERNAL`(500). Status HTTP sempre correto.
+- `message` é **dev-facing** (log/Sentry); a copy do usuário é do site (skill `copy-marca`), que traduz `code`→texto. A API nunca emite copy de marca.
+- `request_id` ecoa o id de correlação (§6) → rastreio no Sentry/pino.
+- `details` carrega os erros de campo do Zod quando `VALIDATION_FAILED`.
+
+**Listagens — paginação/filtro:** envelope estável `{ "data": [...], "page": { "limit", "offset", "total" } }` (offset no v1; cursor só se a escala exigir). Filtros explícitos por query param.
+
+**Idempotência:** `/collect` e webhooks são idempotentes (fila + retry + dead-letter via pg-boss em `src/jobs/`) — reprocessar não duplica conversão (liga D-11/D-15).
 
 ## 2. Travas de fronteira (automatizadas — não são convenção, são CI)
 
@@ -120,7 +143,7 @@ Inventário de secrets (Secrets do provedor de hospedagem, por ambiente): `DATAB
 
 ## 9. Convenções de código
 
-TypeScript `strict` em tudo · ESLint + Prettier compartilhados na raiz · Zod para validação de borda (props de Bloco, payloads de webhook, contrato de lead) · datas sempre ISO-8601/UTC no armazenamento, exibição em `America/Sao_Paulo` · UI em pt-BR, sem emojis (Guidelines) · nomes de código em inglês, domínio em português conforme glossário (00 §6) — ex.: `subject`, `subjectType`, `objective` no código mapeiam Assunto/TipoDeAssunto/Objetivo.
+TypeScript `strict` em tudo · ESLint + Prettier compartilhados na raiz · Zod para validação de borda (props de Bloco, payloads de webhook, contrato de lead) — **o mesmo schema de `packages/contracts` valida os dois lados** (o form do site e a borda da API checam o lead pelo mesmo `leadContractSchema`; validação é agnóstica de ambiente e mora em `contracts`) · datas sempre ISO-8601/UTC no armazenamento, exibição em `America/Sao_Paulo` · UI em pt-BR, sem emojis (Guidelines) · nomes de código em inglês, domínio em português conforme glossário (00 §6) — ex.: `subject`, `subjectType`, `objective` no código mapeiam Assunto/TipoDeAssunto/Objetivo.
 
 ## 10. Validação contra invariantes VVF
 
