@@ -10,6 +10,13 @@
             "shell": "bash",
             "timeout": 30,
             "statusMessage": "Puxando ultimas mudancas do GitHub..."
+          },
+          {
+            "type": "command",
+            "shell": "bash",
+            "command": "D=$(git rev-parse --show-toplevel 2>/dev/null) && V=\"$(dirname \"$D\")/vvcore\" && { [ -d \"$V/.git\" ] || git clone https://github.com/fabiozaffani/vvcore.git \"$V\"; } && bash \"$V/bin/setup-links.sh\" || echo \"[vvcore] bootstrap pulou\"",
+            "timeout": 120,
+            "statusMessage": "Sincronizando vvcore (skills compartilhadas)..."
           }
         ]
       }
