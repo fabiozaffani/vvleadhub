@@ -46,3 +46,6 @@ replit.nix
 
 # Proxy de dev legado (Replit single-port) — produção usa subdomínios no Cloudflare (D-18)
 proxy.mjs
+
+# Junction per-maquina para o .agents/skills (recriado pelo setup-links.sh do vvcore).
+/.claude/skills/

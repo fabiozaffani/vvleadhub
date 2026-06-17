@@ -44,10 +44,15 @@ Conhecimento durável e específico deste repo (gotchas técnicos, convenções,
 
 A doutrina multi-agente e o fluxo git/PR são **VV-wide** (ARQUITETURA-IA §4 · `app`, no vvcore). Aqui fica só o concreto deste repo:
 
-- **Módulos e papéis:** o app é `site/` · `admin/` · `api-server/`; o **Cursor Composer** é o builder primário na IDE, o **Claude Code** o auxiliar (`/code-review` em todo PR, `/audit-quality`·`/checklist-fase` nos gates, `/security-review` quando couber, build escopado quando delegado). Quem editar código segue fronteiras/marca/`pnpm verify` em branch + PR própria.
+- **Módulos e papéis:** o app é `site/` · `admin/` · `api-server/`; o **Cursor Composer** é o builder primário na IDE, o **Claude Code** o auxiliar (`/code-review` em todo PR, `/audit-quality`·`/checklist-fase` nos gates, `/auditar <área>` — impl × spec dona, read-only — sob demanda, `/security-review` quando couber, build escopado quando delegado). Quem editar código segue fronteiras/marca/`pnpm verify` em branch + PR própria.
 - **CODEOWNERS (caminhos gated):** `packages/contracts`, `docs/`, `AGENTS.md`/`CLAUDE.md`, `.cursor/rules`, `.github/`, `infra/` — aval do fundador, nunca auto-mergeado.
 - **Deploy/runtime:** alvo a definir na Fase 0b (D-18). Cloudflare no edge (site SSR, R2, proxy de analytics — D-2/D-10/D-15 intactos); serviços Node (`admin`/`api-server`) + Postgres gerenciado num host a escolher; deploy desacoplado do GitHub. (D-18 aposentou o builder na nuvem — sem `replit/work` nem "Publish ≠ push".)
 - Ajustar os papéis = editar `docs/tasks/fase-0.md` (e os ponteiros), não improvisar no meio de uma tarefa.
+
+### Skills a criar por fase (backlog)
+Skills locais deste app a criar **quando a fase abrir a lacuna** (nascem em `.agents/skills/`):
+- **`eventos-tracking`** (Fase 1) — schema canônico de eventos (05 §4) incluindo `click_ids` (D-14, sem retrofit), catálogo completo (05 §13), split de ingestão D-15 (analytics via proxy CF × `/collect`), caminho CTWA (05 §9.3), "novo destino = adapter puro + testes", `test:true`/sandbox (05 §11).
+- **`nova-lp`** (Fase 2) — procedimento de LP por campanha: Molde + Assunto + Objetivo, capacidades dos Blocos (02 §4), eventos com `correlation_id` + `click_ids`, regra de canônico (04 §9 — um Assunto = uma página indexada; LP extra = `noindex`/canonical), checklist (sem preço, opt-in mínimo, consent pass-through).
 
 ## Quando perguntar ao fundador (aval obrigatório)
 
