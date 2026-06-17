@@ -2,6 +2,8 @@
 
 **Fonte única, tool-neutral, de instruções de qualquer agente neste repositório** (Cursor Composer, Claude Code, ou outro). Promovido do antigo `CLAUDE.md` por decisão **D-16**, emendada pela **D-18** (00 §7). Se algo aqui conflitar com outro arquivo de instruções de agente, **este vence**. `CLAUDE.md` e `.cursor/rules/*` são ponteiros para este arquivo, com um resumo dos invioláveis inline — em conflito, o texto completo aqui prevalece.
 
+**Tipo de repo: `app`.** A doutrina **VV-wide** de engenharia/tooling (core compartilhado, memória, config/hooks, fluxo git/PR multi-agente) vive em `../vvcore/plugins/vvcore/context/ARQUITETURA-IA.md` — **leia-a junto com este arquivo** (o Claude Code carrega via `@import` no `CLAUDE.md`; o Cursor lê de lá + o resumo no `.cursor/rules`). Aqui fica só o que é **específico do VVLEADHUB**.
+
 ## Antes de qualquer código
 
 1. Leia, nesta ordem: `docs/brand/vvf-system-context.md` → `docs/brand/vvf-design-guidelines.md` → `docs/00-indice-regras.md` → `docs/01` → `02` → `03` → e a spec da tarefa (04–09).
@@ -38,21 +40,14 @@ Conhecimento durável e específico deste repo (gotchas técnicos, convenções,
 - Eventos seguem o schema canônico (`packages/contracts`, 05 §4) sem campos ad-hoc; novo destino = novo adapter puro + testes.
 - Teste de integração externa só com `test:true` e endpoints de sandbox (05 §11) — nunca polua dados/ads reais.
 
-## Governança multi-agente (D-16, emendada pela D-18)
+## Instanciação do VVLEADHUB (app)
 
-Dois agentes podem tocar este repositório; cada um lê um arquivo, ambos apontam para este. **Mantenha-os sincronizados quando uma regra muda** (o ponteiro carrega o resumo dos invioláveis inline). O **Replit foi removido da operação (D-18, jun/2026)**: não há mais builder na nuvem que escreve na `main` — o código nasce local e entra por PR.
+A doutrina multi-agente e o fluxo git/PR são **VV-wide** (ARQUITETURA-IA §4 · `app`, no vvcore). Aqui fica só o concreto deste repo:
 
-| Agente | Lê | Papel |
-|---|---|---|
-| **Cursor Composer** | `AGENTS.md` (nativo) + `.cursor/rules/*.mdc` (escopo por pasta) | **builder primário** — desenvolve o app (`site/` · `admin/` · `api-server/`), dirigido pelo fundador na IDE |
-| **Claude Code** | `CLAUDE.md` | **auxiliar/backup** — auditoria e revisão (`/code-review` em todo PR, `/audit-quality`·`/checklist-fase` nos gates, `/security-review` quando couber) e trabalho de maior volume onde tokens mais baratos/contexto longo ajudam |
-
-- **Um builder, um auxiliar.** O Cursor constrói (volante do fundador); o Claude Code entra para **auditar, revisar, melhorar e debugar** — e pode assumir tarefa de build escopada quando o fundador delegar. Quem editar código segue as mesmas regras (fronteiras, marca, `pnpm verify`) e trabalha em **branch + PR própria**.
-- **Encontro gated:** `packages/contracts` e `docs/` mudam só sob `CODEOWNERS` (aval do fundador). Mudança de contrato afeta tudo — nunca passa sem olho humano.
-- **`/code-review` em todo PR antes do merge.** A regra "todo PR passa por review" vale para qualquer autor.
-- **Fluxo de código → `main`:** o código é escrito **localmente** (Cursor/Claude Code) → **branch + PR** → CI verde → merge na `main`. **Branch protection ligada (jun/2026):** checks de CI obrigatórios + **auto-merge** para PR de código; PR que toca caminho do CODEOWNERS fica para o aval do fundador (ver §Como trabalhar). Não há mais o desvio `replit/work` nem a regra "Publish ≠ push" — eram artefatos do builder na nuvem, aposentados pela D-18.
-- **Deploy/runtime:** alvo de hospedagem **a definir na Fase 0b** (D-18). Cloudflare permanece no edge (site SSR, R2, proxy de analytics — D-2/D-10/D-15 intactos); os serviços Node (`admin`/`api-server`) + Postgres gerenciado vão para um host a escolher. Deploy é desacoplado do GitHub.
-- Os papéis acima são o modelo de operação corrente; ajustá-los é editar `docs/tasks/fase-0.md` (e os ponteiros `.cursor/rules`/`CLAUDE.md`), não improvisar no meio de uma tarefa.
+- **Módulos e papéis:** o app é `site/` · `admin/` · `api-server/`; o **Cursor Composer** é o builder primário na IDE, o **Claude Code** o auxiliar (`/code-review` em todo PR, `/audit-quality`·`/checklist-fase` nos gates, `/security-review` quando couber, build escopado quando delegado). Quem editar código segue fronteiras/marca/`pnpm verify` em branch + PR própria.
+- **CODEOWNERS (caminhos gated):** `packages/contracts`, `docs/`, `AGENTS.md`/`CLAUDE.md`, `.cursor/rules`, `.github/`, `infra/` — aval do fundador, nunca auto-mergeado.
+- **Deploy/runtime:** alvo a definir na Fase 0b (D-18). Cloudflare no edge (site SSR, R2, proxy de analytics — D-2/D-10/D-15 intactos); serviços Node (`admin`/`api-server`) + Postgres gerenciado num host a escolher; deploy desacoplado do GitHub. (D-18 aposentou o builder na nuvem — sem `replit/work` nem "Publish ≠ push".)
+- Ajustar os papéis = editar `docs/tasks/fase-0.md` (e os ponteiros), não improvisar no meio de uma tarefa.
 
 ## Quando perguntar ao fundador (aval obrigatório)
 

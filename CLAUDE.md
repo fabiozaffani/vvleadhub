@@ -2,6 +2,12 @@
 
 **A fonte única de conduta do agente neste repositório é [`AGENTS.md`](AGENTS.md). Leia-o antes de qualquer código.** Este arquivo existe porque o Claude Code lê `CLAUDE.md` automaticamente — mas o conteúdo canônico, tool-neutral, vive no `AGENTS.md` (decisão D-16, emendada pela D-18; 00 §7). Em qualquer conflito, o `AGENTS.md` vence.
 
+## Doutrina VV-wide (fonte única no vvcore)
+
+@../vvcore/plugins/vvcore/context/ARQUITETURA-IA.md
+
+> **Tipo de repo: `app`.** Engenharia/tooling VV-wide (core compartilhado, memória, config/hooks, git/PR multi-agente) carregada via `@import` do vvcore — editar lá. O específico do VVLEADHUB vive no `AGENTS.md`.
+
 Papel do Claude Code na governança multi-agente (D-16, emendada pela D-18): **auxiliar/backup** — auditoria, revisão e melhoria. O **builder primário é o Cursor Composer** (o fundador desenvolve o app na IDE); o Claude Code revisa os PRs com `/code-review` antes do merge, roda `/audit-quality` e `/checklist-fase` nos gates, faz `/security-review` quando couber, assume build escopado quando delegado, e toca trabalho de maior volume onde tokens mais baratos/contexto longo ajudam. O **Replit foi removido da operação (D-18)** — não há mais builder na nuvem.
 
 ## Invioláveis (resumo — texto completo no AGENTS.md)
