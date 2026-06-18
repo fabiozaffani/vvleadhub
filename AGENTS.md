@@ -6,7 +6,7 @@ A fundação obrigatória deste repo são **dois arquivos que vivem no vvcore** 
 - **`CONTEXTO-IA.md`** — negócio, marca e as **invariantes INV-01..INV-10 (§2)** contra as quais toda recomendação é validada.
 - **`ARQUITETURA-IA.md`** — doutrina VV-wide de engenharia/tooling (memória, git/PR — §4).
 
-Eles entram no contexto **apenas via `@import`**, que **só o Claude Code expande**. Não há cópia local — é decisão de fonte única.
+Eles entram no contexto via **`@import` de `.agents/context/`** — uma junction por máquina para o vvcore, criada pelo `setup-links.sh` (`link_repo_context`), que **só o Claude Code expande**. **Não** use o caminho externo `../vvcore/...`: ele resolve fora da raiz do repo e o Claude o descarta **em silêncio** (sem aprovação manual). Não há cópia local — é decisão de fonte única.
 
 **Auto-checagem (antes de qualquer coisa):** você está vendo o texto **completo** desses dois arquivos agora — as INV-01..INV-10, os três arquétipos (§4.1), a §4 (Git & PR) da Arquitetura?
 
@@ -20,7 +20,7 @@ Assim mantemos **uma fonte única** hoje e qualquer agente novo **se auto-denunc
 
 **Fonte única, tool-neutral, de instruções de qualquer agente neste repositório** (Cursor Composer, Claude Code, ou outro). Promovido do antigo `CLAUDE.md` por decisão **D-16**, emendada pela **D-18** (00 §7). Se algo aqui conflitar com outro arquivo de instruções de agente, **este vence**. `CLAUDE.md` (que carrega este arquivo via `@import`) e `.cursor/rules/*` são ponteiros para cá — em conflito, o texto completo aqui prevalece.
 
-**Tipo de repo: `app`.** A doutrina **VV-wide** de engenharia/tooling (core compartilhado, memória, config/hooks, fluxo git/PR multi-agente) vive em `../vvcore/plugins/vvcore/context/ARQUITETURA-IA.md` — **leia-a junto com este arquivo** (o Claude Code carrega via `@import` no `CLAUDE.md`; demais agentes — ver o alerta no topo). Aqui fica só o que é **específico do VVLEADHUB**.
+**Tipo de repo: `app`.** A doutrina **VV-wide** de engenharia/tooling (core compartilhado, memória, config/hooks, fluxo git/PR multi-agente) vive em `.agents/context/ARQUITETURA-IA.md` (junction por máquina → vvcore) — **leia-a junto com este arquivo** (o Claude Code carrega via `@import` no `CLAUDE.md`; demais agentes — ver o alerta no topo). Aqui fica só o que é **específico do VVLEADHUB**.
 
 ## Antes de qualquer código
 
@@ -62,7 +62,7 @@ Conhecimento durável e específico deste repo (gotchas técnicos, convenções,
 
 A doutrina multi-agente e o fluxo git/PR são **VV-wide** (ARQUITETURA-IA §4 · `app`, no vvcore). Aqui fica só o concreto deste repo:
 
-- **Módulos e papéis:** o app é `site/` · `admin/` · `api-server/`; o **Cursor Composer** é o builder primário na IDE, o **Claude Code** o auxiliar (`/code-review` em todo PR, `/audit-quality`·`/checklist-fase` nos gates, `/auditar <área>` — impl × spec dona, read-only — sob demanda, `/security-review` quando couber, build escopado quando delegado). Quem editar código segue fronteiras/marca/`pnpm verify` em branch + PR própria.
+- **Módulos e papéis:** o app é `site/` · `admin/` · `api-server/`; o **Cursor Composer** é o builder primário na IDE, o **Claude Code** o auxiliar (`/code-review` em todo PR, `/security-review` quando couber, build escopado quando delegado; nos gates, `/audit-quality`·`/checklist-fase`·`/auditar <área>` — impl × spec dona, read-only — **disparados por você**, pois são `disable-model-invocation`). Quem editar código segue fronteiras/marca/`pnpm verify` em branch + PR própria.
 - **CODEOWNERS (caminhos gated):** `packages/contracts`, `docs/`, `AGENTS.md`/`CLAUDE.md`, `.cursor/rules`, `.github/`, `infra/` — aval do fundador, nunca auto-mergeado.
 - **Deploy/runtime:** alvo a definir na Fase 0b (D-18). Cloudflare no edge (site SSR, R2, proxy de analytics — D-2/D-10/D-15 intactos); serviços Node (`admin`/`api-server`) + Postgres gerenciado num host a escolher; deploy desacoplado do GitHub. (D-18 aposentou o builder na nuvem — sem `replit/work` nem "Publish ≠ push".)
 - Ajustar os papéis = editar `docs/tasks/fase-0.md` (e os ponteiros), não improvisar no meio de uma tarefa.

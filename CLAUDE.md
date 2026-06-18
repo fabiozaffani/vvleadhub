@@ -3,5 +3,5 @@
 **A fonte única, tool-neutral, de conduta do agente neste repositório é [`AGENTS.md`](AGENTS.md)** (D-16, emendada pela D-18; 00 §7), carregada abaixo via `@import` (hard-load) junto dos dois contextos canônicos do vvcore. Nada de conteúdo de projeto aqui — em conflito, o `AGENTS.md` vence.
 
 @AGENTS.md
-@../vvcore/plugins/vvcore/context/CONTEXTO-IA.md
-@../vvcore/plugins/vvcore/context/ARQUITETURA-IA.md
+@.agents/context/CONTEXTO-IA.md
+@.agents/context/ARQUITETURA-IA.md
