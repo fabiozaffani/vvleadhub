@@ -9,6 +9,7 @@ Um **roadmap não é um prompt.** "Construa a Fase 0" é como nasce espaguete be
 - **Critérios de aceite:** subconjunto verificável do 03 §7.1.
 - **Refs:** os docs donos a ler antes.
 - **Restrições de build:** as armadilhas conhecidas (ver `fase-0.md`).
+- **Status:** frontmatter YAML `status: pending | in_progress | done | cancelled` (ARQUITETURA-IA §5.4) + `id: WO-NN` + `traces: [...]`. Relatório por status: `bash ../../../vvcore/bin/tasks-report.sh`. WO sugerida (pré-promoção) fica em [`../tasks-drafts/`](../tasks-drafts/); promover = mover para `tasks/` + `status: pending`.
 
 ## Regras (AGENTS.md)
 - Tudo por **branch + PR**; a `main` tem **branch protection** (checks de CI obrigatórios) + **auto-merge** (PR de código mescla no verde via `pnpm ship`; PR de caminho CODEOWNERS fica pro aval do fundador); `pnpm verify` verde antes de "pronto".
