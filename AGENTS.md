@@ -1,20 +1,22 @@
 # AGENTS.md — Manual de conduta do agente construtor (VVF)
 
+<!-- vvcore:preamble:start --><!-- GERADO de vvcore/plugins/vvcore/context/AGENTS-PREAMBLE.md — nao editar entre os marcadores; rode bin/sync-agents-preamble.sh -->
 ## ⚠️ LEIA PRIMEIRO — parte do contexto canônico NÃO está neste arquivo
 
-A fundação obrigatória deste repo são **dois arquivos que vivem no vvcore** (fonte única, sem cópia):
+A fundação obrigatória são **dois arquivos que vivem no vvcore** (fonte única, sem cópia):
 - **`CONTEXTO-IA.md`** — negócio, marca e as **invariantes INV-01..INV-10 (§2)** contra as quais toda recomendação é validada.
-- **`ARQUITETURA-IA.md`** — doutrina VV-wide de engenharia/tooling (memória, git/PR — §4).
+- **`ARQUITETURA-IA.md`** — doutrina VV-wide de engenharia/tooling: core, memória, git/PR e **estrutura de repo (§1–§5)**.
 
 Eles entram no contexto via **`@import` de `.agents/context/`** — uma junction por máquina para o vvcore, criada pelo `setup-links.sh` (`link_repo_context`), que **só o Claude Code expande**. **Não** use o caminho externo `../vvcore/...`: ele resolve fora da raiz do repo e o Claude o descarta **em silêncio** (sem aprovação manual). Não há cópia local — é decisão de fonte única.
 
-**Auto-checagem (antes de qualquer coisa):** você está vendo o texto **completo** desses dois arquivos agora — as INV-01..INV-10, os três arquétipos (§4.1), a §4 (Git & PR) da Arquitetura?
+**Auto-checagem (antes de qualquer coisa):** você está vendo o texto **completo** desses dois arquivos agora — as INV-01..INV-10, os três arquétipos (§4.1 do CONTEXTO-IA), a §4 (Git & PR) e a §5 (estrutura de repo) da Arquitetura?
 
 - ✅ **Sim** → você é o Claude Code (ou recebeu o contexto de outra forma). Prossiga.
 - 🛑 **Não** → você está com instruções **PARCIAIS** e vai violar invariantes sem perceber. **PARE, não produza nada** e avise o usuário, literalmente:
   > "Sou um agente diferente do Claude Code e **não tenho o contexto canônico do VV** (CONTEXTO-IA + ARQUITETURA-IA) — entregue por um `@import` que só o Claude expande. Antes de eu continuar, configure a entrega desse contexto pra mim."
 
-Assim mantemos **uma fonte única** hoje e qualquer agente novo **se auto-denuncia** em vez de rodar cego — validamos a entrega caso a caso, sem cópia.
+Assim qualquer agente novo **se auto-denuncia** em vez de rodar cego — validamos a entrega caso a caso, sem cópia.
+<!-- vvcore:preamble:end -->
 
 ---
 

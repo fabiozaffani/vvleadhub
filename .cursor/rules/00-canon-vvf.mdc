@@ -269,13 +269,16 @@ Se qualquer resposta for "não" ou "incerto": **pare, sinalize e reformule** ant
 
 ## ARQUITETURA-IA — engenharia & tooling
 
-# VVF — Arquitetura de IA (engenharia & tooling) v1.0
+# VVF — Arquitetura de IA (engenharia & tooling) v1.1
 
 **Uso:** doutrina **VV-wide** de como agentes de IA operam tecnicamente em qualquer repo do Vale Verde — core compartilhado, memória, config/tooling e fluxo de git/PR. Tool-neutral; carregado via `@import` em todo repo, ao lado do contexto de negócio ([`CONTEXTO-IA.md`](CONTEXTO-IA.md)). Em conflito de **engenharia**, este arquivo vence; **negócio/marca** é no CONTEXTO-IA; a **instanciação** concreta de um app (fronteiras, CI exato, isolamento de schema, roadmap) vive no `AGENTS.md`/`CLAUDE.md` **local**, não aqui.
 
 **Tipo de repo — cada repo declara o seu** (uma linha no `CLAUDE.md`/`AGENTS.md`):
+- **core** — o próprio `vvcore` (fonte do que é transversal). Estrutura com exceções de §5.2.
 - **app** — produto com código (ex.: VVLEADHUB; VVDOMAIN quando virar app). Aplica §4 · App.
 - **docs/solo** — documentação/estratégia, sem build de app (ex.: VVDOMAIN hoje, VVROADMAP). Aplica §4 · Docs/solo.
+
+**Estrutura de repositório:** o esqueleto de pastas/arquivos que todo repo VV segue (núcleo comum + exceções por tipo) está em **§5** — é a fundação que reconcilia o "padrão universal" do fundador com a tipagem acima.
 
 ---
 
@@ -286,6 +289,7 @@ O repo **vvcore** (`github.com/fabiozaffani/vvcore`, irmão dos demais em `../vv
 - **skills/commands** — entregues por junction/symlink `~/.claude/{skills,commands} → vvcore/plugins/vvcore/{skills,commands}` (NÃO marketplace). Carregam globalmente. Setup por máquina: `vvcore/bin/setup-links.sh` (junction no Win, symlink no Mac), chamado pelo hook SessionStart.
 - **skills locais do repo** — uma skill específica de um repo (não transversal) vive em **`<repo>/.agents/skills`** (fonte tool-neutral, versionada — simétrico à memória, §2). O Claude a enxerga via junction **`<repo>/.claude/skills → <repo>/.agents/skills`**, criado pelo mesmo `setup-links.sh` (`link_repo_skills`) — por máquina, gitignored, regenerado a cada SessionStart. **Opt-in:** existir a pasta `.agents/skills` é o gatilho (sem ela, no-op); um `.agents/skills/README.md` já basta para pré-cablar o junction antes da primeira skill. **Precedência (gotcha):** skill de **usuário** (o core, em `~/.claude`) **sombreia** skill de **projeto** de mesmo nome de diretório, sem aviso — nome de skill local nunca pode colidir com o de uma skill do core. Local que prova valor transversal sobe via `/promote`.
 - **context** — este arquivo + `CONTEXTO-IA.md`, lidos via `@import` no `CLAUDE.md`/`AGENTS.md` de cada repo.
+- **preâmbulo dos `AGENTS.md`** — o bloco "⚠️ LEIA PRIMEIRO" (auto-denúncia do agente sem canon) é **idêntico** em todos os repos: fonte em `plugins/vvcore/context/AGENTS-PREAMBLE.md`, injetado entre marcadores `<!-- vvcore:preamble:start/end -->` por `bin/sync-agents-preamble.sh`. **Não editar o bloco à mão** (drifta) — ele é texto literal (não `@import`) de propósito, para o agente não-Claude que lê o `AGENTS.md` cru também vê-lo.
 - **Editar o canônico só no vvcore** — nunca copiar à mão. Propagar:
   - skills/commands/context → **`/sync-core`** (commita o vvcore + instrui reload); outros repos pegam na próxima sessão.
   - skill local que provou valor transversal → **`/promote <skill>`** (move pro vvcore).
@@ -304,6 +308,7 @@ Conhecimento durável e específico do repo vive em **`.agents/memory/`** (tool-
 - **Config de projeto que beneficia o time → `.claude/settings.json` (versionado).** Permissions de máquina/caminhos locais e o `autoMemoryDirectory` → `.claude/settings.local.json` (**gitignored**). Default = versionado; na dúvida, versiona.
 - **Hooks rodam em Git Bash no Windows** (não PowerShell/cmd): `||`, `&&`, sintaxe POSIX funcionam. Fixe `"shell": "bash"` para blindar contra mudança de default. **SessionStart com exit≠0 é não-bloqueante** (só exit 2 bloqueia) — `git pull` sem `|| echo` não trava a sessão.
 - **SessionStart padrão** (matcher `startup|resume|clear`): (1) `git pull --ff-only` do repo; (2) bootstrap do vvcore — `git pull --ff-only` se já existe, senão `git clone` — + `bash setup-links.sh` (liga skills/commands e escreve o `autoMemoryDirectory`). O **app desktop só relê config/skills no restart completo**.
+- **Canon-check (falha barulhenta):** ao fim do `setup-links.sh`, valida que `.agents/context/CONTEXTO-IA.md` é **legível** em cada repo que adotou o trilho interno. Se o canon estiver ausente (vvcore não clonado / junction quebrada), imprime um **banner visível** em vez de degradar em silêncio — o `@import` quebrado do Claude some sem alarme, e o banner é a rede que evita a sessão começar cega.
 
 ## §4 — Git & PR
 
@@ -316,6 +321,48 @@ Conhecimento durável e específico do repo vive em **`.agents/memory/`** (tool-
 **Repo tipo `docs/solo`** (VVDOMAIN hoje, VVROADMAP):
 - **Claude-primário** (sem builder de app). Privado em plano free → sem branch protection / CI obrigatório.
 - **Commit direto na `main` é o fluxo** entre etapas; PR é opcional (use quando quiser isolar/revisar). O princípio de push acima continua valendo.
+
+## §5 — Estrutura canônica de repositório (modelo híbrido)
+
+Reconcilia o "padrão universal" do fundador (mesma estrutura em todo repo VV) com a tipagem de repo: **núcleo comum obrigatório + exceções, e exceção só vale se documentada** (no README da pasta e/ou aqui). Não existe exceção *silenciosa*.
+
+### §5.1 — Núcleo comum (obrigatório em todo repo VV)
+- **`/.agents`** — camada agnóstica (tool-neutral): memória, skills locais, context-junction. Fonte do que `.claude`/`.cursor` espelham.
+- **`/.claude`** — thin wrapper do Claude (settings + junction `skills`); **zero conhecimento**.
+- **`AGENTS.md`** (raiz) — fonte única tool-neutral de conduta; referencia o canon do vvcore. Começa pelo preâmbulo sincronizado (§1).
+- **`CLAUDE.md`** (raiz) — ponteiro que faz **hard-import garantido** `@AGENTS.md` + os dois contexts; **zero conhecimento** de projeto. Em conflito, o `AGENTS.md` vence.
+- **`/docs`** com as **7 subpastas canônicas**: `discovery · business · specs · system · tasks-drafts · tasks · roadmap`. **Pipeline:** `discovery → business → specs → system → tasks-drafts → tasks`; `roadmap/` costura tudo em paralelo.
+- **README em toda pasta** (explica o propósito, mesmo vazia). *Equivalência aceita:* um **arquivo-entry** que já cumpre o papel — `_dominio.md` (domínio de business), `SKILL.md` (skill), `<comando>.md` (command) — dispensa README; registre a equivalência no README do nível acima.
+- **O conhecimento mora em `/docs`.** Os MD da raiz são **roteador + livro de regras**, não onde o conhecimento mora.
+
+### §5.2 — Instanciação por tipo (exceções estruturais)
+- **core (`vvcore`):** skills/commands/context **são o produto** e vivem em `plugins/vvcore/` — por isso `.agents/` aqui guarda **só a memória**. **Não tem `business`** (VVDOMAIN é o dono); usa `docs/tasks` + `docs/tasks-drafts` para work-orders de mudanças no próprio core. **Não consome junction de context** (é a fonte): seu `CLAUDE.md` importa o canon pelo caminho interno real `plugins/vvcore/context/{CONTEXTO-IA,ARQUITETURA-IA}.md`.
+- **app (ex.: VVLEADHUB):** tem **`/.cursor`** (Cursor = builder primário, §4 · App). Pode manter specs/system como **docs numerados legados** na raiz de `docs/` enquanto `docs/specs`/`docs/system` não os absorvem — exceção registrada em §5.3. Fronteiras/CI/roadmap de fases na instanciação local.
+- **docs/solo (ex.: VVDOMAIN, VVROADMAP):** **sem `/.cursor`** por padrão (Claude-primário); domínios de `docs/business/<dom>/` usam `_dominio.md` como entry.
+
+### §5.3 — Exceções vigentes (documentadas)
+- `/.cursor` é obrigatório **só em repo `app`** (onde o Cursor é builder primário). Repo `docs/solo`/`core` não precisa; se algum dia for editado via Cursor, cria-se o wrapper.
+- vvcore: `.agents/` só memória; skills/context em `plugins/vvcore/` (são o produto).
+- Domínios de `docs/business/<dom>/`: `_dominio.md` é o entry (sem README por domínio).
+- commands/skills: o próprio `.md` é a doc (sem README por command/skill).
+- VVLEADHUB: specs/system como `01–09`/`99` numerados na raiz de `docs/` (legado); `docs/specs`/`docs/system` ficam como meta-folders até a migração.
+- **ERPVVF:** repo de **outra org** (`valeverdefestas/erpvvf`) e **produto distinto** (ERP) — **fora do escopo da fundação VV** por ora. Não recebe canon/junctions/tripwire. Revisitar explicitamente se for trazido pro ecossistema; até lá, um agente que abrir esse repo opera sem as invariantes — tratar como legado.
+
+### §5.4 — Status de work-orders (esquema único, grep-ável)
+Toda WO em `docs/tasks/` carrega frontmatter YAML:
+```yaml
+---
+id: WO-<AREA>-<NNN>
+status: pending | in_progress | done | cancelled
+traces: [SYS-<DOM>-NNN]   # docs de system/spec que originam a WO (rastreabilidade)
+---
+```
+- Mapeamento do vocabulário do fundador: **PENDING=`pending`**, **DONE=`done`**, **CANCELLED=`cancelled`** (+ `in_progress` para o que está em curso).
+- `tasks-drafts/` = WO **sugerida** (pré-promoção). **Promover** = mover o arquivo para `tasks/` e setar `status: pending`.
+- **Relatório:** `vvcore/bin/tasks-report.sh [repo]` varre o frontmatter e conta por status — sem grep frágil, sem contar à mão.
+
+### §5.5 — Repo novo = um comando
+`vvcore/bin/new-repo.sh <nome> <app|docs/solo>` gera o **núcleo comum** (AGENTS/CLAUDE com os imports certos, árvore `docs/` canônica com READMEs, hook SessionStart, `.gitignore`, `.agents/{memory,skills}`) — para o "modelo universal" **não nascer copiado-e-adaptado** (a fonte nº1 de drift). Skills/context continuam vindo do vvcore por junction/`@import`; o scaffold só prepara o repo para o `setup-links.sh` do primeiro SessionStart.
 
 ---
 

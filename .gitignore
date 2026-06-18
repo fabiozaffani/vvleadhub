@@ -54,3 +54,8 @@ proxy.mjs
 # Recriado pelo setup-links.sh do vvcore (link_repo_context — WO-08). Versionar copiaria os 3
 # arquivos do vvcore (git nao entende junction, copia incondicionalmente) e furaria a fonte unica (D-16/D-18).
 /.agents/context/
+
+# Config per-maquina do Claude (autoMemoryDirectory absoluto + permissions locais).
+# Defesa em profundidade: ja coberto pelo gitignore global do usuario, mas garantir aqui
+# evita vazar caminho local num clone/CI sem o global.
+/.claude/settings.local.json
