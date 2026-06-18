@@ -87,8 +87,16 @@ jobs:
       - name: Lighthouse CI (orçamento em lighthouserc.json)
         if: steps.routes.outputs.has_routes == 'true'
         run: pnpm dlx @lhci/cli autorun
-      - name: axe (WCAG 2.1 AA)
+      - name: axe (WCAG 2.1 AA) — gate ou dívida explícita
         if: steps.routes.outputs.has_routes == 'true'
-        # --if-present: roda quando o site tiver o script test:a11y (spec axe via @axe-core/playwright —
-        # item restante da WO-03). Até lá, a categoria a11y do Lighthouse (minScore 1) cobre o gate.
-        run: pnpm --filter site run --if-present test:a11y
+        # Quando site/ tiver o script test:a11y (spec axe via @axe-core/playwright — WO-03), este passo
+        # RODA o gate de verdade. Até lá, em vez de passar verde em silêncio (o antigo --if-present mudo),
+        # emite um aviso VISÍVEL (::warning::) marcando a acessibilidade como dívida explícita. O Lighthouse
+        # a11y (minScore 1) cobre parcialmente; este passo não bloqueia enquanto o spec não existir.
+        run: |
+          if grep -q '"test:a11y"' site/package.json; then
+            echo "test:a11y presente — rodando o gate axe (WCAG 2.1 AA)."
+            pnpm --filter site run test:a11y
+          else
+            echo "::warning title=Gate a11y (axe) inativo — dívida explícita::site/ ainda não tem o script test:a11y (spec @axe-core/playwright, WO-03). A acessibilidade NÃO está sendo verificada pelo axe; só o Lighthouse a11y (minScore 1) cobre, parcialmente. Este passo não bloqueia até o spec existir."
+          fi
