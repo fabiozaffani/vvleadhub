@@ -48,4 +48,4 @@ Engenharia não é um domínio de produto; é a malha que segura os domínios de
 - **Performance como gate** (ver `system/arquitetura.md`): Lighthouse CI dá dente à regra.
 - **Escopo:** este domínio é arquitetura/método; rotina de operação fica fora dele.
 
-> Invariantes INV-xx são canon de negócio — fonte em CONTEXTO-IA §2. Decisões D-N no ledger `decisoes.md`; termos canônicos em `_lexico.md`.
+> Invariantes INV-xx são canon de negócio — fonte em CONTEXTO-IA §2. Decisões D-N no ledger `_decisoes.md`; termos canônicos em `_lexico.md`.

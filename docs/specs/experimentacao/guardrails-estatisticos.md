@@ -39,4 +39,4 @@ Exemplo: baseline 10% de conversão e MDE de +20% relativo ⇒ ~3,6k visitantes/
 
 `lead_qualificado` como primária só é viável com volume; com tráfego de nicho, a primária é `lead` e o qualificado entra como guardrail/leitura secundária.
 
-A decisão D-14 é rastreada em `decisoes.md`.
+A decisão D-14 é rastreada em `_decisoes.md`.

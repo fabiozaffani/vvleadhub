@@ -65,7 +65,7 @@ Posts são criados/editados no admin: rich-text, mídia, campos de SEO, escolha 
 
 ## §11 — Decisões & diferidos
 
-- **D-1** (CMS) — **fechada: Payload** (ver `decisoes.md`); modelo de post permanece agnóstico (conteúdo é dado).
+- **D-1** (CMS) — **fechada: Payload** (ver `_decisoes.md`); modelo de post permanece agnóstico (conteúdo é dado).
 - Geração de conteúdo por IA — opção, não requisito; sempre via lint de marca (ver `system/admin.md`). Sem decisão travada.
 
 ## §12 — Validação contra invariantes VVF

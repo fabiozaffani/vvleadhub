@@ -13,7 +13,7 @@ Dissolver os docs numerados legados (`00–09`, `99`) e as pastas fora da taxono
 ## Entregue por esta migração
 - `business/comercial/` (← 01, com Autoral corrigido para nível máximo), `discovery/auditoria-pre-build.md` (← 99).
 - `specs/<domínio>/*` granulares + `system/<domínio>.md` coesos (← 02/04–09 + design-system ← brand guidelines); `system/arquitetura.md` (← 03) + `roadmap/fases.md` (← 03 §7).
-- Raiz: `_index.md`, `_lexico.md` (← 00 §5/§6), `decisoes.md` (← 00 §7, D-N preservado).
+- Raiz: `_index.md`, `_lexico.md` (← 00 §5/§6), `_decisoes.md` (← 00 §7, D-N preservado).
 - `roadmap/inventario-conteudo.md` (← conteudo/), `roadmap/composicao-paginas.md` (← tasks/).
 - WO files com frontmatter §5.4; reescrita de cross-refs em docs + `AGENTS.md` + `.cursor/rules` + `.github` + comentários de config + `.agents/memory`.
 - Eliminados: `docs/brand/` (stub deletado — canon vem por `@import`; guidelines realocada), `docs/conteudo/`, `docs/00–09`, `99`, `tasks/fase-0.md`.

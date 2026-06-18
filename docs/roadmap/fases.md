@@ -2,7 +2,7 @@
 
 **Camada:** system · **Domínio:** arquitetura · **Origem:** 03-arquitetura-sistema.md · **Tom:** trabalho
 
-Roadmap de build do VVLEADHUB. A sequência de tasks segue esta ordem; cada fase só se declara pronta pelos critérios de aceite (§7.1), que são a definition of done verificável. A topologia que estas fases constroem está em [`system/arquitetura.md`](../system/arquitetura.md); as decisões citadas (D-N) vivem em [`decisoes.md`](../decisoes.md). Os critérios da Fase 0 são a base de rastreabilidade (`traces`) das WO em `tasks/`.
+Roadmap de build do VVLEADHUB. A sequência de tasks segue esta ordem; cada fase só se declara pronta pelos critérios de aceite (§7.1), que são a definition of done verificável. A topologia que estas fases constroem está em [`system/arquitetura.md`](../system/arquitetura.md); as decisões citadas (D-N) vivem em [`_decisoes.md`](../_decisoes.md). Os critérios da Fase 0 são a base de rastreabilidade (`traces`) das WO em `tasks/`.
 
 ---
 

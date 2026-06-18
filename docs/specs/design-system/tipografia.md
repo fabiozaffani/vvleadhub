@@ -20,7 +20,7 @@ Padrão tipográfico canônico do app, carregamento das famílias e regras de hi
 
 ## 2. Nota histórica — migração Arial → Work Sans
 
-A versão original do guia de marca pedia **Arial** no corpo de texto e **Sloop Script Pro** para detalhes/acentos. O app adotou **Work Sans** no corpo (em vez de Arial) e não incorporou Sloop Script Pro. Essa escolha foi promovida ao canon: a partir de jun/2026 o CONTEXTO-IA §5 registra Playfair Display + Work Sans como o padrão, e **não se trata mais de exceção ao guia de marca** — é o canon. Esta seção fica só como registro histórico da transição; não há divergência ativa a reconciliar. Ledger de decisões em [`decisoes.md`](../../decisoes.md).
+A versão original do guia de marca pedia **Arial** no corpo de texto e **Sloop Script Pro** para detalhes/acentos. O app adotou **Work Sans** no corpo (em vez de Arial) e não incorporou Sloop Script Pro. Essa escolha foi promovida ao canon: a partir de jun/2026 o CONTEXTO-IA §5 registra Playfair Display + Work Sans como o padrão, e **não se trata mais de exceção ao guia de marca** — é o canon. Esta seção fica só como registro histórico da transição; não há divergência ativa a reconciliar. Ledger de decisões em [`_decisoes.md`](../../_decisoes.md).
 
 ## 3. Regras de hierarquia (CONTEXTO-IA §5)
 

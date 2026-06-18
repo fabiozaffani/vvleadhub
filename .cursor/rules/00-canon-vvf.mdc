@@ -269,7 +269,7 @@ Se qualquer resposta for "não" ou "incerto": **pare, sinalize e reformule** ant
 
 ## ARQUITETURA-IA — engenharia & tooling
 
-# VVF — Arquitetura de IA (engenharia & tooling) v1.1
+# VVF — Arquitetura de IA (engenharia & tooling) v1.2
 
 **Uso:** doutrina **VV-wide** de como agentes de IA operam tecnicamente em qualquer repo do Vale Verde — core compartilhado, memória, config/tooling e fluxo de git/PR. Tool-neutral; carregado via `@import` em todo repo, ao lado do contexto de negócio ([`CONTEXTO-IA.md`](CONTEXTO-IA.md)). Em conflito de **engenharia**, este arquivo vence; **negócio/marca** é no CONTEXTO-IA; a **instanciação** concreta de um app (fronteiras, CI exato, isolamento de schema, roadmap) vive no `AGENTS.md`/`CLAUDE.md` **local**, não aqui.
 
@@ -331,7 +331,13 @@ Reconcilia o "padrão universal" do fundador (mesma estrutura em todo repo VV) c
 - **`/.claude`** — thin wrapper do Claude (settings + junction `skills`); **zero conhecimento**.
 - **`AGENTS.md`** (raiz) — fonte única tool-neutral de conduta; referencia o canon do vvcore. Começa pelo preâmbulo sincronizado (§1).
 - **`CLAUDE.md`** (raiz) — ponteiro que faz **hard-import garantido** `@AGENTS.md` + os dois contexts; **zero conhecimento** de projeto. Em conflito, o `AGENTS.md` vence.
-- **`/docs`** com as **7 subpastas canônicas**: `discovery · business · specs · system · tasks-drafts · tasks · roadmap`. **Pipeline:** `discovery → business → specs → system → tasks-drafts → tasks`; `roadmap/` costura tudo em paralelo.
+- **`/docs`** com as **7 subpastas canônicas**: `discovery · business · specs · system · tasks-drafts · tasks · roadmap`. **Pipeline:** `discovery → business → specs → system → tasks-drafts → tasks`; `roadmap/` costura tudo em paralelo. Semântica de cada camada:
+  - **`business/`** — a verdade do negócio, **agnóstica a implementação** (atores, domínios, ciclos de vida, regras). Insumo de tudo abaixo.
+  - **`specs/`** — os **ingredientes técnicos granulares** derivados do business, organizados **por domínio**: a ponte negócio→digital. **Vários specs por domínio** (ex.: o domínio Usuários pode ter um spec de modelo de dados, outro de papéis, outro de auth).
+  - **`system/`** — a **coesão**: cada `system/<domínio>.md` **agrega as specs daquele domínio** no todo integrado (o System Doc do domínio — modelo de dados, status registry, contratos). Não recopia o detalhe das specs; linka.
+  - **`tasks/`** — os **work-orders desmembrados do system**: sempre **múltiplos e de escopo estreito** (um WO por tarefa, com escopo/arquivos/critério de aceite) para facilitar merge e validação humana. Um domínio nasce com dezenas de WOs (montagem inicial) e escala para centenas (ajustes) e milhares (novas features, correções) conforme evolui.
+  - **Nota de vocabulário:** "domínio" aparece em **duas camadas** — `business/<dom>/_dominio.md` (domínio de **negócio**) e `system/<dom>.md` (coesão **técnica** do mesmo domínio). Mesma palavra, camadas distintas.
+- **Espinha transversal na raiz de `docs/`** (obrigatória em **todo** repo, prefixo `_` para ordenar no topo): **`_index.md`** (índice + ordem de leitura), **`_lexico.md`** (glossário canônico — um termo por conceito) e **`__decisoes.md`** (ledger de decisões estilo ADR). São transversais à doc inteira; existem mesmo que enxutos no início (exceção só documentada em §5.3).
 - **README em toda pasta** (explica o propósito, mesmo vazia). *Equivalência aceita:* um **arquivo-entry** que já cumpre o papel — `_dominio.md` (domínio de business), `SKILL.md` (skill), `<comando>.md` (command) — dispensa README; registre a equivalência no README do nível acima.
 - **O conhecimento mora em `/docs`.** Os MD da raiz são **roteador + livro de regras**, não onde o conhecimento mora.
 
@@ -345,7 +351,7 @@ Reconcilia o "padrão universal" do fundador (mesma estrutura em todo repo VV) c
 - vvcore: `.agents/` só memória; skills/context em `plugins/vvcore/` (são o produto).
 - Domínios de `docs/business/<dom>/`: `_dominio.md` é o entry (sem README por domínio).
 - commands/skills: o próprio `.md` é a doc (sem README por command/skill).
-- VVLEADHUB: specs/system como `01–09`/`99` numerados na raiz de `docs/` (legado); `docs/specs`/`docs/system` ficam como meta-folders até a migração.
+- VVLEADHUB: a migração dos docs numerados legados (`01–09`/`99`) para `docs/specs/<domínio>/` e `docs/system/<domínio>.md` está **concluída** — `specs/`/`system/` por domínio são os donos; cada spec carrega o campo `Origem`, que rastreia o doc legado de onde o conteúdo veio. (Exceção anterior — "numerados na raiz até a migração" — aposentada.)
 - **ERPVVF:** repo de **outra org** (`valeverdefestas/erpvvf`) e **produto distinto** (ERP) — **fora do escopo da fundação VV** por ora. Não recebe canon/junctions/tripwire. Revisitar explicitamente se for trazido pro ecossistema; até lá, um agente que abrir esse repo opera sem as invariantes — tratar como legado.
 
 ### §5.4 — Status de work-orders (esquema único, grep-ável)
@@ -362,7 +368,15 @@ traces: [SYS-<DOM>-NNN]   # docs de system/spec que originam a WO (rastreabilida
 - **Relatório:** `vvcore/bin/tasks-report.sh [repo]` varre o frontmatter e conta por status — sem grep frágil, sem contar à mão.
 
 ### §5.5 — Repo novo = um comando
-`vvcore/bin/new-repo.sh <nome> <app|docs/solo>` gera o **núcleo comum** (AGENTS/CLAUDE com os imports certos, árvore `docs/` canônica com READMEs, hook SessionStart, `.gitignore`, `.agents/{memory,skills}`) — para o "modelo universal" **não nascer copiado-e-adaptado** (a fonte nº1 de drift). Skills/context continuam vindo do vvcore por junction/`@import`; o scaffold só prepara o repo para o `setup-links.sh` do primeiro SessionStart.
+`vvcore/bin/new-repo.sh <nome> <app|docs/solo>` gera o **núcleo comum** (AGENTS/CLAUDE com os imports certos, árvore `docs/` canônica com READMEs **+ a espinha `_index`/`_lexico`/`_decisoes`**, hook SessionStart, `.gitignore`, `.agents/{memory,skills}`) — para o "modelo universal" **não nascer copiado-e-adaptado** (a fonte nº1 de drift). Skills/context continuam vindo do vvcore por junction/`@import`; o scaffold só prepara o repo para o `setup-links.sh` do primeiro SessionStart.
+
+### §5.6 — Débito estrutural e estado-futuro (registrado)
+A estrutura/nomenclatura desta §5 é **obrigatória em todos os repos desde já** — mesmo onde o conteúdo ainda não existe — para que, ao pagar o débito de documentação, o agente já tenha o **guia correto** a seguir. Os repos **iniciaram em estágios distintos**; a discrepância de preenchimento é **débito conhecido**, não desenho final:
+- **VVDOMAIN** — começou certo (business-first). Segue mapeando `docs/business/` até haver o suficiente para um MVP; `specs/system/tasks` vêm depois.
+- **VVLEADHUB** — foi construído **antes** de documentar (débito assumido). Plano: **documentar retroativamente** (business→specs→system→tasks corretos) **antes** de propagar mais o sistema. Hoje só o domínio `comercial` está mapeado — e ele provavelmente servirá de base para mapear o domínio Comercial no VVDOMAIN.
+- **vvcore** — carrega a **semântica/matriz transversal** que propaga para os demais, mas não tem o resto implementado. Doc retroativa futura: seu `business/` diria "propriedade transversal que serve todos os repos"; `specs/` = os scripts de `bin/` + os plugins; `system/` = a composição disso.
+
+**Estado-futuro (lacuna — não fazer agora):** quando o `docs/business/` do VVDOMAIN amadurecer, ele é **promovido ao vvcore** como o Business Doc único; todo repo passa a **consumir** esse business do core conforme necessário e segue com as demais pastas (`specs/system/tasks`) localmente. Nesse momento o **VVDOMAIN deixa de existir como repo de docs**, e o **VVERP** (implementação que hoje nasce dentro do VVDOMAIN) vira um **app irmão** de VVLEADHUB/VVROADMAP. Há urgência de implementação, então o débito se resolve depois — fica **registrado** aqui para não se perder.
 
 ---
 

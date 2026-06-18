@@ -3,7 +3,7 @@
 Princípio organizador (padrão VV, ARQUITETURA-IA §5): pipeline **`discovery → business → specs → system → tasks-drafts → tasks`**; `roadmap/` costura tudo em paralelo. **Um dono por conceito**, referência por nome (nunca recópia). Conduta do agente é o [`../AGENTS.md`](../AGENTS.md) (fonte única tool-neutral).
 
 ## Espinha (raiz de docs/)
-- [`_index.md`](_index.md) (este) · [`_lexico.md`](_lexico.md) (termos canônicos) · [`decisoes.md`](decisoes.md) (ledger ADR D-1..D-18).
+- [`_index.md`](_index.md) (este) · [`_lexico.md`](_lexico.md) (termos canônicos) · [`_decisoes.md`](_decisoes.md) (ledger ADR D-1..D-18).
 - **Contexto/marca da empresa vem do vvcore** (`CONTEXTO-IA` + `ARQUITETURA-IA`, via `@import` no [`../CLAUDE.md`](../CLAUDE.md)) — não vive aqui.
 
 ## Módulos (padrão VV)
@@ -18,7 +18,7 @@ Princípio organizador (padrão VV, ARQUITETURA-IA §5): pipeline **`discovery �
 | [`discovery/`](discovery/) | **ativo** | validação pré-spec; hoje a auditoria pré-build histórica |
 
 ## Ordem de leitura (dependência)
-marca (CONTEXTO-IA, vvcore) → [`_index.md`](_index.md) → [`_lexico.md`](_lexico.md) → [`decisoes.md`](decisoes.md) → [`business/comercial/_dominio.md`](business/comercial/_dominio.md) → [`specs/plataforma/`](specs/plataforma/) → [`system/arquitetura.md`](system/arquitetura.md) → a spec do domínio da tarefa → o work-order em [`tasks/`](tasks/).
+marca (CONTEXTO-IA, vvcore) → [`_index.md`](_index.md) → [`_lexico.md`](_lexico.md) → [`_decisoes.md`](_decisoes.md) → [`business/comercial/_dominio.md`](business/comercial/_dominio.md) → [`specs/plataforma/`](specs/plataforma/) → [`system/arquitetura.md`](system/arquitetura.md) → a spec do domínio da tarefa → o work-order em [`tasks/`](tasks/).
 
 ## Governança (resumo — detalhe no AGENTS.md)
 - Um conceito = um dono; docs de baixo referenciam os de cima, nunca recopiam.

@@ -45,7 +45,7 @@ O evento é definido **uma vez**. Adicionar destino = escrever `Destino.map(even
 - **`test`** (ver [`teste-realtime-saude.md`](teste-realtime-saude.md)): quando `true`, o evento atravessa todo o pipeline mas é roteado para endpoints de teste/sandbox e **excluído** do store de produção.
 - **`consent`**: gate de marketing/analytics — regra em [`consent-gate.md`](consent-gate.md).
 - **`context.click_ids`** (D-14): `fbc`/`fbp`, `gclid`, `ttclid`, `epik` — persistidos pelo collector e propagados ao contrato de lead (ver [`../landing-pages/contrato-lead.md`](../landing-pages/contrato-lead.md)). Sem eles, o match quality do CAPI/EC4L despenca; e click ID não tem retrofit.
-- **`context.correlation_id`**: reservado como join key; value-mapping **diferido** (ver `decisoes.md`).
+- **`context.correlation_id`**: reservado como join key; value-mapping **diferido** (ver `_decisoes.md`).
 - **`context.subjects[]` / `context.objective`**: o vocabulário canônico do domínio comercial — mapeia Assunto/Objetivo (ver [`../plataforma/primitivas.md`](../plataforma/primitivas.md)).
 
 ---

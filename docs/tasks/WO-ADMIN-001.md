@@ -20,7 +20,7 @@ Payload (Next-hosted) no schema `payload` (D-9), com as collections do registro 
 - Resíduo `mínimo` do doc legado **não** reproduzido — `Servicos` usa o canônico `padrão|adicional`.
 
 ## Refs
-[`specs/admin/registros.md`](../specs/admin/registros.md), [`specs/admin/rbac.md`](../specs/admin/rbac.md), [`specs/plataforma/primitivas.md`](../specs/plataforma/primitivas.md), [`decisoes.md`](../decisoes.md) (D-1/D-9/D-12).
+[`specs/admin/registros.md`](../specs/admin/registros.md), [`specs/admin/rbac.md`](../specs/admin/rbac.md), [`specs/plataforma/primitivas.md`](../specs/plataforma/primitivas.md), [`_decisoes.md`](../_decisoes.md) (D-1/D-9/D-12).
 
 ## Dívida conhecida (vira WO própria)
 `Objetivos` é collection livre vs enum fechado `objectiveSchema` → [`WO-ADMIN-002`](WO-ADMIN-002.md).

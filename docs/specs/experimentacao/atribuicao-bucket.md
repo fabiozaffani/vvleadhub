@@ -17,4 +17,4 @@ Como um usuário é atribuído deterministicamente a uma Variante e como isso in
 - Na etapa final, edge logic com a Variante na chave de cache devolve o cache total mesmo sob teste.
 - Criar/encerrar experimento deve **alternar esse estado automaticamente** — nunca manual.
 
-A decisão D-8 (e demais decisões fechadas) é rastreada em `decisoes.md`. A propagação da Variante até a exposição emitida ao event hub está em `guardrails-estatisticos.md` (exposição e mensuração) e em `system/eventos.md`.
+A decisão D-8 (e demais decisões fechadas) é rastreada em `_decisoes.md`. A propagação da Variante até a exposição emitida ao event hub está em `guardrails-estatisticos.md` (exposição e mensuração) e em `system/eventos.md`.

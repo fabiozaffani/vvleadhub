@@ -44,7 +44,7 @@ O **Tracker Hub** é um painel único com três áreas, cada uma declarando de q
 
 ## 10. Decisões & diferidos
 
-Ledger completo em `decisoes.md`.
+Ledger completo em `_decisoes.md`.
 
 - **D-1** — fechado: Payload CMS como admin/CMS; Tracker Hub como views custom dentro dele.
 - **D-12** — papéis pelo access control nativo do Payload (sem provedor externo de auth); ver `specs/admin/rbac.md`.

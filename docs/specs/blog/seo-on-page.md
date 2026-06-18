@@ -6,7 +6,7 @@
 
 ## Structured data, canonical e sitemap
 
-- **Structured data (JSON-LD):** `BlogPosting`/`Article`, `BreadcrumbList`, `ImageObject`; `FAQPage` quando houver FAQ; `VideoObject` quando houver vídeo (D-13 — ver `decisoes.md`).
+- **Structured data (JSON-LD):** `BlogPosting`/`Article`, `BreadcrumbList`, `ImageObject`; `FAQPage` quando houver FAQ; `VideoObject` quando houver vídeo (D-13 — ver `_decisoes.md`).
 - Canonical em todo post · OG/Twitter cards · `sitemap.xml` e `robots.txt` automáticos.
 - URLs limpas e estáveis: `/blog/{slug}` (slug não muda após publicar; mudança gera `301`).
 - `hreflang` pt-BR (preparado para futuro internacional).
