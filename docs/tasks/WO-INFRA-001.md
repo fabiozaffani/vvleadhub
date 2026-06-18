@@ -1,7 +1,7 @@
 ---
 id: WO-INFRA-001
 status: pending
-traces: [system/arquitetura.md, specs/engenharia/ambientes-secrets.md, decisoes.md]
+traces: [system/arquitetura.md, specs/engenharia/ambientes-secrets.md, _decisoes.md]
 ---
 # WO-INFRA-001 · Provisionamento + prova do isolamento D-9
 
@@ -22,4 +22,4 @@ Provisionar Postgres + os 3 deployments sob subdomínios (Cloudflare na frente),
 Postgres gerenciado pode restringir `CREATE ROLE`/`REVOKE` (ex.: Neon). Se `roles.sql` não aplicar: (a) isolamento só no nível de app (registrar) **ou** (b) dois bancos — desvia de "um Postgres" (D-9) → exige aval.
 
 ## Refs
-[`system/arquitetura.md`](../system/arquitetura.md) (modelo de dados/D-9), [`specs/engenharia/ambientes-secrets.md`](../specs/engenharia/ambientes-secrets.md), [`decisoes.md`](../decisoes.md) (D-9/D-18).
+[`system/arquitetura.md`](../system/arquitetura.md) (modelo de dados/D-9), [`specs/engenharia/ambientes-secrets.md`](../specs/engenharia/ambientes-secrets.md), [`_decisoes.md`](../_decisoes.md) (D-9/D-18).

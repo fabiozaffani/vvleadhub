@@ -10,7 +10,7 @@
 
 ## §0 — Motor agnóstico a ferramenta
 
-Este domínio descreve **capacidade e contrato, não produto** (GrowthBook, PostHog Experiments, etc. — D-1/D-3). O comportamento server-side é requisito; a ferramenta é implementação. As decisões D-1/D-3 estão **fechadas** (Payload / PostHog) e são rastreadas em `decisoes.md`; o modelo permanece agnóstico — o requisito é o comportamento server-side (avaliação local de flag para não custar TTFB nas LPs sob teste), não o produto.
+Este domínio descreve **capacidade e contrato, não produto** (GrowthBook, PostHog Experiments, etc. — D-1/D-3). O comportamento server-side é requisito; a ferramenta é implementação. As decisões D-1/D-3 estão **fechadas** (Payload / PostHog) e são rastreadas em `_decisoes.md`; o modelo permanece agnóstico — o requisito é o comportamento server-side (avaliação local de flag para não custar TTFB nas LPs sob teste), não o produto.
 
 ## §1 — Princípios
 
@@ -53,7 +53,7 @@ Criar experimento a partir de uma base (LP/Bloco), definir variantes, alocação
 - **D-1 / D-3** — **fechadas** (Payload / PostHog). O modelo permanece agnóstico à ferramenta: o requisito é o comportamento server-side (avaliação local de flag para não custar TTFB nas LPs sob teste — ver §1), não o produto.
 - Significância e amostra mínima default — `[a definir]` no setup do primeiro experimento.
 
-Ledger completo de decisões em `decisoes.md`.
+Ledger completo de decisões em `_decisoes.md`.
 
 ---
 

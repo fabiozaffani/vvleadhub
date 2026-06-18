@@ -70,7 +70,7 @@ flowchart TB
 
 ## 3. Decisões & diferidos
 
-Numeração de decisões preservada; o ledger é [`../decisoes.md`](../decisoes.md).
+Numeração de decisões preservada; o ledger é [`../_decisoes.md`](../_decisoes.md).
 
 - **D-3** — **fechado: PostHog** (incl. Destinations). Catálogo de conectores a confirmar na implementação; fallback definido (ver [`../specs/eventos/destinos.md`](../specs/eventos/destinos.md)).
 - **D-5** (LGPD) — diferido; consent gate como pass-through. Sync de audiências gated pelo opt-in mínimo desde o dia 1 (ver [`../specs/eventos/consent-gate.md`](../specs/eventos/consent-gate.md) e [`../specs/eventos/loop-fechado.md`](../specs/eventos/loop-fechado.md)).

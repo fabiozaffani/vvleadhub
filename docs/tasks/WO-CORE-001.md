@@ -1,7 +1,7 @@
 ---
 id: WO-CORE-001
 status: done
-traces: [specs/engenharia/monorepo.md, specs/engenharia/fronteiras.md, specs/engenharia/ci-gates.md, specs/engenharia/ambientes-secrets.md, decisoes.md]
+traces: [specs/engenharia/monorepo.md, specs/engenharia/fronteiras.md, specs/engenharia/ci-gates.md, specs/engenharia/ambientes-secrets.md, _decisoes.md]
 ---
 # WO-CORE-001 · Guardrails como código (Fase 0a)
 
@@ -20,7 +20,7 @@ Enforcement por máquina antes das features: monorepo + travas + CI + keystone d
 - Tooling: tsconfig strict, ESLint+Prettier, renovate, `.gitattributes`, `.env.example`, CODEOWNERS, PR template, lighthouserc.
 
 ## Refs
-[`specs/engenharia/*`](../specs/engenharia/), [`decisoes.md`](../decisoes.md) (D-16/D-18).
+[`specs/engenharia/*`](../specs/engenharia/), [`_decisoes.md`](../_decisoes.md) (D-16/D-18).
 
 ## Pendência manual (fundador)
 Branch protection LIGADA ✅. Aplicar `roles.sql` no Postgres provisionado + provar isolamento → [`WO-INFRA-001`](WO-INFRA-001.md).

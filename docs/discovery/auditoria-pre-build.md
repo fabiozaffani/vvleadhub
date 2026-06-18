@@ -59,8 +59,8 @@
 | # | Lacuna | Sev | Destino |
 |---|---|---|---|
 | 2.4.1 | ~~Acessibilidade~~ — **ENTREGUE** (`specs/engenharia/acessibilidade.md`: alvo WCAG 2.1 AA + regra do dourado formalizada + axe no CI). *Levar a regra do dourado também para o design system (edição da camada de marca — dono: fundador).* | ✅ | fechado |
-| 2.4.2 | ~~SEO de migração~~ — **RESOLVIDO (resposta do fundador):** há site no ar com blog indexado de performance razoável → **mapa de 301 obrigatório, diferido para o cutover** (tarefa registrada em `system/arquitetura.md` e no log de diferidos de `decisoes.md`). Baixa prioridade declarada. | ✅ (diferido c/ gancho) | fechado |
-| 2.4.3 | ~~SEO local~~ — **RESOLVIDO (auditoria growth jun/2026):** elevado de 🟢 a estrutural — era a maior inversão de prioridade do conjunto (map pack decide mais que o orgânico para "espaço de casamento em <cidade>"). Spec em `specs/blog/seo-local.md` (GBP por espaço, NAP = structured data, reviews acoplados ao NPS/M-01) + critério de aceite na Fase 1 (`roadmap/fases.md`). Operação contínua segue pós-go-live (`decisoes.md`). | ✅ | fechado |
+| 2.4.2 | ~~SEO de migração~~ — **RESOLVIDO (resposta do fundador):** há site no ar com blog indexado de performance razoável → **mapa de 301 obrigatório, diferido para o cutover** (tarefa registrada em `system/arquitetura.md` e no log de diferidos de `_decisoes.md`). Baixa prioridade declarada. | ✅ (diferido c/ gancho) | fechado |
+| 2.4.3 | ~~SEO local~~ — **RESOLVIDO (auditoria growth jun/2026):** elevado de 🟢 a estrutural — era a maior inversão de prioridade do conjunto (map pack decide mais que o orgânico para "espaço de casamento em <cidade>"). Spec em `specs/blog/seo-local.md` (GBP por espaço, NAP = structured data, reviews acoplados ao NPS/M-01) + critério de aceite na Fase 1 (`roadmap/fases.md`). Operação contínua segue pós-go-live (`_decisoes.md`). | ✅ | fechado |
 
 ---
 
@@ -68,14 +68,14 @@
 
 | # | Lacuna | Sev | Destino |
 |---|---|---|---|
-| 3.1 | ~~Timing da campanha Retrofit~~ — **FORA DE ESCOPO (regra do fundador, `decisoes.md`):** os mapas de growth serviram para entender o processo, não como restrição operacional. Operação/campanhas se resolvem pós-go-live. O roadmap segue como está. | ✅ | fechado |
+| 3.1 | ~~Timing da campanha Retrofit~~ — **FORA DE ESCOPO (regra do fundador, `_decisoes.md`):** os mapas de growth serviram para entender o processo, não como restrição operacional. Operação/campanhas se resolvem pós-go-live. O roadmap segue como está. | ✅ | fechado |
 | 3.2 | ~~Licença da Sloop Script Pro~~ — **RESOLVIDO por exceção registrada** (design system, `specs/design-system/tipografia.md`): corpo em **Work Sans** (open), Sloop **fora de uso**, decisão registrada que não se reverte invocando o brand guide. Docs `system/arquitetura.md`/`system/blog.md` corrigidos para refletir. *Só reabre se a marca decidir adotar a Sloop na web — aí a licença volta a ser pré-requisito.* | ✅ | fechado |
-| 3.3 | **Capacidade de produção de conteúdo** — reclassificado **pós-go-live** (regra de escopo `decisoes.md`). Permanece como aviso: estrutura sem conteúdo fica ociosa. | 🟢 pós-go-live | operação |
-| 3.4 | **RACI dos papéis** — reclassificado **pós-go-live** (`decisoes.md`). O RBAC (arquitetura) está em `specs/admin/rbac.md`; o mapeamento papel→pessoa é operação. | 🟢 pós-go-live | operação |
-| 3.5 | **Custos operacionais** — nenhum modelo: PostHog (cloud por evento vs. self-host + ops), hospedagem do runtime (provedor a definir — D-18), Cloudflare (Workers/R2/Images se adotados), plano do Kommo com API/webhooks, custo por conversa do WhatsApp. *Acresce (D-17): connector/ELT de reporting (Funnel/Supermetrics/Windsor) é input da decisão build-vs-buy do Nível 2 do single pane — orçar na Fase 3.* Nada disso muda a arquitetura, mas muda o D-3 (cloud vs self-host) e o bolso. | 🟡 F1 | `decisoes.md` (sub-decisões) |
+| 3.3 | **Capacidade de produção de conteúdo** — reclassificado **pós-go-live** (regra de escopo `_decisoes.md`). Permanece como aviso: estrutura sem conteúdo fica ociosa. | 🟢 pós-go-live | operação |
+| 3.4 | **RACI dos papéis** — reclassificado **pós-go-live** (`_decisoes.md`). O RBAC (arquitetura) está em `specs/admin/rbac.md`; o mapeamento papel→pessoa é operação. | 🟢 pós-go-live | operação |
+| 3.5 | **Custos operacionais** — nenhum modelo: PostHog (cloud por evento vs. self-host + ops), hospedagem do runtime (provedor a definir — D-18), Cloudflare (Workers/R2/Images se adotados), plano do Kommo com API/webhooks, custo por conversa do WhatsApp. *Acresce (D-17): connector/ELT de reporting (Funnel/Supermetrics/Windsor) é input da decisão build-vs-buy do Nível 2 do single pane — orçar na Fase 3.* Nada disso muda a arquitetura, mas muda o D-3 (cloud vs self-host) e o bolso. | 🟡 F1 | `_decisoes.md` (sub-decisões) |
 | 3.6 | **Páginas legais no lançamento** — LGPD (build) está diferida, ok; mas política de privacidade/termos como *páginas* tendem a ser esperadas num site institucional desde o dia 1 (e exigidas por plataformas de ads para aprovar campanhas — Meta costuma checar política de privacidade no domínio). Conteúdo é jurídico, não técnico. | 🟡 F0 | conteúdo jurídico + `system/arquitetura.md` |
-| 3.7 | **Métricas-alvo do site** — reclassificado **pós-go-live** (`decisoes.md`): primeiro trimestre = coleta de baseline, decisão consciente. | 🟢 pós-go-live | operação |
-| 3.8 | ~~Critério de "revisitar o hosting"~~ — **RESOLVIDO (auditoria growth jun/2026):** gatilho concreto registrado na D-2 (`decisoes.md`): p95 de TTFB de LP > 600 ms por 7 dias · qualquer incidente de perda de eventos na ingestão · custo mensal fora do plano. | ✅ | fechado |
+| 3.7 | **Métricas-alvo do site** — reclassificado **pós-go-live** (`_decisoes.md`): primeiro trimestre = coleta de baseline, decisão consciente. | 🟢 pós-go-live | operação |
+| 3.8 | ~~Critério de "revisitar o hosting"~~ — **RESOLVIDO (auditoria growth jun/2026):** gatilho concreto registrado na D-2 (`_decisoes.md`): p95 de TTFB de LP > 600 ms por 7 dias · qualquer incidente de perda de eventos na ingestão · custo mensal fora do plano. | ✅ | fechado |
 
 ---
 
@@ -87,7 +87,7 @@ Fronteiras de runtime e propriedade (`system/arquitetura.md`) · contrato único
 
 ## 5. Revalidação pós-camada de marca — RESOLVIDA (decisão: greenfield)
 
-**Decisão do fundador:** o build é **greenfield**. O implementado em `artifacts/valeverde` é **protótipo/implementação de referência**, não base de migração. Consequências (registradas em `decisoes.md`, D-7):
+**Decisão do fundador:** o build é **greenfield**. O implementado em `artifacts/valeverde` é **protótipo/implementação de referência**, não base de migração. Consequências (registradas em `_decisoes.md`, D-7):
 
 | # | Achado original | Resolução |
 |---|---|---|
