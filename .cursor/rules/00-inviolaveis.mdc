@@ -7,6 +7,8 @@ alwaysApply: true
 
 A fonte única de conduta é `AGENTS.md` na raiz — **leia-o antes de qualquer código**, junto com `docs/brand/*` → `00` → `01` → `02` → `03` → a spec da tarefa → o work-order em `docs/tasks/`. Em conflito, `AGENTS.md` vence. Decisões fechadas (D-1..D-18) e invariantes não se rediscutem.
 
+**Contexto canônico completo (verbatim):** as invariantes **INV-01..INV-10** e a doutrina VV-wide de engenharia estão em [`00-canon-vvf.mdc`](00-canon-vvf.mdc) (sempre ativo, **gerado** do vvcore por `sync-cursor-rules.sh` — não editar à mão). Este arquivo é o complemento **específico do VVLEADHUB**.
+
 **Memória do agente:** gotchas técnicos e convenções duráveis vivem em `.agents/memory/` — consulte o índice `.agents/memory/MEMORY.md` antes de trabalho técnico e registre ali um fato durável que descobrir (detalhe no README da pasta).
 
 ## Papel do Cursor Composer (D-16, emendada pela D-18) — builder primário
