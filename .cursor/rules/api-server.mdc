@@ -8,7 +8,7 @@ globs: api-server/**
 O **Cursor Composer** constrói o `api-server/` (e o resto do app — D-16/D-18). O **Claude Code** é **auxiliar**: toca aqui em auxílio (debug, correção pontual, auditoria) ou build escopado quando delegado, conhecendo as fronteiras abaixo. Toda edição por branch + PR.
 
 ## Fronteiras (travadas no CI)
-- Camadas (09 §1.1): `routes` (HTTP fino, valida com Zod, chama service) → `services` (lógica pura/testável, sem HTTP) → `repositories` (único lugar que toca o schema `app` via Drizzle) / `integrations` (1 pasta por sistema externo). `routes` nunca importa `repositories`/`integrations` direto.
+- Camadas (`docs/specs/engenharia/monorepo.md`): `routes` (HTTP fino, valida com Zod, chama service) → `services` (lógica pura/testável, sem HTTP) → `repositories` (único lugar que toca o schema `app` via Drizzle) / `integrations` (1 pasta por sistema externo). `routes` nunca importa `repositories`/`integrations` direto.
 - **Banco (D-9):** só o schema `app`; **nunca** o `payload`. Migração só por Drizzle.
-- Schema de evento (05 §4) e contrato de lead (04 §7) vêm de `packages/contracts` — mudança lá é gated por CODEOWNERS.
+- Schema de evento (`docs/specs/eventos/schema-evento.md`) e contrato de lead (`docs/specs/landing-pages/contrato-lead.md`) vêm de `packages/contracts` — mudança lá é gated por CODEOWNERS.
 - `/collect` é público com rate-limit + validação de schema + WAF (D-12). Fila/idempotência/retry/dead-letter via pg-boss sobre o Postgres (`api-server/src/jobs/`).
