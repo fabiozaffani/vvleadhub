@@ -5,9 +5,9 @@ globs: packages/contracts/**
 
 # packages/contracts — a única ponte entre runtimes
 
-Este pacote é a **única** fonte de tipos compartilhados entre `site`, `admin` e `api-server` (09 §1/§2). É o ponto de encontro entre o builder (Cursor Composer) e o auxiliar (Claude Code) — e o que mais exige cuidado.
+Este pacote é a **única** fonte de tipos compartilhados entre `site`, `admin` e `api-server` (`docs/specs/engenharia/monorepo.md` + `docs/specs/engenharia/fronteiras.md`). É o ponto de encontro entre o builder (Cursor Composer) e o auxiliar (Claude Code) — e o que mais exige cuidado.
 
 - **Alteração aqui exige aval do fundador (CODEOWNERS).** Mudar um contrato afeta os três runtimes — não é mudança local. Se sua tarefa precisa de um campo novo, pare e proponha ao fundador antes.
-- `events.ts` = schema canônico de evento (05 §4) · `lead.ts` = contrato de lead → Kommo (04 §7) · `generated/` = tipos do OpenAPI (api-server) e do `payload generate:types` — **nunca editados à mão**.
+- `events.ts` = schema canônico de evento (`docs/specs/eventos/schema-evento.md`) · `lead.ts` = contrato de lead → Kommo (`docs/specs/landing-pages/contrato-lead.md`) · `generated/` = tipos do OpenAPI (api-server) e do `payload generate:types` — **nunca editados à mão**.
 - Validação de borda com Zod; os schemas daqui são a verdade, runtimes derivam (`z.infer`), não recopiam.
 - CI falha se o gerado divergir do commitado (drift-check do OpenAPI e dos tipos do Payload).

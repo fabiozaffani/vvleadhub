@@ -1,13 +1,13 @@
 /**
- * Travas de fronteira (09 §2) — não são convenção, são CI.
- * Violação = build falha. Regras derivadas das decisões D-9 e da arquitetura 03 §2.
+ * Travas de fronteira (docs/specs/engenharia/fronteiras.md) — não são convenção, são CI.
+ * Violação = build falha. Regras derivadas das decisões D-9 e da arquitetura docs/system/arquitetura.md.
  */
 module.exports = {
   forbidden: [
     {
       name: "site-nao-importa-runtime",
       comment:
-        "site só pode importar de packages/* — nunca de admin ou api-server (03 §2, 09 §2).",
+        "site só pode importar de packages/* — nunca de admin ou api-server (docs/system/arquitetura.md, docs/specs/engenharia/fronteiras.md).",
       severity: "error",
       from: { path: "^site/" },
       to: { path: "^(admin|api-server)/" },
@@ -39,7 +39,7 @@ module.exports = {
     {
       name: "api-server-camadas-routes",
       comment:
-        "09 §1.1: routes nunca importa repositories/integrations direto — sempre via services.",
+        "docs/specs/engenharia/monorepo.md: routes nunca importa repositories/integrations direto — sempre via services.",
       severity: "error",
       from: { path: "^api-server/src/routes/" },
       to: { path: "^api-server/src/(repositories|integrations)/" },
@@ -47,7 +47,7 @@ module.exports = {
     {
       name: "services-sem-http",
       comment:
-        "09 §1.1: services são lógica pura/testável — não conhecem Express/HTTP.",
+        "docs/specs/engenharia/monorepo.md: services são lógica pura/testável — não conhecem Express/HTTP.",
       severity: "error",
       from: { path: "^api-server/src/services/" },
       to: { path: "node_modules/express" },

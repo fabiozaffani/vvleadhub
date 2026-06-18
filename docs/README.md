@@ -1,15 +1,19 @@
 # docs/ — onde o conhecimento mora
 
-Os MD da raiz ([`../AGENTS.md`](../AGENTS.md), [`../CLAUDE.md`](../CLAUDE.md)) são roteador + regras. O conteúdo vive aqui. Documento de controle (índice, glossário, log de decisões D-1..D-18): [`00-indice-regras.md`](00-indice-regras.md).
+Os MD da raiz do repo ([`../AGENTS.md`](../AGENTS.md), [`../CLAUDE.md`](../CLAUDE.md)) são roteador + regras. O conteúdo vive aqui, na **taxonomia canônica VV** (ARQUITETURA-IA §5). Comece por [`_index.md`](_index.md) (índice load-first).
 
-**Convenção deste repo (exceção documentada à taxonomia canônica):** as camadas **specs** e **system** vivem como **docs numerados `01`–`09` + `99`** na raiz de `docs/` (legado consolidado), não em `specs/`/`system/`. A ordem de precedência é marca > `01` > `02` > `03` > demais (`00` §5).
+**Pipeline:** `discovery → business → specs → system → tasks-drafts → tasks`; `roadmap/` costura em paralelo. Espinha na raiz: [`_index.md`](_index.md) · [`_lexico.md`](_lexico.md) · [`decisoes.md`](decisoes.md).
 
-| Pasta / arquivo | Papel no pipeline VV |
+| Pasta / arquivo | Papel |
 |---|---|
-| `brand/` | Camada de marca (System Context + Design Guidelines). Exceção registrada em `00` §1. |
-| `business/` · `system/` | Business/System Docs (padrão vvdomain) — hoje placeholders; serão preenchidos retroativamente. |
-| `01`–`09`, `99` | Specs + arquitetura de sistema + engenharia (a camada técnica de fato). |
-| `conteudo/` | Inventário de conteúdo (insumo). |
-| `tasks/` · `tasks-drafts/` | Work-orders ativas / sugeridas. |
+| [`_index.md`](_index.md) | índice load-first (módulos + espinha + ordem de leitura) |
+| [`_lexico.md`](_lexico.md) | termos canônicos (um por conceito; ponteiro ao doc dono) |
+| [`decisoes.md`](decisoes.md) | ledger ADR (D-1..D-18 + diferidos) |
+| [`business/`](business/) | verdade do negócio, tech-neutral (domínio `comercial/`) |
+| [`specs/`](specs/) | ingredientes técnicos granulares, por domínio |
+| [`system/`](system/) | a coesão: agrega as specs de cada domínio no todo integrado |
+| [`roadmap/`](roadmap/) | fases do build, planta de páginas, inventário de conteúdo |
+| [`tasks/`](tasks/) · [`tasks-drafts/`](tasks-drafts/) | work-orders ativas / sugeridas |
+| [`discovery/`](discovery/) | validação pré-spec (auditoria pré-build histórica) |
 
-**Pendente (gap conhecido):** `discovery/`, `specs/`, `roadmap/` como pastas — o roadmap hoje vive embutido em `03-arquitetura-sistema.md` §7. Rastreado para criação na padronização da taxonomia.
+> **Marca e doutrina VV-wide não vivem aqui:** `CONTEXTO-IA` (negócio/marca) e `ARQUITETURA-IA` (engenharia) são canônicos no **vvcore** e entram por `@import` no [`../CLAUDE.md`](../CLAUDE.md). Referencie como `CONTEXTO-IA §x`.

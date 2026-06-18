@@ -70,7 +70,7 @@ jobs:
             echo "has_routes=true" >> "$GITHUB_OUTPUT"
           else
             echo "has_routes=false" >> "$GITHUB_OUTPUT"
-            echo "site ainda sem rotas (Fase 0a). Gate de CWV/axe ativa na Fase 0b — ver docs/tasks/fase-0.md."
+            echo "site ainda sem rotas (Fase 0a). Gate de CWV/axe ativa na Fase 0b — ver docs/roadmap/fases.md."
           fi
       - uses: pnpm/action-setup@v6
         if: steps.routes.outputs.has_routes == 'true'

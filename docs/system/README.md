@@ -1,5 +1,6 @@
-# system/ — vazio (padrão VV)
+# system/ — a coesão (domínios integrados)
 
-System Docs do vvleadhub (modelo de dados, status registry, contratos de API/integração) derivados dos Business Docs, no formato do vvdomain.
+Cada `system/<domínio>.md` **agrega as specs** daquele domínio ([`../specs/`](../specs/)) e descreve o todo integrado: o que é, como as peças compõem, fronteiras com outros domínios. Não recopia o detalhe — linka. É a partir do system que se desmembram os work-orders ([`../tasks/`](../tasks/)).
 
-**Vazio por enquanto** — as specs técnicas do vvleadhub já vivem nas numeradas (`docs/01`..`09`); este módulo entra se/quando consolidarmos no padrão Business/System Doc.
+- `arquitetura.md` — **transversal**: a topologia que conecta os runtimes (site · admin · api-server · PostHog · Kommo · Cloudflare), modelo de dados + isolamento D-9, segurança, SEO/perf.
+- Por domínio: `plataforma` · `landing-pages` · `eventos` · `admin` · `blog` · `experimentacao` · `engenharia` · `design-system`.

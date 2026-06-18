@@ -1,7 +1,7 @@
 <!-- AGENTS.md: PR pequeno e temático; conventional commits; bug corrigido = teste junto. -->
 
 ## O quê / Por quê
-<!-- 1–3 linhas. Qual work-order (docs/tasks/) e qual critério de aceite (03 §7.1) este PR atende? -->
+<!-- 1–3 linhas. Qual work-order (docs/tasks/) e qual critério de aceite (docs/roadmap/fases.md §7.1) este PR atende? -->
 
 ## Autor (D-16, emendada pela D-18)
 - [ ] Cursor Composer (builder primário)

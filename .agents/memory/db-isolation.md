@@ -1,6 +1,9 @@
 ---
-name: D-9 schema isolation — connect with the isolated role, never a superuser
-description: Each runtime must use its own DATABASE_URL_{APP,PAYLOAD} role; connecting as a superuser defeats D-9 even with roles.sql correct
+name: d-9-schema-isolation-connect-with-the-isolated-role-never-a-superuser
+description: "Each runtime must use its own DATABASE_URL_{APP,PAYLOAD} role; connecting as a superuser defeats D-9 even with roles.sql correct"
+metadata: 
+  node_type: memory
+  originSessionId: 3f276925-1a40-42cb-b9c6-ce008e34a905
 ---
 
 D-9 (one Postgres, two schemas `payload`/`app`, one owner-role each) is only real at
@@ -21,4 +24,4 @@ read `DATABASE_URL` (a superuser) instead of `DATABASE_URL_PAYLOAD` — fixed un
 **How to apply:** never wire a runtime to a generic/admin `DATABASE_URL`; use the exact
 isolated names from `.env.example`. When standing up a managed Postgres (Fase 0b), confirm
 `CREATE ROLE`/`REVOKE`/`ALTER SCHEMA OWNER` are permitted (some restrict them — e.g. Neon);
-if not, stop and escalate (fallback options in `docs/tasks/fase-0.md` WO-06).
+if not, stop and escalate (fallback options in `docs/tasks/WO-INFRA-001.md`).

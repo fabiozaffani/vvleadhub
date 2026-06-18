@@ -11,7 +11,7 @@
       "settings": { "preset": "desktop" }
     },
     "assert": {
-      "comment": "Orçamento de CWV (03 §4). LCP < 2,5s (alvo 1,8s), CLS < 0,1, TBT proxy de INP. Estourou = PR bloqueado.",
+      "comment": "Orçamento de CWV (docs/system/arquitetura.md (CWV)). LCP < 2,5s (alvo 1,8s), CLS < 0,1, TBT proxy de INP. Estourou = PR bloqueado.",
       "assertions": {
         "largest-contentful-paint": ["error", { "maxNumericValue": 2500 }],
         "cumulative-layout-shift": ["error", { "maxNumericValue": 0.1 }],

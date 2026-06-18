@@ -1,3 +1,7 @@
-# specs/ — meta-folder
+# specs/ — ingredientes técnicos (por domínio)
 
-Detalhes técnicos derivados do business. **Exceção documentada (ARQUITETURA-IA §5.3):** hoje as specs e a arquitetura deste app vivem como **docs numerados `01`–`09` + `99`** na raiz de [`../`](../) (legado consolidado — ver [`../00-indice-regras.md`](../00-indice-regras.md)). Esta pasta é o **destino canônico**; migrar as numeradas para cá é item de roadmap.
+Os **detalhes técnicos granulares** derivados do business, organizados **por domínio**. Vários specs por domínio (ex.: `eventos/` tem schema-evento, collector, destinos, loop-fechado, ctwa…). A **coesão** de cada domínio vive em [`../system/`](../system/) (que agrega estas specs); a execução vira work-order em [`../tasks/`](../tasks/).
+
+Domínios: `plataforma/` · `landing-pages/` · `eventos/` · `admin/` · `blog/` · `experimentacao/` · `engenharia/` · `design-system/`.
+
+> Cada arquivo declara, na 2ª linha, `Camada · Domínio · Origem · Tom`. O campo **Origem** registra o doc legado de onde o conteúdo veio (rastreabilidade), não um link vivo.
