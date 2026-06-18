@@ -160,7 +160,7 @@ Caminho default: **Essential → Inspiração**. Autoral é exceção.
 
 Specs para produção e avaliação de materiais.
 
-**Tipografia:** Título e subtítulo em Playfair Display (serifada); fonte de apoio/detalhes Sloop Script Pro; corpo de texto sempre em Arial. Hierarquia em 3 níveis. Caixa alta para categorias principais (não sempre). Itálico para descrições e nomes de espaços — nunca para informações funcionais.
+**Tipografia:** Títulos e subtítulos em **Playfair Display** (serifada); corpo de texto em **Work Sans** (sans-serif). Hierarquia em 3 níveis. Caixa alta para categorias principais (não sempre). Itálico para descrições e nomes de espaços — nunca para informações funcionais. *(Decisão registrada no app VVLEADHUB, jun/2026 — `docs/specs/design-system/tipografia.md`: o digital adota Work Sans no corpo; a Sloop Script Pro do material impresso original fica **fora de uso** no digital. Não se reverte invocando o material legado.)*
 
 **Cores:** verde principal `#143C37`; gradiente verde `#143C37` → `#031916`; dourado claro `#C69F3F`; dourado escuro `#7D5900`; gradiente dourado `#E1B448` → `#644700`; fundo claro `#FFFBF7`; branco `#FFFFFF`; cinza de texto `#323333`. Paleta restrita: creme/off-white dominante, verde e dourado/champanhe como destaque. Preto só em contexto de elegância/balada.
 
