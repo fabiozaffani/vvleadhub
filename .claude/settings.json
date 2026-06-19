@@ -1,5 +1,18 @@
 {
   "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "shell": "bash",
+            "command": "D=$(git rev-parse --show-toplevel 2>/dev/null); H=\"${D%/*}/vvcore/bin/hook-canon-warn.sh\"; [ -n \"$D\" ] && [ -f \"$H\" ] && bash \"$H\" || true",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
     "SessionStart": [
       {
         "matcher": "startup|resume|clear",
