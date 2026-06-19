@@ -1,5 +1,7 @@
 # Léxico — vvleadhub
 
+> ⚠️ **Edições só via `/doc-lexicon-keeper`** (ARQUITETURA-IA §6.1) — essa skill decide o termo; renomes espalhados propagam via `/doc-reconciler`. **Não editar à mão.** Doc de discovery **não** alimenta o léxico até ser validado (§6.4).
+>
 > Índice de termos canônicos do repo. Um termo por conceito. As definições moram no
 > doc dono (system/specs/business); aqui só ponteiro. Termos de marca/negócio são
 > canônicos no [`CONTEXTO-IA.md`](../CLAUDE.md) (vvcore, entregue por `@import` no
