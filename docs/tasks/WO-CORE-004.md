@@ -1,6 +1,6 @@
 ---
 id: WO-CORE-004
-status: pending
+status: done
 traces: [.agents/context/ARQUITETURA-IA.md]
 deps: []
 skills: [sync-governanca]
