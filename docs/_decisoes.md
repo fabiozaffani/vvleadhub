@@ -2,6 +2,8 @@
 
 **Camada:** system · **Domínio:** governança · **Origem:** 00 §7 · **Tom:** trabalho
 
+> ⚠️ Decisões fechadas não se rediscutem — só se emendam, via `/sync-governanca` (ARQUITETURA-IA §6.3).
+
 Ledger de decisões do repo (estilo ADR). O que está **fechado não se rediscute** — implementa-se; dúvida real -> pergunte ao fundador.
 
 > Numeração `D-N` preservada exata — é referenciada em todo o repo. Glossário/termos canônicos em [`_lexico.md`](_lexico.md). Invariantes (INV-xx), escada de produto, gates e métricas (M-xx) são canon de marca/negócio em CONTEXTO-IA (vvcore, via @import).
