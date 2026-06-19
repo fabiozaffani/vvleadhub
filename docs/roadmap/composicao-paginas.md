@@ -47,7 +47,7 @@ Ordem (mobile-first, de cima para baixo). Mapeamento → Bloco de [`../specs/lan
 
 ## 4. Página de espaço / LP — **a construir (não existe no protótipo)**
 Mesmo look-and-feel. Molde "Conversão" ([`../specs/plataforma/primitivas.md`](../specs/plataforma/primitivas.md)) + Assunto tipo `espaço`. Ordem sugerida (curar):
-Hero do espaço (galeria + vídeo-tour) → **Experiência Integrada** (INV-03) → Galeria → **Diferenciais** ("sem surpresas", INV-04) → Depoimentos → **FAQ** (emite `FAQPage`) → **Form/CTA WhatsApp**. Sem preço. Structured data **`EventVenue`** (skill `seo-schema-org`). Indexável ([`../specs/landing-pages/seo-canonico.md`](../specs/landing-pages/seo-canonico.md)).
+Hero do espaço (galeria + vídeo-tour) → **Experiência Integrada** (INV-03) → Galeria → **Diferenciais** ("sem surpresas", INV-04) → Depoimentos → **FAQ** (emite `FAQPage`) → **Form/CTA WhatsApp**. Sem preço. Structured data **`EventVenue`** (skill `app-seo-schema-org`). Indexável ([`../specs/landing-pages/seo-canonico.md`](../specs/landing-pages/seo-canonico.md)).
 
 ---
 

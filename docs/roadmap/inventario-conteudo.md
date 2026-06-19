@@ -11,7 +11,7 @@
 
 **Política de placeholders (decisão do fundador, 12/06/2026 — conteúdo final não bloqueia o build):**
 - **Build/dev/preview:** placeholders liberados (imagem/vídeo gerados ou provisórios), **sempre marcados** — sufixo `-placeholder` no arquivo e no `alt` — para serem encontráveis por grep na hora da troca.
-- **Produção/indexável: proibido.** O CONTEXTO-IA §5 (só imagens próprias) vale para o que o público vê. A troca placeholder→asset final é pré-condição do **veredicto de fase** (`/checklist-fase`), não do build diário — o critério da Fase 0 ("5 espaços com galeria real") gate o *sign-off*, não o início.
+- **Produção/indexável: proibido.** O CONTEXTO-IA §5 (só imagens próprias) vale para o que o público vê. A troca placeholder→asset final é pré-condição do **veredicto de fase** (`/app-checklist-fase`), não do build diário — o critério da Fase 0 ("5 espaços com galeria real") gate o *sign-off*, não o início.
 - **Copy não é placeholder:** a IA escreve copy real desde o primeiro dia; o que ela não inventa são os fatos (§5 abaixo) — campo factual ausente fica vazio/marcado, nunca preenchido com dado fictício.
 - **Prioridade de entrega ao marketing:** 1 espaço completo primeiro (galeria + foto de hero em alta) — destrava a validação de direção de arte no preview com asset real; os demais encaixam depois sem retrabalho (seed é dado, troca não gera rebuild — D-10).
 
