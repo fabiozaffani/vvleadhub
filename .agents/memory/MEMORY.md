@@ -5,3 +5,4 @@
 - [Next+Payload build needs --webpack](next-payload-build.md) — Turbopack hangs on the Payload admin build; admin build script must be `next build --webpack`.
 - [payload run quebra no Node 24](payload-run-node24-tsx.md) — `payload run` quebra no Node 24 (tsx trata `node:` como arquivo); usar `node --import tsx/esm` + `--env-file`.
 - [Auto-merge não arma sozinho](pr-auto-merge-armar.md) — abrir todo PR já com `gh pr merge <n> --auto --squash --delete-branch`; branch protection exige armar explícito.
+- [Hook-wo-fence trava governança](wo-fence-edicao-governanca.md) — promover WO via Bash (`docs/tasks/` é deny ao Edit); editar superfície de governança exige WO promovido cobrindo a cerca.
