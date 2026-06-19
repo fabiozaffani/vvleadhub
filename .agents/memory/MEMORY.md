@@ -6,3 +6,4 @@
 - [payload run quebra no Node 24](payload-run-node24-tsx.md) — `payload run` quebra no Node 24 (tsx trata `node:` como arquivo); usar `node --import tsx/esm` + `--env-file`.
 - [Auto-merge não arma sozinho](pr-auto-merge-armar.md) — abrir todo PR já com `gh pr merge <n> --auto --squash --delete-branch`; branch protection exige armar explícito.
 - [Hook-wo-fence trava governança](wo-fence-edicao-governanca.md) — promover WO via Bash (`docs/tasks/` é deny ao Edit); editar superfície de governança exige WO promovido cobrindo a cerca.
+- [Commitlint: #N no corpo estoura footer](commitlint-hash-no-corpo.md) — `#N` no corpo do commit vira issue-ref → `footer-max-line-length`; use hash ou "PR N" e corpo em linhas curtas.
