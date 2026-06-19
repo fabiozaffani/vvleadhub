@@ -7,8 +7,33 @@
           {
             "type": "command",
             "shell": "bash",
-            "command": "D=$(git rev-parse --show-toplevel 2>/dev/null); H=\"${D%/*}/vvcore/bin/hook-canon-warn.sh\"; [ -n \"$D\" ] && [ -f \"$H\" ] && bash \"$H\" || true",
+            "command": "D=$(git rev-parse --show-toplevel 2>/dev/null); H=\"${D%/*}/vvcore/bin/hook-wo-fence.sh\"; [ -n \"$D\" ] && [ -f \"$H\" ] && bash \"$H\" || true",
             "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "shell": "bash",
+            "command": "D=$(git rev-parse --show-toplevel 2>/dev/null); H=\"${D%/*}/vvcore/bin/hook-secret-scan.sh\"; [ -n \"$D\" ] && [ -f \"$H\" ] && bash \"$H\" || true",
+            "timeout": 15
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "shell": "bash",
+            "command": "D=$(git rev-parse --show-toplevel 2>/dev/null); H=\"${D%/*}/vvcore/bin/hook-prompt-governance.sh\"; [ -n \"$D\" ] && [ -f \"$H\" ] && bash \"$H\" || true",
+            "timeout": 5
           }
         ]
       }
