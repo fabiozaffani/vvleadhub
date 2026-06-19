@@ -29,7 +29,7 @@ Assim qualquer agente novo **se auto-denuncia** em vez de rodar cego — validam
 ## Antes de qualquer código
 
 1. Leia, nesta ordem: o canon de marca (`CONTEXTO-IA`, vvcore, via `@import`) → [`docs/_index.md`](docs/_index.md) → [`docs/_lexico.md`](docs/_lexico.md) → [`docs/_decisoes.md`](docs/_decisoes.md) → [`docs/business/comercial/_dominio.md`](docs/business/comercial/_dominio.md) → [`docs/specs/plataforma/`](docs/specs/plataforma/) → [`docs/system/arquitetura.md`](docs/system/arquitetura.md) → a spec do domínio da tarefa em `docs/specs/<domínio>/` → o work-order em `docs/tasks/`.
-2. O controle do repo vive na espinha de `docs/`: [`_index.md`](docs/_index.md) (índice/ordem), [`_lexico.md`](docs/_lexico.md) (glossário canônico) e [`_decisoes.md`](docs/_decisoes.md) (log de decisões D-1..D-18 + diferidos). **Decisões fechadas não se rediscutem** — implementam-se. Se uma decisão parecer errada na prática, pare e pergunte ao fundador; não contorne em silêncio.
+2. O controle do repo vive na espinha de `docs/`: [`_index.md`](docs/_index.md) (índice/ordem), [`_lexico.md`](docs/_lexico.md) (glossário canônico) e [`_decisoes.md`](docs/_decisoes.md) (log de decisões D-1..D-19 + diferidos). **Decisões fechadas não se rediscutem** — implementam-se. Se uma decisão parecer errada na prática, pare e pergunte ao fundador; não contorne em silêncio.
 3. Em conflito entre docs: a camada de marca (CONTEXTO-IA) vence em marca/estratégia; no resto, vence o **dono único** do conceito (business → specs → system; ver [`docs/_index.md`](docs/_index.md)).
 4. Leia o work-order da sua tarefa em `docs/tasks/` antes de escrever qualquer linha. Não existe "construa a Fase N" — existe um work-order por tarefa, com escopo, arquivos permitidos e critérios de aceite.
 
@@ -75,10 +75,11 @@ A doutrina multi-agente e o fluxo git/PR são **VV-wide** (ARQUITETURA-IA §4 ·
 Skills locais deste app a criar **quando a fase abrir a lacuna** (nascem em `.agents/skills/`):
 - **`eventos-tracking`** (Fase 1) — schema canônico de eventos ([`specs/eventos/schema-evento.md`](docs/specs/eventos/schema-evento.md)) incluindo `click_ids` (D-14, sem retrofit), catálogo completo, split de ingestão D-15 (analytics via proxy CF × `/collect`), caminho CTWA ([`specs/eventos/ctwa.md`](docs/specs/eventos/ctwa.md)), "novo destino = adapter puro + testes", `test:true`/sandbox ([`specs/eventos/teste-realtime-saude.md`](docs/specs/eventos/teste-realtime-saude.md)).
 - **`nova-lp`** (Fase 2) — procedimento de LP por campanha: Molde + Assunto + Objetivo, capacidades dos Blocos ([`specs/plataforma/resolucao-conteudo.md`](docs/specs/plataforma/resolucao-conteudo.md)), eventos com `correlation_id` + `click_ids`, regra de canônico ([`specs/landing-pages/seo-canonico.md`](docs/specs/landing-pages/seo-canonico.md) — um Assunto = uma página indexada; LP extra = `noindex`/canonical), checklist (sem preço, opt-in mínimo, consent pass-through).
+- **`intel-competitiva`** (Fase 3, L3 do Tracker Hub — D-19) — coleta de anúncios/orgânico de concorrentes via Apify pago + YouTube Data API no `api-server`, indexação no banco (schema do dono, D-9) e render como **L3** no Tracker Hub. Precedida pela **`discovery-radar`** (v0, já em [`.agents/skills/`](.agents/skills/)): coleta assistida + síntese de findings em [`docs/discovery/radar/`](docs/discovery/radar/), com handoff de ideias ao `doc-discovery-mapper`. Não-objetivos: Pinterest pago, TikTok per-concorrente.
 
 ## Quando perguntar ao fundador (aval obrigatório)
 
-- Qualquer mudança em decisão fechada (D-1..D-18) ou em invariante.
+- Qualquer mudança em decisão fechada (D-1..D-19) ou em invariante.
 - Trade-off não coberto pelos docs (registre a pergunta + recomendação; não decida sozinho).
 - Promoção de preview → produção (loop de validação humana).
 - Qualquer alteração em `packages/contracts` ou `docs/` (gated por CODEOWNERS).
