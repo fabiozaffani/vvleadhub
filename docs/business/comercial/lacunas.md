@@ -8,7 +8,7 @@
 
 ## §1 — A mapear (escopo de Business Docs formais)
 
-Os seguintes recortes do domínio comercial seguem **não mapeados** — são escopo de Business Docs formais (skill `business-mapper`) e do Domain Map (skill `domain-architect`), quando rodados:
+Os seguintes recortes do domínio comercial seguem **não mapeados** — são escopo de Business Docs formais (skill `doc-business-mapper`) e do Domain Map (skill `doc-domain-architect`), quando rodados:
 
 - **Ciclo de vida das entidades** — estados e transições de `Tipo de Evento`, `Espaço`, `Pacote`, `Serviço` e `Hospedagem` ao longo do tempo (do registro à oferta ativa à descontinuação).
 - **Regras de negócio numeradas** — as regras que regem composição de pacote, elegibilidade de adicionais, condições de hospedagem etc. ainda não estão enumeradas de forma rastreável.
