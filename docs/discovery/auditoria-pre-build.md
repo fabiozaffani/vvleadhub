@@ -124,7 +124,7 @@ Segunda varredura adversarial (papel: especialista em lead gen/growth), com aval
 | R2 — `/collect` como proxy de tudo no Express/api-server (2.2.7) | **D-15** — split de ingestão via proxy CF |
 | R3 — speed-to-lead sem requisito (2.3.6) | `specs/landing-pages/conversao-cta.md`: ≤ 5 min + salesbot fora de horário |
 | Nit — canibalização LP × página institucional | `specs/landing-pages/seo-canonico.md`: um Assunto = uma página indexada (canônica) |
-| Nit — `EventVenue` não é subtipo de LocalBusiness | skill `seo-schema-org`: multi-type `["EventVenue","LocalBusiness"]` |
+| Nit — `EventVenue` não é subtipo de LocalBusiness | skill `app-seo-schema-org`: multi-type `["EventVenue","LocalBusiness"]` |
 | Nit — falta o formato âncora do nicho no blog | `specs/blog/clusters.md`: cluster "casamentos reais" (com termo de imagem) |
 | Nit — portais sem webhook sem mecânica de ingestão | `specs/landing-pages/contrato-lead.md` + `specs/eventos/loop-fechado.md`: parse de e-mail ou manual etiquetado (decidir na F3) |
 | Nit — gatilho de hosting vago (3.8) | D-2 emendada com gatilho concreto |

@@ -15,7 +15,7 @@ Não RFC 7807; consumidores são first-party.
 ```
 
 - `code` = enum estável em `packages/contracts` (o cliente ramifica por `code`, não pelo status): `VALIDATION_FAILED`(422) · `UNAUTHORIZED`(401) · `FORBIDDEN`(403) · `NOT_FOUND`(404) · `CONFLICT`(409 — ex.: dedup D-11) · `RATE_LIMITED`(429) · `INTERNAL`(500). Status HTTP sempre correto.
-- `message` é **dev-facing** (log/Sentry); a copy do usuário é do site (skill `copy-marca`), que traduz `code`→texto. A API nunca emite copy de marca.
+- `message` é **dev-facing** (log/Sentry); a copy do usuário é do site (skill `app-copy-marca`), que traduz `code`→texto. A API nunca emite copy de marca.
 - `request_id` ecoa o id de correlação (ver [`observabilidade.md`](observabilidade.md)) → rastreio no Sentry/pino.
 - `details` carrega os erros de campo do Zod quando `VALIDATION_FAILED`.
 
