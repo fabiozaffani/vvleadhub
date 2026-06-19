@@ -315,7 +315,7 @@ Conhecimento durável e específico do repo vive em **`.agents/memory/`** (tool-
 **Princípio (todo repo):** o **fundador controla o push**. Faça os commits pedidos, termine a mensagem com o trailer `Co-Authored-By: Claude …`, e **não pushe sem pedir** — ele decide quando publicar. Ação outward (abrir issue/PR, push) = mostrar antes, criar após o ok.
 
 **Repo tipo `app`** (VVLEADHUB; VVDOMAIN quando virar app):
-- **Multi-agente:** **Cursor Composer = builder primário** (o fundador desenvolve na IDE); **Claude Code = auxiliar** — `/code-review` em **todo** PR antes do merge, `/audit-quality`·`/checklist-fase` nos gates, `/security-review` quando couber, build escopado quando delegado.
+- **Multi-agente:** **Cursor Composer = builder primário** (o fundador desenvolve na IDE); **Claude Code = auxiliar** — `/code-review` em **todo** PR antes do merge, `/app-audit-quality`·`/app-checklist-fase` nos gates, `/security-review` quando couber, build escopado quando delegado.
 - **Fluxo:** código nasce local → **branch + PR → CI verde → merge**. **Branch protection** (checks obrigatórios); **nada na `main` sem PR**. **Auto-merge** para PR de código; **PR que toca CODEOWNERS** (contracts/`docs`/`AGENTS.md`/`CLAUDE.md`/`.cursor`/`.github`/infra) fica para o aval do fundador — armar `gh pr merge <n> --auto --squash --delete-branch` é seguro (só dispara quando todos os requisitos, incl. review obrigatória, fecham).
 
 **Repo tipo `docs/solo`** (VVDOMAIN hoje, VVROADMAP):
@@ -334,9 +334,10 @@ Reconcilia o "padrão universal" do fundador (mesma estrutura em todo repo VV) c
 - **`/docs`** com as **7 subpastas canônicas**: `discovery · business · specs · system · tasks-drafts · tasks · roadmap`. **Pipeline:** `discovery → business → specs → system → tasks-drafts → tasks`; `roadmap/` costura tudo em paralelo. Semântica de cada camada:
   - **`business/`** — a verdade do negócio, **agnóstica a implementação** (atores, domínios, ciclos de vida, regras). Insumo de tudo abaixo.
   - **`specs/`** — os **ingredientes técnicos granulares** derivados do business, organizados **por domínio**: a ponte negócio→digital. **Vários specs por domínio** (ex.: o domínio Usuários pode ter um spec de modelo de dados, outro de papéis, outro de auth).
-  - **`system/`** — a **coesão**: cada `system/<domínio>.md` **agrega as specs daquele domínio** no todo integrado (o System Doc do domínio — modelo de dados, status registry, contratos). Não recopia o detalhe das specs; linka.
+  - **`system/`** — a **coesão**: cada `system/<domínio>.md` **agrega as specs daquele domínio** no todo integrado (o System Doc do domínio — o que ele é, como as specs se compõem, fronteiras). O **detalhe** (modelo de dados, status registry, contratos) mora nas **specs**; o system **não recopia, linka**.
   - **`tasks/`** — os **work-orders desmembrados do system**: sempre **múltiplos e de escopo estreito** (um WO por tarefa, com escopo/arquivos/critério de aceite) para facilitar merge e validação humana. Um domínio nasce com dezenas de WOs (montagem inicial) e escala para centenas (ajustes) e milhares (novas features, correções) conforme evolui.
-  - **Nota de vocabulário:** "domínio" aparece em **duas camadas** — `business/<dom>/_dominio.md` (domínio de **negócio**) e `system/<dom>.md` (coesão **técnica** do mesmo domínio). Mesma palavra, camadas distintas.
+  - **Nota de vocabulário:** "domínio" aparece em **três camadas** — `business/<dom>/_dominio.md` (domínio de **negócio**), `specs/<dom>/` (os **ingredientes técnicos** granulares) e `system/<dom>.md` (a **coesão** técnica do mesmo domínio). Mesma palavra, camadas distintas.
+  - **O recorte técnico pode reorganizar o de negócio.** O conjunto de domínios em `specs/`/`system/` **não precisa ser 1:1** com os de `business/`: um domínio de negócio pode desdobrar-se em vários técnicos (no VVLEADHUB, o business `comercial` desdobra em `plataforma`/`eventos`/`landing-pages`/…), ou o inverso. O que amarra as camadas **não é o nome da pasta** e sim o campo **`Origem`** de cada spec (rastreia a regra/entidade de negócio que ela realiza). O `doc-specs-mapper` decide esse recorte com o usuário; o `doc-domain-architect` segue dono do ownership de entidade.
 - **Espinha transversal na raiz de `docs/`** (obrigatória em **todo** repo, prefixo `_` para ordenar no topo): **`_index.md`** (índice + ordem de leitura), **`_lexico.md`** (glossário canônico — um termo por conceito) e **`_decisoes.md`** (ledger de decisões estilo ADR). São transversais à doc inteira; existem mesmo que enxutos no início (exceção só documentada em §5.3).
 - **README em toda pasta** (explica o propósito, mesmo vazia). *Equivalência aceita:* um **arquivo-entry** que já cumpre o papel — `_dominio.md` (domínio de business), `SKILL.md` (skill), `<comando>.md` (command) — dispensa README; registre a equivalência no README do nível acima.
 - **O conhecimento mora em `/docs`.** Os MD da raiz são **roteador + livro de regras**, não onde o conhecimento mora.
@@ -359,12 +360,15 @@ Toda WO em `docs/tasks/` carrega frontmatter YAML:
 ```yaml
 ---
 id: WO-<AREA>-<NNN>
-status: pending | in_progress | done | cancelled
+status: draft | pending | in_progress | done | cancelled
 traces: [SYS-<DOM>-NNN]   # docs de system/spec que originam a WO (rastreabilidade)
+deps: [WO-<AREA>-NNN]     # WOs pré-requisito; [] = sem dependência (sempre explícito)
+skills: [<skill-dona>]    # skills da §6.1 que a execução exige; [] = nenhuma (inválido se toca artefato canônico)
 ---
 ```
-- Mapeamento do vocabulário do fundador: **PENDING=`pending`**, **DONE=`done`**, **CANCELLED=`cancelled`** (+ `in_progress` para o que está em curso).
-- `tasks-drafts/` = WO **sugerida** (pré-promoção). **Promover** = mover o arquivo para `tasks/` e setar `status: pending`.
+- Mapeamento do vocabulário do fundador: **DRAFT=`draft`** (pré-promoção), **PENDING=`pending`**, **DONE=`done`**, **CANCELLED=`cancelled`** (+ `in_progress` para o que está em curso).
+- `tasks-drafts/` = WO **sugerida** (`status: draft`). **Promover** = mover o arquivo para `tasks/` e setar `status: pending`.
+- **`deps` e `skills` são obrigatórios** (§6.5): `deps` = WOs pré-requisito; `skills` deriva da tabela §6.1 e `[]` é inválido se o allowlist toca artefato canônico. O gate (pre-commit/CI) barra promoção que viole isso.
 - **Relatório:** `vvcore/bin/tasks-report.sh [repo]` varre o frontmatter e conta por status — sem grep frágil, sem contar à mão.
 
 ### §5.5 — Repo novo = um comando
@@ -377,6 +381,47 @@ A estrutura/nomenclatura desta §5 é **obrigatória em todos os repos desde já
 - **vvcore** — carrega a **semântica/matriz transversal** que propaga para os demais, mas não tem o resto implementado. Doc retroativa futura: seu `business/` diria "propriedade transversal que serve todos os repos"; `specs/` = os scripts de `bin/` + os plugins; `system/` = a composição disso.
 
 **Estado-futuro (lacuna — não fazer agora):** quando o `docs/business/` do VVDOMAIN amadurecer, ele é **promovido ao vvcore** como o Business Doc único; todo repo passa a **consumir** esse business do core conforme necessário e segue com as demais pastas (`specs/system/tasks`) localmente. Nesse momento o **VVDOMAIN deixa de existir como repo de docs**, e o **VVERP** (implementação que hoje nasce dentro do VVDOMAIN) vira um **app irmão** de VVLEADHUB/VVROADMAP. Há urgência de implementação, então o débito se resolve depois — fica **registrado** aqui para não se perder.
+
+---
+
+## §6 — Roteamento de skills e ato canônico
+
+A §1–§5 define *o que* existe (core, memória, estrutura). Esta seção define *quem pode mutar o quê* — o elo que faltava e que deixou um agente, num repo novo, editar o `_lexico.md` a partir de um doc de discovery sem carregar skill nenhuma. Regra **VV-wide**: chega a todo repo pelo `@import` + o preâmbulo literal (§1).
+
+### §6.1 — Cada artefato canônico tem uma skill dona
+A skill dona é a **única** que muta o artefato — é ela que traz o `preflight-protocol` e os guardrails da camada. Quem opera **cita** a regra dona, não a reescreve (anti-drift).
+
+| Artefato / ato | Skill dona | Porta |
+|---|---|---|
+| Ideia nova · `docs/discovery/` | `doc-discovery-mapper` | veredito (validar/congelar/descartar) + registro |
+| Business Doc de um domínio | `doc-business-mapper` | preflight → mapear |
+| Revisão de Business Doc | `doc-process-reviewer` | preflight → revisar (não cria) |
+| Specs · `docs/specs/<dom>/` | `doc-specs-mapper` | preflight → derivar do business |
+| System Doc · `docs/system/<dom>.md` | `doc-system-mapper` | preflight → compor as specs |
+| Ownership cross-domain · `_domain-map.md` | `doc-domain-architect` | preflight → ≥2 Business Docs |
+| Léxico · `_lexico.md` | `doc-lexicon-keeper` | decide o termo; rename → `doc-reconciler` |
+| Roadmap · `docs/roadmap/` | `doc-roadmap-keeper` | posiciona/reflete |
+| Propagação cross-doc · refs órfãs | `doc-reconciler` | correção **decidida** → grep da árvore |
+| **Execução de implementação** (código, propagação, config, infra, mudança no vvcore) | **`work-order`** | draft → aprovar → promover → executar → validar → finalizar (§6.5) |
+| Superfície de governança (`AGENTS.md`/`CLAUDE.md`/`.cursor`/`_decisoes.md`/regra/termo) | `sync-governanca` | após editar → propõe changeset sincronizado |
+| Editar/melhorar uma skill | `skill-auditor` | após um ciclo; **nunca** mid-process |
+
+`_decisoes.md` (ADR) não tem skill exclusiva: **quem opera registra** a decisão; o `sync-governanca` propaga os ecos.
+
+### §6.2 — Regra dura
+Nenhuma mutação de artefato canônico sem **carregar a skill dona primeiro**. `"nenhuma skill"` só vale **fora** de `docs/` canônico (código de app, script em `bin/`). Tocar artefato canônico por fora da skill dona é falha de processo, não atalho.
+
+### §6.3 — Ordem por etapa
+- **Mapear um domínio:** `preflight-protocol → doc-business-mapper → doc-process-reviewer`.
+- **Cross-domain / ownership:** `doc-domain-architect` (≥2 Business Docs).
+- **Produzir sistema:** `doc-specs-mapper → doc-system-mapper` (specs primeiro; o system agrega, não recopia).
+- **Após editar:** `doc-reconciler` (refs órfãs na árvore de docs) e/ou `sync-governanca` (ecos na superfície de governança) — o "limpar o rastro" dos dois lados.
+
+### §6.4 — Discovery não alimenta artefato canônico
+Doc em `docs/discovery/` é **exploratório** — pode ser descartado. Ele **nunca** alimenta léxico, Domain Map, business, specs ou system **até** ser validado (`doc-discovery-mapper`) e promovido pelo pipeline. Tirar um termo de um discovery e gravá-lo no `_lexico.md` é exatamente o erro que esta regra proíbe: a ideia ainda pode morrer.
+
+### §6.5 — work-order é o dono do ato de implementação
+Toda execução de implementação **nasce como WO** em `docs/tasks-drafts/` (`status: draft`) com objetivo, dependências, restrições de design, passos, **cerca de arquivos** e critério de aceite. Dois campos são **obrigatórios** no frontmatter (§5.4): **`deps`** (WOs pré-requisito; `[]` = sem dependência, explícito) e **`skills`** (as skills da §6.1 que a tarefa exige; `[]` = "nenhuma", **inválido se o allowlist toca artefato canônico**). **Aprovar → promover** (`tasks/`, `status: pending`) é passo separado, do fundador. **Isenção:** rodar uma skill `doc-*` para produzir/editar doc **não** gera WO — o ato é da própria skill. O gate determinístico (pre-commit/CI) barra promoção que viole a regra do `skills`.
 
 ---
 

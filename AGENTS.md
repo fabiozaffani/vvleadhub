@@ -5,7 +5,7 @@
 
 A fundação obrigatória são **dois arquivos que vivem no vvcore** (fonte única, sem cópia):
 - **`CONTEXTO-IA.md`** — negócio, marca e as **invariantes INV-01..INV-10 (§2)** contra as quais toda recomendação é validada.
-- **`ARQUITETURA-IA.md`** — doutrina VV-wide de engenharia/tooling: core, memória, git/PR e **estrutura de repo (§1–§5)**.
+- **`ARQUITETURA-IA.md`** — doutrina VV-wide de engenharia/tooling: core, memória, git/PR, **estrutura de repo (§1–§5)** e **roteamento de skills / ato canônico (§6)**.
 
 Eles entram no contexto via **`@import` de `.agents/context/`** — uma junction por máquina para o vvcore, criada pelo `setup-links.sh` (`link_repo_context`), que **só o Claude Code expande**. **Não** use o caminho externo `../vvcore/...`: ele resolve fora da raiz do repo e o Claude o descarta **em silêncio** (sem aprovação manual). Não há cópia local — é decisão de fonte única.
 
@@ -14,6 +14,8 @@ Eles entram no contexto via **`@import` de `.agents/context/`** — uma junction
 - ✅ **Sim** → você é o Claude Code (ou recebeu o contexto de outra forma). Prossiga.
 - 🛑 **Não** → você está com instruções **PARCIAIS** e vai violar invariantes sem perceber. **PARE, não produza nada** e avise o usuário, literalmente:
   > "Sou um agente diferente do Claude Code e **não tenho o contexto canônico do VV** (CONTEXTO-IA + ARQUITETURA-IA) — entregue por um `@import` que só o Claude expande. Antes de eu continuar, configure a entrega desse contexto pra mim."
+
+**2ª trava — roteamento de skills (Arquitetura §6).** Antes de **editar qualquer artefato canônico** em `docs/` (espinha `_lexico`/`_decisoes`, business/specs/system, `_domain-map`) ou de **executar uma implementação**, carregue a **skill dona** primeiro — é ela que traz o `preflight-protocol` e os guardrails (tabela em `ARQUITETURA-IA §6.1`). Implementação **nasce como work-order** (rascunho em `docs/tasks-drafts/`, promovido após aval — §6.5). Tocar artefato canônico por fora da skill dona é falha de processo, não atalho.
 
 Assim qualquer agente novo **se auto-denuncia** em vez de rodar cego — validamos a entrega caso a caso, sem cópia.
 <!-- vvcore:preamble:end -->
