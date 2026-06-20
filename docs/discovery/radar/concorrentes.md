@@ -72,7 +72,6 @@ próximo ciclo, em **levas de 3–4** (rajada grande re-bate no rate-limit 529 d
 |---|---|---|---|---|
 | **Villa Brunholi** | **Jundiaí** (na cidade) | premium-partial | Serra (Toscana) | Enogastronômico italiano desde 1897, buffet próprio. Toscana autêntico na porta. |
 | **Castelo dos Vinhais** | Vinhedo (~25km) | **premium-full** | Serra (Toscana) | Castelo europeu 20.000m², **all-inclusive buffet próprio**. Modelo VVF **e** estética. |
-| **Villa Mantova** | Vinhedo/Louveira (~20min) | premium-partial | Acqua (jardim/villa) | Premiada 23–25, jardins. Núcleo do catchment. Buffet parceiro. |
 | **Espaço Lago Novo + Vabene** | **Itupeva** (~15–20km) | mid | Acqua (lago/campo) | Estética de lago/campo a poucos km — monitorar pela **proximidade**. |
 | **Chácara Paraíso** | **Jundiaí** (~10km) | mid | Acqua (rústico-moderno) | Mesmo município. |
 | **Terras de Clara** | Morungaba | premium-partial | Acqua **e** Florest | Lago + envidraçado + **hospedagem + spa** — espelha o produto Hospedagem do VVF. |
@@ -96,6 +95,26 @@ Capela de Cristal) · *Lago Esmeralda*, *Ville La Rochelle*, *Vila Tramonti*, *E
   La Forêt, Dieters.
 - **Hospedagem própria** (espelha o produto Hospedagem): La Forêt · **Terras de Clara** ·
   Fazenda Capoava · Fazenda Dona Carolina · Hotel Villa Rossa.
+
+### Perfis resolvidos — leva 1 (Ad Library + desk research, 20/jun/2026)
+
+Captura ao vivo na Meta Ad Library (Claude-in-Chrome, logado-fora) + desk research verificado com
+checagem adversarial de homônimo ([`_raw/perfis-novos-b1.json`](_raw/perfis-novos-b1.json)).
+`page_id` resolvido = pronto p/ monitorar o diff de anúncios nos próximos ciclos.
+
+| Venue | FB `page_id` | Instagram | Site | YouTube | Ativos (20/jun) |
+|---|---|---|---|---|---|
+| **Villa Brunholi** | `291037694269960` | @villabrunholi (~42K) | villabrunholi.com.br | — | **~8** |
+| **Castelo dos Vinhais** | `229457830409350` | @castelodosvinhais.oficial | castelodosvinhais.com.br | [canal](https://www.youtube.com/channel/UC14Qf9duo6vlKMV89IAmg3Q) | **~5** |
+| **Terras de Clara** | `1694855147465957` | @terrasdeclara (~40K) | terrasdeclara.com | @TerrasdeClara | **~1** |
+
+- **Villa Brunholi** — anunciante **maduro**: criativos de **19/jan, 13/fev, 27/fev/2026 ainda no ar** (vencedores 4–5 meses) + testes mai–jun. **Porém o copy é quase todo do RESTAURANTE** (almoço executivo, "Festival de Inverno" reusado 3×, cannoli/gastronomia, caipirinha) — **não casamento**. Como concorrente de casamento, o @villabrunholi é ruído; o sinal está no **Espaço Brunholi** (abaixo). Casa da família Brunholi (desde 1889; vinho 1897), buffet próprio.
+- **Castelo dos Vinhais** — rajada **toda nova** (5 ads, 16–19/jun, 21–23h cada): rotaciona rápido ou começou um push. Multi-vertical: **casamento** ("Felizes para Sempre" — "o início da sua nova história… alguns sonhos não foram feitos para esperar"), **debutante** ("Projeto Encantado" + corporativo), **eventos próprios** (Baile de Máscaras 6ª ed., Café Colonial de Namorados). Dono = **Grupo Imagem Eventos** (fundadora Marilene Paniczek; irmão **Espaço Campestre**/Paulínia).
+- **Terras de Clara** — 1 ad (8/jun). Ângulo **B2B**: "O cenário exigido pelas principais assessorias de São Paulo. Arquitetura impecável e natureza integrada" — mira **planners/assessorias**, não o casal direto. Família Romanholi / JSVP Eventos.
+
+**Espaço Brunholi — novo alvo-irmão** (onde mora o funil de casamento da família Brunholi): espacobrunholieventos.com.br · `@espacobrunholi` · salão **dedicado** a casamento/debutante/corporativo, ~150m do complexo Villa Brunholi (Caxambu/Jundiaí). `page_id` da Ad Library **pendente** (captura interrompida). Monitorar como par do Villa Brunholi — é o que tem o sinal de casamento.
+
+**Correção (leva 1) — Villa Mantova saiu do núcleo:** o `@villa.mantova` (18K — bate com o "18K" do panorama, é o mesmo ente) fica em **Santana de Parnaíba/SP** (corredor Castelo Branco, ~50min capital), **não** Vinhedo/Louveira — o "Estr. Estadual Vinhedo" era contaminação de snippet. Fora do catchment de Jundiaí (ver [`panorama.md`](panorama.md), não-objetivos). Não confundir com **Villa di Mantova Resort** (Águas de Lindóia, com "di", resort/spa).
 
 ---
 
@@ -154,6 +173,7 @@ Capela de Cristal) · *Lago Esmeralda*, *Ville La Rochelle*, *Vila Tramonti*, *E
 - Resolver/confirmar os **page_id da Ad Library** (todos bloqueiam fetch automatizado), e os **page_id por sub-marca** do Grupo Quintal.
 - Confirmar bios de Pinterest/YouTube de confiança média (Quintal: casinha/celeiro Pinterest; 2º canal YT).
 - Verificar `@espacojardimsecreto_grs` (Sítio São Jorge) e o handle TikTok do Di Terrá.
-- **Perfil profundo dos NOVOS do catchment** (seção acima): page_id/Ad Library/handles/assets de
-  Villa Brunholi · Castelo dos Vinhais · Villa Mantova · Lago Novo+Vabene · Terras de Clara ·
-  Chácara Paraíso — em **levas de 3–4** (rajada grande re-bate o 529 transitório do servidor).
+- **Perfil profundo dos NOVOS — leva 1 ✓ (20/jun):** `page_id` resolvido p/ Villa Brunholi,
+  Castelo dos Vinhais e Terras de Clara (ver "Perfis resolvidos" acima). **Pendentes:** `page_id`
+  do **Espaço Brunholi** (captura interrompida) + perfil de **Espaço Lago Novo+Vabene** (Itupeva) e
+  **Chácara Paraíso** (Jundiaí) — próxima leva, em rajadas de 3–4 (529 transitório do servidor).
