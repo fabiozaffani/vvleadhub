@@ -37,6 +37,49 @@ module.exports = {
       },
     },
     {
+      name: "api-spec-sem-import-runtime",
+      comment:
+        "D-22: packages/api-spec é só fonte do codegen (Orval). Nenhum runtime o importa — consome o gerado (@vvf/api-zod / @vvf/api-client).",
+      severity: "error",
+      from: { path: "^(site|admin|api-server)/" },
+      to: { path: "^packages/api-spec/" },
+    },
+    {
+      name: "site-sem-api-zod",
+      comment: "D-22: api-zod é validação de borda do api-server; o site não valida rotas.",
+      severity: "error",
+      from: { path: "^site/" },
+      to: { path: "^packages/api-zod/" },
+    },
+    {
+      name: "site-sem-api-client",
+      comment: "D-22: o site é Astro e não usa hooks React Query (@vvf/api-client é só do admin).",
+      severity: "error",
+      from: { path: "^site/" },
+      to: { path: "^packages/api-client/" },
+    },
+    {
+      name: "admin-sem-api-zod",
+      comment: "D-22: validação de borda HTTP (api-zod) é do api-server; o admin consome @vvf/api-client.",
+      severity: "error",
+      from: { path: "^admin/" },
+      to: { path: "^packages/api-zod/" },
+    },
+    {
+      name: "api-server-sem-api-client",
+      comment: "D-22: o api-server não importa hooks React Query (@vvf/api-client é só do admin).",
+      severity: "error",
+      from: { path: "^api-server/" },
+      to: { path: "^packages/api-client/" },
+    },
+    {
+      name: "api-zod-sem-api-client",
+      comment: "D-22: os pacotes gerados não dependem um do outro nem do api-spec.",
+      severity: "error",
+      from: { path: "^packages/api-zod/" },
+      to: { path: "^packages/(api-client|api-spec)/" },
+    },
+    {
       name: "api-server-camadas-routes",
       comment:
         "docs/specs/engenharia/monorepo.md: routes nunca importa repositories/integrations direto — sempre via services.",
@@ -65,7 +108,7 @@ module.exports = {
       severity: "warn",
       from: {
         orphan: true,
-        pathNot: ["\\.d\\.ts$", "(^|/)index\\.ts$", "\\.config\\.(js|cjs|ts)$", "(^|/)db/schema\\.ts$", "\\.test\\.ts$"],
+        pathNot: ["\\.d\\.ts$", "(^|/)index\\.ts$", "\\.config\\.(js|cjs|ts)$", "(^|/)db/schema\\.ts$", "\\.test\\.ts$", "(^|/)generated/"],
       },
       to: {},
     },

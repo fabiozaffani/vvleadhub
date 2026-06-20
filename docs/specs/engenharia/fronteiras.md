@@ -9,11 +9,13 @@ As fronteiras entre runtimes e camadas não são convenção de estilo — são 
 | Regra | Trava |
 |---|---|
 | `site` nunca importa de `admin` ou `api-server` (e vice-versa) — só de `packages/*` | dependency-cruiser (ou ESLint boundaries) no CI; violação = build falha |
-| Tipos cruzados só via `packages/contracts` | idem |
+| Tipos **de domínio** cruzados só via `packages/contracts` | idem |
+| Pipeline HTTP — quem importa o quê (D-22): `api-zod` **só** no api-server; `api-client` **só** no admin; `api-spec` em **nenhum** runtime | dependency-cruiser (`site-sem-api-zod`, `site-sem-api-client`, `admin-sem-api-zod`, `api-server-sem-api-client`, `api-spec-sem-import-runtime`, `api-zod-sem-api-client`) |
 | `site` sem acesso a Postgres (D-9) | nenhuma lib de DB no `package.json` do site — lint de dependências |
 | Schema `app` só migrado pelo Drizzle; `payload` só pelo Payload (D-9) | migrações vivem cada uma no seu runtime; CI roda `drizzle-kit check` |
 | Segredos nunca no código | gitleaks no CI + Secrets do provedor de hospedagem como única fonte |
-| OpenAPI é o contrato | spec em `api-server/openapi.yaml`; codegen para `packages/contracts`; CI falha se o gerado divergir do commitado |
+| OpenAPI é o contrato (D-22) | spec em `packages/api-spec/openapi.yaml`; codegen Orval → `@vvf/api-zod` + `@vvf/api-client`; **drift-check por lockfile SHA256** (`pnpm codegen:check`, no `verify`) — CI falha se o `openapi.yaml` mudar sem regenerar |
+| Tipos do Payload é o contrato de conteúdo | `payload generate:types` → `packages/contracts/generated`; CI falha se o gerado divergir do commitado |
 
 ## Travas de camada interna ao `api-server`
 
