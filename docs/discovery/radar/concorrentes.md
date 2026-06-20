@@ -6,6 +6,11 @@ propriedade contra homônimos). Assets confirmados salvo nota de confiança.
 
 > LGPD/D-19: só conteúdo público de negócio. Sem PII de pessoas. Uso interno.
 
+> **Companheiro:** [`panorama.md`](panorama.md) cruza ~60 venues por **estética × tier ×
+> espaço VVF** (quem disputa cada fantasia/espaço). Este arquivo é o **registro de alvos**
+> (assets/page_id/handles); aquele é o **mapa estético**. Os NOVOS do núcleo do catchment que
+> o panorama surfou estão consolidados na seção **Núcleo do catchment — NOVOS** abaixo.
+
 ## Achado-chave: geografia ≠ o que parecia
 
 **4 dos 5 alvos são roll-ups de SP capital/metro, não venues do interior** — perfil
@@ -55,6 +60,42 @@ Competem pela mesma noiva em prestígio/paisagem, **não** no all-inclusive:
 - **Ville La Rochelle** (Jarinu, luxo/vilarejo francês) · **Fazenda Quinta dos Pinheiros** (Jarinu) · **Fazenda Tucunduva** (Cabreúva, histórica 1842) · **Villa Della Luce** · **Fazenda Embaúva** · **Fazenda Santa Bárbara** (Itu/Itatiba) · **Alto das Palmeiras** (Vinhedo, SPA L'Occitane) · **Vila Tramonti** (Indaiatuba, toscano) · **Espaço Apoema** (Atibaia) · **Casa Magna** · **Fazenda Alvorada** (Sorocaba) · **Fazenda Dona Catarina** (Mairinque, hotel próprio)
 - **Pins do fundador:** **Casa Giardino** (Mogi — partial, fora do catchment Jundiaí) · **Callegari** (classe abaixo)
 - _page_id da Ad Library de todos: confirmar no v0 (Claude-in-Chrome)._
+
+### Núcleo do catchment — NOVOS (panorama jun/2026) ⭐ page_id pendente
+
+Surfados pelo sweep `panorama-competitivo` (cruzamento estética × espaço VVF; mapa completo de
+~60 venues em [`panorama.md`](panorama.md)). **Vários estão mais perto de Jundiaí que os 5
+roll-ups da capital** — prioridade de perfil profundo (page_id/Ad Library/handles/assets) no
+próximo ciclo, em **levas de 3–4** (rajada grande re-bate no rate-limit 529 do servidor).
+
+| Venue | Cidade (dist.) | Tier | Espaço VVF disputado | Por que monitorar |
+|---|---|---|---|---|
+| **Villa Brunholi** | **Jundiaí** (na cidade) | premium-partial | Serra (Toscana) | Enogastronômico italiano desde 1897, buffet próprio. Toscana autêntico na porta. |
+| **Castelo dos Vinhais** | Vinhedo (~25km) | **premium-full** | Serra (Toscana) | Castelo europeu 20.000m², **all-inclusive buffet próprio**. Modelo VVF **e** estética. |
+| **Villa Mantova** | Vinhedo/Louveira (~20min) | premium-partial | Acqua (jardim/villa) | Premiada 23–25, jardins. Núcleo do catchment. Buffet parceiro. |
+| **Espaço Lago Novo + Vabene** | **Itupeva** (~15–20km) | mid | Acqua (lago/campo) | Estética de lago/campo a poucos km — monitorar pela **proximidade**. |
+| **Chácara Paraíso** | **Jundiaí** (~10km) | mid | Acqua (rústico-moderno) | Mesmo município. |
+| **Terras de Clara** | Morungaba | premium-partial | Acqua **e** Florest | Lago + envidraçado + **hospedagem + spa** — espelha o produto Hospedagem do VVF. |
+| **Villa Ásolo 1932** | Votorantim/Sorocaba | premium-partial | Serra (**Capela de Cristal**) | Vila italiana de 1932 + capela de vidro — match de feature com a Serra. |
+| **Dieters** | S. Bernardo (ABC) | **premium-full** | Acqua (lago) | All-inclusive, "1 evento por vez". Fora do catchment, mas **modelo VVF** — instrutivo. |
+| Casa Di Pietra | Serra Negra (~80km) | premium-partial | Serra (Toscana) | Villa toscana em pedra, curadoria Constance Zahn. |
+| Hotel Villa Rossa | São Roque | premium-partial | Acqua (+hospedagem) | 5★ com hospedagem própria para convidados. |
+| Château Ma Vie | Mogi das Cruzes | mid | Florest (glasshouse) | Salão todo de vidro, jardim/lago. |
+
+**Já cobertos em outra seção** (não re-perfilar): *Botânico Quintal* (sub-marca do Grupo
+Quintal — referência de glasshouse) · *Welucci Sansu* (sub-marca Welucci, ex-Villa Sansu, tem
+Capela de Cristal) · *Lago Esmeralda*, *Ville La Rochelle*, *Vila Tramonti*, *Espaço Apoema*
+(já listados na seção interior acima).
+
+### Dois padrões estratégicos (do panorama)
+- **All-inclusive direto (modelo VVF) — os mais perigosos:** Grupo Conti (o mais próximo) ·
+  La Forêt · Di Terrá · **Castelo dos Vinhais** · **Dieters** · Fazenda Capoava (Itu, +hotel) ·
+  Welucci Kratos (Vinhedo).
+- **Disputam o SEU discurso** ("1 evento/dia · exclusividade · sem surpresas"): **Espaço
+  Natureza**, **Espaço Serra do Mar** (Atibaia/Mairiporã), Palacete Monte Alegre (Di Terrá),
+  La Forêt, Dieters.
+- **Hospedagem própria** (espelha o produto Hospedagem): La Forêt · **Terras de Clara** ·
+  Fazenda Capoava · Fazenda Dona Carolina · Hotel Villa Rossa.
 
 ---
 
@@ -113,3 +154,6 @@ Competem pela mesma noiva em prestígio/paisagem, **não** no all-inclusive:
 - Resolver/confirmar os **page_id da Ad Library** (todos bloqueiam fetch automatizado), e os **page_id por sub-marca** do Grupo Quintal.
 - Confirmar bios de Pinterest/YouTube de confiança média (Quintal: casinha/celeiro Pinterest; 2º canal YT).
 - Verificar `@espacojardimsecreto_grs` (Sítio São Jorge) e o handle TikTok do Di Terrá.
+- **Perfil profundo dos NOVOS do catchment** (seção acima): page_id/Ad Library/handles/assets de
+  Villa Brunholi · Castelo dos Vinhais · Villa Mantova · Lago Novo+Vabene · Terras de Clara ·
+  Chácara Paraíso — em **levas de 3–4** (rajada grande re-bate o 529 transitório do servidor).
