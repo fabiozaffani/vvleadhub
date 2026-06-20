@@ -1,0 +1,1099 @@
+{
+  "summary": "Varredura de assets de marketing de 5 concorrentes de casamento (interior SP): confirma primários e descobre secundários (IG secundários, YouTube, Pinterest, blogs, sites/LPs, sub-marcas por espaço), com verificação de propriedade",
+  "agentCount": 16,
+  "logs": [],
+  "result": [
+    {
+      "competitor": "WELUCCI",
+      "confirmedPrimary": [
+        {
+          "type": "site",
+          "url": "https://welucci.com/",
+          "status": "confirmado"
+        },
+        {
+          "type": "instagram",
+          "url": "https://www.instagram.com/a.welucci/",
+          "status": "confirmado"
+        },
+        {
+          "type": "pinterest",
+          "url": "https://br.pinterest.com/welucci/",
+          "status": "nao-resolvido"
+        }
+      ],
+      "discoveredSecondary": [
+        {
+          "type": "lp",
+          "url": "https://nafarialima.welucci.com.br/",
+          "confidence": "medium",
+          "ownershipNote": "Subdomínio do domínio da marca (welucci.com.br), título 'Welucci B32'. LP ligada à ativação de marca na Praça B32 / Faria Lima (ago/2025, 'Baleia da Faria Lima' nas cores Welucci). Propriedade certa pelo subdomínio, MAS o certificado SSL está EXPIRADO — LP provavelmente sazonal/stale, não campanha viva. Confidence medium pela incerteza de estar ativa.",
+          "verification": {
+            "url": "https://nafarialima.welucci.com.br/",
+            "belongsToCompetitor": "yes",
+            "evidence": "Belongs to Welucci (HIGH confidence; original \"medium\" was driven only by the expired SSL, which is a freshness signal, not an ownership signal). Evidence: (1) The asset is a host under welucci.com.br, the brand's own official apex domain (welucci.com.br 301-redirects to the live brand site welucci.com) — a third party cannot host on a subdomain of someone else's registered apex, which is near-conclusive on its own. (2) Trade press confirms ownership independently: Live Marketing News (\"Welucci celebra ciclo de expansão com ativações inéditas em SP\") states the Welucci wedding brand ran the Praça B32 / Faria Lima activation on Aug 27-30, 2025, and that \"a icônica Baleia da Faria Lima recebeu as cores da Welucci,\" directing readers to welucci.com. (3) A Sympla event page (\"Welucci na Faria Lima: Desfile exclusivo com Flayza Vieira\") and ISTOÉ Dinheiro coverage of the B32 \"Baleia da Faria Lima\" both tie the whale activation to Welucci; the LP title \"Welucci B32\" matches the activation name exactly. (4) Welucci is confirmed as a wedding/events company (4,200+ weddings, expanding toward ~20 units), consistent with the competitor. Homonym risk LOW: \"Welucci\" is a distinctive coined brand name and the asset is on the brand's own apex; the only adjacent third party is the B32/Teatro B32 building, which is merely the physical host of the activation, not the asset owner. Caveats: the SSL certificate IS expired (WebFetch failed with \"certificate has expired\"), confirming the LP is stale/seasonal — a one-time Aug 2025 brand activation, almost certainly not live in June 2026. Also note Welucci is a São Paulo capital/metro operator (Vila Olímpia, Faria Lima, Moema, plus Sorocaba/Vinhedo), not specifically an \"interior de SP\" venue — relevant to the broader competitor classification but not to this asset's ownership.",
+            "correctedLabel": "Welucci-owned LP — stale/seasonal brand-activation page (Welucci B32, Faria Lima/Praça B32 activation, Aug 27-30 2025; currently inactive, expired SSL). Reclassify from live campaign LP to inactive seasonal activation LP."
+          }
+        },
+        {
+          "type": "facebook-page",
+          "url": "https://www.facebook.com/Welucci",
+          "confidence": "high",
+          "ownershipNote": "Linkado no site oficial; página confirmada como 'Welucci | São Paulo SP'. É a página por trás do FB Ad Library page_id 517179718150844 (seed fornecido). Sem homônimo relevante."
+        },
+        {
+          "type": "instagram-secundario",
+          "url": "https://www.instagram.com/welucciforbusiness/",
+          "confidence": "high",
+          "ownershipNote": "Conta secundária 'Welucci For Business' (4.576 seguidores), bio 'Eventos que dão resultado para o seu negócio' — braço corporativo/B2B da mesma marca, distinto do @a.welucci (casamentos). Mesmo nome de marca, mesma identidade visual; sub-marca B2B. Baixo risco de homônimo."
+        },
+        {
+          "type": "outro",
+          "url": "https://www.tiktok.com/@welucci",
+          "confidence": "high",
+          "ownershipNote": "TikTok @welucci linkado no site oficial; posts reais com hashtags #Welucci #Casamento e copy sobre 'espaços únicos' e 'segurança/praticidade' — voz idêntica à da marca. Sem homônimo."
+        },
+        {
+          "type": "outro",
+          "url": "https://www.linkedin.com/company/we-lucci/",
+          "confidence": "high",
+          "ownershipNote": "LinkedIn company 'Welucci' (slug we-lucci), Events Services, 132 funcionários, sede Rua Helena 235, Atrium II, São Paulo, website welucci.com. Linkado no site oficial. Confirmação direta de propriedade."
+        },
+        {
+          "type": "site-secundario",
+          "url": "https://wed.welucci.com/",
+          "confidence": "high",
+          "ownershipNote": "Subdomínio do domínio raiz oficial (welucci.com). Sistema de landing pages de conversão para ads ('Welucci — Casamentos 2026', form de qualificação por nº de convidados/orçamento). Hospeda LPs institucionais por espaço (ex.: /institucional-welucci-fontana, /institucional-welucci-vila-real) com params de Google Ads (gad_campaignid). Propriedade certa (subdomínio do domínio principal)."
+        },
+        {
+          "type": "site-secundario",
+          "url": "https://espacos.welucci.com/",
+          "confidence": "high",
+          "ownershipNote": "Subdomínio oficial; faz 301 para wed.welucci.com/espacos (diretório de espaços / 'Encontre seu espaço'). Mesmo domínio raiz — propriedade certa. É um alias da malha de LPs de ads."
+        },
+        {
+          "type": "site-secundario",
+          "url": "https://welucci.com.br/",
+          "confidence": "high",
+          "ownershipNote": "Domínio .com.br da marca; faz 301 para welucci.com (mesmo dono, domínio de proteção/redirect). Não é um asset de marketing ativo separado — apenas redireciona ao canônico. Propriedade certa."
+        },
+        {
+          "type": "lp",
+          "url": "https://nafarialima.welucci.com.br/",
+          "confidence": "medium",
+          "ownershipNote": "Subdomínio do domínio da marca (welucci.com.br), título 'Welucci B32'. LP ligada à ativação de marca na Praça B32 / Faria Lima (ago/2025, 'Baleia da Faria Lima' nas cores Welucci). Propriedade certa pelo subdomínio, MAS o certificado SSL está EXPIRADO — LP provavelmente sazonal/stale, não campanha viva. Confidence medium pela incerteza de estar ativa."
+        }
+      ],
+      "facebookPageId": "517179718150844",
+      "spacesSubBrands": [
+        {
+          "name": "Welucci Ocean",
+          "site": "https://welucci.com/welucci-ocean/",
+          "note": "Guarujá (litoral/Baixada Santista). Sem IG próprio — usa @a.welucci central."
+        },
+        {
+          "name": "Casa Welucci",
+          "site": "https://welucci.com/casa-welucci/",
+          "note": "Morumbi, São Paulo capital."
+        },
+        {
+          "name": "Pátio Welucci",
+          "site": "https://welucci.com/patio-welucci/",
+          "note": "Brooklin, SP capital."
+        },
+        {
+          "name": "Welucci Vila Real",
+          "site": "https://welucci.com/welucci-vila-real/",
+          "note": "Embu das Artes. LP institucional em wed.welucci.com/institucional-welucci-vila-real."
+        },
+        {
+          "name": "Welucci Village",
+          "site": "https://welucci.com/welucci-village/",
+          "note": "Vila Leopoldina, SP capital."
+        },
+        {
+          "name": "Welucci Gardens",
+          "site": "https://welucci.com/welucci-gardens/",
+          "note": "Alto de Pinheiros / Vila Hamburguesa, SP capital."
+        },
+        {
+          "name": "Welucci Sansu",
+          "site": "https://welucci.com/welucci-sansu/",
+          "note": "Araçoiaba da Serra (Sorocaba). Adquirido (ex-Villa Sansu) em 2025."
+        },
+        {
+          "name": "Welucci Fontana",
+          "site": "https://welucci.com/welucci-fontana/",
+          "note": "Votorantim (Sorocaba). Vila italiana. LP institucional em wed.welucci.com/institucional-welucci-fontana (com Google Ads)."
+        },
+        {
+          "name": "Welucci The One",
+          "site": "https://welucci.com/welucci-the-one/",
+          "note": "Jardim Paulista, SP capital."
+        },
+        {
+          "name": "Welucci Single",
+          "site": "https://welucci.com/welucci-single/",
+          "note": "Moema, SP capital."
+        },
+        {
+          "name": "Welucci Kratos",
+          "site": "https://welucci.com/welucci-kratos/",
+          "note": "Vinhedo (Campinas). Lançamento recente (2025)."
+        },
+        {
+          "name": "Welucci Fagundes",
+          "site": "https://welucci.com/welucci-fagundes/",
+          "note": "Mairiporã. Adquirido (ex-Fazenda Fagundes) início de 2026."
+        },
+        {
+          "name": "Welucci Canto Verde",
+          "site": "https://welucci.com/cantoverde/",
+          "note": "Slug atípico (/cantoverde/)."
+        },
+        {
+          "name": "Welucci Estaiada",
+          "site": "https://welucci.com/welucci-estaiada/",
+          "note": "Cidade Monções (próximo à Ponte Estaiada), SP capital."
+        }
+      ],
+      "notes": "Modelo de marketing CENTRALIZADO: uma única marca-mãe distribui 14 espaços próprios em ~5 regiões metropolitanas de SP (capital, Baixada Santista/Guarujá, Campinas/Vinhedo, Sorocaba, e Mairiporã). NÃO há contas de Instagram/YouTube/Pinterest por espaço — todos os 14 sites de espaço linkam para os mesmos canais centrais (@a.welucci, @Welucci YT, /Welucci FB). Confirmei isso checando a página do Welucci Ocean diretamente. ÚNICA conta social secundária real é @welucciforbusiness (IG, 4.576 seg.), sub-marca B2B 'Welucci For Business' para eventos corporativos — vetor de inteligência separado do funil de casamentos. Pegada digital forte e em expansão agressiva: aporte da EB Capital (~US$9,4M, out/2025), valuation ~R$100M, meta de 20 unidades, 66% de crescimento de eventos em 2024. ANUNCIA ativamente: malha de landing pages dedicada em wed.welucci.com (form de qualificação por convidados/orçamento) com LPs institucionais por espaço carregando params de Google Ads (gad_campaignid/gad_source), além do FB Ad Library ativo (page_id 517179718150844). Sem blog próprio em welucci.com — a estratégia de conteúdo/PR é via imprensa (Veja SP, Harper's Bazaar, CNN Brasil, Valor/Pipeline, Leo Dias, Caras etc.), não blog owned. AMBIGUIDADES: (1) Pinterest e FB Ad Library não puderam ser scrapados (bloqueio JS/auth do Meta/Pinterest) — Pinterest marcado 'nao-resolvido' embora a URL seed resolva; page_id do FB é o seed fornecido (não consegui reverter via scraping, mas a página /Welucci está confirmada ativa). (2) nafarialima.welucci.com.br ('Welucci B32') tem certificado SSL EXPIRADO — LP de ativação Faria Lima (ago/2025), provavelmente sazonal/stale. (3) welucci.com.br e espacos.welucci.com são apenas redirects (301) para o canônico/LP — mesmo dono, não assets independentes. Risco de homônimo geral: BAIXO — 'Welucci' é nome de marca único, não confundível."
+    },
+    {
+      "competitor": "BISUTTI",
+      "facebookPageId": "190323540999720",
+      "confirmedPrimary": [
+        {
+          "type": "site",
+          "url": "https://bisutti.com.br/",
+          "status": "confirmado"
+        },
+        {
+          "type": "instagram",
+          "url": "https://www.instagram.com/bisuttioficial",
+          "status": "confirmado"
+        },
+        {
+          "type": "pinterest",
+          "url": "https://br.pinterest.com/bisuttioficial/",
+          "status": "confirmado"
+        },
+        {
+          "type": "facebook-ad-library-page-id",
+          "url": "190323540999720",
+          "status": "nao-resolvido"
+        }
+      ],
+      "discoveredSecondary": [
+        {
+          "type": "site-secundario",
+          "url": "https://villas.grupobisutti.com.br/",
+          "confidence": "medium",
+          "ownershipNote": "Subdominio do dominio institucional do grupo (Villa Bisutti). Apareceu em busca como pagina de imagem/espaco. Padrao de subdominio por-linha do mesmo grupo.",
+          "verification": {
+            "url": "https://villas.grupobisutti.com.br/",
+            "belongsToCompetitor": "yes",
+            "evidence": "Confirmado como propriedade do Grupo Bisutti (mesmo grupo da marca \"BISUTTI\"). Evidências: (1) A própria página villas.grupobisutti.com.br se identifica como \"Grupo Bisutti\", endereço Rua Casa do Ator 642, Vila Olímpia – São Paulo, tel (11) 3040-5290, e lista as Villas do grupo (Casa do Ator, Cardoso de Melo, Boulevard JK, Tenerife, Berrini, Vialle 441, Espaço 011/Zero Onze, Gomes de Carvalho, Loft 1462, Quatá). (2) O domínio raiz grupobisutti.com.br faz 301 redirect para bisutti.com.br — o site institucional primário do mesmo grupo —, provando que grupobisutti.com.br e bisutti.com.br são o mesmo proprietário. (3) Os nomes das Villas batem entre os dois domínios (Casa do Ator, Cardoso de Melo, Boulevard JK, Tenerife, Berrini, Viale/Vialle 441 etc.). (4) Busca confirma URLs por-espaço canônicas em ambos os domínios (grupobisutti.com.br/vilas/villa-bisutti-berrini/ e bisutti.com.br/vilas/villa-bisutti-berrini/), mesmo árvore de conteúdo. Risco de homônimo: nulo — \"Grupo Bisutti\"/\"Villa Bisutti\" é uma marca única de espaços de eventos/casamento, ativa desde 2008 no Brasil. RESSALVA DE RELEVÂNCIA (não de propriedade): o Grupo Bisutti opera na CAPITAL de São Paulo (Vila Olímpia, Itaim, Berrini, Brooklin) + destination weddings (Trancoso, Punta Cana, Mendoza), NÃO no interior de SP — perfil geográfico diferente do alvo Vale Verde (interior paulista). Pertence ao concorrente BISUTTI sem dúvida; avaliar se o concorrente em si é geograficamente comparável é questão à parte."
+          }
+        },
+        {
+          "type": "lp",
+          "url": "https://tenerife.grupobisutti.com.br/",
+          "confidence": "medium",
+          "ownershipNote": "Subdominio por-espaco (Tenerife) sob grupobisutti.com.br. Sugere padrao de LPs por-espaco em subdominios <espaco>.grupobisutti.com.br. Verificar se ha outros (<casa>.grupobisutti.com.br).",
+          "verification": {
+            "url": "https://tenerife.grupobisutti.com.br/",
+            "belongsToCompetitor": "yes",
+            "evidence": "CONFIRMED ownership by BISUTTI (Grupo Bisutti / Villa Bisutti), but the asset is a LEGACY/DECOMMISSIONED subdomain, not a live LP. Evidence: (1) grupobisutti.com.br is the group's legacy domain and 301-redirects to the current official site bisutti.com.br (curl: 301). (2) The Tenerife venue is a real Bisutti space — \"Villa Bisutti Tenerife\" / \"Bisutti Tenerife\"; canonical live page is https://bisutti.com.br/bisutti-tenerife/ (HTTP 200), and the legacy path grupobisutti.com.br/espaco/tenerife/ 301-redirects to bisutti.com.br/espaco/tenerife/. (3) WebSearch surfaced the sibling subdomain pattern — trancoso.grupobisutti.com.br and parceiros.grupobisutti.com.br — confirming <espaco>.grupobisutti.com.br was a real per-space convention, now consolidated to path-based pages under bisutti.com.br. No homonym risk: every signal (brand name, social handles @bisuttioficial/@grupobisutti, domain lineage) ties to the same group. STATE: tenerife.grupobisutti.com.br/ now returns 403 (404 via WebFetch) — it serves no page; the original note's premise of a live per-space LP in a subdomain is OUTDATED. RELEVANCE CAVEAT (be skeptical): this Bisutti is a SAO PAULO CAPITAL wedding-buffet group — Tenerife is at R. Tenerife 170, Vila Olimpia, Sao Paulo-SP (city), with a portfolio in Itaim/Vila Olimpia plus destination weddings (Trancoso, Punta Cana, Mendoza). It is NOT a venue in the INTERIOR of Sao Paulo, so it does not match Vale Verde Festas's stated interior-SP competitor profile; flagging whether this is the intended competitor. SECONDARY ASSETS FOUND for Bisutti: official site bisutti.com.br; corporate bisutticorporativo.com.br; partners parceiros.grupobisutti.com.br; IG @bisuttioficial + @grupobisutti; FB /grupobisutti; YouTube GrupoBisutti; Pinterest bisuttioficial; TikTok @bisuttioficial; blog bisutti.com.br/blog/; dedicated venue domain villabisuttitenerife.com.br; careers grupobisutti.gupy.io.",
+            "correctedLabel": "lp (legacy/decommissioned subdomain — not live; canonical page is https://bisutti.com.br/bisutti-tenerife/)"
+          }
+        },
+        {
+          "type": "outro",
+          "url": "https://x.com/grupobisutti",
+          "confidence": "medium",
+          "ownershipNote": "Perfil X/Twitter @grupobisutti. Mesmo handle da conta institucional IG/FB do grupo. Provavelmente legado/baixa atividade; ownership coerente pelo handle.",
+          "verification": {
+            "url": "https://x.com/grupobisutti",
+            "belongsToCompetitor": "yes",
+            "evidence": "Ownership confirmed with high confidence via multiple independent signals. (1) DOMAIN PROOF: the website listed in the @grupobisutti X bio is grupobisutti.com.br, which 301-redirects to bisutti.com.br — the confirmed official BISUTTI site. An owned redirect domain on the profile is direct ownership evidence. (2) BIO MATCH: the X account self-describes as \"Grupo Bisutti... 16 exclusive spaces with complete infrastructure for buffet services for social and corporate events, located in Vila Olímpia, São Paulo, joined Sept 2009\" — matches Grupo Bisutti's own description (Vila Olímpia HQ, ~15-18 exclusive event spaces, social/corporate buffet, chef Julio Perinetto, arrived in Brazil 2008). (3) HANDLE CONSISTENCY: the official site bisutti.com.br cross-links Facebook facebook.com/grupobisutti and Instagram instagram.com/grupobisutti — the identical 'grupobisutti' institutional handle the group uses across networks; the X account reuses it. HOMONYM RISK: low. Searches surfaced unrelated near-handles (Biasutti, Bisutto, BisiatGrup, Grupetto) but none match the Vila Olímpia / buffet-events profile; the redirect-domain + bio + cross-network handle triangulate to a single owner. CAVEAT (positioning, not ownership): BISUTTI is primarily São Paulo capital (Vila Olímpia/Itaim) with some interior spaces (Piracicaba; Chez Bisutti Lake Paradise/Garden destination weddings), so it is a capital-centric premium buffet group rather than a pure interior-SP venue like Vale Verde. ACTIVITY: the X/@grupobisutti account is legacy/low-priority (joined 2009; the group's active marketing lives on Instagram, Facebook, YouTube youtube.com/c/GrupoBisutti, Pinterest br.pinterest.com/bisuttioficial, TikTok @bisuttioficial, plus blogs blog.bisutti.com.br and blog.bisutticorporate.com.br, and corporate site bisutticorporativo.com.br). Note: the X profile page itself returned HTTP 402 to direct fetch (X anti-scraping), so bio details come from search-engine snippets of the same profile, not a live page render."
+          }
+        },
+        {
+          "type": "instagram-secundario",
+          "url": "https://www.instagram.com/bisutticasaitaim/",
+          "confidence": "high",
+          "ownershipNote": "Por-espaco Casa Itaim, bio 'Um espaco @bisuttioficial' (~15K). Pagina em bisutti.com.br/bisutti-casa-itaim/."
+        },
+        {
+          "type": "instagram-secundario",
+          "url": "https://www.instagram.com/bisuttitraffo/",
+          "confidence": "high",
+          "ownershipNote": "Por-espaco Traffo, bio 'Um espaco @bisuttioficial' (~21K). Pagina em bisutti.com.br/espaco-casa-traffo/."
+        },
+        {
+          "type": "instagram-secundario",
+          "url": "https://www.instagram.com/bisuttiberrini/",
+          "confidence": "high",
+          "ownershipNote": "Por-espaco Berrini, bio 'Um espaco @bisuttioficial' (~4.4K). Pagina em bisutti.com.br/bisutti-berrini/."
+        },
+        {
+          "type": "instagram-secundario",
+          "url": "https://www.instagram.com/bisutticontemporaneo8076/",
+          "confidence": "high",
+          "ownershipNote": "Por-espaco Contemporaneo 8076, bio 'Um espaco @bisuttioficial' (~48K, conta por-espaco mais forte). Pagina em bisutti.com.br/contemporaneo-8076/."
+        },
+        {
+          "type": "instagram-secundario",
+          "url": "https://www.instagram.com/bisuttitenerife/",
+          "confidence": "high",
+          "ownershipNote": "Por-espaco Tenerife, bio 'Um espaco @bisuttioficial' (~3.5K). Pagina em bisutti.com.br/bisutti-tenerife/."
+        },
+        {
+          "type": "instagram-secundario",
+          "url": "https://www.instagram.com/bisutticardosodemelo/",
+          "confidence": "high",
+          "ownershipNote": "Por-espaco Cardoso de Melo, bio 'Um espaco @bisuttioficial' (~4.4K). Pagina em bisutti.com.br/bisutti-cardoso-de-melo/."
+        },
+        {
+          "type": "instagram-secundario",
+          "url": "https://www.instagram.com/bisutti011/",
+          "confidence": "high",
+          "ownershipNote": "Por-espaco Zero Onze, bio 'Um espaco @bisuttioficial' (~3K). Pagina em bisutti.com.br/bisutti-zero-onze/. Handle bisutti011 = Zero Onze."
+        },
+        {
+          "type": "instagram-secundario",
+          "url": "https://www.instagram.com/bisuttigomesdecarvalho/",
+          "confidence": "high",
+          "ownershipNote": "Por-espaco Gomes de Carvalho (~2.4K). Pagina em bisutti.com.br/bisutti-gomes-de-carvalho/."
+        },
+        {
+          "type": "instagram-secundario",
+          "url": "https://www.instagram.com/bisuttiviale441/",
+          "confidence": "high",
+          "ownershipNote": "Por-espaco Viale 441, bio 'Um espaco @bisuttioficial' (~6.5K). Pagina em bisutti.com.br/bisutti-viale-441/."
+        },
+        {
+          "type": "instagram-secundario",
+          "url": "https://www.instagram.com/chezbisutti/",
+          "confidence": "high",
+          "ownershipNote": "Marca de destination wedding do grupo (parceria Bisutti x Club Med), ~46K. Bio referencia @bisuttioficial e @clubmed. Cluster Chez Bisutti = linha destination."
+        },
+        {
+          "type": "instagram-secundario",
+          "url": "https://www.instagram.com/chezbisutti.lakeparadise/",
+          "confidence": "high",
+          "ownershipNote": "Por-espaco Chez Bisutti Lake Paradise (Bisutti x Club Med, interior SP), ~5.9K. Pagina em bisutti.com.br/chez-bisutti-lake-paradise/."
+        },
+        {
+          "type": "instagram-secundario",
+          "url": "https://www.instagram.com/chezbisutti.garden/",
+          "confidence": "high",
+          "ownershipNote": "Por-espaco Chez Bisutti Garden (Bisutti x Club Med), ~2.2K. Pagina em bisutti.com.br/chez-bisutti-garden/."
+        },
+        {
+          "type": "instagram-secundario",
+          "url": "https://www.instagram.com/chezbisutti.trancoso/",
+          "confidence": "high",
+          "ownershipNote": "Por-espaco Chez Bisutti Trancoso (Bisutti x Club Med), ~3.7K. Pagina em bisutti.com.br/chez-bisutti-trancoso/."
+        },
+        {
+          "type": "instagram-secundario",
+          "url": "https://www.instagram.com/chezbisutti.riodaspedras/",
+          "confidence": "high",
+          "ownershipNote": "Por-espaco Chez Bisutti Rio das Pedras (Bisutti x Club Med, RJ), ~4.2K. Pagina em bisutti.com.br/chez-bisutti-rio-das-pedras/."
+        },
+        {
+          "type": "instagram-secundario",
+          "url": "https://www.instagram.com/chezbisutti.puntacana/",
+          "confidence": "high",
+          "ownershipNote": "Por-espaco Chez Bisutti Punta Cana (Bisutti x Club Med, Rep. Dominicana). Pagina em bisutti.com.br/chez-bisutti-punta-cana/."
+        },
+        {
+          "type": "instagram-secundario",
+          "url": "https://www.instagram.com/bisuttitrancoso.tl/",
+          "confidence": "high",
+          "ownershipNote": "Por-espaco Bisutti Trancoso Teatro L'Occitane. Pagina em bisutti.com.br/bisutti-trancoso-teatro/. Handle .tl = Teatro L'Occitane."
+        },
+        {
+          "type": "instagram-secundario",
+          "url": "https://www.instagram.com/bisutticorporate/",
+          "confidence": "high",
+          "ownershipNote": "IG do braco corporativo (Bisutti Corporate). Site bisutticorporate.com.br. Tambem citada como @bisutticorporativo no site corporativo (handle pode ter migrado de corporativo->corporate)."
+        },
+        {
+          "type": "youtube",
+          "url": "https://www.youtube.com/c/GrupoBisutti",
+          "confidence": "high",
+          "ownershipNote": "Canal linkado no footer do site oficial como YouTube do grupo. Nao consegui ler contagem de inscritos (pagina JS-gated p/ fetcher), mas o link e citado pelo proprio site."
+        },
+        {
+          "type": "tiktok",
+          "url": "https://www.tiktok.com/@bisuttioficial",
+          "confidence": "high",
+          "ownershipNote": "Linkado no footer do site oficial. Mesmo handle do IG principal (bisuttioficial)."
+        },
+        {
+          "type": "facebook-page",
+          "url": "https://www.facebook.com/grupobisutti",
+          "confidence": "high",
+          "ownershipNote": "Pagina FB do grupo, linkada no footer do site oficial. Provavel pagina por tras do page_id 190323540999720 da Ad Library (nao confirmado no fetcher pois a Ad Library e JS-gated)."
+        },
+        {
+          "type": "site-secundario",
+          "url": "https://bisutticorporate.com.br/",
+          "confidence": "high",
+          "ownershipNote": "Dominio do braco corporativo. bisutticorporativo.com.br (link no site principal) faz 301 para bisutticorporate.com.br. Mesmo grupo, divisao corporativa."
+        },
+        {
+          "type": "site-secundario",
+          "url": "https://grupobisutti.com.br/",
+          "confidence": "high",
+          "ownershipNote": "Dominio institucional que faz 301 para bisutti.com.br. Mesma empresa (e o dominio dos e-mails corporativos @grupobisutti.com.br)."
+        },
+        {
+          "type": "blog",
+          "url": "https://blog.bisutti.com.br/",
+          "confidence": "high",
+          "ownershipNote": "Subdominio de blog em WordPress (BISUTTI SOCIAL), conteudo SEO sobre espacos/casamento/debutantes. Linkado como /blog/ no site principal."
+        },
+        {
+          "type": "site-secundario",
+          "url": "https://villas.grupobisutti.com.br/",
+          "confidence": "medium",
+          "ownershipNote": "Subdominio do dominio institucional do grupo (Villa Bisutti). Apareceu em busca como pagina de imagem/espaco. Padrao de subdominio por-linha do mesmo grupo."
+        },
+        {
+          "type": "lp",
+          "url": "https://tenerife.grupobisutti.com.br/",
+          "confidence": "medium",
+          "ownershipNote": "Subdominio por-espaco (Tenerife) sob grupobisutti.com.br. Sugere padrao de LPs por-espaco em subdominios <espaco>.grupobisutti.com.br. Verificar se ha outros (<casa>.grupobisutti.com.br)."
+        },
+        {
+          "type": "outro",
+          "url": "https://x.com/grupobisutti",
+          "confidence": "medium",
+          "ownershipNote": "Perfil X/Twitter @grupobisutti. Mesmo handle da conta institucional IG/FB do grupo. Provavelmente legado/baixa atividade; ownership coerente pelo handle."
+        },
+        {
+          "type": "outro",
+          "url": "https://br.linkedin.com/company/grupo-bisutti",
+          "confidence": "high",
+          "ownershipNote": "Pagina de empresa no LinkedIn 'Grupo Bisutti'. Funcionarios listam e-mails @grupobisutti.com.br. Ownership solido."
+        }
+      ],
+      "spacesSubBrands": [
+        {
+          "name": "Villa Bisutti (linha de casas/villas em SP)",
+          "site": "https://bisutti.com.br/o-grupo",
+          "instagram": "@bisuttioficial",
+          "note": "Marca-mae historica (chegou ao Brasil em 2008 com a Casa do Ator). ~10-14 espacos em SP (Vila Olimpia, Itaim, Vila Nova Conceicao)."
+        },
+        {
+          "name": "Casa do Ator",
+          "site": "https://bisutti.com.br/bisutti-casa-do-ator/",
+          "instagram": "@bisutticasadoator",
+          "note": "Primeiro espaco do grupo no Brasil; 710m2, lustre Murano."
+        },
+        {
+          "name": "Casa Itaim",
+          "site": "https://bisutti.com.br/bisutti-casa-itaim/",
+          "instagram": "@bisutticasaitaim",
+          "note": "Espaco integrado a natureza, ~15K seguidores."
+        },
+        {
+          "name": "Casa Bisutti",
+          "site": "https://bisutti.com.br/casa-bisutti/",
+          "instagram": "@casabisutti",
+          "note": "Salao 1000m2, pe-direito 7m, jardins verticais (cenario Toscana). ~18K."
+        },
+        {
+          "name": "Traffo",
+          "site": "https://bisutti.com.br/espaco-casa-traffo/",
+          "instagram": "@bisuttitraffo",
+          "note": "~21K seguidores."
+        },
+        {
+          "name": "Berrini",
+          "site": "https://bisutti.com.br/bisutti-berrini/",
+          "instagram": "@bisuttiberrini",
+          "note": ""
+        },
+        {
+          "name": "Contemporaneo 8076",
+          "site": "https://bisutti.com.br/contemporaneo-8076/",
+          "instagram": "@bisutticontemporaneo8076",
+          "note": "Jardim interno com cobertura de vidro. Conta por-espaco mais forte (~48K)."
+        },
+        {
+          "name": "Tenerife",
+          "site": "https://bisutti.com.br/bisutti-tenerife/",
+          "instagram": "@bisuttitenerife",
+          "note": "Tijolo aparente; tambem tem subdominio tenerife.grupobisutti.com.br."
+        },
+        {
+          "name": "Cardoso de Melo",
+          "site": "https://bisutti.com.br/bisutti-cardoso-de-melo/",
+          "instagram": "@bisutticardosodemelo",
+          "note": ""
+        },
+        {
+          "name": "Zero Onze",
+          "site": "https://bisutti.com.br/bisutti-zero-onze/",
+          "instagram": "@bisutti011",
+          "note": ""
+        },
+        {
+          "name": "Gomes de Carvalho",
+          "site": "https://bisutti.com.br/bisutti-gomes-de-carvalho/",
+          "instagram": "@bisuttigomesdecarvalho",
+          "note": "Mezanino e triplo painel LED."
+        },
+        {
+          "name": "Viale 441",
+          "site": "https://bisutti.com.br/bisutti-viale-441/",
+          "instagram": "@bisuttiviale441",
+          "note": "Itaim Bibi, 206m2, casamentos intimistas."
+        },
+        {
+          "name": "Boulevard JK",
+          "site": "https://bisutti.com.br/bisuttiboulevardjk/",
+          "instagram": "",
+          "note": "Vila Nova Conceicao, esquina Faria Lima x JK. IG por-espaco nao resolvido nesta varredura."
+        },
+        {
+          "name": "Mendoza (Lomas del Malbec)",
+          "site": "https://bisutti.com.br/bisutti-mendoza/",
+          "instagram": "",
+          "note": "Espaco em Mendoza, Argentina. IG por-espaco nao resolvido."
+        },
+        {
+          "name": "Milagres (Casa Marceneiro)",
+          "site": "https://bisutti.com.br/bisutti-milagres/",
+          "instagram": "",
+          "note": "Litoral (proximo a 2a maior barreira de corais). IG por-espaco nao resolvido."
+        },
+        {
+          "name": "Fazenda Fortaleza",
+          "site": "https://bisutti.com.br/bisutti-fazenda-fortaleza/",
+          "instagram": "",
+          "note": "IG por-espaco nao resolvido."
+        },
+        {
+          "name": "Chez Bisutti (linha destination, parceria Club Med)",
+          "site": "https://bisutti.com.br/destination-wedding-2/",
+          "instagram": "@chezbisutti",
+          "note": "Sub-marca de destination wedding. Espacos: Lake Paradise, Garden, Trancoso, Rio das Pedras, Punta Cana - cada um com IG proprio (@chezbisutti.<espaco>)."
+        },
+        {
+          "name": "Bisutti Trancoso Teatro L'Occitane",
+          "site": "https://bisutti.com.br/bisutti-trancoso-teatro/",
+          "instagram": "@bisuttitrancoso.tl",
+          "note": "Espaco em Trancoso (distinto do Chez Bisutti Trancoso)."
+        },
+        {
+          "name": "Bisutti Corporate",
+          "site": "https://bisutticorporate.com.br/",
+          "instagram": "@bisutticorporate",
+          "note": "Braco corporativo do grupo. Dominio proprio + IG proprio."
+        },
+        {
+          "name": "Citron Gastronomia",
+          "note": "Sub-marca de gastronomia para eventos corporativos."
+        },
+        {
+          "name": "Chef Julio Perinetto",
+          "site": "https://bisutti.com.br/julio-perinetto/",
+          "note": "Assinatura gastronomica para eventos sociais."
+        },
+        {
+          "name": "Eleven Bar",
+          "site": "https://bisutti.com.br/eleven-bar/",
+          "note": "Servico de coqueteleria/bar."
+        },
+        {
+          "name": "BP Kosher",
+          "site": "https://bisutti.com.br/bp-kosher/",
+          "note": "Gastronomia kosher."
+        },
+        {
+          "name": "Mariana Bassi",
+          "site": "https://bisutti.com.br/mariana-bassi/",
+          "note": "Decoracao/mobiliario."
+        },
+        {
+          "name": "Giuliana Pimenta",
+          "site": "https://bisutti.com.br/giuliana-pimenta/",
+          "note": "Doces finos/lembrancas."
+        },
+        {
+          "name": "Per Bambini",
+          "site": "https://bisutti.com.br/per-bambini/",
+          "note": "Recreacao infantil."
+        },
+        {
+          "name": "Concierge Bisutti",
+          "site": "https://bisutti.com.br/concierge-bisutti",
+          "note": "Servico de concierge."
+        },
+        {
+          "name": "CX Experience",
+          "site": "https://bisutti.com.br/cx-experience",
+          "note": "Producao audiovisual/experiencia."
+        },
+        {
+          "name": "GB7",
+          "note": "Sub-marca interna de som, luz, projecao e entretenimento (citada na descricao do LinkedIn). Sem site/IG proprio confirmado."
+        }
+      ],
+      "notes": "BISUTTI (Grupo Bisutti, antiga Villa Bisutti) e um grupo de eventos de grande porte, NAO um venue unico - opera ~19 espacos (14 em SP + 5 em resorts Club Med via linha Chez Bisutti) com modelo '360' (gastronomia + decoracao + tecnologia em pacote). Pegada digital muito ampla e madura.\n\nARQUITETURA DE MARCA: marca-mae @bisuttioficial (~217K seguidores) + uma conta IG POR ESPACO (padrao forte: bio 'Um espaco @bisuttioficial'). Confirmei 12 IGs por-espaco em SP e 5 no cluster destination Chez Bisutti, alem de bracos institucional (@grupobisutti) e corporativo (@bisutticorporate). Isso e o achado central para o radar: cada espaco e um canal de aquisicao separado.\n\nDOMINIOS: bisutti.com.br (social, WordPress) e o principal; grupobisutti.com.br faz 301 -> bisutti.com.br (mesma empresa, e o dominio dos e-mails corporativos); bisutticorporativo.com.br faz 301 -> bisutticorporate.com.br (braco corporativo); blog.bisutti.com.br (subdominio de conteudo SEO). Detectei padrao de SUBDOMINIOS POR-ESPACO sob grupobisutti.com.br (villas.grupobisutti.com.br, tenerife.grupobisutti.com.br) - provavel familia de LPs por-espaco que vale varrer mais a fundo (testar <espaco>.grupobisutti.com.br para cada casa).\n\nSINAIS DE QUE ANUNCIA: page_id da Ad Library fornecido no seed (190323540999720); pagina FB /grupobisutti ativa. Nao consegui ler a Ad Library nem o YouTube direto (paginas JS-gated bloqueiam o fetcher) - por isso o page_id fica como 'nao-resolvido' formalmente, mas o seed e a pagina FB sao consistentes. Recomendo confirmar o page_id manualmente em facebook.com/ads/library.\n\nNAO RESOLVIDO / RISCO: (1) IGs por-espaco de Boulevard JK, Mendoza, Milagres, Fazenda Fortaleza, Punta Cana, Casa do Ator (existe @bisutticasadoator mas com baixa atividade) - podem existir e nao apareceram. (2) 'jardinbisutti'/'Jardim Bisutti' apareceu APENAS na bio de um executivo no ZoomInfo (Tiago Varalli: 'Bisuttioficial Chezbisutti Jardinbisutti') - pode ser uma 4a sub-marca (jardim/garden) mas nao achei conta/site ativo; marcar como hipotese a investigar. (3) @bisutticorporativo vs @bisutticorporate - provavel migracao de handle; confirmar qual esta ativo. Risco de homonimo baixo em geral: 'Bisutti' tambem e sobrenome italiano (ha pessoas/marcas homonimas em moda/arte fora do Brasil), entao filtrar por 'eventos/buffet/SP/Club Med' nas validacoes."
+    },
+    {
+      "competitor": "GRUPO QUINTAL",
+      "confirmedPrimary": [
+        {
+          "type": "site",
+          "url": "https://grupoquintal.com.br/",
+          "status": "confirmado"
+        },
+        {
+          "type": "instagram",
+          "url": "https://www.instagram.com/grupoquintaleventosoficial/",
+          "status": "confirmado"
+        },
+        {
+          "type": "facebook-ad-library",
+          "url": "https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=BR&q=grupo%20quintal",
+          "status": "nao-resolvido"
+        },
+        {
+          "type": "pinterest",
+          "url": "https://br.pinterest.com/espacoquintal/",
+          "status": "confirmado"
+        }
+      ],
+      "discoveredSecondary": [
+        {
+          "type": "youtube",
+          "url": "https://www.youtube.com/channel/UCdNOV6DE2OJCbbwGSqR8EWA",
+          "label": "YouTube - Casinha Quintal Mini Weddings (canal por espaço, provável)",
+          "confidence": "medium",
+          "ownershipNote": "Apareceu na busca como 'Casinha Quintal Mini Weddings - YouTube'. Nome casa exatamente com a sub-marca confirmada (Casinha Quintal = mini weddings). Não consegui abrir a aba /about (JS) para confirmar links; confiança média por não estar linkado a partir do site-mãe.",
+          "verification": {
+            "url": "https://www.youtube.com/channel/UCdNOV6DE2OJCbbwGSqR8EWA",
+            "belongsToCompetitor": "yes",
+            "correctedLabel": "YouTube - Casinha Quintal Mini Weddings (canal por espaço; sub-marca confirmada do Grupo Quintal)",
+            "evidence": "CONFIRMADO como pertencente ao Grupo Quintal via cross-link oficial direto. (1) O site oficial da sub-marca, casinhaquintal.com.br, lista explicitamente como seu canal de YouTube o handle @casinhaquintalminiweddings8975 — que resolve exatamente para o channel ID UCdNOV6DE2OJCbbwGSqR8EWA (a busca \"Casinha Quintal Mini Weddings - YouTube\" retorna esse mesmo ID; o m.youtube.com/@casinhaquintalminiweddings8975/playlists confirma o handle). (2) casinhaquintal.com.br declara \"faz parte do Grupo Quintal\" e cross-linka as outras sub-marcas (Espaço/Casa/Celeiro/Chalé/Botânico Quintal) e grupoquintal.com.br. (3) O site-mãe grupoquintal.com.br lista Casinha Quintal como um de seus 6 espaços (mini wedding, até ~50 pessoas, Higienópolis/SP) e cross-linka @casinhaquintal + casinhaquintal.com.br. Branding casa exatamente (Casinha Quintal = mini weddings). RISCO DE HOMÔNIMO descartado: existe um canal distinto e NÃO relacionado \"Sítio quintal da casinha\" (@quintaldacasinha, channel UC_sxophcLWwKPi0K1995OJA) — ordem de palavras invertida, é um sítio rural, NÃO é este asset. RESSALVA: o concorrente (Grupo Quintal) opera em São Paulo capital/Higienópolis-Pinheiros, não no \"interior de SP\" — divergência de mercado vs. o VVF, mas isso não afeta a propriedade do asset, que está confirmada. Confiança: ALTA."
+          }
+        },
+        {
+          "type": "pinterest",
+          "url": "https://br.pinterest.com/casinhaquintal/",
+          "label": "Pinterest - Casinha Quintal (@casinhaquintal)",
+          "confidence": "medium",
+          "ownershipNote": "Board 'casinha-quintal' descrito como espaço para weddings/mini weddings/elopement, ~2K seguidores. Handle casa com a sub-marca. Risco baixo-médio de homônimo dado o termo 'casinha quintal' comum; reforçado pelo alinhamento de conteúdo (mini wedding).",
+          "verification": {
+            "url": "https://br.pinterest.com/casinhaquintal/",
+            "belongsToCompetitor": "yes",
+            "evidence": "CONFIRMED as a venue-level asset of a Grupo Quintal sub-brand (Casinha Quintal — Mini Wedding). Ownership chain: (1) grupoquintal.com.br/as-casas/ lists \"Casinha Quintal\" as one of the group's six houses (\"A Casinha Quintal é perfeita para um 'Mini Wedding'\"); (2) the dedicated site casinhaquintal.com.br references Grupo Quintal as the 15-year parent company and lists all six sister venues (Espaço/Casa/Casinha/Celeiro/Chalé/Botânico Quintal); (3) there is a Grupo Quintal marketing subdomain mkt.grupoquintal.com.br/proposta-casinha (\"Casinha Quintal | O Melhor Mini Wedding de SP\"). Handle match: the Pinterest handle @casinhaquintal is identical to the brand's Instagram (instagram.com/casinhaquintal), Facebook (facebook.com/casinhaquintal) and domain (casinhaquintal.com.br) — all confirmed in the casinhaquintal.com.br footer. Content match: the Pinterest bio reads \"ESPAÇO PARA CASAMENTOS/MINI WEDDING/ELOPEMENT WEDDING\" (~2K followers, 64 following), with brand-specific boards \"Mini Weddings Casinha Quintal 2016/2017\", \"casinha-quintal\", and pins captioned \"Casinha Quintal - SP\" — active since 2016/2017, consistent with a venue-owned account. CAVEAT (be skeptical): the official casinhaquintal.com.br footer links Facebook, Instagram and YouTube (@casinhaquintalminiweddings8975) but does NOT link the Pinterest — so there is no direct site→Pinterest cross-link; ownership rests on exact handle match + brand-specific board/pin content rather than an explicit hyperlink. Homonym risk: LOW — the compound handle \"casinhaquintal\" tied to mini-wedding venue content (boards naming the venue, pins tagged \"Casinha Quintal - SP\") is too specific to be a coincidental namesake. CONTEXT NUANCE (not an ownership problem): the original note and the radar's premise say \"interior de SP\", but Grupo Quintal's venues — including Casinha Quintal (Rua Goiás 57, Higienópolis) — are in the CITY of São Paulo (capital: Higienópolis, Alto de Pinheiros, near Av. Paulista), not the interior. This affects how the competitor itself is framed, not whether this Pinterest belongs to it."
+          }
+        },
+        {
+          "type": "pinterest",
+          "url": "https://br.pinterest.com/celeiroquintal/",
+          "label": "Pinterest - Celeiro Quintal (@celeiroquintal)",
+          "confidence": "medium",
+          "ownershipNote": "Board 'celeiro-quintal' com inspiração de casamento. Handle idêntico à sub-marca/IG/domínio. Não foi possível ler a bio para confirmar link de saída; confiança média.",
+          "verification": {
+            "url": "https://br.pinterest.com/celeiroquintal/",
+            "belongsToCompetitor": "yes",
+            "evidence": "CONFIRMED ownership by Grupo Quintal (via its Celeiro Quintal venue/sub-brand), high confidence. Evidence chain: (1) The Pinterest profile br.pinterest.com/celeiroquintal/ hosts the board \"celeiro-quintal\" (\"100 ideias de Celeiro Quintal | celeiro, quintal, casamento no celeiro\"), farm/barn-wedding content matching the venue's positioning (Farm/Barn Wedding, 90-320 guests). Search shows the profile has ~251 followers. (2) Handle consistency: the exact handle \"celeiroquintal\" is reused identically across Pinterest, Instagram (instagram.com/celeiroquintal) and Facebook (facebook.com/celeiroquintal) — and these are the official social handles used by the venue. (3) The official venue site celeiroquintal.com.br (Rua Cônego Eugênio Leite 1098, Pinheiros, São Paulo; WhatsApp +55 11 94521-9483) \"extensively mentions\" Grupo Quintal (\"grupo familiar\", 15 anos) and lists its sibling venues (Casa/Espaço/Casinha/Chalé/Botânico Quintal); grupoquintal.com.br confirms Celeiro Quintal as one of its six sub-brands. (4) Third-party wedding blogs (iCasei) document real weddings held \"no Celeiro Quintal\", corroborating it is the venue's own brand. HOMONYM RISK: LOW. \"Quintal\" is a common word and unrelated boards exist (e.g. br.pinterest.com/julianosplitter/celeiro-eventos; a separate \"Casa Quintal eventos\" exists elsewhere), but the exact handle celeiroquintal + the dedicated \"celeiro-quintal\" board + cross-platform handle identity tie this specific profile to the venue. LIMITATION: Could not read the Pinterest bio/outbound website link directly (page content truncated on every fetch attempt and Pinterest requires login to expose the bio link), so a literal site-to-Pinterest cross-link was not visually confirmed — the attribution rests on handle identity + content match rather than an explicit outbound link. CAVEAT FOR THE RADAR (not an ownership issue): all Grupo Quintal venues, including Celeiro Quintal, are in the CITY of São Paulo (Pinheiros / Higienópolis), NOT the interior of SP state — so its fit as a Vale Verde Festas (interior, natural-setting) competitor is questionable, even though the asset itself genuinely belongs to Grupo Quintal as named in this task."
+          }
+        },
+        {
+          "type": "site-secundario",
+          "url": "https://celeiroquintal.com.br/",
+          "label": "Celeiro Quintal (Farm Wedding) - sub-marca por espaço",
+          "confidence": "high",
+          "ownershipNote": "Linkado em grupoquintal.com.br/as-casas/. Conceito 'Farm Wedding'. Confirmado pelo site-mãe."
+        },
+        {
+          "type": "site-secundario",
+          "url": "https://chalequintal.com.br/",
+          "label": "Chalé Quintal (Romantic Wedding) - sub-marca por espaço",
+          "confidence": "high",
+          "ownershipNote": "Linkado em grupoquintal.com.br/as-casas/. Conceito 'Romantic Wedding'. Confirmado pelo site-mãe."
+        },
+        {
+          "type": "site-secundario",
+          "url": "https://botanicoquintal.com.br/",
+          "label": "Botânico Quintal (Fresh Wedding) - sub-marca por espaço",
+          "confidence": "high",
+          "ownershipNote": "Seed do fundador + linkado em grupoquintal.com.br/as-casas/. Conceito 'Fresh Wedding'. Confirmado pelo site-mãe."
+        },
+        {
+          "type": "lp",
+          "url": "https://mkt.grupoquintal.com.br/",
+          "label": "Subdomínio de landing pages / marketing (propostas por espaço, materiais ricos, LPs de captação)",
+          "confidence": "high",
+          "ownershipNote": "Subdomínio direto de grupoquintal.com.br. Hospeda dezenas de LPs: proposta-botanico-quintal, proposta-celeiro-quintal, proposta-casinha, celeiro-quintal-farm-wedding, corp-lp-proposta-corporativo, botanico-quintal-fresh-wedding, bq-checklist-debutantes, salt-house-spa, etc. Forte sinal de que rodam mídia paga apontando para estas LPs. Propriedade inequívoca (mesmo domínio raiz)."
+        },
+        {
+          "type": "instagram-secundario",
+          "url": "https://www.instagram.com/espacoquintal/",
+          "label": "@espacoquintal - IG por espaço (Espaço Quintal)",
+          "confidence": "high",
+          "ownershipNote": "Linkado no site oficial. ~63K seguidores. Sem homônimo conhecido para este handle exato."
+        },
+        {
+          "type": "instagram-secundario",
+          "url": "https://www.instagram.com/casaquintal/",
+          "label": "@casaquintal - IG por espaço (Casa Quintal)",
+          "confidence": "high",
+          "ownershipNote": "Linkado no site oficial. ~88K seguidores. Cuidado: handle 'casaquintal' é genérico, mas o linkado pelo site-mãe é este."
+        },
+        {
+          "type": "instagram-secundario",
+          "url": "https://www.instagram.com/casinhaquintal/",
+          "label": "@casinhaquintal - IG por espaço (Casinha Quintal Mini Weddings)",
+          "confidence": "high",
+          "ownershipNote": "Linkado no site oficial. Bio 'Mini Weddings', ~76K seguidores. NÃO confundir com @casinha.do.quintal (escola infantil, homônimo)."
+        },
+        {
+          "type": "instagram-secundario",
+          "url": "https://www.instagram.com/celeiroquintal/",
+          "label": "@celeiroquintal - IG por espaço (Celeiro Quintal)",
+          "confidence": "high",
+          "ownershipNote": "Linkado no site oficial. ~55K seguidores, 'Barn & Farm Wedding'. Sem homônimo conhecido."
+        },
+        {
+          "type": "instagram-secundario",
+          "url": "https://www.instagram.com/chale_quintal/",
+          "label": "@chale_quintal - IG por espaço (Chalé Quintal)",
+          "confidence": "high",
+          "ownershipNote": "Linkado no site oficial (note o underscore no handle). Sem homônimo conhecido."
+        },
+        {
+          "type": "instagram-secundario",
+          "url": "https://www.instagram.com/botanicoquintal/",
+          "label": "@botanicoquintal - IG por espaço (Botânico Quintal)",
+          "confidence": "high",
+          "ownershipNote": "Seed do fundador + linkado no site oficial. ~46K seguidores. Sem homônimo conhecido."
+        },
+        {
+          "type": "facebook-page",
+          "url": "https://www.facebook.com/grupoquintaleventos/",
+          "label": "Facebook - Grupo Quintal Eventos (página principal)",
+          "confidence": "high",
+          "ownershipNote": "Página FB oficial do grupo (São Paulo/SP, Higienópolis). Candidata ao page_id da Ad Library, mas o número não foi resolvido (Ad Library bloqueia fetch automatizado)."
+        },
+        {
+          "type": "facebook-page",
+          "url": "https://www.facebook.com/casaquintaleventos/",
+          "label": "Facebook - Casa Quintal",
+          "confidence": "high",
+          "ownershipNote": "Página FB por espaço, achada via busca. Nome 'Casa Quintal' São Paulo/SP. Alinha com a sub-marca confirmada."
+        },
+        {
+          "type": "facebook-page",
+          "url": "https://www.facebook.com/espacoquintalsp/",
+          "label": "Facebook - Espaço Quintal",
+          "confidence": "high",
+          "ownershipNote": "Página FB por espaço (handle 'espacoquintalsp'). São Paulo/SP. Alinha com a sub-marca confirmada."
+        },
+        {
+          "type": "facebook-page",
+          "url": "https://www.facebook.com/botanicoquintal/",
+          "label": "Facebook - Botânico Quintal",
+          "confidence": "high",
+          "ownershipNote": "Linkada no próprio site botanicoquintal.com.br. Propriedade confirmada pelo site da sub-marca."
+        },
+        {
+          "type": "youtube",
+          "url": "https://www.youtube.com/@grupoquintal-eventos7496",
+          "label": "YouTube - Grupo Quintal - Eventos (canal principal)",
+          "confidence": "high",
+          "ownershipNote": "Linkado no site botanicoquintal.com.br (footer). Handle gerado automaticamente (-eventos7496) típico de canal antigo. Título da página 'Grupo Quintal - Eventos'. Bio não inspecionável via fetch (YouTube renderiza via JS), mas o link parte do próprio domínio do grupo."
+        },
+        {
+          "type": "youtube",
+          "url": "https://www.youtube.com/channel/UCdNOV6DE2OJCbbwGSqR8EWA",
+          "label": "YouTube - Casinha Quintal Mini Weddings (canal por espaço, provável)",
+          "confidence": "medium",
+          "ownershipNote": "Apareceu na busca como 'Casinha Quintal Mini Weddings - YouTube'. Nome casa exatamente com a sub-marca confirmada (Casinha Quintal = mini weddings). Não consegui abrir a aba /about (JS) para confirmar links; confiança média por não estar linkado a partir do site-mãe."
+        },
+        {
+          "type": "pinterest",
+          "url": "https://br.pinterest.com/espacoquintal/",
+          "label": "Pinterest - Espaço Quintal (@espacoquintal)",
+          "confidence": "high",
+          "ownershipNote": "Boards 'Espaço Quintal | espaço para casamento'. Handle idêntico ao IG e ao domínio espacoquintal.com.br. Propriedade altamente provável (mesmo handle do conjunto da sub-marca)."
+        },
+        {
+          "type": "pinterest",
+          "url": "https://br.pinterest.com/casinhaquintal/",
+          "label": "Pinterest - Casinha Quintal (@casinhaquintal)",
+          "confidence": "medium",
+          "ownershipNote": "Board 'casinha-quintal' descrito como espaço para weddings/mini weddings/elopement, ~2K seguidores. Handle casa com a sub-marca. Risco baixo-médio de homônimo dado o termo 'casinha quintal' comum; reforçado pelo alinhamento de conteúdo (mini wedding)."
+        },
+        {
+          "type": "pinterest",
+          "url": "https://br.pinterest.com/celeiroquintal/",
+          "label": "Pinterest - Celeiro Quintal (@celeiroquintal)",
+          "confidence": "medium",
+          "ownershipNote": "Board 'celeiro-quintal' com inspiração de casamento. Handle idêntico à sub-marca/IG/domínio. Não foi possível ler a bio para confirmar link de saída; confiança média."
+        },
+        {
+          "type": "site-secundario",
+          "url": "https://mkt.grupoquintal.com.br/corp-lp-proposta-corporativo",
+          "label": "LP da vertical corporativa (Eventos Corporativos)",
+          "confidence": "high",
+          "ownershipNote": "LP de captação B2B no subdomínio mkt do grupo, linkada no footer do site oficial e do Botânico. Indica vertical corporativa ativa (não é sub-marca separada, é linha de negócio dentro do Grupo Quintal)."
+        }
+      ],
+      "facebookPageId": "",
+      "spacesSubBrands": [
+        {
+          "name": "Espaço Quintal",
+          "note": "Conceito 'Rustic Wedding'. ~70-150 convidados. Imóvel tombado, Higienópolis/SP.",
+          "site": "https://espacoquintal.com.br/",
+          "instagram": "https://www.instagram.com/espacoquintal/"
+        },
+        {
+          "name": "Casa Quintal",
+          "note": "Conceito 'Comfort Wedding'. Casamento com cara de casa, Higienópolis/SP.",
+          "site": "https://casaquintal.com.br/",
+          "instagram": "https://www.instagram.com/casaquintal/"
+        },
+        {
+          "name": "Casinha Quintal",
+          "note": "Conceito 'Mini Wedding' (até ~60 convidados). Rua Goiás 57, Higienópolis.",
+          "site": "https://casinhaquintal.com.br/",
+          "instagram": "https://www.instagram.com/casinhaquintal/"
+        },
+        {
+          "name": "Celeiro Quintal",
+          "note": "Conceito 'Farm Wedding' (~90-320 convidados).",
+          "site": "https://celeiroquintal.com.br/",
+          "instagram": "https://www.instagram.com/celeiroquintal/"
+        },
+        {
+          "name": "Chalé Quintal",
+          "note": "Conceito 'Romantic Wedding' (~60-250 convidados). Av. Angélica 2331.",
+          "site": "https://chalequintal.com.br/",
+          "instagram": "https://www.instagram.com/chale_quintal/"
+        },
+        {
+          "name": "Botânico Quintal",
+          "note": "Conceito 'Fresh Wedding' (~90-350 convidados). Glasshouse. Co-localizado com Salt House Spa.",
+          "site": "https://botanicoquintal.com.br/",
+          "instagram": "https://www.instagram.com/botanicoquintal/"
+        }
+      ],
+      "notes": "PEGADA: Grupo Quintal é um grupo de eventos de SÃO PAULO capital (Higienópolis e Av. Angélica), NÃO interior - arquitetura multi-marca robusta: 1 site-mãe (grupoquintal.com.br) + 6 sub-marcas por espaço, cada uma com domínio próprio, Instagram próprio e (várias) com Facebook e Pinterest próprios. Cada espaço vende um 'conceito' de casamento distinto (Rustic/Comfort/Mini/Farm/Romantic/Fresh Wedding). Mais de 15 anos de mercado. Verticais: casamentos (core), eventos corporativos e debutantes (XV) - tratadas como linhas de negócio dentro do grupo, não como marcas separadas.\n\nANUNCIA (forte sinal): subdomínio dedicado mkt.grupoquintal.com.br hospeda dezenas de landing pages de captação por espaço (proposta-*, *-fresh-wedding, *-farm-wedding, corp-lp-proposta-corporativo, bq-checklist-debutantes) - padrão típico de quem roda mídia paga (Meta/Google). Páginas de Facebook ativas confirmam presença na Meta.\n\nFACEBOOK AD LIBRARY: page_id NÃO resolvido. O endpoint facebook.com/ads/library bloqueia fetch automatizado (socket fechado em todas as tentativas). Página FB principal confirmada existir (facebook.com/grupoquintaleventos) - recomenda-se buscar manualmente 'Grupo Quintal' + cada sub-marca na Ad Library BR para extrair os page_id por espaço (provavelmente há um anunciante por casa, dada a separação de marcas).\n\nHOMÔNIMOS DESCARTADOS (NÃO pertencem ao Grupo Quintal): (1) 'Quintal Espaço Eventos' - quintalespacoeventos.com.br, fica em SALTO/SP, empresa distinta; (2) 'Meu Quintal Eventos' - meuquintal.com.br / @casamentonomeuquintal, distinta; (3) @casinha.do.quintal - escola/atividades infantis; (4) @meu.quintal.espaco e @espacoquintalrondonopolis (TikTok/IG) - outras empresas/cidades; (5) 'Quintal - Espaço para Eventos' Rondonópolis. O termo 'quintal' é muito comum - validar sempre pela cadeia de links a partir de grupoquintal.com.br antes de incluir.\n\nNÃO ENCONTRADO: TikTok oficial do grupo (só conteúdo de terceiros e homônimos); blog vive dentro do próprio domínio (grupoquintal.com.br/blog e botanicoquintal.com.br/blog) - não é asset separado. Salt House Spa aparece co-localizado no Botânico mas é serviço/parceiro, não sub-marca de eventos.\n\nLIMITAÇÃO TÉCNICA: bios de YouTube/Pinterest não foram inspecionáveis via WebFetch (render JS) - ownership desses inferido por correspondência exata de handle/nome com as sub-marcas confirmadas pelo site-mãe; daí confidence 'medium' nos Pinterest celeiro/casinha e no 2º canal de YouTube. Vale uma checagem manual rápida das bios para subir a confiança a 'high'."
+    },
+    {
+      "competitor": "Sítio São Jorge (Grupo São Jorge)",
+      "confirmedPrimary": [
+        {
+          "type": "site",
+          "url": "https://sitiosaojorge.com.br/",
+          "status": "confirmado"
+        },
+        {
+          "type": "instagram",
+          "url": "https://www.instagram.com/sitiosaojorge/",
+          "status": "confirmado"
+        },
+        {
+          "type": "pinterest",
+          "url": "https://br.pinterest.com/sitiosaojorge/",
+          "status": "confirmado"
+        },
+        {
+          "type": "facebook-ad-library",
+          "url": "https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=BR&view_all_page_id=151840481505064",
+          "status": "nao-resolvido"
+        }
+      ],
+      "discoveredSecondary": [
+        {
+          "type": "facebook-page",
+          "url": "https://www.facebook.com/sitiosaojorgedemarchi/",
+          "confidence": "medium",
+          "ownershipNote": "Página FB 'Sítio São Jorge' em São Bernardo do Campo SP (~401 curtidas) com slug 'demarchi' — provável página por-espaço do Espaço Demarchi do grupo. Confiança média: o slug e a cidade batem, mas não fiz fetch direto da página para confirmar o link de bio.",
+          "verification": {
+            "url": "https://www.facebook.com/sitiosaojorgedemarchi/",
+            "belongsToCompetitor": "yes",
+            "evidence": "Per-space (\"satellite\") Facebook page for the \"Espaço Demarchi\" venue of Grupo São Jorge / Sítio São Jorge. Convergent first-party + third-party signals:\n1) The official site sitiosaojorge.com.br has a dedicated per-space page sitiosaojorge.com.br/espaco-demarchi/ (\"Espaço Demarchi | Casamentos e Eventos\"), confirming Demarchi is an official named space of the group.\n2) The official Sítio São Jorge Pinterest account (br.pinterest.com/sitiosaojorge/) hosts a board \"Espaço Demarchi - Sítio São Jorge\" — first-party attribution.\n3) Official IG @sitiosaojorge and main FB page facebook.com/sitiosaojorge post about \"ESPAÇO DEMARCHI\" as one of its spaces.\n4) The FB page under review is named \"Sítio São Jorge,\" in São Bernardo do Campo, SP — same city and same business (casamentos/eventos buffet) as the group. Slug \"sitiosaojorgedemarchi\" = parent brand + space name.\n5) Address consistency: Espaço Demarchi is at Av. Nicola Demarchi, 150, São Bernardo do Campo (the group's address), matching the FB page listing.\n\nHomonym risk CHECKED and dismissed: Instagram @espacodemarchi is an UNRELATED bronze/nails salon, and facebook.com/imperialdemarchi is a separate \"Espaço Imperial Demarchi\" — neither is this page, which carries the parent brand \"Sítio São Jorge\" as its name/slug. \"Demarchi\" is a São Bernardo do Campo avenue/neighborhood name, which is why the sub-brand carries it.\n\nCAVEAT (skeptical honesty): WebFetch was blocked (HTTP 403) on both the Facebook page and the official site, so I could NOT capture a literal bio-link URL from the FB page back to sitiosaojorge.com.br. The ownership call rests on the convergent signals above, not a captured outbound cross-link. Page is small (~401 likes), consistent with a secondary/legacy per-venue presence vs. the group's primary FB page facebook.com/sitiosaojorge."
+          }
+        },
+        {
+          "type": "instagram-secundario",
+          "url": "https://www.instagram.com/jardimsecretobh/",
+          "confidence": "low",
+          "ownershipNote": "ALERTA DE HOMÔNIMO: @jardimsecretobh ('bh' = Belo Horizonte) NÃO é o Jardim Secreto do Grupo São Jorge. Aparece em buscas por 'Jardim Secreto' mas é outro espaço, em MG. O Jardim Secreto DESTE grupo (São Bernardo, sitiosaojorge.com.br/jardim-secreto/) é divulgado pela conta-mãe @sitiosaojorge, sem IG dedicado identificado. Listado apenas para registrar o risco — NÃO atribuir ao concorrente.",
+          "verification": {
+            "url": "https://www.instagram.com/jardimsecretobh/",
+            "belongsToCompetitor": "no",
+            "evidence": "HOMONYM CONFIRMED — does NOT belong to Sitio São Jorge / Grupo São Jorge. Hard geo-distinguisher: @jardimsecretobh (\"Espaço Jardim Secreto - Casamentos\", 6,150 followers) is physically located at Rua Ataláia, 62 - Jaqueline, Belo Horizonte - MG, 31748-400 (confirmed via Waze live-map listing \"Espaço Jardim Secreto BH, 62 R. Ataláia\" and corroborating geo snippets). The \"bh\" suffix = Belo Horizonte, consistent with the MG address. The competitor Sitio São Jorge / Grupo São Jorge is in São Bernardo do Campo, SP (Av. Nicola Demarchi 150 / Rua das Araribas 25; Riacho Grande for Porto São Jorge) — ~580 km away, a different city AND state. The two only share the GENERIC theme name \"Jardim Secreto\" (grotto + European-village garden concept), which is why search-engine AI summaries repeatedly (and wrongly) assert a link to Sitio São Jorge; one summary even mislocated it to \"Guarulhos\". No verified cross-link found: the official sitiosaojorge.com.br footprint uses @sitiosaojorge, @portosaojorge and the br.pinterest.com/sitiosaojorge Pinterest — none point to @jardimsecretobh. Note (HTTP 403 blocked direct WebFetch of instagram.com, facebook.com and sitiosaojorge.com.br, so attribution rests on the Waze address + cross-source search snippets, not a live read of the IG bio). SEPARATE LEAD for the radar (not this asset): @espacojardimsecreto_grs (3,841 followers) — \"grs\" plausibly = Grupo São Jorge — is a stronger candidate for the group's actual dedicated Jardim Secreto handle and should be verified on its own. Conclusion: keep @jardimsecretobh listed only as a registered homonym risk; do NOT attribute it to the competitor."
+          }
+        },
+        {
+          "type": "instagram-secundario",
+          "url": "https://www.instagram.com/portosaojorge/",
+          "confidence": "high",
+          "ownershipNote": "Conta por-espaço do 'Porto São Jorge', descrito no próprio site (sitiosaojorge.com.br/porto-sao-jorge/) como o novo espaço do grupo (~24.000m², 35 min de SP capital). Buscas confirmam 'parte do Sítio São Jorge (@sitiosaojorge)'. Risco de homônimo baixo."
+        },
+        {
+          "type": "instagram-secundario",
+          "url": "https://www.instagram.com/odeondecor/",
+          "confidence": "high",
+          "ownershipNote": "Odeon Decorações (@odeondecor), ~17 mil seguidores, sediada em São Bernardo do Campo — marca de decoração do Grupo São Jorge (citada no site e em buscas como pertencente ao mesmo grupo). Caveat: opera também fora dos espaços do Sítio (decoração para terceiros), mas é asset de marketing do grupo. Tem board próprio no Pinterest do sitiosaojorge."
+        },
+        {
+          "type": "instagram-secundario",
+          "url": "https://www.instagram.com/barollo_gastronomia/",
+          "confidence": "high",
+          "ownershipNote": "Barollo Gastronomia (@barollo_gastronomia) — buffet do Grupo São Jorge, criado para levar a mesma gastronomia do Sítio a outros locais/residências. Página oficial do site: sitiosaojorge.com.br/barollo-gastronomia-buffet-para-casamentos-e-eventos/. Sediada em São Bernardo. Caveat: serve eventos fora dos espaços do grupo também."
+        },
+        {
+          "type": "facebook-page",
+          "url": "https://www.facebook.com/barollobuffet/",
+          "confidence": "high",
+          "ownershipNote": "Página FB da Barollo Gastronomia (São Bernardo do Campo), marca de buffet do Grupo São Jorge. Mesma entidade da conta IG @barollo_gastronomia."
+        },
+        {
+          "type": "facebook-page",
+          "url": "https://www.facebook.com/OdeonDecoracoes/",
+          "confidence": "high",
+          "ownershipNote": "Página FB da Odeon Decorações (São Bernardo do Campo SP), marca de decoração do Grupo São Jorge. Mesma entidade da conta IG @odeondecor."
+        },
+        {
+          "type": "facebook-page",
+          "url": "https://www.facebook.com/p/Espa%C3%A7o-Vdara-100067034588035/",
+          "confidence": "high",
+          "ownershipNote": "Página FB do 'Espaço Vdara' (São Bernardo do Campo SP) — espaço do Grupo São Jorge (página própria sitiosaojorge.com.br/espaco-vdara/). Risco de homônimo baixo (localização e segmento batem)."
+        },
+        {
+          "type": "facebook-page",
+          "url": "https://www.facebook.com/sitiosaojorgedemarchi/",
+          "confidence": "medium",
+          "ownershipNote": "Página FB 'Sítio São Jorge' em São Bernardo do Campo SP (~401 curtidas) com slug 'demarchi' — provável página por-espaço do Espaço Demarchi do grupo. Confiança média: o slug e a cidade batem, mas não fiz fetch direto da página para confirmar o link de bio."
+        },
+        {
+          "type": "blog",
+          "url": "https://sitiosaojorge.com.br/casamento-rustico-o-guia-completo/",
+          "confidence": "high",
+          "ownershipNote": "O blog do grupo vive no próprio domínio principal (artigos em sitiosaojorge.com.br/<slug>/: guias de casamento rústico, decoração, checklist, história). Não é domínio separado — é seção de conteúdo do site oficial. URL listada é um exemplo de post."
+        },
+        {
+          "type": "instagram-secundario",
+          "url": "https://www.instagram.com/jardimsecretobh/",
+          "confidence": "low",
+          "ownershipNote": "ALERTA DE HOMÔNIMO: @jardimsecretobh ('bh' = Belo Horizonte) NÃO é o Jardim Secreto do Grupo São Jorge. Aparece em buscas por 'Jardim Secreto' mas é outro espaço, em MG. O Jardim Secreto DESTE grupo (São Bernardo, sitiosaojorge.com.br/jardim-secreto/) é divulgado pela conta-mãe @sitiosaojorge, sem IG dedicado identificado. Listado apenas para registrar o risco — NÃO atribuir ao concorrente."
+        }
+      ],
+      "facebookPageId": "151840481505064",
+      "spacesSubBrands": [
+        {
+          "name": "Espaço Pergolado",
+          "site": "https://sitiosaojorge.com.br/espaco-pergolado/",
+          "note": "Espaço-carro-chefe, clima europeu com vista para lago. ~400 sentados / 800 coquetel. Sem IG/FB dedicado identificado (divulgado via @sitiosaojorge)."
+        },
+        {
+          "name": "Espaço Vdara",
+          "site": "https://sitiosaojorge.com.br/espaco-vdara/",
+          "note": "Arquitetura com teto de vidro. ~280 sentados / 600 coquetel. Tem página FB própria (Espaço Vdara, 100067034588035) e board no Pinterest do grupo."
+        },
+        {
+          "name": "Jardim Secreto",
+          "site": "https://sitiosaojorge.com.br/jardim-secreto/",
+          "note": "Construído em torno de uma gruta, teto de vidro, jardim vertical suspenso. ~120 jantar / 180 coquetel, ideal mini weddings. Divulgado pela @sitiosaojorge. CUIDADO: @jardimsecretobh é OUTRO venue (Belo Horizonte), não deste grupo."
+        },
+        {
+          "name": "Espaço Demarchi",
+          "site": "https://sitiosaojorge.com.br/espaco-demarchi/",
+          "note": "~350 sentados / 800 coquetel, infraestrutura para grandes eventos. Provável página FB própria (sitiosaojorgedemarchi) — confiança média."
+        },
+        {
+          "name": "Porto São Jorge",
+          "site": "https://sitiosaojorge.com.br/porto-sao-jorge/",
+          "note": "Espaço mais novo, ~24.000m² integrado à natureza, conceito 'casamento no jardim na casa da família'. Tem IG próprio @portosaojorge (alta confiança)."
+        },
+        {
+          "name": "Odeon Decorações",
+          "site": "https://sitiosaojorge.com.br/",
+          "instagram": "https://www.instagram.com/odeondecor/",
+          "note": "Sub-marca de DECORAÇÃO do grupo (não é um espaço). ~17K no IG, FB /OdeonDecoracoes, board no Pinterest do grupo. Também atende terceiros fora dos espaços do Sítio."
+        },
+        {
+          "name": "Barollo Gastronomia",
+          "site": "https://www.sitiosaojorge.com.br/barollo-gastronomia-buffet-para-casamentos-e-eventos/",
+          "instagram": "https://www.instagram.com/barollo_gastronomia/",
+          "note": "Sub-marca de BUFFET/GASTRONOMIA do grupo (não é um espaço). IG @barollo_gastronomia, FB /barollobuffet. Leva a gastronomia do Sítio a locais externos/residências."
+        }
+      ],
+      "notes": "IDENTIDADE CONFIRMADA: é o venue/buffet de casamento premium 'Grupo São Jorge' / 'Sítio São Jorge', entidade legal S S J FANANI BUFFET E SERVICOS LTDA (CNPJ 11.340.490/0001-91), Rua das Araribás, 25 - Bairro dos Casa, São Bernardo do Campo - SP. Negócio familiar desde 1988 (começou como restaurante). NÃO é o homônimo genérico 'sítio São Jorge' — confirmado por endereço, CNPJ e segmento (casamentos/eventos premium). RESSALVA GEOGRÁFICA: fica em São Bernardo do Campo (região do ABC, Grande São Paulo, ~18km/35min da capital), NÃO no interior profundo de SP — é metro de SP. ESCALA/PEGADA DIGITAL: forte e sofisticada — @sitiosaojorge ~88K seguidores, FB-mãe ~73K curtidas, canal YouTube ativo, Pinterest com boards por-espaço, 5 espaços físicos (Pergolado, Vdara, Jardim Secreto, Demarchi, Porto São Jorge) + 2 sub-marcas de serviço (Odeon Decorações, Barollo Gastronomia) cada uma com IG+FB próprios. Anuncia: o seed traz page_id 151840481505064 da FB Ad Library e o site tem blog robusto (SEO de conteúdo), sinais claros de investimento em marketing. AD LIBRARY page_id (151840481505064): mantido como seed; NÃO consegui cross-verificar via busca (a UI da Ad Library não é indexada por motores de busca e o fetch direto do facebook.com/ads/library foi bloqueado/derrubou conexão); a página FB principal /sitiosaojorge é a candidata óbvia a dona desse id, mas isso fica como inferência, não confirmação — por isso o status do asset primário Ad Library é 'nao-resolvido'. LIMITAÇÕES TÉCNICAS: o site (sitiosaojorge.com.br) retorna 403 a WebFetch (anti-bot), e perfis IG/Pinterest/YouTube vieram truncados/sem texto legível — toda a confirmação veio de WebSearch + páginas-espelho do próprio site nos snippets. HOMÔNIMOS A EVITAR: (1) @jardimsecretobh = Jardim Secreto de Belo Horizonte, outro venue, NÃO deste grupo; (2) há várias páginas FB 'Sítio São Jorge' de outras cidades (Vila Velha/ES, sitiosaojorgesjc, etc.) que não pertencem a este grupo. SUGESTÕES NÃO RESOLVIDAS: confirmar o page_id da Ad Library e o link de bio da página Demarchi exigem acesso autenticado/manual ao Facebook."
+    },
+    {
+      "competitor": "DI TERRA",
+      "confirmedPrimary": [
+        {
+          "type": "site",
+          "url": "https://diterra.com.br/",
+          "status": "confirmado"
+        },
+        {
+          "type": "instagram",
+          "url": "https://www.instagram.com/diterraeventos/",
+          "status": "confirmado"
+        },
+        {
+          "type": "facebook-ad-library",
+          "url": "https://www.facebook.com/ads/library/?view_all_page_id=288480375221077",
+          "status": "nao-resolvido"
+        },
+        {
+          "type": "pinterest",
+          "url": "",
+          "status": "nao-resolvido"
+        }
+      ],
+      "discoveredSecondary": [
+        {
+          "type": "instagram-secundario",
+          "url": "https://www.instagram.com/espacoterrapira/",
+          "confidence": "medium",
+          "ownershipNote": "Conta por-espaco do venue 'Espaco Terra Piracicaba' (@espacoterrapira), endereco Av. Uriel Odas 93 - Terras de Piracicaba (mesmo endereco da pagina FB eventosterra1 da empresa). Ligada ao dominio legado espacoterrapira.com.br. Confidence medium pois o handle nao foi confirmado ativo via fetch direto (IG bloqueia), so via resultados de busca. NAO confundir com @espaco.terra.eventos (homonimo, ver notes).",
+          "verification": {
+            "url": "https://www.instagram.com/espacoterrapira/",
+            "belongsToCompetitor": "yes",
+            "evidence": "@espacoterrapira is the legacy per-space Instagram handle for the Espaço Terrá venue (Av. Uriel Odas, 93 - Terras de Piracicaba), which is one of the four venues now operated/marketed by the competitor DI TERRA (= Grupo Terrá Eventos). Decisive cross-link: the seuevento.net.br directory listing for that exact address lists Instagram @espacoterrapira plus WhatsApp 5519996777288 = (19) 99677-7288 — the IDENTICAL phone number shown on the current official DI TERRA site (diterra.com.br) and its Espaço Terrá page (diterra.com.br/espaco-terra/). Entity identity confirmed: grupoterraeventos.com.br 301-redirects to diterra.com.br. The same directory also ties @espacoterrapira to YouTube channel UCvzfUYvDoMaC9SRjexQFFKA and Facebook /espacoterrapira for the same venue. Ownership-history nuance: the venue was originally launched by the Iacovantuoni family in partnership with Grupo Bisutti (legacy phone (19) 3371-3500, dead domain espacoterrapiracicaba.com.br) and was since absorbed/rebranded into Grupo Terrá / DI TERRA; @espacoterrapira is the legacy handle from that earlier era, today superseded by the active group account @diterraeventos — so treat it as a LEGACY/dormant asset of the DI TERRA footprint rather than the active primary. Homonym ruled out: @espaco.terra.eventos is a different business (Rio de Janeiro area code 21, family/barbecue leisure venue), not the Piracicaba premium wedding venue. Caveat: could not fetch the IG profile directly (Instagram blocks automated fetch) nor the dead legacy domain (ECONNREFUSED, no Wayback snapshot), so the handle's current active status is unconfirmed — but ownership attribution is solid via the phone/address/venue cross-links. Confidence upgraded from medium to high."
+          }
+        },
+        {
+          "type": "site-secundario",
+          "url": "https://www.espacoterrapira.com.br/",
+          "confidence": "medium",
+          "ownershipNote": "Dominio legado/por-espaco do venue Espaco Terra (citado em multiplos resultados como site oficial do espaco, par do IG @espacoterrapira). Tentativa de fetch direto deu ECONNREFUSED - pode estar inativo/migrado para diterra.com.br. Variante espacoterrapiracicaba.com.br tambem aparece (RocketReach) como formato de e-mail do Grupo Terra. Confidence medium pela inacessibilidade atual.",
+          "verification": {
+            "url": "https://www.espacoterrapira.com.br/",
+            "belongsToCompetitor": "uncertain",
+            "evidence": "The competitor DI TERRA is confirmed: its canonical sites are diterra.com.br and grupoterraeventos.com.br (Grupo Terrá Eventos), a wedding/events group with 4 spaces in Piracicaba, SP. \"Espaço Terrá\" is explicitly one of its venues (diterra.com.br/espaco-terra/, phone (19) 99677-7288, email contato@diterra.com.br), so a per-space domain is a plausible asset. HOWEVER, the EXACT target domain espacoterrapira.com.br (abbreviated \"pira\") could NOT be verified: (1) Wayback Machine returns empty archived_snapshots for it — never crawled/live; (2) direct fetch fails with ECONNREFUSED, so it does not resolve today; (3) NO search result anywhere cites this abbreviated domain, contradicting the original note. The REAL per-space domain is the full-city variant espacoterrapiracicaba.com.br, which HAS a Wayback snapshot (2024-06-22, HTTP 200) and is listed by RocketReach as Grupo Terrá's email domain. The abbreviated form is almost certainly a transcription/inference error from this real domain. Homonym risk is also high for the \"espaço terra\" string — distinct unrelated entities exist: \"Hotel Espaço Terra\" (espacoterra.com.br) and \"Espaço Terra São Miguel\" (facebook.com/espacoterra.saomiguel) in São Paulo capital. Verdict: the concept (per-space site for the DI TERRA venue) is real, but this specific URL is unverifiable and should be replaced by the corrected domain.",
+            "correctedLabel": "https://www.espacoterrapiracicaba.com.br/ (corrected per-space domain for Espaço Terrá, a DI TERRA / Grupo Terrá venue; the original espacoterrapira.com.br is unverified and likely a typo of this)"
+          }
+        },
+        {
+          "type": "instagram-secundario",
+          "url": "https://www.instagram.com/aquerencia/",
+          "confidence": "high",
+          "ownershipNote": "Conta por-espaco: 'Fazenda Querencia di Terra'. O proprio nome do perfil traz 'di Terra' e corresponde a pagina /fazendaquerencia em diterra.com.br. Risco de homonimo baixo (nome embute a marca)."
+        },
+        {
+          "type": "instagram-secundario",
+          "url": "https://www.instagram.com/palacetemontealegre/",
+          "confidence": "high",
+          "ownershipNote": "Conta por-espaco: 'Palacete Monte Alegre di Terra', em Piracicaba (Av. Comendador Pedro Morganti). Nome do perfil embute 'di Terra' e corresponde a /palacetemontealegre no site. Baixo risco de homonimo."
+        },
+        {
+          "type": "instagram-secundario",
+          "url": "https://www.instagram.com/casaluccaeventos/",
+          "confidence": "high",
+          "ownershipNote": "Conta por-espaco: 'Casa Lucca di Terra' (@casaluccaeventos), Piracicaba/Monte Alegre, mini weddings. E-mail de contato contato@grupoterraeventos.com.br nas mencoes. Corresponde a /casa-lucca no site. Baixo risco de homonimo."
+        },
+        {
+          "type": "instagram-secundario",
+          "url": "https://www.instagram.com/espacoterrapira/",
+          "confidence": "medium",
+          "ownershipNote": "Conta por-espaco do venue 'Espaco Terra Piracicaba' (@espacoterrapira), endereco Av. Uriel Odas 93 - Terras de Piracicaba (mesmo endereco da pagina FB eventosterra1 da empresa). Ligada ao dominio legado espacoterrapira.com.br. Confidence medium pois o handle nao foi confirmado ativo via fetch direto (IG bloqueia), so via resultados de busca. NAO confundir com @espaco.terra.eventos (homonimo, ver notes)."
+        },
+        {
+          "type": "youtube",
+          "url": "https://www.youtube.com/channel/UCvzfUYvDoMaC9SRjexQFFKA",
+          "confidence": "high",
+          "ownershipNote": "Canal 'Espaco Terra Piracicaba' (titulo confirmado via fetch). Mesma marca/cidade do venue principal. Baixo risco de homonimo - nome e cidade batem."
+        },
+        {
+          "type": "facebook-page",
+          "url": "https://www.facebook.com/grupoterraeventos/",
+          "confidence": "high",
+          "ownershipNote": "Pagina FB 'Espaco Terra' (@grupoterraeventos), espelho do IG @grupoterraeventos e do dominio grupoterraeventos.com.br. Provavel pagina associada ao page_id 288480375221077 da Ad Library (nao confirmado 1:1 - Ad Library bloqueia fetch). Baixo risco de homonimo."
+        },
+        {
+          "type": "facebook-page",
+          "url": "https://www.facebook.com/eventosterra1/",
+          "confidence": "high",
+          "ownershipNote": "Pagina FB 'Espaco Terra | Piracicaba SP' (@eventosterra1), endereco Av. Uriel Odas 93, Piracicaba - mesmo endereco do venue Espaco Terra. ~829 likes. Outra candidata ao page_id da Ad Library. Baixo risco de homonimo - endereco confirma."
+        },
+        {
+          "type": "site-secundario",
+          "url": "https://www.espacoterrapira.com.br/",
+          "confidence": "medium",
+          "ownershipNote": "Dominio legado/por-espaco do venue Espaco Terra (citado em multiplos resultados como site oficial do espaco, par do IG @espacoterrapira). Tentativa de fetch direto deu ECONNREFUSED - pode estar inativo/migrado para diterra.com.br. Variante espacoterrapiracicaba.com.br tambem aparece (RocketReach) como formato de e-mail do Grupo Terra. Confidence medium pela inacessibilidade atual."
+        },
+        {
+          "type": "site-secundario",
+          "url": "https://diterra.mystagingwebsite.com/",
+          "confidence": "high",
+          "ownershipNote": "Ambiente de staging WordPress do site (paginas indexadas pelo Google: /blog/, /espaco-para-festa-de-15-anos-em-piracicaba/). Faz 301 redirect para diterra.com.br (verificado). Mesma empresa, sem risco de homonimo. Relevante para o radar: vaza estrutura/conteudo do site em staging."
+        },
+        {
+          "type": "outro",
+          "url": "https://br.linkedin.com/company/grupo-terr%C3%A1",
+          "confidence": "high",
+          "ownershipNote": "Pagina LinkedIn 'Grupo Terra' (company). Casa com a marca guarda-chuva de Piracicaba. Baixo risco de homonimo - nome exato da marca."
+        },
+        {
+          "type": "blog",
+          "url": "https://diterra.com.br/blog/",
+          "confidence": "high",
+          "ownershipNote": "Blog proprio sob o dominio principal (antes em diterra.mystagingwebsite.com/blog, agora redirecionado). Canal de conteudo/SEO da empresa. Sem risco de homonimo."
+        },
+        {
+          "type": "lp",
+          "url": "https://diterra.com.br/espaco-casamento-piracicaba/",
+          "confidence": "high",
+          "ownershipNote": "Landing page de SEO/captura ('Espaco para Casamento em Piracicaba'). Sob o dominio principal. Outras LPs no mesmo padrao: /casamento-ar-livre-piracicaba/, /miniwedding_piracicaba/ e /casting/ (estas duas servidas tambem via grupoterraeventos.com.br antes do redirect). Sem risco de homonimo."
+        }
+      ],
+      "facebookPageId": "288480375221077",
+      "notes": "IDENTIDADE: a empresa opera sob duas marcas equivalentes - 'Di Terra' (nome comercial, ex-'Espaco Terra') e 'Grupo Terra' (guarda-chuva). Dominio principal diterra.com.br; o dominio grupoterraeventos.com.br faz 301 -> diterra.com.br (mesma empresa, verificado). Base em Piracicaba/SP (Av. Uriel Odas 93, Terras de Piracicaba). Contato: (19) 99677-7288, contato@diterra.com.br; corporativo (19) 99724-9932, corporativo@diterra.com.br.\\n\\nMODELO MULTI-ESPACO (sub-marcas por venue, cada uma com IG proprio embutindo 'di Terra'): Espaco Terra (flagship), Fazenda A Querencia, Palacete Monte Alegre, Casa Lucca. Tambem divisoes de servico no site (Gastronomia, Bar, Alta Confeitaria, Decoracao) e uma divisao 'Di Terra Corporativo' - estas sem contas sociais proprias (fluem pela conta principal).\\n\\nSINAIS DE QUE ANUNCIA: o page_id 288480375221077 foi dado como seed e e da empresa; o formulario do site ('Como conheceu o Di Terra?') lista Facebook, Instagram e TikTok como canais, sugerindo midia paga em redes (inclusive TikTok). NAO consegui re-resolver o nome exato da pagina na Ad Library (auth wall bloqueia WebFetch); as duas paginas FB candidatas ao id sao @grupoterraeventos e @eventosterra1, ambas confirmadas como da empresa.\\n\\nPINTEREST: nao localizado nenhum perfil Pinterest atribuivel a empresa (seed ja indicava ausencia; busca nao retornou candidato confiavel).\\n\\nTIKTOK: ha indicios de presenca/anuncio em TikTok (campo do formulario), mas NAO localizei um handle TikTok proprio verificavel - so paginas de 'discover' genericas. Nao listado por falta de URL confirmada.\\n\\nHOMONIMOS A EVITAR (NAO sao desta empresa): @espaco.terra.eventos (telefone DDD 21/Rio, foco churrasco/retiros) ; @cantodaterrapinda (Espaco Canto da Terra, Pindamonhangaba) ; @terranovavitoria (Terra Nova Vitoria) ; @grupo.terra (homonimo generico) ; facebook.com/espacoterra.saomiguel (Espaco Terra | Sao Paulo SP). Todos compartilham o radical 'Terra' mas sao venues distintos de outras cidades.\\n\\nPEGADA DIGITAL: forte e multi-marca - 1 site principal + 1 dominio secundario (redirect) + staging indexado + ~5 contas IG (1 principal + 4 por-espaco) + 2 paginas FB + 1 canal YouTube + LinkedIn + blog/LPs de SEO. Operacao de marketing relativamente madura para o segmento.",
+      "spacesSubBrands": [
+        {
+          "name": "Espaço Terrá (flagship)",
+          "site": "https://diterra.com.br/espaco-terra/",
+          "instagram": "https://www.instagram.com/espacoterrapira/",
+          "note": "Venue principal, arquitetura contemporanea, Av. Uriel Odas 93. Dominio legado espacoterrapira.com.br + canal YouTube proprio + paginas FB eventosterra1/grupoterraeventos."
+        },
+        {
+          "name": "Fazenda A Querência",
+          "site": "https://diterra.com.br/fazendaquerencia/",
+          "instagram": "https://www.instagram.com/aquerencia/",
+          "note": "Casamentos ao ar livre na natureza (capela, figueira centenaria, lago). IG 'Fazenda Querencia di Terra'."
+        },
+        {
+          "name": "Palacete Monte Alegre",
+          "site": "https://diterra.com.br/palacetemontealegre/",
+          "instagram": "https://www.instagram.com/palacetemontealegre/",
+          "note": "Casarao historico, Av. Comendador Pedro Morganti, Piracicaba. IG 'Palacete Monte Alegre di Terra'."
+        },
+        {
+          "name": "Casa Lucca",
+          "site": "https://diterra.com.br/casa-lucca/",
+          "instagram": "https://www.instagram.com/casaluccaeventos/",
+          "note": "Mini weddings (20-80 pessoas), inspiracao toscana, bairro Monte Alegre. IG 'Casa Lucca di Terra'."
+        },
+        {
+          "name": "Di Terrá Corporativo",
+          "site": "https://diterra.com.br/di-terra-corporativo/",
+          "note": "Divisao de eventos corporativos. Contato proprio (19) 99724-9932 / corporativo@diterra.com.br, mas sem conta social propria (usa a principal)."
+        },
+        {
+          "name": "Fazenda Quilombo",
+          "note": "Mencionada como opcao no dropdown do formulario do site; possivel 5o espaco. Sem pagina/IG proprio localizado - confidence baixa, pode ser parceiro ou espaco descontinuado."
+        }
+      ]
+    }
+  ]
+}

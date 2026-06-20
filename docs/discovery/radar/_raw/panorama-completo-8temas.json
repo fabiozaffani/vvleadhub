@@ -1,0 +1,722 @@
+{
+  "summary": "Panorama competitivo amplo de venues de casamento no catchment ~100km de Jundiaí, organizado por TEMA/estética × TIER (incl. locação/parcial como concorrentes temáticos), com assets + sinais de anúncio, para um registro de monitoramento forte",
+  "agentCount": 9,
+  "logs": [],
+  "result": {
+    "panorama": {
+      "byTheme": [
+        {
+          "theme": "toscana/italia",
+          "venues": [
+            {
+              "name": "Casa Di Pietra – Villa Toscana",
+              "tier": "premium-partial",
+              "city": "Serra Negra, SP",
+              "instagram": "@casadipietra_villatoscana",
+              "url": "https://www.constancezahn.com/fornecedores/casa-di-pietra-villa-toscana/",
+              "why": "JÁ MAPEADO. Villa toscana autêntica em pedra a 1.200m entre ciprestes, curadoria Constance Zahn, um evento por fim de semana, mini/destination weddings (60-100). ~80km de Jundiaí, catchment. Referência estética toscana premium que concorre direto com Serra dos Cristais do VVF pela mesma fantasia Toscana, por locação."
+            },
+            {
+              "name": "Vila Tramonti (ex-Spazio Tramonti)",
+              "tier": "premium-partial",
+              "city": "Indaiatuba, SP",
+              "instagram": "@vilatramonti",
+              "url": "https://www.constancezahn.com/fornecedores/vila-tramonti/",
+              "why": "JÁ MAPEADO (dedup de 3 entradas: toscana/allinclusive/breadth). 50.000m² inspirado na Toscana, salão envidraçado 422m² (até 300), 4 cenários, cozinha para buffet do casal. Locação-only. ~45km de Jundiaí. Bate FRONTALMENTE com Serra dos Cristais — exemplo canônico de concorrência por estética em modelo diferente."
+            },
+            {
+              "name": "Villa Ásolo 1932",
+              "tier": "premium-partial",
+              "city": "Votorantim/Sorocaba, SP",
+              "instagram": "@villaasolo1932",
+              "url": "https://www.zankyou.com.br/g/villa-asolo-1932",
+              "why": "NOVO forte. Vila italiana centenária autêntica (família Vial, 1932) em 40.000m²: Salão Aquário panorâmico, Capela de Cristal, figueira de 200+ anos. Herança real, não cenografia. Borda do catchment (6km do centro de Sorocaba). Confirmar all-inclusive vs locação."
+            },
+            {
+              "name": "Villa Brunholi",
+              "tier": "premium-partial",
+              "city": "Jundiaí, SP",
+              "instagram": "",
+              "url": "https://villabrunholi.com.br/eventos/",
+              "why": "NOVO. Complexo enogastronômico histórico (família italiana desde 1897: adega, museu do vinho, restaurante), casamentos de 30 a 240 com buffet próprio. MESMA cidade-base do VVF. Tema Toscana/vinho autêntico — forte concorrente do Serra dos Cristais. Buffet próprio, não all-inclusive pleno."
+            },
+            {
+              "name": "Villa Toscana Indaiatuba",
+              "tier": "mid",
+              "city": "Indaiatuba, SP",
+              "instagram": "facebook.com/Villatoscanaindaiatuba",
+              "url": "https://www.casamentos.com.br/chacara-casamento/villa-toscana--e374931",
+              "why": "NOVO. Distinto da Vila Tramonti. Tema toscano declarado, salão envidraçado climatizado até 300, praça com fonte. Locação R$16-24k = mid (execução salão-festa, não villa-de-pedra imersiva). ~50km de Jundiaí."
+            },
+            {
+              "name": "Casa Toscana São Roque",
+              "tier": "mid",
+              "city": "São Roque, SP",
+              "instagram": "casatoscanasaoroque",
+              "url": "https://www.instagram.com/casatoscanasaoroque/",
+              "why": "NOVO. Tema toscano explícito na região vinícola de São Roque, Airbnb Super Host, casamentos + hospedagem. Porte/tier menor, dados limitados (forte no Instagram). Borda oeste do catchment."
+            },
+            {
+              "name": "Fazenda Felicità",
+              "tier": "mid",
+              "city": "Itu, SP",
+              "instagram": "",
+              "url": "",
+              "why": "NOVO. Citado entre locais de casamento ao ar livre em Itu; nome italiano sugere apelo toscano. Catchment. Dados limitados — confirmar tier e oferta."
+            },
+            {
+              "name": "Vinícola Góes",
+              "tier": "mid",
+              "city": "São Roque, SP",
+              "instagram": "",
+              "url": "",
+              "why": "NOVO. Vinícola na Rota do Vinho de São Roque com casamentos entre vinhedos e experiência enogastronômica — paralelo italiano/vinho. Borda oeste. Tier mid."
+            },
+            {
+              "name": "Casa Vicenzo",
+              "tier": "below",
+              "city": "Vinhedo, SP",
+              "instagram": "@casavicenzo",
+              "url": "https://www.casavicenzo.com/casaicenzo",
+              "why": "NOVO. Casa de campo italiana em tijolinho, MINI WEDDINGS (≤60), locação R$3,9-6k. Tema italiano mas escala/ticket muito abaixo do produto premium do VVF. Vinhedo, ~25km de Jundiaí."
+            },
+            {
+              "name": "Haras Buona Fortuna",
+              "tier": "mid",
+              "city": "Cotia (Granja Viana), SP",
+              "instagram": "@harasbuonafortuna",
+              "url": "https://espacobuonafortuna.com.br/",
+              "why": "NOVO mas FORA do catchment interior (Granja Viana, lado oposto a Jundiaí). Estilo toscano em 8.000m² + suítes, mas comparabilidade fraca por geografia + tier mid."
+            },
+            {
+              "name": "Vecchia Toscana",
+              "tier": "premium-full",
+              "city": "Campos do Jordão, SP",
+              "instagram": "@vecchiatoscanabr",
+              "url": "https://vecchiatoscana.com.br/locacao-para-eventos/",
+              "why": "NOVO (dedup de 2 entradas; tier divergiu entre lentes). Complexo de 6.000m² na Mantiqueira, arquitetura toscana, 18 cenários. Tema legítimo mas FORA do catchment (>150km). Só benchmark de destination wedding toscano."
+            }
+          ]
+        },
+        {
+          "theme": "fazenda-historica",
+          "venues": [
+            {
+              "name": "Grupo Conti (Estação Fazenda / Fazenda Santa Isabel / Recanto das Palmeiras)",
+              "tier": "premium-full",
+              "city": "Jundiaí / Itatiba-Valinhos, SP",
+              "instagram": "",
+              "url": "https://www.casamentos.com.br/buffet-casamento/buffet-estacao-fazenda--e229976",
+              "why": "JÁ MAPEADO. Operador all-inclusive multi-espaço com buffet próprio (lago, capela) NO CORAÇÃO do catchment. Provavelmente o concorrente all-inclusive geograficamente MAIS próximo e direto: mesma cidade-base, mesmo modelo, mesmo casal."
+            },
+            {
+              "name": "Fazenda Capoava",
+              "tier": "premium-full",
+              "city": "Itu, SP",
+              "instagram": "",
+              "url": "https://fazendacapoava.com.br/eventos/",
+              "why": "NOVO (dedup de 2; tier divergiu). 250+ anos, casarão colonial em taipa de ~1750 com capela, hotel-fazenda (família Setúbal/Itaú), 35-36 chalés, 5 lagos, festa sem limite. Itu, catchment. História colonial profunda (séc XVIII) + hospedagem = paralelo direto ao produto Hospedagem do VVF. Vende fim de semana exclusivo."
+            },
+            {
+              "name": "Fazenda Santa Barbara",
+              "tier": "premium-partial",
+              "city": "Itatiba, SP",
+              "instagram": "",
+              "url": "https://fazendasantabarbara.com/",
+              "why": "NOVO. Sede de 1868 (cafeeira), casarão entre palmeiras imperiais, salão de 700m² sem colunas (até 650) com cobertura transparente, 5+ cenários. Itatiba (catchment), <50min de SP sem terra. Forte concorrente premium, presença na Constance Zahn."
+            },
+            {
+              "name": "Fazenda Vila Rica",
+              "tier": "premium-partial",
+              "city": "Itatiba, SP",
+              "instagram": "@fazendavilarica1860",
+              "url": "http://fazendavilarica.com.br/a-fazenda/",
+              "why": "NOVO (dedup de 2). Casarão colonial de 1860 do Ciclo do Café restaurado, alameda de palmeiras imperiais, capela, ~1.000m² cobertos. Itatiba (~70km, catchment). Concorrente direto pela estética café-histórica, curada na Constance Zahn."
+            },
+            {
+              "name": "Fazenda Tucunduva",
+              "tier": "premium-partial",
+              "city": "Porto Feliz, SP",
+              "instagram": "",
+              "url": "https://www.fazendatucunduvaitu.com.br/",
+              "why": "JÁ MAPEADO. Fazenda de 1842 (sesmaria de D. Pedro I), terreiros de café, tulha, capela em 375.000m² de Mata Atlântica. Locação com curadoria. ~60km de Jundiaí via Itu. História de sesmaria/café genuína — dos exemplares mais fortes da lente."
+            },
+            {
+              "name": "Fazenda Dona Catarina",
+              "tier": "premium-partial",
+              "city": "Mairinque, SP",
+              "instagram": "",
+              "url": "",
+              "why": "JÁ MAPEADO. Sesmaria de 1841, casarão do ciclo cana/café, ~10 anos exclusiva a casamentos. Km 68,5 da Castelo Branco, ~40min de SP, catchment. Exemplar canônico de sesmaria/fazenda-histórica dedicada a casamento."
+            },
+            {
+              "name": "Fazenda Embaúva",
+              "tier": "premium-partial",
+              "city": "Itu, SP",
+              "instagram": "@fazendaembauva",
+              "url": "https://fazendaembauva.com.br/",
+              "why": "JÁ MAPEADO. Fundada em 1829, tulha original de 1827 vira salão com maquinário do engenho; do mini-wedding a 400. Itu, ~40min de SP, catchment. Narrativa de engenho de café genuína — match forte."
+            },
+            {
+              "name": "Fazenda Dona Inês",
+              "tier": "premium-partial",
+              "city": "Itatiba (entre Itatiba e Valinhos), SP",
+              "instagram": "@fazendadonaines",
+              "url": "https://fazendadonaines.com.br/",
+              "why": "NOVO (dedup de 3: fazenda-historica/rustico-celeiro/campo-jardim-lago). Casarão de ~1870 (pau-a-pique colonial) restaurado, salão rústico pé-direito 7m, salão de vidro com parede de samambaia. Locação (~250). Itatiba ~30km de Jundiaí. Instagram 41K = relevância orgânica alta."
+            },
+            {
+              "name": "Fazenda Dona Carolina",
+              "tier": "premium-partial",
+              "city": "Itatiba, SP",
+              "instagram": "",
+              "url": "",
+              "why": "NOVO. Construção do séc XIX, hotel-fazenda/espaço de eventos com casamentos, acesso de SP/Campinas/Jundiaí/Bragança/Atibaia. Itatiba (catchment). Confirmar capacidade/tier — sinais apontam premium-partial."
+            },
+            {
+              "name": "Fazenda Casa Branca",
+              "tier": "mid",
+              "city": "Indaiatuba, SP",
+              "instagram": "",
+              "url": "",
+              "why": "NOVO. Engenho de cachaça do séc XIX (desativado anos 70), depois gado/cavalo; estética casarão/engenho. Indaiatuba (catchment central). Narrativa de cachaça é diferencial. Confirmar oferta atual de casamento e capacidade."
+            },
+            {
+              "name": "Fazenda Alvorada",
+              "tier": "mid",
+              "city": "Sorocaba, SP",
+              "instagram": "",
+              "url": "https://www.fazendaalvoradaeventos.com/",
+              "why": "JÁ MAPEADO. ATENÇÃO: construída em 1960 em ESTILO colonial — cenografia, NÃO herança de café. Capela de São Roque, 12 suítes, até 300. Sorocaba, catchment. Disputa o casal que quer 'cara de fazenda' sem a história que VVF/Tucunduva oferecem — tier mid."
+            },
+            {
+              "name": "Fazenda Monte Belo",
+              "tier": "mid",
+              "city": "Itu, SP",
+              "instagram": "",
+              "url": "",
+              "why": "NOVO. Antiga fazenda de café do séc XIX em Itu, rústico-clássico, 7 suítes, modelo 'monte como quiser' (locação flexível). Catchment. Tier mid: menos curadoria que Vila Rica/Santa Barbara."
+            },
+            {
+              "name": "Vivenda Colonial",
+              "tier": "mid",
+              "city": "Atibaia, SP",
+              "instagram": "@vivenda_colonial",
+              "url": "https://www.vivendacolonial.com.br/",
+              "why": "NOVO (dedup de 3 entradas). Sede de fazenda de café do séc XIX, azulejos portugueses, modelo híbrido (espaço + proposta completa, ~R$12-15k). Pequeno porte: Casa da Fazenda até 100, Garden até 50. Atibaia ~40km. Disputa a estética colonial-café em escala íntima."
+            },
+            {
+              "name": "Fazenda das Cabras",
+              "tier": "mid",
+              "city": "Campinas (Joaquim Egídio), SP",
+              "instagram": "@fazendadascabras",
+              "url": "",
+              "why": "NOVO. Origem 1820 (gado→café), casa-sede de 1883 colonial em distrito tombado, salão 150m² + cozinha industrial. Também Tour do Café (agroturismo), pacotes ~R$17,5k. Campinas/Joaquim Egídio (~50-60km, borda). Tier mid."
+            },
+            {
+              "name": "Fazenda Vassoural",
+              "tier": "premium-partial",
+              "city": "Itu, SP",
+              "instagram": "",
+              "url": "",
+              "why": "NOVO. Salão para 450, várias áreas de cerimônia, cozinha industrial, quartos para noivos, 4 chalés. Itu, catchment oeste. Grande porte com hospedagem (chalés) = paralelo ao produto Hospedagem do VVF."
+            },
+            {
+              "name": "Fazenda Santa Francisca do Camanducaia",
+              "tier": "premium-partial",
+              "city": "Salto, SP",
+              "instagram": "",
+              "url": "",
+              "why": "NOVO. Casarão colonial do séc XIX, cenário histórico para casamentos no campo. Salto, catchment oeste. Forte identidade histórica; confirmar capacidade e modelo."
+            },
+            {
+              "name": "Fazenda Sant'Anna Hotel and Wellness",
+              "tier": "premium-partial",
+              "city": "Amparo, SP",
+              "instagram": "@fazendasantannahotel",
+              "url": "https://santannafazenda.com.br/",
+              "why": "NOVO mas comparabilidade FRACA. Fazenda de café do séc XIX virou hotel anos 80, 42 quartos, capela, perfil intimista. Amparo na BORDA/além do catchment; vetor wellness/hotelaria mais que venue de casamento. Tangencial."
+            },
+            {
+              "name": "Fazenda Nossa Senhora da Conceição",
+              "tier": "unknown",
+              "city": "Jundiaí, SP",
+              "instagram": "",
+              "url": "https://pegamosumaestrada.com.br/fazenda-nossa-senhora-da-conceicao-casarao-historico-de-1850-em-jundiai/",
+              "why": "NOVO mas NÃO concorre hoje. Fazenda de café de 1850 (recebeu a Princesa Isabel) que opera TURISMO HISTÓRICO/agroturismo, NÃO comercializa casamentos. É a fazenda histórica mais próxima do VVF (mesma cidade). Monitorar como SINAL — vira concorrente se pivotar para eventos."
+            }
+          ]
+        },
+        {
+          "theme": "campo-jardim-lago",
+          "venues": [
+            {
+              "name": "Espaço La Forêt",
+              "tier": "premium-full",
+              "city": "São Roque, SP",
+              "instagram": "@espacolaforet",
+              "url": "https://espacolaforet.com.br/site/",
+              "why": "JÁ MAPEADO. All-inclusive full: espaço + gastronomia própria + bar + DJ + hotel boutique, num pacote/weekend. 13 anos, 1.100+ casamentos, 8x Awards. Refúgio na Mata Atlântica. Hospedagem própria = paralelo direto ao produto Hospedagem do VVF. São Roque ~50-60km (borda), mesmo casal premium, sem eixo de preço — posicionamento gêmeo do VVF."
+            },
+            {
+              "name": "Lago Esmeralda",
+              "tier": "premium-partial",
+              "city": "Itu, SP",
+              "instagram": "@lagoesmeraldawedding",
+              "url": "https://www.espacolagoesmeralda.com.br/",
+              "why": "JÁ MAPEADO. Campo/fazenda com lago privativo (coreto no centro), 10.000m² de gramados, salão envidraçado climatizado de frente para a paisagem. Locação com serviços. Estética campo-lago clássica — exatamente o eixo Acqua do VVF. Salão de vidro com vista do lago é o gancho. Forte concorrente."
+            },
+            {
+              "name": "Espaço Apoema",
+              "tier": "premium-partial",
+              "city": "Atibaia, SP",
+              "instagram": "@espacoapoema",
+              "url": "https://espacoapoema.com.br/",
+              "why": "JÁ MAPEADO. 20.000m² às margens do Rio Atibaia: 'Ilha do Lago' (cerimônia cercada de água), pergolado, deck na piscina, até 200. 'Novo conceito sofisticado em contato com a natureza'. Jardim/lago/rio + bosque diretamente comparável ao eixo campo-jardim-lago do VVF."
+            },
+            {
+              "name": "Villa Mantova",
+              "tier": "premium-partial",
+              "city": "Vinhedo / Louveira, SP",
+              "instagram": "@villa.mantova",
+              "url": "https://villamantova.com.br/",
+              "why": "NOVO (dedup de 3 entradas; tier divergiu premium-partial/mid). 3.750m² de jardins, mini wedding (70) a 400, suítes noiva/noivo, bar autoral, gastronomia do Buffet Rodelfest (parceiro, não próprio = híbrido). No coração do catchment (~20min de Jundiaí), premiado 2023-25, 18K seguidores. Forte pela estética campo-jardim leve e pela proximidade."
+            },
+            {
+              "name": "Terras de Clara",
+              "tier": "premium-partial",
+              "city": "Morungaba, SP",
+              "instagram": "",
+              "url": "https://www.terrasdeclara.com/casamento",
+              "why": "NOVO forte. Alto padrão a 100km de SP com hospedagem exclusiva, deck coberto à beira do lago + jardim estruturado, área envidraçada climatizada, spa da noiva, 100 a 800. Morungaba entre Itatiba/Bragança (catchment norte). Match estético duplo (campo/jardim/lago + glasshouse) e oferece hospedagem como o VVF."
+            },
+            {
+              "name": "Dieters (Espaço Dieters / Dieters Lago)",
+              "tier": "premium-full",
+              "city": "São Bernardo do Campo (Batistini), SP",
+              "instagram": "@espacodieters",
+              "url": "https://dieters.com.br/",
+              "why": "NOVO. All-inclusive: buffet + deco + coordenação + som/luz/DJ + valet + segurança + passeio de barco no lago. 25+ anos, 'um evento por vez', refúgio à beira de lago, 140-300. SBC no ABC (catchment declarado). Estética lago/jardim = paralelo de tema com os espaços de lago do VVF. Modelo all-inclusive direto."
+            },
+            {
+              "name": "Estação Baroneza",
+              "tier": "premium-partial",
+              "city": "Salto, SP",
+              "instagram": "@estacaobaroneza",
+              "url": "http://www.casarbem.com.br/empresa/estacao-baroneza-espaco-para-eventos-394",
+              "why": "NOVO. 5.127m² em Salto (vizinho a Itu): salão até 500/1000, espelho d'água, capela, deck coreto, bridal spa, entrada de carruagem, amplo paisagismo. Locação requintada; capela+carruagem inclinam para clássico/campo. Comparabilidade moderada."
+            },
+            {
+              "name": "Kasaqui Eventos (Grupo Kasaqui)",
+              "tier": "premium-partial",
+              "city": "Atibaia / Mairiporã, SP",
+              "instagram": "@kasaquieventos",
+              "url": "https://grupokasaqui.com.br/kasaqui-eventos/",
+              "why": "NOVO. 10+ anos, lago natural, cerimônia no gramado com lago ao fundo, serviços inclusos (deco, buffet opcional, DJ) = mais perto de full. 22K seguidores, grupo multi-unidade. Borda norte do catchment. Modelo com serviços aproxima do all-inclusive do VVF."
+            },
+            {
+              "name": "Espaço Natureza",
+              "tier": "premium-partial",
+              "city": "Mairiporã (Serra da Cantareira), SP",
+              "instagram": "@espaco__natureza",
+              "url": "https://www.espaconatureza.com.br/",
+              "why": "NOVO. 'Casamentos no campo' na Cantareira: gramados, lago com peixes, deck, Mata Atlântica. 'Um casamento por dia' (exclusividade) + coordenação completa com buffet. Mairiporã na borda norte/leste (mais perto da capital). Discurso de exclusividade e jornada completa ecoa o VVF."
+            },
+            {
+              "name": "Espaço Serra do Mar",
+              "tier": "premium-partial",
+              "city": "Salto (confirmar; fontes citam São Bernardo)",
+              "instagram": "@espacoserradomar",
+              "url": "https://espacoserradomar.com.br/casamentos/",
+              "why": "NOVO. Desde 2003, bosque com pinheiros/eucaliptos, gramado, lagos iluminados, deck de ipê sobre o lago, um evento por dia (exclusividade 24h). Estética bosque/gramado/lago muito alinhada ao eixo natureza do VVF; exclusividade espelha o discurso VVF. ATENÇÃO: fontes divergem na cidade (Salto vs ABC) — confirmar."
+            },
+            {
+              "name": "Fazenda Bella Vista",
+              "tier": "premium-partial",
+              "city": "Bragança Paulista, SP",
+              "instagram": "",
+              "url": "https://fazendabellavista.net.br/",
+              "why": "NOVO. Ambiente sofisticado integrado à natureza, amplas áreas verdes, piscina de borda infinita. Bragança no catchment norte. Confirmar modelo (locação x all-inclusive) e capacidade. Apelo de luxo/natureza."
+            },
+            {
+              "name": "Espaço Lago Novo",
+              "tier": "mid",
+              "city": "Itupeva, SP",
+              "instagram": "",
+              "url": "https://www.casamentos.com.br/chacara-casamento/espaco-lago-novo--e291241",
+              "why": "NOVO. Chácara com lago na área do jardim (cerimônia e fotos à beira do lago), 20-500. Itupeva = vizinho direto do VVF (núcleo do catchment). Tier mid, mas disputa o casal pela mesma estética de lago/jardim a poucos km. Vale monitorar pela proximidade extrema."
+            },
+            {
+              "name": "Château Ma Vie",
+              "tier": "mid",
+              "city": "Mogi das Cruzes, SP",
+              "instagram": "chateaumavie",
+              "url": "http://chateaumavie.com.br/",
+              "why": "NOVO. Salão todo de vidro na Serra do Itapeti, área ajardinada, lago, chafariz, piscina, 600/1000. Combina campo bucólico com luxo urbano, locação ~R$10-30k. Borda leste do catchment (Mogi). Tema glasshouse/jardim, tier mid-premium."
+            },
+            {
+              "name": "Vila das Águas Om Namô",
+              "tier": "mid",
+              "city": "Bragança Paulista, SP",
+              "instagram": "",
+              "url": "",
+              "why": "NOVO. Cercado de natureza, passarela sobre piscina e capela que parece flutuar sobre as águas da represa — forte apelo cênico. Bragança, catchment norte. Tier mid."
+            },
+            {
+              "name": "Estância Vale do Sol",
+              "tier": "mid",
+              "city": "Bragança Paulista, SP",
+              "instagram": "",
+              "url": "",
+              "why": "NOVO. Refúgio a 15km do centro de Bragança, espaço exclusivo para casamento ao ar livre cercado de verde. Catchment norte. Tier mid, dados limitados."
+            },
+            {
+              "name": "Fazenda Imperial Atibaia",
+              "tier": "mid",
+              "city": "Atibaia, SP",
+              "instagram": "",
+              "url": "https://fazendaimperialatibaia.com.br/",
+              "why": "NOVO. Espaço versátil (casamento + corporativo + festas), estrutura completa, natureza, ~1h de SP. Atibaia, catchment. Perfil multiuso e tier mid."
+            },
+            {
+              "name": "Chácara 2 Lagos",
+              "tier": "mid",
+              "city": "Itupeva, SP",
+              "instagram": "",
+              "url": "http://chacara2lagos.com.br/",
+              "why": "NOVO. Chácara desde 2002 com lagos, lazer completo (piscina, campo, playground), até 350. Catchment core (Itupeva) mas perfil lazer-família, não premium. Balizador de tier inferior na estética de lago."
+            },
+            {
+              "name": "Chácara Paraíso",
+              "tier": "mid",
+              "city": "Jundiaí, SP",
+              "instagram": "",
+              "url": "https://chrispolizello.alboompro.com/post/12154-06-locais-maravilhosos-em-jundiai-e-regiao-para-casais-que-querem-se-casar-no-campo-chacara-paraiso",
+              "why": "NOVO. Estilo rústico-moderno com muito verde, a 10km do centro de Jundiaí. MESMO município do VVF. Tier mid, pouca info consolidada. Relevância média pela proximidade extrema; confirmar estrutura/lago."
+            },
+            {
+              "name": "Espaço Mato Dentro",
+              "tier": "mid",
+              "city": "Campinas, SP",
+              "instagram": "",
+              "url": "https://www.espacomatodentro.com.br/",
+              "why": "NOVO. 60.000m² integrados à natureza, multiuso (lazer/eventos/buffet) incluindo casamentos. Campinas. Tier mid, perfil generalista."
+            },
+            {
+              "name": "Fazenda Portal Girassol",
+              "tier": "mid",
+              "city": "Campinas, SP",
+              "instagram": "",
+              "url": "",
+              "why": "NOVO (via lista curada). Fazenda com lago, modelo all-inclusive segundo guia regional. Campinas. Tier mid, dados a confirmar."
+            },
+            {
+              "name": "Casa de Campo F.D.I",
+              "tier": "mid",
+              "city": "Itatiba, SP",
+              "instagram": "",
+              "url": "",
+              "why": "NOVO (via lista curada Campinas). Espaço de campo intimista, modelo all-inclusive segundo guia regional. Itatiba, catchment. Porte intimista, tier mid."
+            },
+            {
+              "name": "Espaço Lagoa Cambará",
+              "tier": "mid",
+              "city": "Indaiatuba (Itaici), SP",
+              "instagram": "@espacocambaraeventos",
+              "url": "https://www.casamentos.com.br/salao-casamento/lagoa-cambara--e308702",
+              "why": "NOVO. Espaço com lagoa para casamentos/debutantes/bodas/corporativo. Indaiatuba (catchment). Perfil mid multi-evento; concorrente de estética de lago no tier inferior."
+            },
+            {
+              "name": "Espaço55",
+              "tier": "mid",
+              "city": "Indaiatuba, SP",
+              "instagram": "@espaco55eventos",
+              "url": "http://espaco55eventos.com.br/",
+              "why": "NOVO. Sítio de 8.000m² 'perto da natureza', climatizado, jardim, multi-evento. Indaiatuba (catchment). Tier mid, baliza o segmento intermediário da estética campo."
+            },
+            {
+              "name": "Lumaheiv Espaço Eventos",
+              "tier": "mid",
+              "city": "Indaiatuba, SP",
+              "instagram": "",
+              "url": "https://espacolumaheiv.wixsite.com/aniversarios",
+              "why": "NOVO. Espaço rodeado por parque com lagos (casamentos/aniversários/corporativo). Indaiatuba (catchment). Presença digital fraca (Wix), perfil generalista — tier mid, comparabilidade fraca."
+            },
+            {
+              "name": "Vabene",
+              "tier": "mid",
+              "city": "Itupeva, SP",
+              "instagram": "@espaco.vabene",
+              "url": "https://www.espacovabene.com.br/",
+              "why": "NOVO (cross-listado em rustico-celeiro; mesmo venue, estética rústico-campo de vinhedo). Espaço de campo novo (família Muraro, 2020) dentro de fazenda de uva, salão rústico até 250, cozinha para buffet. Itupeva, ~15-20km do VVF (porta da casa). Tier mid sem posicionamento premium-curado."
+            },
+            {
+              "name": "Quinta das Bromélias",
+              "tier": "unknown",
+              "city": "Jundiaí (região), SP",
+              "instagram": "",
+              "url": "https://www.casamentos.com.br/espaco-casamento/sao-paulo-estado/jundiai",
+              "why": "NOVO. 4.200m² 'inspirado nas Quintas Europeias' (ponte com o eixo provençal/europeu), citado em listas de campo de Jundiaí. Dados escassos, tier não confirmado. Marcar para verificação dedicada."
+            },
+            {
+              "name": "Espaço Fazenda das Pedras",
+              "tier": "mid",
+              "city": "Itu, SP",
+              "instagram": "",
+              "url": "",
+              "why": "NOVO. Citado entre locais de casamento ao ar livre em Itu, ambiente rústico-campestre. Catchment. Dados limitados, tier provável mid."
+            },
+            {
+              "name": "Hotel Villa Rossa",
+              "tier": "premium-partial",
+              "city": "São Roque, SP",
+              "instagram": "",
+              "url": "",
+              "why": "NOVO. Hotel 5 estrelas com luxo/lazer, grande área verde, spa, recebe casamentos com hospedagem para os convidados. São Roque (borda oeste). Hospedagem própria = paralelo direto ao produto Hospedagem do VVF. Confirmar oferta de casamento e capacidade."
+            }
+          ]
+        },
+        {
+          "theme": "glasshouse-vidro",
+          "venues": [
+            {
+              "name": "Botânico Quintal",
+              "tier": "premium-full",
+              "city": "São Paulo (Alto de Pinheiros)",
+              "instagram": "@botanicoquintal",
+              "url": "https://botanicoquintal.com.br/",
+              "why": "Fresh wedding all-inclusive de luxo: GlassHouse de vidro+ferro verde Ladurée com abertura retrátil, estética botânica/jardim, luz natural. A referência mais PURA do tema glasshouse (estufa de vidro), mas na capital, FORA do catchment ~100km. Benchmark estético: dita a estética que um casal 'glasshouse' procura — relevante para o espaço Acqua/vidro do VVF mesmo competindo de fora."
+            },
+            {
+              "name": "Welucci Sansu (Villa Sansu)",
+              "tier": "premium-partial",
+              "city": "Araçoiaba da Serra, SP",
+              "instagram": "@villasansu",
+              "url": "https://www.villasansu.com.br/",
+              "why": "JÁ MAPEADO (guarda-chuva Welucci). Salão envidraçado climatizado 800m², até 300, vista 360 de campos/pôr do sol; cerimônia na 'Capela de Cristal' (cobertura transparente). Locação com infraestrutura. Borda sul do catchment (~80-100km via Sorocaba). Vidro do salão + capela transparente — mais campo+vidro que estufa pura."
+            },
+            {
+              "name": "Espaço Acuri",
+              "tier": "premium-partial",
+              "city": "São José dos Campos / Jacareí, SP",
+              "instagram": "@espacoacuri",
+              "url": "https://lapisdenoiva.com/fornecedores/espaco-acuri/",
+              "why": "NOVO. Celeiro/barn contemporâneo de pé-direito alto com janelas de vidro do chão ao teto que trazem as copas das árvores para dentro, fine-art rural, locação premium. Eixo Vale do Paraíba (~1km da Dutra), borda LESTE/fora do catchment (além de Mogi). Exemplar mais contemporâneo-clean-vidro do raio; comparabilidade weak pela distância."
+            }
+          ]
+        },
+        {
+          "theme": "provencal-classico",
+          "venues": [
+            {
+              "name": "Ville La Rochelle",
+              "tier": "premium-partial",
+              "city": "Jarinu, SP",
+              "instagram": "@villelarochelle",
+              "url": "https://villelarochelle.com",
+              "why": "JÁ MAPEADO. Locação premium inspirada nos manoirs franceses do Perche/Normandia, sobre antiga fazenda de café, charme de vilarejo europeu, cap. ~250. Pacote inclui hospedagem, mobiliário, som; buffet/deco à parte. ~35km de Jundiaí/Atibaia. ~89K seguidores. Concorre pela ESTÉTICA francês/vilarejo europeu (espaço Florest provençal do VVF), curadoria/estética de marca muito alinhada. Forte na lente."
+            },
+            {
+              "name": "Castelo dos Vinhais",
+              "tier": "premium-full",
+              "city": "Vinhedo, SP",
+              "instagram": "@castelodosvinhais.oficial",
+              "url": "https://castelodosvinhais.com.br/",
+              "why": "NOVO (dedup de 2 entradas). Réplica de castelo medieval europeu de 20.000m² (concluído 2018, Grupo Buffet Imagem) em all-inclusive com buffet próprio: Vale dos Sonhos (até 450) e Vale do Luar (até 200 mini), 3 lagos, capela, ponte, bosque. ~343K seguidores, forte produção de conteúdo. Catchment direto (Vinhedo, ~25km de Jundiaí). All-inclusive premium = concorrente de MODELO e de estética europeia monumental."
+            },
+            {
+              "name": "Palacete Monte Alegre (Grupo Terrá / Di Terrá)",
+              "tier": "premium-full",
+              "city": "Piracicaba, SP",
+              "instagram": "@diterraeventos",
+              "url": "https://diterra.com.br/palacetemontealegre/",
+              "why": "JÁ MAPEADO (unidade do Grupo Terrá). Palacete histórico de 1920 neocolonial tombado, capela de 1949 com afrescos de Volpi, jardim + salão + tenda fixa de 1.000m² (~130). All-inclusive premium, 1 evento/dia, recomenda 18 meses de antecedência. Piracicaba (~80-90km, borda). Exemplar mais puro de clássico-palacete do portfolio Terrá; discurso de exclusividade/sem-surpresas muito próximo do VVF."
+            },
+            {
+              "name": "Palazzo Vecchio",
+              "tier": "premium-partial",
+              "city": "Itapira, SP",
+              "instagram": "",
+              "url": "https://palazzovecchio.com.br",
+              "why": "NOVO. Espaço recente de inspiração romana/italiana clássica: salão climatizado de 1.000m² (até 500), área externa de cerimônia, Bridal House anexa. Itapira na borda do catchment (~90-100km, região Mogi Mirim/leste de Campinas). Modelo parece locação+serviço (confirmar all-inclusive). Comparabilidade moderada pela distância."
+            },
+            {
+              "name": "Villa Solare",
+              "tier": "unknown",
+              "city": "Cotia (Granja Viana), SP",
+              "instagram": "@villasolare",
+              "url": "https://www.casamentos.com.br/restaurante-casamento/sao-paulo-estado",
+              "why": "NOVO, baixa relevância. Apesar do nome 'villa', posiciona-se como casarão histórico/restaurante, não villa toscana — tema palacete/clássico. Granja Viana, FORA do catchment interior. Incluído para descartar confusão de nome. Tier não confirmado."
+            },
+            {
+              "name": "Castelo Marílias Buffet",
+              "tier": "premium-full",
+              "city": "Embu das Artes, SP",
+              "instagram": "",
+              "url": "https://www.mariliasbuffet.com.br/castelo",
+              "why": "NOVO. Castelo cinematográfico/luxuoso, buffet all-inclusive de alto padrão em estilo castelo clássico. FORA do catchment central (Embu, zona oeste da Grande SP, direção oposta ao eixo do VVF). Estética on-theme mas geografia desalinhada — comparabilidade fraca, monitorar só se houver overlap."
+            }
+          ]
+        },
+        {
+          "theme": "rustico-celeiro",
+          "venues": [
+            {
+              "name": "Casa Ventura",
+              "tier": "premium-partial",
+              "city": "Ibiúna, SP",
+              "instagram": "@casaventura.eventos",
+              "url": "https://www.casaventura.eco.br/",
+              "why": "NOVO. Três ambientes (Casa Rústica, Salão Principal, um Celeiro literal) em Mata Atlântica, cenários ao ar livre (bosque, campo, plateau), salão até 300, cozinha industrial e buffet, hospedagem até 35. ~80km de Jundiaí (Ibiúna), catchment. Celeiro explícito + bosque = coração da lente; tem buffet próprio mas posicionamento boho/criativo, não all-inclusive blindado VVF."
+            },
+            {
+              "name": "Fazenda Paraizo (Itu)",
+              "tier": "premium-partial",
+              "city": "Itu, SP",
+              "instagram": "@fazendaparaizoitu",
+              "url": "https://www.instagram.com/fazendaparaizoitu/",
+              "why": "NOVO. Madeira de demolição + celeiro para recepção, mata nativa (bosque/gramado/deck), só casamentos, ~300. Forte narrativa de sustentabilidade (solar, compostagem, reúso de água, offset de carbono). Itu ~50km de Jundiaí. A pegada ambiental espelha a INV-10 do VVF — concorrente direto na estética e no discurso ambiental."
+            },
+            {
+              "name": "Welucci Kratos",
+              "tier": "premium-full",
+              "city": "Vinhedo, SP",
+              "instagram": "@welucci",
+              "url": "https://welucci.com/welucci-kratos/",
+              "why": "JÁ MAPEADO (grupo Welucci); unidade NOVA (set/2024). Casa inspirada na tradição vinícola de Vinhedo: chalé de madeira piramidal para cerimônia, salão rústico, até 300. One-stop-shop/all-inclusive do ecossistema Welucci & Co. ~25km de Jundiaí. Estética rústico-moderna em vinhedos (tangencia universo vinícola); de MODELO (all-inclusive premium) é forte."
+            },
+            {
+              "name": "Celeiro Quintal (Grupo Quintal)",
+              "tier": "premium-full",
+              "city": "São Paulo (Pinheiros)",
+              "instagram": "@celeiroquintal",
+              "url": "https://celeiroquintal.com.br/",
+              "why": "JÁ MAPEADO via Grupo Quintal — venue de tema celeiro do grupo. Farm/Barn Wedding all-inclusive ('Festa Completa'), 90-320 (mín. 150 sáb), estética boho/folk/country com peças garimpadas. All-inclusive como o VVF mas urbano (Pinheiros) e boho-folk — fora do raio de 100km, disputa o mesmo casal pela estética barn."
+            },
+            {
+              "name": "Casa Verdano (Verdano Eventos)",
+              "tier": "mid",
+              "city": "Campinas, SP",
+              "instagram": "@verdanoeventos",
+              "url": "http://verdanoeventos.com.br/",
+              "why": "NOVO. Rústico de grande porte em 11.000m² perto de Indaiatuba: salão rústico-chic de tijolinho com mezanino (150) + salão principal até 400 sentados, A/C, pergolado de tijolo. ~40km de Jundiaí. Foca capacidade/volume mais que exclusividade premium — tier mid, sem a curadoria premium-natural do VVF."
+            },
+            {
+              "name": "VABENE",
+              "tier": "mid",
+              "city": "Itupeva, SP",
+              "instagram": "@espaco.vabene",
+              "url": "https://www.espacovabene.com.br/",
+              "why": "NOVO (cross-listado em campo-jardim-lago; mesmo venue). Salão rústico aconchegante até 250, cozinha para buffet, dentro de fazenda de uva. Itupeva, ~15-20km do VVF (porta da casa). Tier mid, novo, sem posicionamento premium-curado."
+            },
+            {
+              "name": "Espaço Minzola",
+              "tier": "below",
+              "city": "Araçoiaba da Serra, SP",
+              "instagram": "",
+              "url": "https://www.casamentos.com.br/chacara-casamento/espaco-minzola--e431378",
+              "why": "NOVO. Salão de banquete de 412m² com vidro amplo + capela ao ar livre + infra de chácara (quadra, piscina, playground), locação R$4-11k. Estética rústico-campo com salão de vidro. Araçoiaba ~85km (borda). Tier below — concorre por casais de orçamento bem menor."
+            },
+            {
+              "name": "Fazenda Old Truck (Old Truck BBQ na Fazenda Imperial)",
+              "tier": "below",
+              "city": "Araçoiaba da Serra, SP",
+              "instagram": "@fazenda_oldtruck",
+              "url": "https://www.instagram.com/fazenda_oldtruck/",
+              "why": "NOVO. Fazenda estética americana com celeiro e fogo de chão, cobertura até 800. Mas é primariamente RESTAURANTE de BBQ (almoços ~R$85/pessoa), eventos como uso secundário. ~161-170K seguidores. Tier below/no: volume e preço acessível, oposto do posicionamento sem-preço e exclusivo do VVF."
+            },
+            {
+              "name": "Casa Giardino",
+              "tier": "premium-partial",
+              "city": "Mogi das Cruzes, SP",
+              "instagram": "@casagiardinoeventos",
+              "url": "https://www.casagiardinoeventos.com.br/estrutura",
+              "why": "JÁ MAPEADO (dedup de 2 entradas: rustico-celeiro/glasshouse; tier divergiu). Salão de pé-direito alto em madeira+vidro de frente para grande figueira, integrado à Mata Atlântica, 'Capela de Vidro' (acrílico), locação premium até 200+. Inaugurado 2018. Mogi = borda leste. Madeira+vidro com a árvore como protagonista — celeiro envidraçado premium, não estufa pura."
+            },
+            {
+              "name": "Quinta São Martinho",
+              "tier": "mid",
+              "city": "Araçariguama, SP",
+              "instagram": "",
+              "url": "https://quintasaomartinho.com.br/",
+              "why": "NOVO. Aberta em 2020, jardins exuberantes, móveis antigos, dois salões até 150, rústico-campestre com elegância, próxima ao Aeroporto Catarina. Araçariguama entre Itu/São Roque (borda). Porte menor, tier mid, estilo rústico-boho."
+            },
+            {
+              "name": "Spazio di Cristalli",
+              "tier": "mid",
+              "city": "Itupeva, SP",
+              "instagram": "@spaziodicristalli",
+              "url": "https://www.casamentos.com.br/salao-casamento/spazio-di-cristalli--e192496",
+              "why": "NOVO. Falso-positivo de glasshouse: apesar do nome ('espaço de cristais'), a estética é rústica-verde, até 150, locação R$4-5,9k. DENTRO do catchment (Itupeva) mas concorre por preço/proximidade, não pela estética glasshouse. Registrado para que o nome não engane."
+            },
+            {
+              "name": "Recanto Mantuani",
+              "tier": "below",
+              "city": "Jundiaí (Distrito Industrial), SP",
+              "instagram": "@recanto.mantuani_salao.chacara",
+              "url": "https://www.casamentos.com.br/salao-casamento/recanto-mantuani--e211518",
+              "why": "NOVO. Mini-wedding rústico, salão integra interno/externo por janelas de vidro com vista para piscina/jardins, até 130. DENTRO do catchment (Jundiaí) mas vidro é só integração salão-piscina, não glasshouse. Tier below, rústica-intimista — não concorre com o VVF premium."
+            }
+          ]
+        },
+        {
+          "theme": "contemporaneo",
+          "venues": [
+            {
+              "name": "Welucci",
+              "tier": "premium-full",
+              "city": "São Paulo (14 espaços em 5 regiões metropolitanas)",
+              "instagram": "@a.welucci",
+              "url": "https://welucci.com/",
+              "why": "JÁ MAPEADO. Benchmark mais maduro de operação multi-espaço all-inclusive com gestão centralizada/fatura única (modelo que o VVF persegue): espaço + deco + gastronomia + bar, 14 espaços próprios, open bar premium. Maioria na capital = comparabilidade 'moderate'. PORÉM tem espaço temático Toscana/Itália (vila de 40.000m², legado 1932) que concorre direto com Serra dos Cristais. Benchmark de marca e operação."
+            },
+            {
+              "name": "Grupo Terrá / Di Terrá",
+              "tier": "premium-full",
+              "city": "Piracicaba, SP (multi-venue)",
+              "instagram": "@diterraeventos",
+              "url": "https://diterra.com.br/casamento/",
+              "why": "JÁ MAPEADO. All-inclusive full (100% responsável pelo evento), operador multi-espaço (4 venues) com temas distintos: Espaço Terrá (contemporâneo), A Querência (rural), Palacete Monte Alegre (clássico), Casa Lucca. Estrutura multi-marca/multi-tema = análogo DIRETO à estratégia de espaços temáticos do VVF. Piracicaba na borda externa (~80-90km de Campinas), mas benchmark de modelo. 'Selo de excelência / justo valor' = premium sem eixo de preço."
+            },
+            {
+              "name": "Casa Stefano",
+              "tier": "premium-partial",
+              "city": "São Roque, SP",
+              "instagram": "casastefano.eventos",
+              "url": "",
+              "why": "NOVO. Conhecido pela alta gastronomia/experiência memorável, ambiente acolhedor e exclusivo. São Roque (borda oeste). Foco em gastronomia/exclusividade; dados limitados. Comparabilidade fraca, tier premium-partial."
+            },
+            {
+              "name": "Espaço Fábrica São Luiz",
+              "tier": "mid",
+              "city": "Itu, SP",
+              "instagram": "",
+              "url": "",
+              "why": "NOVO. Espaço de eventos em antiga fábrica em Itu, estética industrial/fábrica (contraste com VVF). Catchment. Tier mid, dados limitados — incluído por completude."
+            }
+          ]
+        }
+      ],
+      "deepProfileShortlist": [
+        "Grupo Conti (Estação Fazenda / Fazenda Santa Isabel / Recanto das Palmeiras)",
+        "Castelo dos Vinhais",
+        "Welucci",
+        "Grupo Terrá / Di Terrá",
+        "Espaço La Forêt",
+        "Ville La Rochelle",
+        "Vila Tramonti (ex-Spazio Tramonti)",
+        "Casa Di Pietra – Villa Toscana",
+        "Villa Brunholi",
+        "Fazenda Capoava",
+        "Lago Esmeralda",
+        "Villa Mantova",
+        "Terras de Clara",
+        "Welucci Sansu (Villa Sansu)",
+        "Welucci Kratos",
+        "Fazenda Santa Barbara"
+      ],
+      "notes": "DEDUP: a lista bruta tinha múltiplas entradas do mesmo venue em lentes diferentes. Consolidados (entrada única, classificação mais rica; cidade no campo city): Vila Tramonti (3x), Villa Mantova (3x — tier divergiu premium-partial vs mid; mantido premium-partial), Fazenda Dona Inês (3x — classificado fazenda-historica), Vivenda Colonial (3x), Fazenda Capoava (2x — tier divergiu, mantido premium-full), Fazenda Vila Rica (2x), Castelo dos Vinhais (2x), Vecchia Toscana (2x — mantido premium-full), Casa Giardino (2x — classificado rustico-celeiro por dominância madeira+figueira). Welucci/Welucci Sansu/Welucci Kratos mantidos separados (unidades reais distintas do mesmo grupo). VABENE/Vabene cross-listado em rustico-celeiro e campo-jardim-lago com nota. Total ~75 entradas brutas → ~63 venues únicos. Obs: o esquema de saída não tem campo theme por venue, então o tema vai pelo agrupamento byTheme e o tema secundário/cross-listing fica anotado no campo why.\n\nTODOS OS TEMAS PRESENTES: glasshouse-vidro (Botânico Quintal/benchmark, Welucci Sansu, Espaço Acuri — tema fino, poucos exemplares puros no raio; o vidro aparece sobretudo como recurso de salão em venues campo/celeiro: Lago Esmeralda, Casa Giardino, Château Ma Vie, Terras de Clara); campo-jardim-lago (o mais populoso — eixo Acqua do VVF); provençal/clássico (Ville La Rochelle = provençal-francês puro; Castelo dos Vinhais, Palacete Monte Alegre, Palazzo Vecchio, Castelo Marílias = clássico-palacete — eixo Florest provençal do VVF). Também: fazenda-historica, toscana/italia, rustico-celeiro, contemporaneo.\n\nLACUNAS/A CONFIRMAR numa próxima rodada: (1) modelo all-inclusive vs locação de Villa Ásolo 1932, Fazenda Bella Vista, Palazzo Vecchio, Fazenda Dona Carolina; (2) cidade real do Espaço Serra do Mar (Salto vs ABC); (3) tier/capacidade de Fazenda Casa Branca, Fazenda Felicità, Quinta das Bromélias; (4) o espaço glasshouse-PURO mais próximo dentro do catchment ainda não foi achado — Botânico Quintal (capital) é o benchmark do tema mas está fora do raio, então um casal 'glasshouse' do interior é hoje disputado por salões-envidraçados de campo/celeiro, não por uma estufa dedicada. Vale uma lente focada nisso.\n\nSHORTLIST (16) priorizou: (a) all-inclusive diretos no/perto do catchment — Grupo Conti (o mais próximo, mesma cidade-base), Castelo dos Vinhais, Welucci, Grupo Terrá, La Forêt; (b) temáticos fortes que disputam por estética mesmo em locação — Vila Tramonti, Casa Di Pietra, Villa Brunholi, Ville La Rochelle (Toscana/Florest/provençal, espelhando os espaços temáticos do VVF); (c) modelo + estética + hospedagem — Fazenda Capoava, Terras de Clara; (d) eixo campo/lago do VVF — Lago Esmeralda, Villa Mantova; (e) unidades Welucci adicionais (Sansu/Kratos) por proximidade e modelo all-inclusive; (f) Fazenda Santa Barbara como exemplar premium da fazenda-histórica de café no catchment norte. Ficaram de fora da shortlist por geografia de borda/tier os benchmarks puramente estéticos (Botânico Quintal, Vecchia Toscana) e o tier mid/below."
+    },
+    "profiles": []
+  }
+}

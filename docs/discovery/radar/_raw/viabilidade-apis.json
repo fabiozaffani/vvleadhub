@@ -1,0 +1,1058 @@
+{
+  "summary": "Research feasibility of automated competitor ad-library + social monitoring for a Brazilian wedding venue, with adversarial verification of load-bearing API-availability claims",
+  "agentCount": 27,
+  "logs": [],
+  "result": [
+    {
+      "dimension": "Meta (Facebook/Instagram) Ad Library + Ad Library API",
+      "summary": "The single most important fact: Meta's official Ad Library API does NOT return ordinary commercial ads. It is restricted to ads about social issues, elections and politics (globally) plus ads delivered in the EU/UK under the DSA. A Brazilian wedding venue's normal commercial ads are NOT reachable through the official API — there is no `ad_type` value, no token, and no identity verification that unlocks them. They ARE fully visible in the public web Ad Library (facebook.com/ads/library), with no login, showing creative, copy, CTA, start date, platforms and active/inactive status — but NOT spend, impressions or demographics (those exist only for political/EU ads). So for this use case the reality is: official API = no; web Ad Library = yes but UI/scrape-only; daily automation = either a self-built scraper of the web Ad Library (against Meta ToS, fragile, IP-ban risk) or a paid third-party scraper (Apify and similar) that does exactly this and supports daily scheduling. The official \"commercial data\" path that exists (Meta Content Library API) is gated to vetted academic/non-profit researchers via CASD and a commercial business does not qualify. Net: feasible daily, but via scraping (DIY or paid), never via Meta's official API.",
+      "officialApiForCompetitorData": "no-web-only",
+      "keyFindings": [
+        {
+          "claim": "The official Meta Ad Library API returns ONLY ads about social issues/elections/politics (worldwide) and ads delivered in the EU/associated territories under the DSA — it does NOT return ordinary commercial/brand ads. This is the decisive limitation.",
+          "confidence": "high",
+          "evidence": "Meta's Transparency Center page for the Ad Library tools states the API is for 'deeper analysis of ads about social issues, elections or politics, as well as ads that deliver to the EU and associated territories,' and confirms it 'does not return general commercial advertising.' Multiple 2026 developer guides corroborate: 'no access to commercial/brand advertising data via the API.'",
+          "implication": "A daily routine cannot call any official Meta endpoint to list a Brazilian wedding venue's active commercial ads. There is no parameter, scope, or upgrade that changes this — building the routine around the official API is a dead end for this use case.",
+          "sources": [
+            "https://transparency.meta.com/researchtools/ad-library-tools",
+            "https://www.facebook.com/ads/library/api",
+            "https://adlibrary.com/guides/facebook-ad-library-api",
+            "https://www.hyperfx.ai/blog/meta-ad-library-api-scraper-guide"
+          ],
+          "verification": {
+            "claim": "The official Meta Ad Library API returns ONLY ads about social issues/elections/politics (worldwide) and ads delivered in the EU/associated territories under the DSA — it does NOT return ordinary commercial/brand ads. This is the decisive limitation.",
+            "verdict": "partially-correct",
+            "correctedClaim": "Broadly TRUE and decisive for VVF's use case, with three precisions. (1) CORE CONFIRMED: For ordinary commercial advertisers like local wedding venues in Brazil, the official Meta Ad Library API returns no usable ad-delivery data. Meta's Transparency Center states the API is for \"deeper analysis of ads about social issues, elections or politics, as well as ads that deliver to the EU and associated territories.\" Outside those regulated/regional buckets there is no commercial ad-delivery, spend, reach, or targeting data via the API. An unattended routine querying VVF's Brazilian competitors via the API would return effectively nothing. (2) PRECISION ON SCOPE — \"social issues/elections/politics\" is incomplete: the API's ad_type parameter also covers other government-mandated transparency categories (HOUSING_ADS, EMPLOYMENT_ADS, CREDIT_ADS) and, in the EU/UK, all ad types under the DSA. Critically, ad_type=ALL does NOT mean \"all ads\" — it means \"all within the regulated/EU-DSA scope.\" Wedding venues match none of these categories, so the limitation holds for VVF. (3) PRECISION ON \"does NOT return general commercial advertising\" — slightly too absolute: the same API also exposes \"branded content\" carrying the paid-partnership label (creator/influencer sponsored posts) to authorized users. That is not ordinary paid-ad-delivery data and does not rescue competitor-ad monitoring, but the blanket phrasing should be footnoted. (4) EU caveat for completeness: even the EU/DSA commercial coverage degraded — Meta stopped accepting NEW political/social-issue ads in the EU as of 6 Oct 2025 (archive retained), and API EU commercial coverage is reported incomplete vs the web UI. NET FOR VVF: the decisive limitation is real. Ordinary commercial competitor ads ARE visible in the Ad Library WEB UI (creative, primary text, headline, CTA, Page name, platforms, start date, status, A/B variants) but NOT spend/reach. So an unattended routine must SCRAPE the web UI or buy a third-party provider (Apify/SearchApi/etc.); the official API is not a viable path for Brazilian commercial competitor monitoring.",
+            "evidence": "Meta's official Transparency Center Ad Library tools page states the API \"allows for a deeper analysis of ads about social issues, elections or politics, as well as ads that deliver to the EU and associated territories,\" and separately that \"Authorized users can also analyze active and public branded content running on Facebook and Instagram via the API\" — confirming the regulated/EU scope plus a branded-content carve-out, with no general-commercial ad-delivery access. An independent academic review (Bauer, APIs for Social Scientists) states the API offers only \"programmatic access to political/social issues ads\" and \"does not return ordinary commercial brand advertising,\" while the broader web interface \"enables the user to search multiple types of paid advertising.\" Multiple 2026 developer guides corroborate: \"the API's ad_type=ALL means 'all within the political+issue+special-categories scope,' not all ads broadly. Commercial ads have no API path on this endpoint\"; supported ad_type values are all, political_and_issue_ads, housing_ads, employment_ads, credit_ads; \"no access to commercial/brand advertising data via the API and no coverage of ads in the US, Canada, Australia, UK, or any non-EU country\" (Brazil not covered for commercial). Guides also note the web UI DOES show each active commercial ad's creative, primary text, headline, CTA, Page name, platforms, start date, status, and A/B variants — i.e., commercial ads are visible in the UI but not the API. The API is characterized as \"a compliance instrument Meta built to satisfy transparency legislation (Honest Ads Act, EU DSA, India ECI), not a marketing intelligence product.\" Meta stopped accepting new SIEP ads in the EU as of 6 Oct 2025.",
+            "sources": [
+              "https://transparency.meta.com/researchtools/ad-library-tools",
+              "https://paulcbauer.github.io/apis_for_social_scientists_a_review/facebook-ad-library-api.html",
+              "https://adlibrary.com/guides/facebook-ad-library-api",
+              "https://www.hyperfx.ai/blog/meta-ad-library-api-scraper-guide",
+              "https://apidog.com/blog/facebook-ad-library-api/",
+              "https://adlibrary.com/posts/what-meta-ad-library-doesnt-show-you-2026",
+              "https://admanage.ai/blog/facebook-ads-library-api",
+              "https://www.facebook.com/ads/library/api"
+            ]
+          }
+        },
+        {
+          "claim": "The web Ad Library (facebook.com/ads/library) DOES show all active commercial ads, including a Brazilian wedding venue's, searchable by Page/advertiser name or keyword, with no login required.",
+          "confidence": "high",
+          "evidence": "Meta's docs describe the web Ad Library as showing 'all active ads running across products from Meta.' 2026 guides confirm you set country = Brazil, search by advertiser name or keyword, and see every active and inactive ad for a page at facebook.com/ads/library/?id=<page_id>.",
+          "implication": "The data the routine needs exists and is public — the constraint is the access channel (web UI / scraping), not availability. Workflow: resolve each competitor's Page ID (via Page Transparency), then hit the per-page Ad Library URL.",
+          "sources": [
+            "https://transparency.meta.com/researchtools/ad-library-tools",
+            "https://www.mida.so/blog/meta-ads-library",
+            "https://batedor.com.br/en/blog/meta-ads-library-analise-competitiva-2026"
+          ],
+          "verification": {
+            "claim": "The web Ad Library (facebook.com/ads/library) DOES show all active commercial ads, including a Brazilian wedding venue's, searchable by Page/advertiser name or keyword, with no login required.",
+            "verdict": "partially-correct",
+            "correctedClaim": "The public web Ad Library (facebook.com/ads/library) shows CURRENTLY-ACTIVE commercial ads worldwide — including a Brazilian wedding venue's — searchable by advertiser/Page name or keyword after you set the country and choose the \"All ads\" ad-category (vs the \"Issues, elections or politics\" category), and basic browsing requires no login. TWO corrections to the stated claim: (1) The \"see every active AND INACTIVE ad for a page at ?id=<page_id>\" behavior is true ONLY for ads delivered in the EU/UK (DSA-driven, archived ~1 year after last impression). For a Brazil-only commercial advertiser, the library shows ONLY active ads — inactive/historical commercial ads are NOT archived outside the EU/UK, so you cannot backfill a competitor's past ads and must snapshot daily to build your own history. (2) For commercial (non-political) ads you get the creative, start date and platforms only — NO spend, reach, impressions, demographics or targeting data; those richer fields exist only for political/social-issue ads (and EU-delivered ads). A minor caveat: at least one 2026 guide reports occasional login prompts on \"certain views,\" but this is not a hard block and the dominant authoritative position remains no-login for basic browsing.",
+            "evidence": "Meta's Transparency Center states \"People can search for all active ads running across products from Meta,\" confirming active commercial ads (not just political) are covered globally — refuting the common misconception that only political ads are searchable. The web UI exposes an \"Ad category\" dropdown with \"All ads\" vs \"Issues, elections or politics,\" and browsing is country-scoped, free, and login-free. HOWEVER, multiple 2026 sources confirm the archival asymmetry: \"All ads delivered to users in the UK or EU in the past year are included\" and \"archived for one year upon the delivery of their last impression,\" whereas \"for most countries outside the UK/EU, non-political ads aren't archived\" and \"commercial ads only appear while they're active.\" This refutes the STATED EVIDENCE's assertion that you \"see every active and inactive ad for a page\" — that holds for EU/UK, not for a Brazil-only advertiser. Separately, spend/reach/funding data is provided only \"for ads about social issues, elections or politics,\" not for ordinary commercial ads. For the user's unattended-routine goal: active BR competitor ads are visible and scrapeable from the web UI (creative + landing URL + start date), but there is no clean official API for BR commercial data and no historical archive — so a daily snapshot is mandatory to accumulate history, and scraping (not API) is the realistic mechanism.",
+            "sources": [
+              "https://transparency.meta.com/researchtools/ad-library-tools",
+              "https://transparency.meta.com/policies/ad-standards/SIEP-advertising/SIEP/",
+              "https://www.mida.so/blog/meta-ads-library",
+              "https://www.makometrics.com/blog/meta-ad-library-guide",
+              "https://admanage.ai/blog/facebook-ads-library-api",
+              "https://growthfolks.io/advertising/meta-ad-library/"
+            ]
+          }
+        },
+        {
+          "claim": "For a Brazilian commercial advertiser, the visible fields are: ad creative (image/video/carousel), primary text/copy, headline, CTA button, landing-page URL, advertiser Page name/logo, platforms (FB/IG/Messenger/WhatsApp/Audience Network), start date, active/inactive status, and A/B variations. NOT visible: spend, impressions/reach, audience demographics.",
+          "confidence": "high",
+          "evidence": "Brazilian-market source (Batedor) and Meta guides: 'no impressions, spend data, or audience demographics are displayed for regular retail/commercial ads — only for political or social-issue content.' Spend/reach/demographics are the enhanced-transparency fields reserved for political/EU ads.",
+          "implication": "The routine can track WHAT competitors are running and WHEN (creative churn, new campaigns, CTA/offer changes, longevity = inferred winners), but CANNOT measure budget or audience. Build the intelligence model around creative/offer signals and ad longevity, not spend.",
+          "sources": [
+            "https://batedor.com.br/en/blog/meta-ads-library-analise-competitiva-2026",
+            "https://www.mida.so/blog/meta-ads-library",
+            "https://www.hyperfx.ai/blog/meta-ad-library-api-scraper-guide"
+          ]
+        },
+        {
+          "claim": "The EU DSA 'all ads' transparency (extra fields like payer/beneficiary, targeting parameters, reach breakdowns, 1-year retention after last impression) applies ONLY to ads delivered in the EU/UK and associated territories — it does NOT extend to Brazil.",
+          "confidence": "high",
+          "evidence": "Meta: in the EU/UK the DSA requires retention for 1 year after last impression plus targeting and reach disclosures; Meta 'offers more information for ads that deliver an impression in the EU or associated territories.' Sources explicitly note Brazil gets 'standard commercial ad visibility rather than the expanded data available in the EU/UK.'",
+          "implication": "None of the richer EU commercial-ad transparency helps for Brazilian competitors. Do not design the routine expecting payer/targeting/reach data — that only materializes for ads that actually deliver in the EU.",
+          "sources": [
+            "https://transparency.meta.com/researchtools/ad-library-tools",
+            "https://influencermarketinghub.com/meta-google-ads-libraries/"
+          ]
+        },
+        {
+          "claim": "Accessing the official Ad Library API requires one-time identity + location verification (government ID at facebook.com/ID), a Meta for Developers app, acceptance of API terms, and an access token — but completing all of this STILL yields only political/EU ads, not Brazilian commercial ads.",
+          "confidence": "high",
+          "evidence": "Setup requires confirming identity/location via the political-ads authorization flow (upload passport/national ID/driver's license, 1–3 business days), creating an app, and generating a token with ads_read. Approval can take 1–2 weeks. The unlocked data set remains political/social-issue + EU ads.",
+          "implication": "There is no point investing in the API verification gauntlet for this use case — the effort does not unlock commercial competitor data. Skip it.",
+          "sources": [
+            "https://apidog.com/blog/facebook-ad-library-api/",
+            "https://www.hyperfx.ai/blog/meta-ad-library-api-scraper-guide",
+            "https://www.facebook.com/ads/library/api"
+          ]
+        },
+        {
+          "claim": "The only OFFICIAL path to commercial ad data with richer metadata is the Meta Content Library / Content Library API, which is gated to vetted academic and non-profit researchers (approval via CASD) — an ordinary commercial business does NOT qualify.",
+          "confidence": "high",
+          "evidence": "Meta's Content Library is 'the path for commercial ads and richer metadata' but goes through a researcher-approval pipeline managed by CASD; eligibility requires affiliation with an academic institution, NGO, or credentialed news org operating as a not-for-profit with research as a core purpose. 'Businesses seeking commercial access would not qualify.'",
+          "implication": "Even the one official channel for commercial ad data is closed to Vale Verde Festas as a for-profit venue. Confirms there is no compliant official-API route — reinforcing scrape-or-third-party as the only options.",
+          "sources": [
+            "https://transparency.meta.com/researchtools/meta-content-library/",
+            "https://www.hyperfx.ai/blog/meta-ad-library-api-scraper-guide"
+          ]
+        },
+        {
+          "claim": "Daily unattended monitoring of Brazilian competitors' commercial ads IS achievable in practice — but only via (a) a self-built scraper of the public web Ad Library, or (b) a paid third-party scraper such as Apify actors, which support daily scheduling and webhook output.",
+          "confidence": "high",
+          "evidence": "Multiple Apify actors (e.g. 'Meta Ads Scraper', 'Facebook Ads Library Scraper') extract creatives, copy, CTA links, media URLs, start dates and platforms by advertiser Page ID/keyword, with built-in hourly/daily/weekly scheduling piped to webhooks/S3/warehouse; 'most teams schedule the Meta ads library as a daily task to detect changes.'",
+          "implication": "The realistic build is an unattended job (own scraper or a managed Apify actor on a daily cron) keyed on competitor Page IDs, diffing snapshots to flag new/paused creatives. A paid actor offloads the anti-bot/IP-rotation fragility; DIY saves cost but carries maintenance and ban risk.",
+          "sources": [
+            "https://apify.com/data_ops_main/meta-ads/api",
+            "https://apify.com/apify/facebook-ads-scraper",
+            "https://www.hyperfx.ai/blog/meta-ad-library-api-scraper-guide"
+          ]
+        },
+        {
+          "claim": "Scraping the Ad Library web page violates Meta's Terms of Service; sustained scraping risks IP bans and (in principle) legal action. There is no commercial archive — once a commercial ad goes inactive it disappears from Meta's surfaces.",
+          "confidence": "high",
+          "evidence": "Developer guide: 'Meta's TOS prohibits unauthorized scraping. Sustained scraping risks legal action and IP bans.' Also: 'Meta does not maintain a historical archive for commercial ads — once an ad goes inactive, it disappears from the API' (and the web UI).",
+          "implication": "Two consequences for the routine: (1) accept ToS/ban risk and design defensively (low frequency, rotation, or a managed actor that absorbs the risk); (2) because Meta keeps no commercial history, the routine MUST snapshot daily and persist its own archive — the historical record only exists if you build it.",
+          "sources": [
+            "https://www.hyperfx.ai/blog/meta-ad-library-api-scraper-guide",
+            "https://apify.com/apify/facebook-ads-scraper"
+          ]
+        }
+      ],
+      "brazilCaveats": "Brazil receives only 'standard' commercial-ad visibility in the web Ad Library: creative, copy, CTA, landing URL, platforms, start/end date, active status — and nothing more. The DSA's enhanced fields (spend, reach, demographics, payer/targeting) do NOT apply to Brazil; those are reserved for EU/UK delivery and for political/social-issue ads anywhere. Brazil-specific political fields (e.g. br_total_reach) exist but are irrelevant to commercial wedding-venue competitors. The official Content Library API (the only sanctioned commercial-data path) is researcher-gated via CASD and not open to a Brazilian for-profit business. There is no Brazil carve-out that makes the official API usable for this case — the gap is universal, and Brazil simply lacks even the EU's partial relief.",
+      "bottomLine": "Feasible daily, but NOT via Meta's official API. Concrete path: (1) For each local competitor, resolve the Facebook Page ID (Page Transparency) and store the per-page Ad Library URL (facebook.com/ads/library/?id=<page_id>&country=BR&active_status=active). (2) Run a daily unattended job that pulls each page's active commercial ads — either a managed third-party actor (e.g. an Apify Meta Ad Library scraper, with native daily scheduling + webhook/warehouse output, which absorbs anti-bot/IP-rotation risk) or a self-hosted headless scraper (cheaper, but ToS-violating, fragile against Meta's frequent DOM/anti-bot changes, and exposed to IP bans). (3) Persist your OWN daily snapshots and diff them — Meta keeps no commercial archive, so historical intelligence (creative churn, new launches, ad longevity as a winner signal) only exists if you build the store. Capture only what's actually available — creative, copy, CTA, landing URL, platforms, dates, active/inactive — and design the intelligence model WITHOUT spend, reach or demographics, since those are never exposed for Brazilian commercial ads. Do not invest in the official API identity-verification flow (it unlocks only political/EU ads) and do not count on the Content Library API (researcher-only, business ineligible). The honest trade-off is cost-and-maintenance (DIY) vs cost-and-dependency (paid actor) — both are scraping; neither is an official Meta API for competitor commercial data."
+    },
+    {
+      "dimension": "Google Ads Transparency Center (Search, Display, YouTube ads)",
+      "summary": "There is NO official Google API that exposes a competitor's ads from the Ads Transparency Center for Brazil. Google's only first-party programmatic feed is the EEA (European Economic Area) Ads Transparency API, scoped to ads SERVED in the EEA under the EU Digital Services Act — it does not cover ads shown in Brazil, and a Brazilian wedding-venue competitor's BR-targeted campaigns will not appear there. For Brazil, the Transparency Center is effectively web-UI-only at adstransparency.google.com: free, no login, searchable by advertiser name or domain, filterable by region (BR), date and format, and it DOES show YouTube video ad creatives (plus Search, Display/Gmail, Shopping, Maps, Play). The practical path for an unattended daily routine is therefore either (a) headless-browser scraping of the web UI yourself, or (b) a paid third-party SERP/scraper API (SerpApi, SearchApi, ScrapingBee, Apify actors) that wraps the public page. Both are unofficial, both fight Google's bot detection, and neither gives spend, impressions, or targeting for commercial advertisers — those numbers only exist for political/election ads, which is NOT this use case. Realistic deliverable: a daily diff of which creatives (text/image/video) each competitor is running, their formats, landing domains, and last-shown dates.",
+      "officialApiForCompetitorData": "no-web-only",
+      "keyFindings": [
+        {
+          "claim": "Google offers NO official public API to query another advertiser's ads from the Ads Transparency Center for Brazil. The only first-party API is EEA-scoped (EU DSA) and covers only ads served in the European Economic Area.",
+          "confidence": "high",
+          "evidence": "Google's own ads-transparency help page states: 'Google provides API access to data about ads served in the EEA in the Ads Transparency Center.' No equivalent API exists for Brazil or globally. Multiple 2026 guides confirm the Transparency Center 'does not provide an API for programmatic access — it's designed as a public web interface for manual searching.'",
+          "implication": "An unattended Brazil routine cannot rely on an official Google API. Any automated pull of competitor data must scrape the public web UI (yourself or via a third-party wrapper). Treat this as a scraping project, not an API-integration project.",
+          "sources": [
+            "https://support.google.com/adspolicy/answer/13733850?hl=en",
+            "https://support.google.com/My-Ad-Center-Help/answer/12155361?hl=en"
+          ],
+          "verification": {
+            "claim": "Google offers NO official public API to query another advertiser's ads from the Ads Transparency Center for Brazil. The only first-party API is EEA-scoped (EU DSA) and covers only ads served in the European Economic Area.",
+            "verdict": "partially-correct",
+            "correctedClaim": "For the VVLEADHUB use case (an ordinary commercial advertiser building an unattended routine in Brazil), the practical conclusion holds: Google offers no self-serve, publicly-available official API to query a competitor's ads in the Ads Transparency Center for Brazil. But the claim's framing is imprecise on two points. (1) The EEA \"API access\" Google describes is NOT a general-public developer API — per Google's own policy and the DSA framework, programmatic/API access to Transparency Center data is gated to vetted researchers (DSA Article 40, via the EU DSA Data Access Portal) and regulators/self-regulatory organizations, subject to the Ads Transparency Center Terms of Service. An ordinary advertiser cannot self-onboard to it even inside the EEA. (2) It is not strictly true that \"no equivalent API exists globally\": Google's policy states it \"may provide regulators and self-regulatory organisations with API access to existing data from the Ads Transparency Center about ads served outside of the EEA.\" So a non-EEA (incl. Brazil) API path exists in principle — but only for regulators/self-regulatory bodies, never for a commercial competitor-intelligence routine. Net: for VVF, the Brazil Ads Transparency Center is web-UI-only; any programmatic access to it comes from third-party scrapers (Apify, SerpApi, SearchApi), not from an official Google API, and those carry ToS/legal risk and reliability caveats.",
+            "evidence": "Google's official Ads transparency help page (support.google.com/adspolicy/answer/13733850) states verbatim: \"Google provides API access to data about ads served in the EEA in the Ads Transparency Center. Access to and usage of the data ... is subject to the Ads Transparency Center Terms of Service.\" It ADDS a sentence the original claim omits: \"Google may provide regulators and self-regulatory organisations with API access to existing data from the Ads Transparency Center about ads served outside of the EEA.\" This refutes the absolute \"no equivalent API exists ... globally\" wording — a non-EEA path exists, but is restricted to regulators, not advertisers. On the \"public\" point: DSA Article 40(4) governs the EEA data-access path; access is for VETTED researchers (must be affiliated with a research organization, independent from commercial interests, disclose funding, meet data-security requirements) and is requested via the EU DSA Data Access Portal through national Digital Services Coordinators — i.e., not a self-serve developer API. This means even the EEA API is not \"public\" in the sense an advertiser would assume. For Brazil specifically: Brazil is outside the EEA, the Transparency Center is available there as a public web interface (adstransparency.google.com/?region=BR), and the only programmatic access on the market is via third-party scrapers (Apify experthasan/google-ads-transparency-api, SerpApi, SearchApi), which are explicitly NOT official Google APIs and whose use must independently comply with Google's ToS. Academic work (FAccT 2024, \"Seeing through opacity: The limitations of digital ad transparency in Brazil\") corroborates that Brazil's ad-transparency surface is limited and not built for open programmatic competitor monitoring. Conclusion for the unattended-routine goal: the operative claim (no official Google API to pull a competitor's ads in Brazil) is CONFIRMED; the supporting framing about the EEA API being a normal first-party public API, and about \"no API existing globally,\" is imprecise and corrected above.",
+            "sources": [
+              "https://support.google.com/adspolicy/answer/13733850?hl=en&co=GENIE.CountryCode%3DDE",
+              "https://support.google.com/adspolicy/answer/13733850?hl=en&co=GENIE.CountryCode%3DAT",
+              "https://algorithmic-transparency.ec.europa.eu/news/faqs-dsa-data-access-researchers-2025-07-03_en",
+              "https://www.eu-digital-services-act.com/Digital_Services_Act_Article_40.html",
+              "https://dsa-observatory.eu/2026/03/12/if-at-first-you-dont-succeed-reflections-on-a-rejected-art-40-dsa-data-access-request/",
+              "https://adstransparency.google.com/?region=BR",
+              "https://facctconference.org/static/papers24/facct24-149.pdf",
+              "https://apify.com/experthasan/google-ads-transparency-api/api",
+              "https://serpapi.com/google-ads-transparency-center-api",
+              "https://www.searchapi.io/docs/google-ads-transparency-center-api"
+            ]
+          }
+        },
+        {
+          "claim": "The web UI at adstransparency.google.com is fully accessible from Brazil with no login, and supports search by advertiser name OR domain, with filters for region (BR), date range, and ad format.",
+          "confidence": "high",
+          "evidence": "'The direct address is adstransparency.google.com — no login, no cookie wall... completely free and publicly accessible, no Google account required.' Region selector top-right accepts ISO country codes ('BR' for Brazil); you can 'search by advertiser name or verified domain, and filter by region, date range, and ad format (text, image, video).'",
+          "implication": "For a Brazilian competitor (e.g. a rival wedding venue), you CAN see their ads — but the entry point is a JS-rendered web page, so the routine needs a headless browser (Playwright/Puppeteer) or a third-party scraper, not a simple HTTP GET.",
+          "sources": [
+            "https://lineardesign.com/blog/the-clear-path-navigating-transparency-in-google-ads/",
+            "https://www.admapix.com/blog/ad-intelligence/google-ads-transparency-center-guide"
+          ],
+          "verification": {
+            "claim": "The web UI at adstransparency.google.com is fully accessible from Brazil with no login, and supports search by advertiser name OR domain, with filters for region (BR), date range, and ad format (text, image, video).",
+            "verdict": "confirmed",
+            "correctedClaim": "The Google Ads Transparency Center web UI at adstransparency.google.com is publicly and freely accessible from Brazil with no login, no Google account, and no cookie wall. It supports searching by advertiser name OR by website/domain (domain search is generally more reliable, since verification records can lag the marketing brand). For regular (non-political) commercial advertisers — the case for Vale Verde's local competitors (wedding venues, event spaces) — the results can be filtered by region/country (the selector is GLOBAL, offering an \"Anywhere\" option plus individual countries via ISO alpha-2 codes; Brazil/BR is selectable), by date range, and by ad format (text, image, video). Important precision: as of November 2025 the date filter supports CUSTOM date ranges, not just presets (Today / Last 7 days / Last 30 days); standard commercial ads have a retention window of roughly 13 months. One imprecision to correct: the \"12-13 supported regions\" figure that circulates in guides refers specifically to the POLITICAL-ads program (which does include Brazil), NOT to the commercial-ad region filter — for commercial ads the region selector covers ~195 countries/territories, so it is wrong to imply BR is part of a restricted 12-region list. Critical caveat for the intended use (a daily UNATTENDED automated routine): this verdict concerns the MANUAL web UI only, and on that the claim is accurate. There is NO official public API to pull a COMPETITOR's Transparency Center ads — Google's official API access is gated/limited (e.g., EEA-specific researcher access) and does not serve general commercial-competitor data for arbitrary regions like Brazil. Therefore an unattended routine cannot use an official API: it must either scrape the UI (fragile, and against Google's Terms of Service) or pay a third-party provider (e.g., SerpApi, SearchApi, Scrapeless) that resells scraped Transparency Center data. That automation gap does not refute the claim, which is strictly about UI accessibility and filters.",
+            "evidence": "Every element of the claim was cross-confirmed across multiple independent 2026 sources. No login / no cookie wall and no Google account required: adsinsightpro, fraudblocker, and admapix all state the tool is a free, public, searchable database requiring no Google Ads account. Search by name OR domain: admapix and adsinsightpro confirm both methods, recommending domain search as the most reliable. Format filter (text/image/video): confirmed by admapix and adsinsightpro. Date filter: ppcnewsfeed (Nov 2025) documents the addition of CUSTOM date ranges (previously only presets existed), and admapix notes ~13-month retention for standard ads — so the date-range claim is not just true but stronger than stated. Region/Brazil: adsinsightpro confirms the region filter offers 'Anywhere' plus specific countries; searchapi.io's region-parameter docs confirm Brazil (BR, code 2076) is in a global list of ~195 country codes for the commercial Transparency Center. The only imprecision found is the '12-13 regions' number, which several guides attach to the POLITICAL ads program (list includes Brazil, Argentina, Australia, Chile, India, Israel, Mexico, NZ, South Africa, Taiwan, UK, US) — not to the commercial region filter; this does not affect the claim's truth for BR since BR is covered under both. Attempts to refute (login walls, geo-blocking from outside the US, BR being excluded, date filter being political-only) all failed against the evidence. The genuine limitation is at the automation layer, not the UI: pixis and the SerpApi/SearchApi listings make clear there is no official competitor-data API, so unattended access depends on scraping or paid third-party APIs — but that is outside the scope of the claim, which is about the manual web UI.",
+            "sources": [
+              "https://support.google.com/adspolicy/answer/13733850?hl=en",
+              "https://blog.google/innovation-and-ai/technology/ads/announcing-the-launch-of-the-new-ads-transparency-center/",
+              "https://ppcnewsfeed.com/ppc-news/2025-11/custom-date-ranges-now-in-google-ads-transparency-center/",
+              "https://www.admapix.com/blog/ad-intelligence/google-ads-transparency-center-guide",
+              "https://www.adsinsightpro.com/blog/google-ads-transparency-center-guide/",
+              "https://fraudblocker.com/articles/google-ads-transparency-center",
+              "https://www.searchapi.io/docs/parameters/google-ads-transparency-center/region",
+              "https://www.pixis.ai/blog/what-the-google-ad-transparency-center-cannot-tell-you-and-how-to-fill-the-gap/",
+              "https://serpapi.com/google-ads-transparency-center-api"
+            ]
+          }
+        },
+        {
+          "claim": "YES — the Transparency Center shows YouTube video ads run by a competitor, alongside Search, Display, Gmail, Shopping, Maps and Play creatives.",
+          "confidence": "high",
+          "evidence": "Google's help page lists YouTube among covered surfaces (info/3-dot icon). Third-party docs confirm format filtering includes 'video' and platform filtering includes 'YOUTUBE - YouTube' plus Google Search, Maps, Shopping, Play. Results include the ad format (text/image/video), last-shown date, and target regions.",
+          "implication": "A wedding venue's YouTube video creatives are visible and machine-extractable (video URL, creative ID, last-shown date). This is genuinely useful for the market-intelligence/discovery process — you can detect when a competitor launches a new video campaign.",
+          "sources": [
+            "https://support.google.com/adspolicy/answer/13733850?hl=en",
+            "https://serpapi.com/google-ads-transparency-center-api"
+          ]
+        },
+        {
+          "claim": "For COMMERCIAL (non-political) advertisers, there is NO spend, NO impression count, and NO audience-targeting data — only creative content, format, landing domain, region, and date range. Spend/impression/budget-range data exists ONLY for political/election ads.",
+          "confidence": "high",
+          "evidence": "'Spend and targeting data are not available for commercial advertisers; some additional disclosure applies only to political ads.' Third-party APIs confirm: regular ads expose only view metadata; only political ads carry 'minimum_budget_spent'/'maximum_budget_spent'. Commercial coverage = advertiser name/verification status, location, creatives, formats, dates, regions.",
+          "implication": "Set expectations: the routine answers 'WHAT creatives are competitors running and on which surfaces,' not 'HOW MUCH are they spending or WHO are they targeting.' Budget/impression intelligence is impossible from this source for wedding venues.",
+          "sources": [
+            "https://www.pixis.ai/blog/what-the-google-ad-transparency-center-cannot-tell-you-and-how-to-fill-the-gap/",
+            "https://serpapi.com/google-ads-transparency-center-api"
+          ]
+        },
+        {
+          "claim": "Commercial ad history is shallow: default views and retention center on recently active ads (typically active or run within the last ~30 days, with creatives broadly retained on the order of ~13 months), versus 7+ years for political ads. This makes a DAILY cadence valuable for catching new creatives before they age out.",
+          "confidence": "medium",
+          "evidence": "2026 guides: Transparency Center 'covers ads currently active or run within the last 30 days'; 'roughly 13 months of data is retained for standard ads,' while political/election data goes back to 2018. The exact commercial retention window is not officially published and varies.",
+          "implication": "A daily diff is the right cadence — short retention means missed creatives can disappear. Persist your own snapshots (DB) on each run so you build the longitudinal history Google won't keep for you.",
+          "sources": [
+            "https://www.adsinsightpro.com/blog/google-ads-transparency-center-guide/",
+            "https://techcrunch.com/2023/03/29/googles-new-ad-transparency-center-will-keep-track-of-a-brands-previous-ads"
+          ]
+        },
+        {
+          "claim": "Unattended self-scraping is fragile: Google defends the page with CAPTCHAs, IP blocking, browser-fingerprint checks and JS rendering. Reliable daily automation requires proxy rotation, headless browsers with realistic fingerprints, pacing/backoff, and block-spike monitoring — significant ongoing maintenance.",
+          "confidence": "high",
+          "evidence": "'Google employs CAPTCHAs, IP blocking, and JavaScript-based rendering to prevent automated scraping... detects bots by IP/request rate, user-agent/fingerprint, JS/mouse movement, cookies.' 'No single trick makes a Google Ads scraper reliable; stable pipelines stack controls across traffic, browser, request, parsing and monitoring layers,' and Google 'frequently updates anti-scraping tactics, requiring excessive maintenance.'",
+          "implication": "For a small wedding-venue ops team, DIY headless scraping is high-maintenance and brittle. A managed third-party scraper API is the pragmatic choice for an unattended routine — it absorbs proxy rotation and CAPTCHA-solving, trading money for reliability.",
+          "sources": [
+            "https://blog.scrappey.com/blog/scrape-google-ads",
+            "https://www.scrapeless.com/en/blog/google-ads-transparency"
+          ]
+        },
+        {
+          "claim": "Multiple paid third-party APIs wrap the public page and work for Brazil-region queries, returning structured JSON (advertiser, creative ID, format, image/video links, target domain, first/last-shown timestamps). These are scrapers, not official Google APIs.",
+          "confidence": "high",
+          "evidence": "SerpApi, SearchApi.io, ScrapingBee, and several Apify actors (e.g. xtech, scrapesage, seemuapps) expose Google Ads Transparency Center endpoints with region support and video/image/text filtering. SerpApi explicitly: 'third-party service... accessing Google's publicly available Ads Transparency Center at adstransparency.google.com.'",
+          "implication": "Recommended build: call a third-party scraper API daily per competitor (by domain), store results, diff against yesterday, alert on new creatives. Verify the chosen vendor supports region=BR before committing; confirm pricing per query. Review Google ToS for the data-use posture.",
+          "sources": [
+            "https://serpapi.com/google-ads-transparency-center-api",
+            "https://www.searchapi.io/google-ads-transparency-center-api",
+            "https://apify.com/xtech/google-ad-transparency-scraper"
+          ]
+        }
+      ],
+      "bottomLine": "Feasible as a daily WHAT-are-they-running monitor, not a spend/targeting monitor. There is no official Google API for Brazil competitor data — the EEA Ads Transparency API is the only first-party feed and it excludes Brazil-served ads. So the realistic path is: (1) treat the public web UI at adstransparency.google.com as the data source; (2) for an unattended routine, call a managed third-party scraper API (SerpApi / SearchApi / ScrapingBee / Apify) once per day per competitor, querying by domain with region=BR — confirm the vendor supports BR and check per-query pricing first; (3) extract creatives, format (incl. YouTube video URLs), landing domain, and first/last-shown dates; (4) persist each day's snapshot to your own DB and diff against the prior run to surface new/paused creatives, since Google's commercial retention is short; (5) alert into the discovery process. DIY headless scraping is possible but high-maintenance against Google's bot defenses — buy the scraping reliability rather than build it. Hard limit to communicate up front: no spend, no impressions, no targeting for commercial advertisers, ever, from this source.",
+      "brazilCaveats": "The single most important Brazil caveat: Google's OFFICIAL Ads Transparency API is EEA-only (built for the EU Digital Services Act) and covers only ads SERVED in the European Economic Area — it returns nothing for a Brazilian competitor's BR-targeted wedding-venue campaigns. So 'official API' is effectively unavailable for this use case; everything Brazil-side runs through the public web UI or third-party scrapers. The web UI itself works fine from Brazil (no login, region filter accepts 'BR'), and YouTube/Search/Display creatives for BR-verified advertisers are visible. Advertiser verification IS rolling out in Brazil (e.g. financial/debt-service deadlines in 2025), which improves how reliably a competitor is identifiable by verified legal name/domain — useful for keying your daily queries. When selecting a third-party scraper vendor, explicitly verify it supports region=BR results, since some default to US and not all document Brazil coverage. Spend/impression disclosure (the political-ad extra) does not apply in Brazil for commercial advertisers, so do not promise budget intelligence."
+    },
+    {
+      "dimension": "TikTok — Commercial Content Library (CCL) AND Creative Center (Top Ads)",
+      "summary": "For monitoring specific LOCAL Brazilian wedding-venue competitors' TikTok ads daily, there is effectively NO viable official-API path from Brazil. TikTok's transparency archive — the Commercial Content Library (library.tiktok.com) and its Commercial Content API — covers ONLY the EEA, UK, and Switzerland (confirmed as of April 2026), so Brazilian-delivered ads are simply not in the dataset; and even that API is gated to approved non-commercial researchers, explicitly not marketers/agencies. The Creative Center \"Top Ads\" tool DOES cover Brazil as a region and has a search bar that can surface a named advertiser, BUT it has no official API (web-UI only), shows only a curated set of TikTok-indexed top-performing ads (~6-month window), and structurally will NOT surface small local wedding venues that lack the spend/performance to be indexed. The only programmatic route is third-party scrapers hitting Creative Center's undocumented endpoint — ToS-violating, fragile, and still blind to small local advertisers. The organic-content Research API is academic/non-profit only and prohibits commercial use everywhere, Brazil included. Realistic verdict: TikTok is the weakest of the major platforms for this use case; a daily unattended routine for named local competitors is not achievable on TikTok via any sanctioned API.",
+      "officialApiForCompetitorData": "no-web-only",
+      "keyFindings": [
+        {
+          "claim": "The TikTok Commercial Content Library and its Commercial Content API cover ONLY the EEA, UK and Switzerland — Brazil is not included, with no announced timeline.",
+          "confidence": "high",
+          "evidence": "TikTok for Developers states the API 'is ONLY including data from EU countries' in this phase. Multiple 2026 sources confirm the archive 'still only covers ads delivered to users in the European Economic Area, the United Kingdom, and Switzerland' (admapix, April 2026). The CCL was built to satisfy the EU Digital Services Act; Brazil has no equivalent mandate forcing TikTok to expose competitor ad data.",
+          "implication": "A daily routine cannot pull any Brazilian competitor's TikTok ads from the official transparency archive — the data does not exist there. This is a hard geographic wall, not a permissions issue.",
+          "sources": [
+            "https://developers.tiktok.com/products/commercial-content-api",
+            "https://www.admapix.com/blog/ad-intelligence/tiktok-ad-library-explained",
+            "https://newsroom.tiktok.com/en-gb/tiktoks-research-api-and-commercial-content-library"
+          ],
+          "verification": {
+            "claim": "The TikTok Commercial Content Library and its Commercial Content API cover ONLY the EEA, UK and Switzerland — Brazil is not included, with no announced timeline.",
+            "verdict": "confirmed",
+            "correctedClaim": "CONFIRMED, with one precision added. TikTok's Commercial Content Library (the public archive at library.tiktok.com) covers ONLY ads delivered to users in the EEA (the 27 EU member states plus Iceland, Liechtenstein, Norway), the UK, and Switzerland. Brazil — and all of LATAM, the US, MENA and APAC — is excluded unless an ad also served EU/EEA impressions. There is NO announced timeline for Brazil or any non-European region. Precision on the API wording: the official Commercial Content API page states that 'in this phase we are ONLY including data from EU countries, while a researcher/professional who is requesting it can be located in any country' — so the API is offered globally to REQUESTERS, but the DATA returned is EU/European-only; an automated routine running from Brazil can call it, but it will get zero data on Brazilian competitors. Minor imprecision in the original claim: the API doc literally says 'EU countries' (the 27 member states), whereas the library's supported-countries page and 2026 secondary reporting define the served-impressions scope as the broader EEA + UK + Switzerland set. The EEA/UK/Switzerland framing is the correct description of the archive's coverage; the API doc's 'EU countries' is looser phrasing for essentially the same European compliance surface. The root cause is correctly identified: the CCL is an EU Digital Services Act (DSA) compliance artifact (TikTok is a designated Very Large Online Platform), and Brazil has no equivalent mandate forcing TikTok to expose competitor ad data. The reorganization announcement when the TikTok US ownership deal closed (Jan 22, 2026) contained no CCL expansion commitment. Bottom line for the VVF use case: TikTok's official API is USELESS for monitoring Brazilian wedding-venue competitors' paid ads; that data must come from web-UI inspection or paid third-party ad-intelligence tools, not from this API.",
+            "evidence": "Verified against primary and secondary sources, including adversarial searches for any 2025-2026 expansion, Brazilian mandate, or announced timeline — none found. (1) TikTok for Developers, Commercial Content API product page: states verbatim 'in this phase we are ONLY including data from EU countries, while a researcher/professional who is requesting it can be located in any country' and 'will include ads data from EU to begin with, while we build capacity to expand to various commercial and regional data sets' — no timeline. (2) TikTok for Developers, Commercial Content API Supported Countries page: lists ONLY the 27 EU member states, the 3 additional EEA states (Iceland, Liechtenstein, Norway), and the UK + Switzerland as 'continental Europe'. No Brazil, no LATAM, no US, no non-European country. (3) admapix (TikTok Ad Library Explained, published April 9, 2026, updated April 16, 2026): the archive 'still only covers ads delivered to users in the European Economic Area, the United Kingdom, and Switzerland'; U.S./LATAM/MENA/APAC buys excluded unless they also served EU impressions; notes the Jan 22, 2026 US ownership deal close carried 'no CCL expansion commitment'; calls it 'an EU compliance surface, not a global voluntary disclosure.' (4) adlibrary.com (2026): library covers only EEA, UK, Switzerland; shows advertiser name, creative, first/last shown dates, targeting, reach ranges — no spend, no CTR, no US data. The DSA/VLOP rationale (and Brazil's lack of an equivalent mandate) is confirmed across all sources.",
+            "sources": [
+              "https://developers.tiktok.com/products/commercial-content-api",
+              "https://developers.tiktok.com/doc/commercial-content-api-supported-countries",
+              "https://www.admapix.com/blog/ad-intelligence/tiktok-ad-library-explained",
+              "https://adlibrary.com/posts/tiktok-ad-library",
+              "https://adlibrary.com/guides/tiktok-ad-library-api",
+              "https://newsroom.tiktok.com/en-eu/expanding-tiktoks-research-api-and-commercial-content-library"
+            ]
+          }
+        },
+        {
+          "claim": "Even where it has data, the Commercial Content API is gated to approved researchers/academics and explicitly NOT available to commercial entities, agencies or marketers.",
+          "confidence": "high",
+          "evidence": "The Commercial Content API requires a developer application and approval; guides describe it as 'Only available to approved researchers and qualified organizations… Not available for commercial entities, agencies, or marketers,' with ~1,000 requests/day and a non-commercial-use requirement. Approval can take weeks/months.",
+          "implication": "Even setting geography aside, VVF (a commercial advertiser) would not qualify for CCL API access. Two independent blocks: wrong region AND wrong eligibility.",
+          "sources": [
+            "https://developers.tiktok.com/products/commercial-content-api",
+            "https://adlibrary.com/guides/tiktok-ad-library-api"
+          ],
+          "verification": {
+            "claim": "Even where it has data, the TikTok Commercial Content API is gated to approved researchers/academics and explicitly NOT available to commercial entities, agencies or marketers.",
+            "verdict": "refuted",
+            "correctedClaim": "This claim is largely WRONG because it conflates two distinct TikTok products. TikTok's own developer documentation states the Commercial Content API is for \"the public AND researchers\" and is \"made available globally\" — it is NOT researcher-only and is NOT closed to commercial entities. The researcher-only / non-commercial / academic-affiliation / ~1,000-requests-per-day / weeks-to-months restrictions all belong to the SEPARATE Research API, not the Commercial Content API. CORRECTED PRECISE VERSION for the VVF use case: (1) The Commercial Content API (ads transparency, built for the EU Digital Services Act) DOES require a developer application and TikTok approval — but it is open to the public, not gated to academics, and approval is stated as ~2 business days, not weeks/months. (2) Its real, disqualifying limitation for VVF is NOT an eligibility wall but DATA SCOPE: ad data currently covers EU advertisers only. Brazilian wedding-venue competitors advertising to a Brazilian audience are out of scope, so the API returns nothing useful for this monitoring routine regardless of who applies. (3) An even more open path exists: the Commercial Content Library (web UI at library.tiktok.com/ads) is accessible to \"anyone\" with no application at all — same EU-only data limit. (4) The TRUE researcher/academic-only, non-commercial, ~1,000 req/day, weeks-long-approval product is the Research API (public user/video/comment data) — which a commercial venue like VVF genuinely cannot use. So the claim's restrictions are real, but mis-attributed to the wrong API; for VVF the practical blocker on the Commercial Content API is EU-only data coverage, not a commercial-entity ban.",
+            "evidence": "TikTok's official developer product page for the Commercial Content API states verbatim: \"These APIs will allow the public and researchers to perform customized, advertiser name or keyword based searches on ads\" — explicitly naming \"the public,\" not restricting to academics, and not excluding commercial entities. The getting-started flow describes a standard developer-account application reviewed \"within 2 working days,\" contradicting the claimed \"weeks or months.\" TikTok's newsroom states \"anyone can access the Commercial Content Library\" (the web UI), with \"only data from Europe is available.\" TikTok's API docs say the commercial APIs are \"made available globally and will include ads data from EU to begin with.\" By contrast, TikTok's Research API docs are where the restrictive language actually lives: \"Creators, advertisers, or commercial users are not eligible for access to the Research Tools,\" requiring applicants to be \"independent from commercial interests\" and conduct research \"on a not-for-profit or non-commercial basis,\" with academic affiliation and a ~1,000 requests/day limit. The stated-evidence quote (\"Only available to approved researchers and qualified organizations… Not available for commercial entities, agencies, or marketers,\" \"weeks or months\" approval) traces to a third-party guide (adlibrary.com) that itself sells a competing scraping product — a source with incentive to overstate official-API friction — and it does NOT cite a concrete per-day rate limit; the ~1,000/day figure is the Research API's number, mis-applied. Net: the eligibility restrictions are genuine for the Research API but false for the Commercial Content API; the Commercial Content API's binding limitation is EU-only ad-data coverage, which is what actually defeats the VVF Brazilian-competitor monitoring goal.",
+            "sources": [
+              "https://developers.tiktok.com/products/commercial-content-api",
+              "https://developers.tiktok.com/doc/commercial-content-api-getting-started",
+              "https://newsroom.tiktok.com/en-gb/tiktoks-research-api-and-commercial-content-library",
+              "https://developers.tiktok.com/products/research-api/",
+              "https://developers.tiktok.com/doc/research-api-faq",
+              "https://adlibrary.com/guides/tiktok-ad-library-api"
+            ]
+          }
+        },
+        {
+          "claim": "TikTok Creative Center 'Top Ads' has NO official public API — it is web-UI only and (for full features) tied to a TikTok Business account login.",
+          "confidence": "high",
+          "evidence": "'TikTok Creative Center does not offer a public API for programmatic data access. All research is manual and browser-based.' Other guides confirm it is web-UI only with no programmatic access.",
+          "implication": "An unattended daily routine cannot use a sanctioned API for Creative Center. Automation requires either browser automation or third-party scrapers — both outside TikTok's supported surface.",
+          "sources": [
+            "https://adlibrary.com/posts/tiktok-creative-center-guide",
+            "https://adlibrary.com/guides/tiktok-ad-library-api"
+          ]
+        },
+        {
+          "claim": "Creative Center Top Ads supports Brazil as a region and has a search bar that can find a specific advertiser, BUT it only shows TikTok-INDEXED top-performing ads — small/local advertisers (e.g. interior-SP wedding venues) will usually NOT appear.",
+          "confidence": "high",
+          "evidence": "Top Ads is filterable by region/industry/objective/time and 'searchable by brand name,' but 'Not all advertisers are indexed — smaller brands and advertisers running lower-volume campaigns may not appear.' Coverage is 'deepest for US, UK, Australia, Germany, France' and 'thins considerably' for Latin American markets. Retention is ~6 months.",
+          "implication": "Even with scraping, the tool is built for creative inspiration from big spenders, not surveillance of named local competitors. The exact targets VVF cares about (local premium wedding venues with modest ad spend) are the ones least likely to be in the index, so coverage of the real competitor set is poor-to-empty.",
+          "sources": [
+            "https://adlibrary.com/posts/tiktok-creative-center-guide",
+            "https://bir.ch/blog/tiktok-creative-center",
+            "https://www.stackmatix.com/blog/tiktok-creative-center-guide"
+          ]
+        },
+        {
+          "claim": "Creative Center Top Ads shows aggregated/curated best-performers across an industry+region, not a complete archive of one competitor's full ad set, and lacks dates/reach/targeting in the underlying data.",
+          "confidence": "medium",
+          "evidence": "Multiple guides describe Top Ads as 'top-performing ads across industries and regions' (curated) rather than a per-advertiser archive. The undocumented endpoint returns title, video creative, performance tier (CTR, likes), industry, objective, budget tier — but 'dates, reach figures, and targeting details are not available from TikTok's Creative Center API.'",
+          "implication": "Even when a competitor appears, you get a partial, recency-curated slice — not 'every ad this venue is running now,' and without delivery dates/reach you can't reliably detect daily changes. Poor fit for a daily change-detection routine.",
+          "sources": [
+            "https://www.stackmatix.com/blog/tiktok-creative-center-guide",
+            "https://apify.com/parseforge/tiktok-creative-center-top-ads-scraper/api/openapi"
+          ]
+        },
+        {
+          "claim": "The only programmatic route to Creative Center data is third-party scrapers (e.g. Apify actors) hitting TikTok's undocumented 'creative_radar_api/v1/top_ads' endpoint — usable from Brazil, but ToS-violating and fragile.",
+          "confidence": "high",
+          "evidence": "Apify hosts several independent Creative Center Top Ads scrapers (parseforge, codebyte, coregent, doliz) that accept country (two-letter codes), time period (7/30/180d), objective, sort order, keyword and language, returning ~15 structured fields incl. video URL and brand. They state they are 'not affiliated with… TikTok' and access public Creative Center pages without login. Sources caution that 'web scraping may violate TikTok's terms of service.'",
+          "implication": "A daily routine CAN be built on a paid third-party scraper for Brazil-region/industry top ads — but it inherits the index limitation (won't see small local venues), is a ToS gray zone, and can break whenever TikTok changes the endpoint. It is a market-trend feed, not reliable per-competitor monitoring.",
+          "sources": [
+            "https://apify.com/parseforge/tiktok-creative-center-top-ads-scraper/api/openapi",
+            "https://apify.com/codebyte/tiktok-creative-center-top-ads/api",
+            "https://apify.com/coregent/tiktok-ads-library-creative-center-scraper/api/cli"
+          ]
+        },
+        {
+          "claim": "For ORGANIC TikTok content, the Research API is academic/non-profit only and prohibits commercial use everywhere, including Brazil.",
+          "confidence": "high",
+          "evidence": "The Research API is limited to qualifying universities/academic institutions in the US, EEA, UK, Switzerland, EU non-profits, and Brazilian academic/non-profit researchers studying youth safety — 'Commercial use is prohibited.' Non-academic commercial users cannot access it regardless of location, including Brazil.",
+          "implication": "VVF cannot use the official Research API to monitor competitors' organic posts. Organic monitoring would also fall back to scraping/manual or third-party providers, with the same ToS and reliability caveats.",
+          "sources": [
+            "https://developers.tiktok.com/products/research-api/",
+            "https://developers.tiktok.com/doc/about-research-api/"
+          ]
+        }
+      ],
+      "bottomLine": "No sanctioned, unattended daily routine exists for monitoring named local Brazilian competitors' TikTok ads. The realistic path is a two-tier compromise: (1) For MARKET-LEVEL creative intelligence, build a daily job against a third-party Creative Center Top Ads scraper (e.g. an Apify actor) filtered to country=BR + wedding/events industry + objective; this gives a feed of high-performing ad creatives and trends in Brazil and is automatable — but it is a ToS gray zone, breaks when TikTok shifts its undocumented endpoint, and structurally will NOT surface small local wedding venues that aren't in TikTok's top-ads index. (2) For NAMED specific competitors, accept that TikTok offers no reliable data: the Commercial Content Library excludes Brazil entirely, and Creative Center only indexes top performers. Treat TikTok as a low-priority, best-effort source — use the scraped Brazil top-ads feed for trend discovery, and fall back to periodic manual/browser-automation checks of a competitor's public TikTok profile (organic posts) for the handful of competitors who actually advertise heavily. Do not promise per-competitor daily ad coverage on TikTok; it cannot be delivered.",
+      "brazilCaveats": "The decisive Brazil-specific fact: TikTok's official ad-transparency archive (Commercial Content Library / API) is an EU Digital Services Act compliance product and covers ONLY EEA/UK/Switzerland. Brazil has no equivalent legal mandate forcing TikTok to expose advertiser ad data, so there is no Brazilian transparency dataset and no announced plan to create one. Brazil IS selectable in Creative Center Top Ads, but LatAm coverage is explicitly thin versus US/UK/EU, compounding the small-local-advertiser blind spot. The Research API does grant a narrow Brazilian carve-out, but ONLY for academic/non-profit youth-safety research — useless for a commercial venue. Net: from Brazil, every official TikTok competitor-data surface is either geographically out of scope, eligibility-blocked, or both; only unofficial scraping of Creative Center remains, and it is biased toward large advertisers."
+    },
+    {
+      "dimension": "Pinterest advertising transparency (competitor paid-ad monitoring for a Brazilian wedding venue)",
+      "summary": "Pinterest DOES have an official ad transparency tool (the Pinterest Ads Library / \"Ads Repository,\" at ads.pinterest.com/ads-repository, no login required), but it is effectively a DEAD END for this Brazilian use case. The library exists almost entirely to satisfy the EU Digital Services Act and only surfaces ads TARGETED TO USERS IN THE EU. Local Brazilian wedding-venue competitors who advertise only to a Brazilian audience will not appear at all. The country/region filter is EU member states; Brazil is not a selectable market in the dedicated-source consensus (Tailwind/Swipekit/PowerAdSpy). There is NO official API for competitor/transparency ad data — Pinterest's developer API (v5) is strictly your-own-account ads management, and its policy forbids using API data for anything except serving and evaluating your own ads. The only path to competitor Pinterest ad data from Brazil is third-party scraping (e.g., Apify's Pinterest Ads Repository actor), but that still scrapes the same EU-bounded library, so it inherits the same \"Brazil-targeted ads are invisible\" limitation regardless of vendor marketing claims to the contrary. Net: for PAID ad intelligence on local competitors, Pinterest gives you essentially nothing automatable. Pinterest remains relevant for ORGANIC wedding content (Brazil is Pinterest's #2 market, ~38-41M users, ~70% female, with active 2026 wedding trend programming) — but that is organic-board/pin monitoring, a different dimension from ad transparency.",
+      "officialApiForCompetitorData": "no-web-only",
+      "keyFindings": [
+        {
+          "claim": "Pinterest has an OFFICIAL ad transparency tool — the Pinterest Ads Library / 'Ads Repository' — searchable by advertiser, no account required.",
+          "confidence": "high",
+          "evidence": "Reachable at ads.pinterest.com/ads-repository/ (also referenced as ads-transparency.pinterest.com). Search by advertiser name; filter by country, ad category, age, gender. Shows the creative (image/video), description/copy, destination URL, advertiser identity, date range, and targeting facets (ages, genders, keywords, metro areas, negative keywords).",
+          "implication": "A transparency surface technically exists, so the question is not 'does Pinterest have an ad library' (it does) but 'does it cover Brazil-targeted competitor ads' (it does not — see next finding).",
+          "sources": [
+            "https://www.tailwindapp.com/blog/pinterest-ads-library-the-secret-tool-to-spy-strategize-and-scale",
+            "https://poweradspy.com/pinterest-ad-library/",
+            "https://swipekit.app/articles/what-is-the-pinterest-ad-library-all-about"
+          ],
+          "verification": {
+            "claim": "Pinterest has an OFFICIAL ad transparency tool — the Pinterest Ads Library / 'Ads Repository' — searchable by advertiser, no account required. Reachable at ads.pinterest.com/ads-repository/ (also ads-transparency.pinterest.com). Search by advertiser; filter by country, ad category, age, gender. Shows creative, description/copy, destination URL, advertiser identity, date range, and targeting facets (ages, genders, keywords, metro areas, negative keywords).",
+            "verdict": "partially-correct",
+            "correctedClaim": "Pinterest DOES operate an official, public ad-transparency tool — it calls it the \"Ads Repository,\" reachable at https://ads.pinterest.com/ads-repository/. It exists for EU Digital Services Act (DSA) compliance, is free, requires NO Pinterest account, is searchable by advertiser name, and exposes rich data per ad: creative (image/video), title/description copy, advertiser identity, run dates, and DSA-mandated targeting facets (countries, age groups, genders, interests/keywords, and excluded/negative keywords), plus audience-reach estimates. That much of the claim is accurate and unusually generous compared to other platforms. THREE corrections matter for an unattended Brazilian competitor-monitoring routine: (1) SCOPE IS NOT GLOBAL — it is DSA-driven and covers only ads SERVED IN a fixed set of ~29 markets: the EU-27 plus a few extras. Reporting on the repository's country filter lists Brazil (BR) and Turkey (TR) alongside the EU, so a competitor's ads that ran in Brazil CAN appear — but this is contingent on Pinterest's country list, not a worldwide library, and is the single most fragile assumption for a São Paulo wedding venue. Confirm BR coverage against the live tool before depending on it. (2) ACTIVE/RECENT ONLY — it is not a full historical archive; the DSA mandates retention for ~1 year after an ad's last impression, so ads that stopped running long ago disappear. (3) NO OFFICIAL QUERY API and CTWA-style caveats: the user-facing repository is web-UI only. Pinterest's official developer API (v5) is OAuth-scoped to ad accounts you own/administer (Owner/Admin/Analyst/Campaign-Manager roles) and CANNOT query competitors' ads — it is your-own-account-only, not a transparency API. The 'ads-transparency.pinterest.com' alias referenced by some third-party blogs is not Pinterest's canonical URL (the canonical is ads.pinterest.com/ads-repository/), and at least one secondary source wrongly claims the tool is global and lacks targeting data — that source is unreliable. For automation: there is no sanctioned API, so an unattended routine must scrape the JS-rendered repository (it doesn't render server-side) or pay a third-party scraper (e.g. Apify's 'Pinterest Ads Repository' actor), with the usual ToS/breakage risk; and independent auditing (Mozilla/CheckFirst 'Full Disclosure', 2024) found these DSA repositories — Pinterest's included — incomplete and unreliable for systematic research.",
+            "evidence": "Pinterest's tool is real and official: the Ads Repository at ads.pinterest.com/ads-repository/ is Pinterest's DSA-compliance ad-transparency tool, free and account-free, searchable by advertiser, exposing creative, copy, advertiser, dates and targeting (country, age, gender, interests, keywords, negative keywords). It is NOT global: it is EU-only by DSA mandate, covering ads served in a fixed country set — third-party tooling that mirrors the repository's own country filter lists exactly: AT, BE, BG, BR, HR, CY, CZ, DK, EE, FI, FR, DE, GR, HU, IE, IT, LV, LT, LU, MT, NL, PL, PT, RO, SK, SI, ES, SE, TR (29 markets, including Brazil BR and Turkey TR). It is active/recent-only with ~1-year retention after last impression, not a full archive. There is NO official public-query API: Pinterest's developer API v5 is OAuth-scoped to ad accounts the token holder owns/administers and enforces account isolation (cannot read competitor accounts); programmatic access to the repository exists only via third-party scrapers like Apify's 'Pinterest Ads Repository' actor. The page is a JS app (fetching ads.pinterest.com/ads-repository/ returns only 'Pinterest Ads' with no server-rendered content), so scraping requires a headless browser. Mozilla's commissioned 'Full Disclosure' stress test (CheckFirst, Dec 2023–Jan 2024) found none of the DSA ad repositories — Pinterest among the platforms tested — sufficiently effective/reliable. One secondary source (adlibrary.com) incorrectly states the tool is not EU-only and lacks targeting data, contradicting Pinterest's DSA basis and other sources — treat it as imprecise.",
+            "sources": [
+              "https://ads.pinterest.com/ads-repository/",
+              "https://help.pinterest.com/en/article/digital-services-act",
+              "https://policy.pinterest.com/en/digital-services-act-transparency-report",
+              "https://www.tailwindapp.com/blog/pinterest-ads-library-the-secret-tool-to-spy-strategize-and-scale",
+              "https://adlibrary.com/guides/pinterest-ads-library-guide",
+              "https://apify.com/codebyte/pinterest-ads-repository",
+              "https://apify.com/codebyte/pinterest-ads-repository/api",
+              "https://www.mozillafoundation.org/en/research/library/full-disclosure-stress-testing-tech-platforms-ad-repositories/",
+              "https://checkfirst.network/mozilla-commissions-checkfirst-to-conduct-a-stress-test-of-ad-repositories/",
+              "https://github.com/pinterest/pinterest-python-generated-api-client/blob/main/docs/AdsApi.md",
+              "https://developers.pinterest.com/docs/api/v5/introduction/",
+              "https://digital-strategy.ec.europa.eu/en/policies/dsa-impact-platforms"
+            ]
+          }
+        },
+        {
+          "claim": "The Pinterest Ads Library only surfaces ads TARGETED TO EU users — it is a Digital Services Act (DSA) compliance artifact, not a global ad-spy tool. Brazil-targeted ads do not appear.",
+          "confidence": "high",
+          "evidence": "Tailwind (Apr 2025): 'Currently, the Ads Library only shows ads targeted to users in the European Union.' Swipekit/PowerAdSpy state the same and explicitly note an advertiser running only US/Canada/Brazil/Turkey campaigns will not appear unless they also run EU-targeted ads. The country filter lists EU member states (one country at a time). DSA mandates this disclosure for very large platforms — which is why coverage is EU-bounded.",
+          "implication": "A local interior-São-Paulo wedding venue almost certainly targets only a Brazilian audience, so its competitors are invisible in the library. The tool returns nothing useful for this market — the core of why this dimension is a dead end.",
+          "sources": [
+            "https://www.tailwindapp.com/blog/pinterest-ads-library-the-secret-tool-to-spy-strategize-and-scale",
+            "https://swipekit.app/articles/what-is-the-pinterest-ad-library-all-about",
+            "https://policy.pinterest.com/en/digital-services-act-transparency-report"
+          ],
+          "verification": {
+            "claim": "The Pinterest Ads Library only surfaces ads TARGETED TO EU users — it is a Digital Services Act (DSA) compliance artifact, not a global ad-spy tool. Brazil-targeted ads do not appear.",
+            "verdict": "confirmed",
+            "correctedClaim": "Correct, with one nomenclature precision. Pinterest's official tool is the \"Ads Repository\" (ads.pinterest.com/ads-repository/) — \"Ads Library\" is colloquial/third-party shorthand. It exists solely to satisfy DSA Article 39, which obliges designated Very Large Online Platforms (Pinterest qualifies, ≥45M EU monthly users) to publish a searchable, API-accessible repository of the ads they present. Because the obligation is EU-scoped, the repository only contains ads targeted to EU users; the country filter lists EU member states one at a time with no \"all\" option. An advertiser running only Brazil/US/Canada/Turkey campaigns does NOT appear unless they also run EU-targeted ads. For Vale Verde Festas monitoring Brazil-targeted interior-SP wedding-venue competitors, Pinterest's native repository/API is effectively useless — those local competitors will not be in it. Two cautions: (a) do not overstate the scope as \"EEA\" — the DSA is formally EU-scoped, so \"EU\" as the claim states is the accurate framing; (b) third-party ad-spy vendors (e.g. adlibrary.com, PowerAdSpy, Swipekit) advertise broader \"Pinterest\" country coverage including non-EU markets, but that is their own scraped/aggregated product, NOT Pinterest's official tool — it does not contradict the EU-only scope of Pinterest's native repository, and carries ToS/coverage-gap risk.",
+            "evidence": "Five independent sources plus the legal mechanism converge. Tailwind (Apr 29 2025): \"It's EU-only. Currently, the Ads Library only shows ads targeted to users in the European Union.\" Swipekit: \"The library primarily showcases ads from the European Union… the whole existence of the Ad Library is mandated by EU legislature, [so] they have no incentive to show non-european Ads\"; the country filter forces selecting one country with no \"all\" choice. PowerAdSpy: \"Currently, the ad library only works for ads in EU countries,\" one selected country at a time, and a competitor advertising only in the US/Canada will not be visible unless they also run EU-targeted ads. Legal basis: DSA Article 39 requires VLOPs to compile a publicly available, searchable ad repository (also via API) — the obligation is bounded to the EU, which is why coverage is EU-bounded rather than global; Pinterest is a designated VLOP. Attempted refutation: adlibrary.com's \"Pinterest Ads Library 2026\" guide lists US/UK/Germany/France/Australia browse pages, suggesting non-EU coverage — but that is a paid third-party ad-spy vendor's own scraped product, not Pinterest's native repository, so it does not refute the EU-only scope of Pinterest's official tool (and actually confirms that non-EU Pinterest ad visibility only exists via paid scrapers). No source surfaced a non-EU country in Pinterest's own native filter.",
+            "sources": [
+              "https://www.tailwindapp.com/blog/pinterest-ads-library-the-secret-tool-to-spy-strategize-and-scale",
+              "https://swipekit.app/articles/what-is-the-pinterest-ad-library-all-about",
+              "https://poweradspy.com/pinterest-ad-library/",
+              "https://www.eu-digital-services-act.com/Digital_Services_Act_Article_39.html",
+              "https://help.pinterest.com/en/article/digital-services-act",
+              "https://ads.pinterest.com/ads-repository/",
+              "https://adlibrary.com/guides/pinterest-ads-library-guide"
+            ]
+          }
+        },
+        {
+          "claim": "There is NO official Pinterest API for competitor/transparency ad data. The developer API is your-own-account only, and its policy bans using API data for anything beyond serving/evaluating your own ads.",
+          "confidence": "high",
+          "evidence": "Pinterest API v5 ('Ads overview') is for setting up, running, editing, reporting on YOUR OWN ad campaigns; requires Business Access. Developer guidelines restrict: you 'can't use information from the API except to serve and evaluate the performance of ads on Pinterest.' No transparency/ad-library endpoint is documented.",
+          "implication": "The clean, automatable path (official API → competitor ads) does not exist. Any automated routine must fall back to scraping the public web library — which is itself EU-bounded.",
+          "sources": [
+            "https://developers.pinterest.com/docs/api-features/ads-overview/",
+            "https://policy.pinterest.com/en/developer-guidelines",
+            "https://developers.pinterest.com/usecase/ads/"
+          ]
+        },
+        {
+          "claim": "Third-party scrapers (e.g., Apify 'Pinterest Ads Repository' actor) can be automated via REST API on a schedule, but they scrape the SAME EU-bounded library — so they inherit the Brazil blindspot.",
+          "confidence": "medium",
+          "evidence": "Apify actor is automatable (REST/CLI/Python/JS), pay-per-result (~$0.70/1,000). Its listing claims coverage of 'all EU countries, Turkey, and Brazil' (29 markets) — but this conflicts with every dedicated guide that says the underlying library is EU-only. The '29 countries' figure traces to Pinterest's ad-SERVING availability (Skai), not library coverage; the vendor appears to conflate the two. Brazil coverage in the library is unverified and contradicted by primary-purpose sources.",
+          "implication": "Do not trust a vendor's 'Brazil supported' label at face value. Before paying for any scraper, run a one-off test querying 2-3 known Brazilian competitor names and confirm non-empty results — high likelihood it returns nothing because the source library excludes Brazil-targeted ads.",
+          "sources": [
+            "https://apify.com/codebyte/pinterest-ads-repository/api",
+            "https://skai.io/blog/pinterest-ads-countries/",
+            "https://poweradspy.com/pinterest-ad-library/"
+          ]
+        },
+        {
+          "claim": "Even where the library has data, it omits spend/budget, performance metrics, historical ads, and A/B variants — it shows only currently-active promoted pins.",
+          "confidence": "high",
+          "evidence": "Sources confirm the library shows creative, copy, destination URL, advertiser, and targeting facets, but NOT ad spend/budget, performance, or historical/inactive ads. Unlike Meta's Ad Library, it is active-only.",
+          "implication": "Low-value even at best: no spend signal, no historical trend, no inactive-ad archive — so the market-intelligence payoff would be thin even if Brazil were covered.",
+          "sources": [
+            "https://adlibrary.com/guides/pinterest-ads-library-guide",
+            "https://poweradspy.com/pinterest-ad-library/"
+          ]
+        },
+        {
+          "claim": "Pinterest itself IS relevant to the wedding category and to Brazil — but as an ORGANIC content channel, not as a paid-ad transparency source.",
+          "confidence": "high",
+          "evidence": "Brazil is Pinterest's #2 market (~38-41M users), ~70% female globally — a strong wedding-planning demographic. Pinterest publishes an annual Wedding Trends Report (2026 edition live). Weddings are a flagship Pinterest vertical.",
+          "implication": "Pinterest belongs in the market-intelligence routine for ORGANIC monitoring (competitor boards, pins, trend reports) — a separate dimension. For the specific question of paid-ad transparency on local competitors, it contributes nothing automatable from Brazil.",
+          "sources": [
+            "https://newsroom.pinterest.com/news/wedding-trend-report-2026/",
+            "https://www.statista.com/forecasts/1144867/pinterest-users-in-brazil",
+            "https://www.demandsage.com/pinterest-statistics/"
+          ]
+        }
+      ],
+      "brazilCaveats": "This is the decisive factor and it is NEGATIVE. Pinterest's ad transparency exists only because of EU regulation (DSA), so the library is scoped to ads targeted at EU users. Brazil-targeted ads — which is what every local interior-São-Paulo competitor runs — fall entirely outside that scope. There is no Brazil country selector in the dedicated-source consensus, and no announced Pinterest plan to extend the library to Brazil/LatAm. One scraper vendor (Apify) markets 'Brazil supported,' but that claim conflicts with all primary-purpose documentation and most plausibly conflates Pinterest's ad-SERVING country list (29 countries) with library coverage — treat it as unverified until a live test on real Brazilian competitor names returns data. Bottom line for Brazil: paid-ad monitoring on Pinterest is not achievable via any reliable official or scraped path.",
+      "bottomLine": "Treat Pinterest ad transparency as a DEAD END for this use case and deprioritize it. Realistic path: (1) Do NOT build a daily Pinterest paid-ad scraper expecting competitor data — the official library is EU-DSA-scoped and excludes Brazil-targeted ads, and there is no official competitor-data API (the v5 API is own-account-only with a policy ban on other uses). (2) If you want to be thorough, spend 30 minutes once doing a manual web-UI check at ads.pinterest.com/ads-repository for your top competitor names — confirm firsthand it returns nothing for Brazil-targeted advertisers before writing any code. (3) Do NOT pay for a 'Brazil-supported' scraper (e.g., Apify) on the vendor's word; if tempted, run a single ad-hoc paid test against known competitor names first — expect empty results. (4) Redirect the Pinterest budget to the dimension where it actually pays off: automated ORGANIC monitoring (competitor boards/pins/Pinterest Wedding Trend reports) for creative and aesthetic intelligence, where Brazil is a genuine #2 market. For PAID competitor ad intelligence in Brazil, the meaningfully-covered channels are Meta Ad Library and Google Ads Transparency Center — not Pinterest."
+    },
+    {
+      "dimension": "YouTube Data API v3 — organic competitor channel content (uploads, metadata, view counts) and transcripts/captions",
+      "summary": "This is genuinely the most feasible dimension in the whole study — but only half of it. PART 1 (channel monitoring) is a clean, fully sanctioned, API-key-only path: with a single Google Cloud project's free 10,000-units/day quota you can poll dozens of competitor wedding-venue channels daily for new uploads, titles, descriptions, publish dates, view/like/comment counts and durations — public data, no OAuth, no scraping, works fine from Brazil (the API has no geographic restriction on the requester). PART 2 (transcripts/captions) is the hard wall: the official captions.download endpoint is restricted by Google to videos you own/can edit, so it CANNOT be used for competitor videos at all — full stop. Getting a competitor video's transcript means either (a) grey-area scraping of the undocumented timedtext endpoint (youtube-transcript-api), which is fragile, increasingly blocked from datacenter IPs by YouTube's 2025-26 bot defenses (PoToken), and arguably against ToS, or (b) paying a third-party transcript API (Supadata, TranscriptAPI, SerpApi) that absorbs that risk for you. So: confirm the metadata path as the backbone of the daily routine; treat transcripts as a paid/best-effort add-on, never as a guaranteed official feed.",
+      "officialApiForCompetitorData": "yes-restricted",
+      "keyFindings": [
+        {
+          "claim": "Listing a competitor channel's recent uploads + full metadata daily is fully supported by the official API with just an API key (no OAuth) and costs almost nothing against quota.",
+          "confidence": "high",
+          "evidence": "channels.list (contentDetails) = 1 unit returns the channel's uploads playlist ID (or compute it: replace the 'UC' prefix of the channelId with 'UU'). playlistItems.list = 1 unit/page (50 items) returns videoId, title, description, publishedAt, thumbnails. videos.list (snippet,statistics,contentDetails) = 1 unit/call (batchable up to 50 IDs) returns viewCount, likeCount, commentCount, duration. A daily pass over one competitor channel is ~3-5 units; the 10,000/day free quota comfortably covers dozens of channels. Crucially this path avoids search.list, which costs 100 units/call and would burn quota fast.",
+          "implication": "The daily unattended routine for ORGANIC YouTube content should be built entirely on channels.list -> playlistItems.list -> videos.list with a single API key. No login, no scraping, no per-call cost. This is the cheapest, most stable feed in the entire competitor-intelligence pipeline.",
+          "sources": [
+            "https://developers.google.com/youtube/v3/docs/playlistItems/list",
+            "https://developers.google.com/youtube/v3/docs/channels",
+            "https://developers.google.com/youtube/v3/determine_quota_cost",
+            "https://channelcrawler.com/insights/youtube-channel-videos-api-get-video-lists-uploads-performance-data-channelcrawler"
+          ],
+          "verification": {
+            "claim": "YouTube competitor channel uploads and metadata listable daily via official API with API key only no OAuth for a few quota units within the daily quota.",
+            "verdict": "confirmed",
+            "correctedClaim": "Correct and the recommended pattern. Realistic cost is about two to three units per channel per day since December 2025 removed the per part surcharge. API key only no OAuth is right for public reads. For an unattended routine fall back to channels list relatedPlaylists uploads when the UC to UU swap fails and handle private or terminated channels. playlistItems exposes only the most recent twenty thousand uploads. The June 2026 quota bucket change affects only videos insert and search list."
+          }
+        },
+        {
+          "claim": "The default free quota is 10,000 units/day per Google Cloud project, resetting at midnight Pacific Time, with no charge for the API itself.",
+          "confidence": "high",
+          "evidence": "YouTube Data API v3 grants 10,000 quota units/day per project by default; read operations like channels.list/playlistItems.list/videos.list cost 1 unit each, search.list costs 100, captions.download costs 200. Higher quota can be requested via a Google audit form (free) but requires a YouTube API Services compliance audit.",
+          "implication": "Quota is a non-issue for a single venue monitoring a realistic set of local competitors via the metadata path. The routine should be designed to NEVER use search.list in the daily loop (resolve channel IDs once, store them, then poll uploads playlists) to stay far under 10k.",
+          "sources": [
+            "https://developers.google.com/youtube/v3/getting-started",
+            "https://developers.google.com/youtube/v3/determine_quota_cost",
+            "https://www.getphyllo.com/post/youtube-api-limits-how-to-calculate-api-usage-cost-and-fix-exceeded-api-quota"
+          ],
+          "verification": {
+            "claim": "The default free quota is 10,000 units/day per Google Cloud project, resetting at midnight Pacific Time, with no charge for the API itself.",
+            "verdict": "partially-correct",
+            "correctedClaim": "As of mid-2026, the YouTube Data API v3 is free of monetary charge and resets daily at midnight Pacific Time (~07:00–08:00 UTC depending on DST), confirmed against Google's official docs. However, \"10,000 units/day per project\" is no longer a single combined pool — Google moved to GRANULAR QUOTA BUCKETS. The current official default allocation is: 100 search.list calls/day, 100 videos.insert calls/day, AND 10,000 units/day combined for all OTHER endpoints. search.list and videos.insert now bill to their own separate buckets, not against the 10,000-unit pool. The stated supporting evidence that \"search.list costs 100 units\" is LEGACY/PRE-BUCKET and wrong for 2026: the official search.list page now reads \"a quota cost of 1 unit in the Search Queries quota bucket\" (effective limit ~100 calls/day). The rest of the cost figures are correct: channels.list / playlistItems.list / videos.list = 1 unit each; captions.download = 200 units (verbatim on Google's method page). Higher quota is requested via the free YouTube API Services Audit and Quota Extension Form, gated by a compliance audit (not payment) — confirmed. PRACTICAL IMPLICATION for an unattended competitor-monitoring routine: the binding constraint is NOT the 10,000-unit pool but the ~100 search.list calls/day bucket, since discovering/monitoring competitor channels and content relies heavily on search.list. Also note (D-14/separation caveat) the API only exposes a competitor's OWN-account public organic data — public channel/video/playlist metadata and stats — there is NO official API for a competitor's paid ad data on YouTube; ad transparency requires the separate Google Ads Transparency Center web UI.",
+            "evidence": "Google's official 'Quota and Compliance Audits' and 'Getting Started' pages now state the default allocation as \"100 search.list calls, 100 videos.insert calls, and 10,000 units per day combined for all other endpoints.\" The official search.list method page states \"A call to this method has a quota cost of 1 unit in the Search Queries quota bucket\" — confirming the bucketed model and refuting the legacy \"search.list = 100 units\" figure. The official captions.download page states verbatim \"A call to this method has a quota cost of 200 units.\" The revision history documents the granular-quota-bucket transition (search.list and videos.insert charged to their own respective buckets) and a separate Dec 4, 2025 change reducing videos.insert from ~1600 to ~100 units. Multiple secondary sources (getphyllo, channelcrawler, elfsight) independently corroborate: 10,000 units/day default, reset at midnight Pacific Time, no monetary charge, and free audit-gated extensions. No charge for the API itself or for quota extensions is confirmed across official + secondary sources.",
+            "sources": [
+              "https://developers.google.com/youtube/v3/getting-started",
+              "https://developers.google.com/youtube/v3/guides/quota_and_compliance_audits",
+              "https://developers.google.com/youtube/v3/docs/search/list",
+              "https://developers.google.com/youtube/v3/docs/captions/download",
+              "https://developers.google.com/youtube/v3/revision_history",
+              "https://developers.google.com/youtube/v3/determine_quota_cost",
+              "https://www.getphyllo.com/post/youtube-api-limits-how-to-calculate-api-usage-cost-and-fix-exceeded-api-quota",
+              "https://channelcrawler.com/insights/youtube-api-daily-limit-quotas-costs-and-how-to-scale-beyond-10000-units-channelcrawler",
+              "https://elfsight.com/blog/youtube-data-api-v3-limits-operations-resources-methods-etc/"
+            ]
+          }
+        },
+        {
+          "claim": "The official captions.download endpoint CANNOT be used for competitor videos — Google restricts it to the video owner/editor.",
+          "confidence": "high",
+          "evidence": "Google's official docs state captions.download 'requires the user to have permission to edit the video', authorized only via youtube.force-ssl / youtubepartner OAuth scopes of the channel owner. There is no official endpoint to fetch the transcript of someone else's public video. captions.list will show that caption tracks exist for a competitor video, but download is blocked. Cost is 200 units and is moot for competitor use.",
+          "implication": "Do not architect the routine assuming an official transcript feed for competitors — it does not exist. Transcript analysis of competitor videos must come from an unofficial source, with all the fragility/ToS risk that implies. Title + description + tags (which ARE available officially) should carry as much of the text-analysis load as possible.",
+          "sources": [
+            "https://developers.google.com/youtube/v3/docs/captions/download",
+            "https://developers.google.com/youtube/v3/guides/implementation/captions"
+          ]
+        },
+        {
+          "claim": "Unofficial transcript scraping (youtube-transcript-api / the undocumented timedtext endpoint) is increasingly blocked from cloud/datacenter IPs and is the wrong foundation for an unattended cloud routine.",
+          "confidence": "high",
+          "evidence": "The popular youtube-transcript-api library hits the undocumented timedtext endpoint with no API key; in 2025-26 YouTube blocks most known cloud-provider IP ranges (AWS/GCP/Azure) and added PoToken 'proof of origin' bot defenses, producing RequestBlocked/IpBlocked errors when run from servers. Workarounds require residential/rotating proxies (e.g. Webshare), and even those degrade. This is a cat-and-mouse breakage risk, not a stable feed, and arguably violates YouTube ToS.",
+          "implication": "If you self-host transcript scraping on a Brazilian VPS or any cloud host, expect it to break intermittently and silently — bad for an unattended daily routine. Either accept transcripts as best-effort/may-be-empty, or push the IP/proxy/bot-defense problem onto a paid provider.",
+          "sources": [
+            "https://github.com/jdepoix/youtube-transcript-api/issues/511",
+            "https://roundproxies.com/blog/scrape-youtube-captions/",
+            "https://medium.com/@lhc1990/fixing-youtube-transcript-api-requestblocked-error-a-developers-guide-83c77c061e7b"
+          ]
+        },
+        {
+          "claim": "Paid third-party transcript APIs exist (Supadata, TranscriptAPI, SerpApi, youtube-transcript.io) and are the only practical way to get competitor transcripts reliably from an automated routine — for money, and still outside Google's official sanction.",
+          "confidence": "medium",
+          "evidence": "Multiple commercial services in 2026 sell transcript-by-video-ID APIs with SDKs, AI fallback for videos lacking captions, and managed proxy/IP rotation so the caller doesn't get blocked (Supadata, TranscriptAPI claims 15M+ transcripts/month, SerpApi YouTube Video Transcript API returns timed snippets). They abstract the timedtext fragility but are reselling data via scraping, not via an official Google grant, so they carry residual ToS/continuity risk and a per-credit cost.",
+          "implication": "For competitor transcripts, budget for a paid API priced per video and treat it as a separate, optional enrichment step — not the core feed. Pick a provider with AI/Whisper fallback so venue videos with no uploaded captions still yield text. Keep the metadata routine independent so transcript-provider outages don't break daily monitoring.",
+          "sources": [
+            "https://supadata.ai/blog/best-youtube-transcript-api",
+            "https://transcriptapi.com/",
+            "https://serpapi.com/youtube-video-transcript"
+          ]
+        },
+        {
+          "claim": "There are no Brazil-specific blockers on the metadata path; the request origin is not geo-restricted and the data is public.",
+          "confidence": "medium",
+          "evidence": "The YouTube Data API v3 is a global Google Cloud service with a single quota model and no country gate on the API consumer; a Google Cloud project created in Brazil with billing is irrelevant since the API is free. Channel/video metadata for Brazilian competitors is public and returned regardless of caller location. The only geo-sensitive friction is the transcript-scraping IP blocking, which is about datacenter-vs-residential, not Brazil-vs-US.",
+          "implication": "The venue can run the metadata routine from a Brazilian host (or anywhere) without geographic obstacles. Only the transcript-scraping piece cares about IP reputation — another reason to isolate transcripts behind a paid provider rather than self-hosting in BR cloud.",
+          "sources": [
+            "https://developers.google.com/youtube/v3/getting-started",
+            "https://developers.google.com/youtube/v3/docs/channels"
+          ]
+        }
+      ],
+      "bottomLine": "Feasible and recommended for the ORGANIC layer — split into two tiers. TIER 1 (build it, it's the anchor): a daily unattended job using the official YouTube Data API v3 with one API key, walking channels.list -> uploads-playlist -> playlistItems.list -> videos.list to capture each local competitor's new uploads with titles, descriptions, publish dates and view/like/comment counts. Resolve channel IDs once and store them; never use search.list in the daily loop; you'll consume a few hundred of the free 10,000 daily units even with dozens of channels. This is clean, sanctioned, key-only, and Brazil-friendly. TIER 2 (transcripts — paid/optional, not official): the official captions endpoint is owner-only and useless for competitors, and self-hosted timedtext scraping breaks under YouTube's 2025-26 datacenter-IP/PoToken bot defenses. So either lean on title+description+tags (officially available) for text analysis, or pay a third-party transcript API (Supadata/TranscriptAPI/SerpApi, ideally with AI fallback) per video and keep it as an isolated enrichment step so its flakiness never takes down the metadata feed. Realistic path: ship Tier 1 now; treat Tier 2 as a budgeted add-on with graceful 'transcript unavailable' handling.",
+      "brazilCaveats": "No Brazil-specific obstacle on the official metadata path: the YouTube Data API v3 is free, globally available, not geo-gated on the caller, and returns public competitor data regardless of where the job runs. A Google Cloud project can be created from Brazil with no billing needed for this quota tier. The only geo-flavored issue is on the unofficial transcript-scraping side, and even there the discriminator is datacenter-IP-vs-residential-IP reputation, not country — Brazilian cloud IPs get blocked by YouTube's bot defenses the same way AWS/GCP/Azure IPs do. That is one more reason to push transcripts onto a paid provider (which manages residential proxies) rather than self-hosting scraping on a Brazilian VPS. Higher-quota requests require Google's YouTube API Services compliance audit (English-language form, app review) but a single venue won't need it."
+    },
+    {
+      "dimension": "Monitoring competitors' ORGANIC short-form video (Instagram Reels, TikTok) + \"what's trending in the wedding niche\" — feasibility of an unattended daily routine, from Brazil, 2026",
+      "summary": "An unattended daily routine is feasible, but only as a hybrid: ONE narrow official path on Instagram (the Business Discovery + Hashtag Search endpoints) plus paid third-party scrapers for everything else. There is NO official API that lets you read a TikTok competitor's public videos for commercial use, and Instagram's official \"competitor\" coverage is thin (numbers + caption text on Business/Creator accounts only). Crucially, no official API hands you the actual video file, so \"have an AI watch the Reel\" requires a scraper to grab the media URL first; the model then analyzes caption+cover+frames+audio transcript, not a true human-grade \"watch\". The realistic build is: Instagram Graph (Business Discovery) for your own-account-authenticated competitor numbers, Apify/EnsembleData-class scrapers (logged-out public data, ~US$1.70–75/mo+) for Reels/TikTok captions+metrics+video URLs, then Gemini-class multimodal analysis to summarize and a separate noise-vs-signal heuristic layer. The \"tell me what's noise vs real\" judgment is the part automation does worst — it can cluster and summarize, but ranking what actually matters in the wedding niche stays a human-in-the-loop or heavily-tuned step. Brazil adds no API access (everything is web/scraper or US-style commercial APIs); the one Brazil-specific official door — TikTok Research API for Brazilian researchers — is gated to youth-safety academic/non-profit use and excludes a commercial venue.",
+      "officialApiForCompetitorData": "yes-restricted",
+      "keyFindings": [
+        {
+          "claim": "Instagram has ONE genuine official path to competitor public data: the Business Discovery endpoint. It returns another professional account's followers_count, media_count, biography, website, and recent media with caption, like_count, comments_count and view_count (organic + paid) — without that account authorizing your app.",
+          "confidence": "high",
+          "evidence": "Meta's own docs: Business Discovery 'obtains metadata and basic metrics about other Instagram professional accounts'; media metrics include comments count, like count, view count. Multiple 2026 guides confirm you can poll it to track competitor follower growth and recent posts.",
+          "implication": "This is the spine of a daily routine for KNOWN local competitors on Instagram: a cron job polls each competitor's user ID once/day and logs numbers + new captions. It is the only piece that is officially sanctioned rather than scraped.",
+          "sources": [
+            "https://developers.facebook.com/docs/instagram-platform/instagram-api-with-facebook-login/business-discovery/",
+            "https://www.keyapi.ai/blog/instagram-business-discovery-api/",
+            "https://developers.facebook.com/docs/instagram-platform/overview/"
+          ],
+          "verification": {
+            "claim": "Instagram has ONE genuine official path to competitor public data: the Business Discovery endpoint. It returns another professional account's followers_count, media_count, biography, website, and recent media with caption, like_count, comments_count and view_count (organic + paid) — without that account authorizing your app.",
+            "verdict": "confirmed",
+            "correctedClaim": "Confirmed and accurate on every load-bearing point — I tried to refute it and could not. business_discovery is indeed the ONLY official Meta endpoint that returns another Instagram professional account's public data without that account authorizing your app. It returns account fields (biography, name, username, website, profile_picture_url, followers_count, follows_count, media_count, id, ig_id) and a media edge with caption, comments_count, like_count, view_count, media_type, media_url, permalink, timestamp, children. Meta's own page states verbatim that \"view_count includes paid and organic metrics,\" so the \"(organic + paid)\" parenthetical is exactly right. ONE precision the claim omits — decisive for an unattended routine: business_discovery is available ONLY under the \"Instagram API with Facebook Login\" path, NOT the newer \"Instagram API with Instagram Login\" Meta now defaults to. So the automation needs a Facebook app + a Facebook Page linked to YOUR own IG professional account, a long-lived Instagram User Access Token via Facebook Login, the permissions instagram_basic + instagram_manage_insights + pages_read_engagement (plus App Review), and lives within a ~200 calls/hour/user rate limit. Honest hard limits: it gives only a CURRENT snapshot — no follower/following lists, no audience demographics, no competitor-account insights, no stories, and no history; any time-series (e.g., daily follower growth) must be built by polling daily and storing it yourself. Critically for this project's goal, this endpoint is for ORGANIC content only — it is NOT the path to competitor PAID ADS (that is the separate Meta Ad Library); the view_count \"paid+organic\" wording refers to views on an organic post that was also boosted, not ad-library data. Recency check (2025-2026): the Jan 8, 2025 / Graph API v21 metric deprecations (profile_views, website_clicks, non-Reels video_views, etc.) hit OWN-account Insights, not business_discovery fields; Basic Display API EOL (Dec 4, 2024) does not affect it; business_discovery remains operational in 2026 (v22.0).",
+            "evidence": "Meta's canonical Business Discovery doc (under the Facebook-Login tree) confirms the no-authorization access, the account/media field lists, and states literally \"Observe que view_count inclui métricas pagas e orgânicas\" (view_count includes paid and organic metrics). The endpoint URL itself — /instagram-platform/instagram-api-with-facebook-login/business-discovery/ — proves it is Facebook-Login-only; the Instagram-Login API docs list its supported features (comment moderation, content publishing, media insights, messaging) and do NOT include business_discovery. The IG-User reference confirms required permissions (instagram_basic, instagram_manage_insights, pages_read_engagement) and the age-restricted exclusion. A 2026 scraping review and the April-2026 API reference gist independently confirm it is \"the only official endpoint that supports competitor monitoring,\" returns data \"without their OAuth approval,\" requires a linked Facebook Page, has a ~200 calls/hour limit, and \"will never give you full follower lists or historical post insights on competitor accounts.\" Deprecation context (Jan 8 2025, v21; Basic Display EOL Dec 4 2024) confirmed via Meta changelog summaries — those affect own-account insights, not business_discovery.",
+            "sources": [
+              "https://developers.facebook.com/docs/instagram-platform/instagram-api-with-facebook-login/business-discovery/",
+              "https://developers.facebook.com/docs/instagram-platform/instagram-graph-api/reference/ig-user/business_discovery",
+              "https://developers.facebook.com/docs/instagram-platform/instagram-api-with-instagram-login/",
+              "https://gist.github.com/jameschapman2c/65eff9f54a2d350b17a6ce5127b9fe42",
+              "https://www.socialcrawl.dev/blog/instagram-scraping-2026",
+              "https://www.keyapi.ai/blog/instagram-business-discovery-api/",
+              "https://elfsight.com/blog/instagram-graph-api-complete-developer-guide-for-2026/"
+            ]
+          }
+        },
+        {
+          "claim": "Business Discovery's limits make it a thin instrument, not a full monitor: it only works on Business/Creator accounts (not personal), must be queried by numeric user ID (not @username), age-restricted accounts return nothing, and it does NOT grant access to the media files themselves ('GET requests on any returned Instagram media will fail').",
+          "confidence": "high",
+          "evidence": "Meta docs: 'This does not grant permission to directly access the media objects... GET requests on any returned Instagram media will fail due to insufficient permissions'; 'Data about Instagram professional accounts with age restrictions will not be returned'; queries require the IG user ID e.g. 17841401441775531.",
+          "implication": "You get the caption text and the numbers, but to actually let an AI SEE the Reel you must fetch the video by another means (scraper). For a venue whose competitors are all Business accounts this still covers most of them — but it is text+metrics intelligence, not visual.",
+          "sources": [
+            "https://developers.facebook.com/docs/instagram-platform/instagram-api-with-facebook-login/business-discovery/"
+          ],
+          "verification": {
+            "claim": "Business Discovery's limits make it a thin instrument, not a full monitor: it only works on Business/Creator accounts (not personal), must be queried by numeric user ID (not @username), age-restricted accounts return nothing, and it does NOT grant access to the media files themselves ('GET requests on any returned Instagram media will fail').",
+            "verdict": "partially-correct",
+            "correctedClaim": "Business Discovery is a thin instrument, not a full monitor. Three of the four limits hold exactly: (1) the TARGET must be an Instagram Business or Creator (professional) account — personal accounts return nothing; (2) age-restricted professional accounts return no data (\"Data about Instagram professional accounts with age restrictions will not be returned\"); (3) it does NOT grant access to the underlying media objects — Meta states \"this does not grant permission to directly access the media objects,\" so a standalone GET on a returned media ID fails with insufficient permissions (you can read only the public fields nested inside the business_discovery response itself). The fourth point is BACKWARDS and is the imprecision: the competitor is looked up BY @username, not by numeric user ID — the call is GET /{YOUR-numeric-IG-user-id}?fields=business_discovery.username({COMPETITOR_USERNAME}). The numeric ID (e.g. 17841401441775531) is YOUR OWN account's ID, used as the path node you query against; the @username is how you name the competitor. So @username is required, not forbidden. Two further real constraints the claim omits: the CALLER must also have an IG Business/Creator account linked to a Facebook Page (plus a reviewed app with instagram_basic + a Page), and Business Discovery has its own separate rate limit — together reinforcing \"thin instrument, not full monitor.\"",
+            "evidence": "Live official Meta Business Discovery doc, Limitations section, verbatim: \"Não serão retornados dados sobre contas profissionais do Instagram com restrição de idade\" (= \"Data about age-restricted professional Instagram accounts will not be returned\") — confirms age-restriction limit. Same doc, \"basic media metrics\" section, verbatim: \"Observe que isso não concede permissão para acessar diretamente os objetos de mídia\" (= \"Note that this does not grant permission to directly access the media objects\") — confirms media-access limit; the English string \"GET requests on any returned Instagram media will fail due to insufficient permissions\" is corroborated across multiple independent sources (keyapi.ai, Meta legacy /docs/instagram-api/business-discovery). The ig-user reference page confirms business/creator-only: \"Retorna dados sobre outros usuários do Instagram com uma conta empresarial ou de criador de conteúdo.\" On the ID-vs-username point, the documented call shape is GET /{IG_USER_ID}?fields=business_discovery.username(<USERNAME>): the path node is the caller's numeric IG user ID (Meta example 17841405309211844), while the TARGET is named by @username — so the claim's \"must be queried by numeric user ID (not @username)\" inverts how the target is identified. Independent reference (jameschapman2c gist) states plainly: \"You pass the target account's username as a parameter, not a numeric ID,\" and \"Your app user must also have a Professional account.\" For the VVLEADHUB use case (daily unattended monitor of local wedding-venue competitors): Business Discovery yields only public profile counts and the public fields of recent media nested in the response — no media file download, no ads, no stories/reels analytics, no age-restricted accounts — so it is a thin profile-stats probe, not a content monitor, matching the claim's thesis.",
+            "sources": [
+              "https://developers.facebook.com/docs/instagram-platform/instagram-api-with-facebook-login/business-discovery/",
+              "https://developers.facebook.com/docs/instagram-platform/instagram-graph-api/reference/ig-user/business_discovery",
+              "https://developers.facebook.com/docs/instagram-api/business-discovery",
+              "https://www.keyapi.ai/blog/instagram-business-discovery-api/",
+              "https://gist.github.com/jameschapman2c/65eff9f54a2d350b17a6ce5127b9fe42",
+              "https://developers.facebook.com/docs/instagram-platform/insights/"
+            ]
+          }
+        },
+        {
+          "claim": "Using Business Discovery requires YOUR OWN Instagram Business/Creator account linked to a Facebook Page, an app, and Meta App Review for the instagram_basic / business permissions — it is your-account-authenticated access used to look outward, not a public open API.",
+          "confidence": "high",
+          "evidence": "2026 guides: 'All Instagram API access in 2026 goes through the Instagram Graph API, which requires a Business or Creator account connected to a Facebook Page'; access needs scopes 'approved by Meta'. Note: own-account insights (reach, demographics) are own-account only.",
+          "implication": "The venue (Vale Verde) needs to stand up and maintain a Meta app + App Review; the routine then runs under that app's token. This is a real setup/maintenance cost and a single point of failure (token expiry, policy changes) for the unattended job.",
+          "sources": [
+            "https://www.getphyllo.com/post/instagram-api-integration-101-for-developers-of-the-creator-economy",
+            "https://elfsight.com/blog/instagram-graph-api-complete-developer-guide-for-2026/"
+          ]
+        },
+        {
+          "claim": "For the 'what's trending in the wedding niche' goal, Instagram's official Hashtag Search endpoint (ig_hashtag_search -> recent_media / top_media) still exists and is NOT deprecated, returning top + recent public posts for a hashtag (id, media_type, media_url, caption, timestamp).",
+          "confidence": "high",
+          "evidence": "2026 reference: 'Hashtag Search API status is not deprecated with no announced shutdown date'; supports top and recent public posts per hashtag. BUT hard cap: '30 unique hashtags per Instagram user per rolling 7 days' and no general keyword/location search — hashtags only.",
+          "implication": "You can officially sample #casamento / #casamentonocampo etc. for trend discovery, but the 30-hashtags-per-7-days ceiling means you must pick a small fixed hashtag set and rotate carefully — it is a sampling probe, not a firehose. Personal-account viral posts may be missed.",
+          "sources": [
+            "https://gist.github.com/jameschapman2c/65eff9f54a2d350b17a6ce5127b9fe42",
+            "https://www.keyapi.ai/blog/instagram-business-discovery-api/"
+          ]
+        },
+        {
+          "claim": "There is NO official commercial API to read a TikTok competitor's public videos. TikTok's Research API is free but eligibility is restricted to academic/non-profit researchers and 'commercial users, creators, and advertisers are explicitly ineligible'.",
+          "confidence": "high",
+          "evidence": "2026 sources: Research API gives public videos/comments/user info but is limited to qualifying academic institutions (US/EEA/UK/CH), EU non-profits, and 'Brazilian academic or non-profit researchers studying youth safety'. 'If your company makes money and you want to use this for competitive analysis, expect a rejection.' The Commercial Content API is ad-transparency/regulatory, not general competitor monitoring.",
+          "implication": "Any TikTok competitor monitoring for the venue MUST go through third-party scrapers/data APIs — there is no sanctioned path. This is a structural fact to design around, not a gap to wait out.",
+          "sources": [
+            "https://www.echotik.live/blog/tiktok-api-guide-2026/",
+            "https://sociavault.com/blog/tiktok-api-free-2026",
+            "https://adlibrary.com/guides/tiktok-ad-library-api"
+          ]
+        },
+        {
+          "claim": "Meta's research equivalent (Meta Content Library / API), which DOES include Instagram public posts and near-real-time search, is also academic/non-profit only — explicitly not for commercial purposes, and from Jan 2026 its compute enclave is paid.",
+          "confidence": "high",
+          "evidence": "Meta Transparency Center + Bellingcat: covers public Instagram posts from Creator/Business + high-follower personal accounts, but 'restricted to academic and non-profit use—not commercial purposes'; SOMAR free compute ended 2025-12-31, charging begins Jan 2026.",
+          "implication": "Rules out the most powerful official cross-account search tool for a commercial venue. Reinforces that the only official commercial lever is Business Discovery + Hashtag Search; broad discovery needs scrapers or paid listening tools.",
+          "sources": [
+            "https://transparency.meta.com/researchtools/meta-content-library/",
+            "https://bellingcat.gitbook.io/toolkit/more/all-tools/meta-content-library"
+          ]
+        },
+        {
+          "claim": "In practice, competitor video monitoring at scale is done with scraper 'actors' / data APIs operating on LOGGED-OUT public data: Apify Instagram/TikTok scrapers (~US$1.70 per 1,000 results), EnsembleData (~US$75/mo+), TikAPI (~US$49/mo), Netrows (~€49/mo), TikHub (pay-per-request). These return caption, hashtags, like/comment/view counts AND the media CDN/video URL, with no personal login.",
+          "confidence": "high",
+          "evidence": "2026 listings: Apify IG scraper returns captions, hashtags (arrays), like/comment counts, media CDN URLs, timestamps, 'no personal account needed... publicly visible, logged-out data'. Netrows/TikAPI/EnsembleData expose TikTok profiles, videos with engagement, captions, hashtags on public data without user login; RapidAPI providers warned as unstable ('providers frequently go offline').",
+          "implication": "This is what actually powers an unattended routine for Reels + TikTok video content, INCLUDING getting the downloadable video URL the official APIs withhold. Budget is modest, but reliability is the risk: Instagram 'throttles aggressively', comment scraping is capped, and actors break when platforms change — the job needs retry/alerting and occasional maintenance.",
+          "sources": [
+            "https://use-apify.com/blog/instagram-scraper-tutorial-2026",
+            "https://www.netrows.com/blog/best-tiktok-data-apis-2026",
+            "https://www.blotato.com/blog/tiktok-api-pricing"
+          ]
+        },
+        {
+          "claim": "An AI CAN 'watch' a Reel/TikTok — multimodal models (e.g. Gemini Omni, announced Google I/O 2026-05-19) ingest video and analyze visual + audio + speech, transcribe dialogue, and flag culturally specific references — BUT only once you supply the actual video file/URL, which only the scraper layer provides.",
+          "confidence": "high",
+          "evidence": "2026 sources: Gemini Omni 'unifies text, image, audio and video understanding'; video analyzers 'process public video URLs from YouTube, Vimeo, TikTok, Instagram, X... including Reels and Shorts', running multimodal processing across visual/audio/text layers into structured output.",
+          "implication": "Technically you CAN go beyond caption+cover to true frame+audio analysis — the pipeline is scraper grabs MP4 -> multimodal model summarizes scene, style, music, claims. So 'at best read caption + cover' UNDER-states it, but it depends entirely on the scraper succeeding and on per-video model cost, which makes daily full-video analysis of many competitors expensive; caption+cover+transcript is the cheap default tier.",
+          "sources": [
+            "https://www.opus.pro/blog/gemini-multimodal-evolution-ai-video-generation",
+            "https://bibigpt.co/en/features/gemini-omni-video-multimodal-explained",
+            "https://memories.ai/analyzer"
+          ]
+        },
+        {
+          "claim": "Logged-out public scraping is the most legally defensible mode but still breaches platform ToS; GDPR/LGPD-style rules govern storage regardless of collection legality.",
+          "confidence": "medium",
+          "evidence": "2026 legal primers: Jan 2024 N.D. Cal. ruling (Bright Data v. Meta) held Meta's terms 'do not bar logged-off scraping of public data, nor the sale of that data'; Meta dropped the case — 'leading US contract-law authority for logged-out public scraping'. Yet 'Instagram, LinkedIn, and TikTok explicitly ban scraping in their terms', and GDPR/CCPA 'apply to how you store and use the data regardless of collection legality'. Apify itself is legal; 'your targets, fields, and method decide the risk'.",
+          "implication": "Design the routine logged-out, store only what's needed (public business posts/metrics, not personal user PII), and treat the ToS-breach risk as a business decision. For a Brazilian operator, LGPD is the analog of GDPR for any personal data captured (commenter handles etc.) — minimize and avoid reselling.",
+          "sources": [
+            "https://www.socialcrawl.dev/blog/social-media-scraping-legal-technical-guide",
+            "https://use-apify.com/docs/what-is-apify/is-apify-legal",
+            "https://aimultiple.com/is-web-scraping-legal"
+          ]
+        },
+        {
+          "claim": "Off-the-shelf social listening suites (Brandwatch, Sprout Social, Talkwalker, Hootsuite) can monitor Instagram/TikTok conversations and trends turnkey, but they are enterprise-priced, generic, and the search evidence does NOT confirm wedding-niche depth or first-class Brazilian-Portuguese support.",
+          "confidence": "medium",
+          "evidence": "2026 comparisons: Brandwatch/Talkwalker 'track 30+ social networks plus millions of web pages'; Brandwatch's TikTok proposition is 'built around official partner access' (content/brand-mentions APIs). But sources 'did not contain specific information about Portuguese-language support in Brazil or niche wedding market applications'.",
+          "implication": "These tools answer 'what's being said / trending' with less engineering, but cost and generality make them a poor fit for a small premium venue wanting deep, named-competitor video intelligence in pt-BR. Likely a supplement for broad trend sensing, not the core of the routine.",
+          "sources": [
+            "https://www.brandwatch.com/blog/social-listening-tools/",
+            "https://sproutsocial.com/insights/social-listening-tools/",
+            "https://influencermarketinghub.com/social-media-posting-scheduling-tools/social-media-listening-tools/"
+          ]
+        },
+        {
+          "claim": "The 'tell me what's noise vs what's real' goal is the weakest link for automation: pipelines can ingest, transcribe, cluster and summarize at scale, but ranking what genuinely matters in a specific premium-wedding niche is judgment the tooling does not reliably deliver unattended.",
+          "confidence": "medium",
+          "evidence": "Multimodal tooling produces 'structured output you can reuse across research, reporting, and production workflows' and clusters trends, but the surveyed tools describe extraction/summarization, not validated niche-relevance ranking; social listening tools surface volume/sentiment, not curated significance.",
+          "implication": "Realistically the daily routine should AUTOMATE collection + transcription + summarization + a tunable scoring heuristic (engagement velocity, novelty vs your own baseline, recurrence across competitors), then SURFACE a short ranked digest for a human to confirm. Expect to iterate the noise filter; 'fully unattended, trustworthy signal-vs-noise' is not a solved capability you can buy.",
+          "sources": [
+            "https://memories.ai/analyzer",
+            "https://www.opus.pro/blog/gemini-multimodal-evolution-ai-video-generation",
+            "https://www.getphyllo.com/post/best-social-media-listening-tools-sl"
+          ]
+        }
+      ],
+      "brazilCaveats": "No official path improves from Brazil and one specifically closes. (1) Instagram Business Discovery + Hashtag Search are global and usable from Brazil under your own Meta app — unaffected by geography, fully applicable to local interior-SP competitors. (2) TikTok Research API has a Brazil-specific eligibility (Brazilian academic/non-profit researchers) but ONLY for youth-safety research — a commercial wedding venue does not qualify, so it is a dead end. (3) Meta Content Library is academic/non-profit only worldwide, paid compute from Jan 2026 — not for a commercial operator. (4) Third-party scraper APIs (Apify, EnsembleData, TikAPI, Netrows) are US/EU-based but operate on public data callable from anywhere, so they work from Brazil; pricing is in US$/€. (5) Social listening suites' Brazilian-Portuguese NLP quality for a narrow pt-BR wedding niche is unverified in the sources — validate sentiment/trend accuracy in pt-BR before relying on it. (6) LGPD (Brazil's GDPR analog) governs any personal data the routine captures (commenter handles, profile data) — keep the routine to public business content/metrics, minimize PII, do not resell; this dovetails with the repo's deferred-LGPD posture (keep hooks, do not over-collect).",
+      "bottomLine": "Feasible as a HYBRID daily routine, not a single clean API. Realistic architecture: (A) Official spine — a Meta app under Vale Verde's own Instagram Business account polls Business Discovery once/day for each known local competitor (followers, media_count, new posts' captions + like/comment/view counts) and samples a fixed set of wedding hashtags via Hashtag Search (mind the 30-hashtags/7-days cap). (B) Scraper layer — Apify/EnsembleData-class actors on logged-out public data fetch Reels and TikTok posts INCLUDING the video URL the official APIs withhold, for ~US$ tens/month, with retry + failure alerting because actors break and platforms throttle. (C) Analysis layer — a multimodal model (Gemini-class) transcribes/analyzes caption+cover (cheap default) or full video frames+audio (expensive, reserve for flagged items), producing structured summaries. (D) Signal layer — a tunable scoring heuristic (engagement velocity, novelty vs your baseline, cross-competitor recurrence) ranks items into a short daily digest. Be brutally honest with the founder on three things: there is NO official TikTok competitor API (scraping is the only route, ToS-breach risk is real though logged-out is the defensible posture per Bright Data v. Meta); Instagram's official competitor coverage is text+numbers only (no media file, Business/Creator accounts only); and the 'what's noise vs real' verdict cannot be fully outsourced to tooling — automate collection/summarization, keep a human confirming the ranked digest until the heuristic earns trust. This should enter the repo as a discovery item then a scoped work-order under the deferred-LGPD discipline, not as ad-hoc scraping."
+    },
+    {
+      "dimension": "Paid third-party ad-intelligence & social-listening platforms for daily automated monitoring of named local competitors (paid ads + organic), from Brazil",
+      "summary": "For a daily UNATTENDED routine that pulls a NAMED local competitor's paid ads and organic posts, the pragmatic winner is NOT a turnkey ad-spy SaaS — it's Apify's web-UI scraper actors driven by their REST API. Apify's Facebook Ad Library Scraper takes a competitor's Facebook Page URL/ID, filters by country=BR, returns active commercial ad creatives/copy/CTAs/start-dates at ~$0.75/1,000 ads, and is fully schedulable via REST API; pair it with Apify's Instagram Profile Scraper (~$0.50–1.00/1,000 posts) for organic content. The reason you can't just use the OFFICIAL Meta Ad Library API: outside the EU, that API's archive returns only political/social-issue ads — ordinary wedding-venue commercial ads appear in the Ad Library WEB UI but are NOT reliably returned by the API for Brazil. So the official-API route is largely a dead end for this use case; the official, sanctioned alternative is to scrape the public Ad Library UI (what Apify does). Purpose-built ad-spy SaaS (AdSpy, BigSpy, Minea, PiPiADS) are index-based and ecommerce/dropshipping-oriented: a small Brazilian local wedding venue very likely is NOT in their database, and they have essentially no automation API — wrong tool. Foreplay Spyder is the best turnkey named-brand tracker (24/7 auto-tracking of a brand's Meta ads, historical record, alerts) and its API is in beta on higher tiers — the best \"buy not build\" option if you accept a per-seat SaaS. Social-listening suites (Brandwatch, Sprout, Brand24, Mention) are keyword/mention-oriented and expensive ($200–$5,000+/mo); they are a poor and overpriced fit for \"fetch this one named account's own posts daily\" vs. an Apify Instagram scraper.</parameter>\n<parameter name=\"officialApiForCompetitorData\">no-web-only",
+      "keyFindings": [
+        {
+          "claim": "The OFFICIAL Meta Ad Library API does NOT reliably return ordinary commercial (non-political) ads for Brazil; outside the EU its archive is restricted to political/social-issue ads (plus US housing/employment/credit). Commercial wedding-venue ads are visible in the Ad Library WEB UI but not in the API.",
+          "confidence": "high",
+          "evidence": "Multiple 2026 sources: the /ads_archive Graph API is 'strictly a subset: political and social-issue ads, plus Housing/Employment/Credit special categories in the US, all with seven-year retention'; 'Commercial ads are visible in the browser UI but are not returned by the API even with ad_type=ALL'; full all-ads transparency exists only in the EU under the DSA, and Brazil has no equivalent law. Note one source claims commercial creative IS exposed via API with limited fields — the safe operational read is: do not depend on the API for Brazilian commercial ads.",
+          "implication": "The cheap, sanctioned, fully-automatable official API is effectively unavailable for this use case in Brazil. The daily routine must read the public Ad Library WEB UI (directly or via a scraper service), not the Graph API. Budget for scraping, not for a free API token.",
+          "sources": [
+            "https://www.hyperfx.ai/blog/meta-ad-library-api-scraper-guide",
+            "https://adlibrary.com/guides/facebook-ad-library-api",
+            "https://www.socialmediatransparency.org/blog/advertising-library-transparency-comparing-the-us-and-the-eu",
+            "https://facctconference.org/static/papers24/facct24-149.pdf"
+          ],
+          "verification": {
+            "claim": "The OFFICIAL Meta Ad Library API does NOT reliably return ordinary commercial (non-political) ads for Brazil; outside the EU its archive is restricted to political/social-issue ads (plus US housing/employment/credit). Commercial wedding-venue ads are visible in the Ad Library WEB UI but not in the API.",
+            "verdict": "confirmed",
+            "correctedClaim": "CONFIRMED, with two precision refinements. The official Meta Ad Library API (/ads_archive Graph endpoint) does NOT reliably return ordinary commercial (non-political) ads delivered in Brazil. Its archive scope is: (1) ads about social issues, elections or politics — globally, with ~7-year retention; PLUS (2) ALL ads (including commercial) that deliver to the EU and EU \"associated territories\" — a DSA-driven regime with ~1-year retention, beneficiary/payer, reach and targeting fields. Brazil is NOT in the EU/associated-territories set and has no DSA-equivalent commercial-ad-transparency law in force (PL 2630 / \"Fake News Bill\" is inactive as of late 2024; the 2025 ECA Digital, Lei 15.211/2025, governs minors online, not ad transparency). Therefore a wedding-venue's ordinary commercial ads are visible in the Ad Library WEB UI but are not returned by the API for Brazil even with ad_type=ALL — because ad_type=ALL means \"all within the political+issue+EU-DSA scope,\" not \"every ad.\" For an unattended Brazilian competitor-ad routine, the operational read in the original claim is correct: do NOT depend on /ads_archive for Brazilian commercial ads. PRECISION FIXES: (a) The 'US housing/employment/credit special categories' caveat is real but is a US political/social-issue sub-category nuance and is irrelevant to Brazil — do not cite it as if it widened Brazilian coverage. (b) The 'one source claims commercial creative IS exposed via API with limited fields' is partly true but EU-scoped: under DSA the API does return commercial ad CREATIVE/structured fields (ad copy, headlines) for EU-delivered ads while withholding spend/impressions/targeting for non-regulated ads; this limited-field exposure is an EU/DSA phenomenon and does NOT extend to Brazilian commercial ads, so it does not weaken the claim for Brazil. Practical alternative paths (not the /ads_archive API): the Meta Content Library / Content Library API exists for richer commercial data but is gated behind researcher/academic approval via CASD vetting (not usable by a venue for unattended competitive intel), leaving the public Ad Library WEB UI (scrape, against Meta ToS) or paid third-party tools as the only routes to Brazilian competitors' commercial creatives.",
+            "evidence": "Multiple independent 2025-2026 sources confirm the API scope. (1) Meta's own Transparency Center states the Ad Library API \"allows for a deeper analysis of ads about social issues, elections or politics, as well as ads that deliver to the EU and associated territories\" — no mention of general commercial ads outside the EU. (2) Independent guides state plainly: \"Commercial ads are visible in the browser UI but are not returned by the API even with ad_type=ALL... query the same page_id through the API, and get an empty result set — not a bug... ad_type=ALL means 'all within the political+issue+special-categories scope.'\" (3) On geography: \"The API only works for ads running in the European Union, Brazil (limited scope), or if they are tagged as political/social cause ads... for most countries outside the UK/EU, non-political ads aren't archived\" — Brazil's non-political-tagged limited scope = political/issue ads delivered in Brazil, not commercial. (4) Primores guide confirms the EU/DSA limited-field nuance: for commercial (non-regulated) ads \"you won't get impressions, spend, or targeting data... structured fields like ad copy and headlines remain available,\" with \"weaker coverage: non-EU commercial ads\" and \"non-EU commercial ad retrieval incomplete compared to the web UI.\" (5) An explicit 2026 statement: \"as of 2026, the Meta Ad Library API only provides access to political and social issue ads running in European Union countries, with no access to commercial/brand advertising data via the API.\" (6) Brazil legal scan: PL 2630 (Fake News Bill, the closest DSA analogue) inactive since late 2024 with no timeline to resume; Brazil's 2025 digital law (ECA Digital / Lei 15.211/2025) governs minors online, inspired by but not equivalent to the DSA's ad-transparency regime — so no Brazilian law forces commercial-ad transparency. (7) Richer commercial data path = Meta Content Library / Content Library API, gated through researcher approval (CASD vetting), not an unattended-automation route. No counter-evidence found that the /ads_archive API returns Brazilian commercial ads; the only 'commercial creative via API' evidence is EU/DSA-scoped and thus does not apply to Brazil.",
+            "sources": [
+              "https://transparency.meta.com/researchtools/ad-library-tools",
+              "https://www.facebook.com/ads/library/api",
+              "https://primores.org/blog/meta-ad-library-api/",
+              "https://admanage.ai/blog/facebook-ads-library-api",
+              "https://blog.adnabu.com/facebook/meta-ads-library/",
+              "https://transparency.meta.com/researchtools/meta-content-library/",
+              "https://iclg.com/practice-areas/digital-business-laws-and-regulations/brazil",
+              "https://www.mayerbrown.com/en/insights/publications/2026/04/enforcement-of-brazils-eca-digital-introduces-new-obligations-for-companies",
+              "https://www.socialmediatoday.com/news/meta-implements-new-updates-eu-advertisers-evolving-requirements/653046/",
+              "https://adlibrary.com/guides/facebook-ad-library-api"
+            ]
+          }
+        },
+        {
+          "claim": "Apify's Facebook Ad Library Scraper actors are the most pragmatic way to pull a NAMED competitor's paid ads daily from Brazil: input a Page URL/ID, filter country=BR, get creatives/copy/CTAs/start-dates, ~$0.75 per 1,000 ads, full REST API + scheduling, no Meta app review needed.",
+          "confidence": "high",
+          "evidence": "Apify actor docs: 'scrape ads run by given list of facebook pages', accepts 2-letter ISO country codes (BR), pay-per-event '$0.75 / 1,000 ads', 'No Facebook login, Meta app review, API token, or Ad Library API approval required', and the Apify REST API lets you 'manage, schedule, and run Actors'. It scrapes the Ad Library WEB UI, so it captures ordinary commercial ads the official API omits.",
+          "implication": "This is the core building block of the unattended routine: a daily Apify schedule (or your own cron calling the Apify run API) per competitor Page, output to dataset/webhook. Cost is trivial for a handful of local competitors. Fragility risk: it depends on Meta's UI not changing and on Meta tolerating scraping (against Meta TOS), so pick a maintained actor and expect occasional breakage.",
+          "sources": [
+            "https://apify.com/curious_coder/facebook-ads-library-scraper",
+            "https://apify.com/apify/facebook-ads-scraper",
+            "https://apify.com/harvestlab/facebook-ads-library-scraper"
+          ],
+          "verification": {
+            "claim": "Apify's Facebook Ad Library Scraper actors are the most pragmatic way to pull a NAMED competitor's paid ads daily from Brazil: input a Page URL/ID, filter country=BR, get creatives/copy/CTAs/start-dates, ~$0.75 per 1,000 ads, full REST API + scheduling, no Meta app review needed.",
+            "verdict": "partially-correct",
+            "correctedClaim": "Broadly correct and the strategic core is sound, but imprecise on three points. CORRECT: For a named competitor's ordinary commercial ads, scraping the public Ad Library web UI is genuinely the only viable programmatic path, because Meta's OFFICIAL Ad Library API does NOT return commercial ads at all — as of 2025-2026 it is restricted to political/social-issue ads and is effectively EU-only (further curtailed when Meta withdrew EU political ads in Oct 2025 over the TTPA). A specific Apify actor (curious_coder/facebook-ads-library-scraper) does price at $0.75 / 1,000 ads (pay-per-event), accepts a Facebook Page URL or ad-library search URL plus a 2-letter ISO country code (BR is valid), returns ~57 fields including creatives, ad copy, CTAs and run/start dates, and states verbatim that NO Facebook login, Meta app review, API token, or Ad Library API approval is required. Apify also provides a full REST API (run-actor / run-sync endpoints) AND a native Schedules feature (cron / @daily / timezone), so unattended daily runs are real. IMPRECISIONS TO FIX: (1) There is no single 'Apify Facebook Ad Library Scraper' — it is a marketplace of many competing actors ($0.49 to $10 per 1,000 ads; Apify's own official actor is ~$5/1,000). The $0.75 figure is specific to the curious_coder actor, not 'Apify's' generically; name the actor. (2) Scheduling lives at the Apify PLATFORM level (Schedules + REST), not in that actor's own docs — true, but worth stating precisely. (3) 'No Meta app review' is true but omits the real costs: this is unauthorized scraping under Meta's Platform Terms — legally defensible for logged-off public data after Meta v. Bright Data (2024), but still ToS-prohibited, IP-blockable, CAPTCHA-able, and these third-party actors are FRAGILE (they break when Meta changes the UI/GraphQL and can silently return partial data), so an unattended daily routine needs breakage/empty-result monitoring, not set-and-forget. (4) Scope caveat: for commercial (non-political) ads in Brazil you get creative + copy + start date only — spend, impressions and reach are NOT available for commercial ads even via scraping, so don't expect spend data. Net: 'most pragmatic LOW-COST option for a named competitor, provided you pin a specific actor, schedule via Apify Platform, and monitor for breakage and rate-limited partial results.'",
+            "evidence": "curious_coder actor page confirms '$0.75 / 1,000 ads', accepts Page URLs and ad-library search URLs, a 2-letter ISO country code (ISO 3166-1 alpha-2), and states 'No Facebook login, Meta app review, or API token needed'; its /api page confirms run / run-sync / run-sync-get-dataset-items REST endpoints (token required). Apify docs confirm a Schedules feature with cron, @daily shortcuts and per-schedule timezones, plus REST endpoints to create/update schedules. Multiple 2026 sources confirm the official Meta Ad Library API returns only political/social-issue ads (EU-focused) and NOT commercial ads, and that spend/impressions are withheld for commercial ads even in the web UI/scrapers (Brazil included). admakeai.com documents that Ad Library scrapers break on Meta UI/GraphQL changes and can silently return partial data on rate limits; Meta v. Bright Data (Jan 2024) held that logged-off scraping of public data is not governed by Meta's account ToS, while Meta's Platform Terms still prohibit automated collection. Search also surfaced 10+ distinct competing Apify actors at prices from $0.49 to $10 per 1,000 ads, refuting the singular 'Apify's actor' framing.",
+            "sources": [
+              "https://apify.com/curious_coder/facebook-ads-library-scraper",
+              "https://apify.com/curious_coder/facebook-ads-library-scraper/api",
+              "https://apify.com/apify/facebook-ads-scraper",
+              "https://docs.apify.com/platform/schedules",
+              "https://docs.apify.com/api/v2/schedules",
+              "https://www.facebook.com/ads/library/api",
+              "https://transparency.meta.com/researchtools/ad-library-tools",
+              "https://adlibrary.com/guides/facebook-ad-library-api",
+              "https://batedor.com.br/en/blog/meta-ads-library-analise-competitiva-2026",
+              "https://admakeai.com/blog/meta-ad-library-scraping-terms-of-service",
+              "https://admakeai.com/blog/facebook-ad-library-scraper",
+              "https://www.bestever.ai/post/facebook-ad-library-scraper"
+            ]
+          }
+        },
+        {
+          "claim": "For the ORGANIC side (a named competitor's Instagram/TikTok posts), Apify's Instagram Profile Scraper and TikTok Scraper are far cheaper and better-fit than social-listening suites: ~$0.50–1.00 per 1,000 IG posts, ~$0.30/1k TikTok posts, REST API + scheduling.",
+          "confidence": "high",
+          "evidence": "Apify: Instagram Scraper 'from $0.005/query + $0.0005/post' (~$0.50/1,000 posts) scraping profiles/reels; TikTok Scraper '$0.30 per 1K posts' with pay-per-event; both run via the schedulable Apify REST API.",
+          "implication": "Use a per-account scraper (profile → latest posts) for organic monitoring rather than a keyword-mention listening tool. You get the competitor's actual posts/captions/engagement directly, which is what feeds a discovery process. Same TOS/fragility caveat as the ad scraper.",
+          "sources": [
+            "https://apify.com/apidojo/instagram-scraper",
+            "https://apify.com/clockworks/tiktok-scraper",
+            "https://use-apify.com/docs/best-apify-actors/best-social-media-scrapers"
+          ]
+        },
+        {
+          "claim": "Foreplay Spyder is the best purpose-built named-competitor ad tracker, but its API is only in beta on higher tiers — it is the strongest 'buy, don't build' option if a per-seat SaaS is acceptable.",
+          "confidence": "high",
+          "evidence": "Foreplay Spyder 'automatically tracks selected brands and surfaces new ads as they launch', 'tracks every ad they launch on all Meta advertising platforms 24/7 while keeping a complete historical record', with automated competitor reports/alerts. Pricing ~$49/mo (Inspiration) and ~$99/mo (Full Workflow); 'API beta is only available on Workflow and Agency plans as of February 2026.' Covers Facebook/Instagram/TikTok.",
+          "implication": "If the founder prefers a managed UI with alerting over maintaining scrapers, Foreplay Spyder is the pick — but because the API is beta-only, a fully UNATTENDED data pull is not guaranteed yet; you may get dashboards/alerts/exports rather than a stable programmatic feed. Validate the API beta covers Page-level pull before committing. Brazilian local pages are tracked because Spyder pulls from the live Meta Ad Library, not a pre-built index.",
+          "sources": [
+            "https://help.foreplay.co/en/articles/1041267-track-competitor-with-spyder",
+            "https://www.foreplay.co/post/best-spy-tool-for-facebook-ads",
+            "https://admanage.ai/blog/foreplay-alternatives"
+          ]
+        },
+        {
+          "claim": "Dropshipping/ecommerce ad-spy SaaS (AdSpy, BigSpy, Minea, PiPiADS) are the WRONG tool here: they are index-based (only ads they happened to crawl), tuned to high-volume ecommerce advertisers, and a small Brazilian local wedding venue is unlikely to be in their database; they also largely lack an automation API.",
+          "confidence": "medium",
+          "evidence": "AdSpy ~$149/mo, BigSpy from ~$9/mo, Minea ~$49/mo, PiPiADS ~$77/mo. Sources describe them as 'paid scraper SaaS' with 'no API access' and note their databases skew to ecommerce/dropshipping; Minea is 'best for dropshippers, eCommerce sellers'. Whether a given named local advertiser is indexed is not guaranteed — coverage is what their crawlers caught, not on-demand by Page.",
+          "implication": "Don't anchor the routine on these. Even if you subscribe, a named local venue may simply not appear, and without an API you can't automate the pull. At best they're a manual, occasional research supplement, not the spine of a daily unattended job.",
+          "sources": [
+            "https://adlibrary.com/posts/best-ad-intelligence-tools-2026",
+            "https://adlibrary.com/guides/minea-vs-pipiads-vs-bigspy",
+            "https://www.toolsurf.com/adspy-pricing-2025-plans-costs-is-it-worth-the-investment-2026-plans-features-best-deals-compared/"
+          ]
+        },
+        {
+          "claim": "Social-listening suites (Brandwatch, Sprout Social, Brand24, Mention) are keyword/mention-oriented and expensive; they overshoot 'pull this one named account's own posts daily' and most gate API access behind enterprise tiers.",
+          "confidence": "medium",
+          "evidence": "Pricing: Brand24/Mention ~$41–$249/mo, Sprout Social $99–$399/user/mo plus a Listening module at ~$2,000–$8,000/yr, Brandwatch enterprise ~$800–$5,000+/mo custom. These track mentions of keywords/brands across many sources rather than reliably exporting a specific account's own post feed; API access is typically enterprise-tier.",
+          "implication": "Only worth it if the founder later wants broad market/sentiment listening (what people say ABOUT competitors and the category) rather than competitor-owned content. For the stated 'monitor a named competitor's posts/ads' job they are overkill and overpriced vs. Apify. Portuguese/pt-BR is generally supported by the bigger suites, but confirm per vendor.",
+          "sources": [
+            "https://www.xpoz.ai/blog/comparisons/social-listening-tools-pricing-compared-2026/",
+            "https://dupple.com/tools/brand24",
+            "https://sproutsocial.com/insights/brandwatch-alternatives/"
+          ]
+        },
+        {
+          "claim": "AdClarity (Semrush) and SocialPeta cover Latin America / global creatives and AdClarity has an API, but neither is a clean fit for tracking a specific small local advertiser daily.",
+          "confidence": "medium",
+          "evidence": "AdClarity tiers ~$129/mo (Starter, 3mo history) and ~$298/mo (Professional, 6mo history), +$69/market/mo, covers 51 markets incl. Latin America and 'has an API'. SocialPeta indexes 1.3B+ creatives across 70 channels. Both are panel/index-based ad-intelligence, strong for big brands/display but uncertain coverage of one small Brazilian wedding venue.",
+          "implication": "AdClarity's API is the only one in the dropshipping/intelligence cluster that's genuinely automatable, but its panel model means a tiny local advertiser may have thin or no data, and per-market fees add up. Treat as a possible add-on for broader display/competitor-strategy context, not the named-page daily feed.",
+          "sources": [
+            "https://www.semrush.com/kb/1556-adclarity",
+            "https://improvado.io/blog/ad-intelligence-solutions",
+            "https://ecomm.design/what-is-adclarity/"
+          ]
+        }
+      ],
+      "officialApiForCompetitorData": "no-web-only",
+      "bottomLine": "FEASIBLE to build a daily unattended routine, but only via web-UI scraping — not via an official competitor-data API. Recommended stack (most pragmatic, in order): (1) Apify Facebook Ad Library Scraper + Apify Instagram/TikTok Scraper, driven by the Apify REST API on a daily schedule, one run per named competitor Page, country=BR — handles BOTH paid ads and organic, ~tens of US$/month for a handful of competitors, JSON/webhook output that feeds your discovery process directly. This is the spine. (2) Foreplay Spyder as the turnkey alternative/supplement (~$99/mo Workflow tier) if you'd rather have a managed UI with auto-alerts and a complete historical ad record per brand — but confirm its beta API actually exposes a programmatic per-Page pull before relying on it for full automation. (3) Optionally layer a real social-listening tool (Brand24 ~$199–$249/mo) LATER if the goal expands from 'competitor-owned content' to 'category/sentiment chatter ABOUT competitors.' Avoid AdSpy/BigSpy/Minea/PiPiADS for this — index-based, ecommerce-skewed, no automation API, likely no coverage of a small local venue. Hard caveat: all scraping routes ride on Meta/Instagram/TikTok public UIs against their TOS and break when the UI changes — design the routine to fail loudly (alert on empty/zero-result runs) and budget maintenance, since 'unattended' here means 'monitored unattended,' not 'set and forget forever.'",
+      "brazilCaveats": "Brazil has no EU-style DSA all-ads transparency law, so there is NO regulatory mandate forcing a complete public ad archive — outside the EU the official Meta Ad Library API archives only political/social-issue ads, leaving commercial wedding-venue ads accessible only through the public Ad Library WEB UI (hence scraping is required, not optional). Brazilian ad transparency is described in 2026 research as 'limited and fragmented,' with the Meta Ad Library UI the most reliable single source and TikTok/X/Spotify offering no Brazilian ad repository. The dropshipping ad-spy databases (AdSpy/BigSpy/Minea) claim broad country coverage but their indexes are ecommerce-skewed and unlikely to contain a specific small local pt-BR wedding venue. pt-BR language coverage in the big social-listening suites (Brandwatch/Sprout/Brand24) is generally fine but should be confirmed per vendor. Separately, Brazil's LGPD applies to processing personal data from scraped content — keep the routine to competitor business/marketing content and avoid harvesting third-party personal data, consistent with the repo's LGPD-deferred posture.</parameter>\n</invoke>\n"
+    },
+    {
+      "dimension": "Legal / Terms-of-Service / risk of automated scraping",
+      "summary": "For an unattended daily routine, the honest legal picture is: scraping public ad-library / public social pages is not a crime and almost certainly not a CFAA-style violation when done logged-out (the US case law — hiQ v. LinkedIn and Meta v. Bright Data — points strongly that way), but it does breach the platforms' Terms of Service, and ToS-as-contract is the real (and only meaningful) civil exposure. That exposure is realistically near-zero for a single small Brazilian wedding venue pulling a handful of competitor pages once a day: platforms enforce technically (rate-limits, IP blocks, CAPTCHAs, account bans) far more than legally, and lawsuits/cease-and-desist letters target high-volume commercial scrapers and resellers, not low-volume internal market research. The two things that actually deserve respect are (a) stay logged-out and low-and-slow to keep enforcement squarely in \"technical annoyance\" territory rather than \"breach of an agreement you accepted,\" and (b) LGPD: scraping is \"tratamento de dados\" under Brazilian law, the ANPD has made raspagem a 2025 enforcement priority and already issued its first fine, so the routine must store ad copy/creatives (fine) while minimizing and justifying any real-person personal data captured in those creatives. Copyright is a non-issue for internal analysis but becomes one the instant you reuse a competitor's creative in your own ads.",
+      "officialApiForCompetitorData": "no-web-only",
+      "keyFindings": [
+        {
+          "claim": "Scraping PUBLIC ad-library / public pages while logged-OUT is not governed by Meta's Terms of Service — a US federal court ruled exactly this and Meta abandoned the case.",
+          "confidence": "high",
+          "evidence": "Meta Platforms v. Bright Data (N.D. Cal., Judge Edward Chen, summary judgment Jan 23 2024): Meta's ToS 'do not apply to and prohibit Bright Data's scraping of publicly available data while logged off' because a logged-out scraper is not a 'user' bound by the contract. Meta dropped the suit ~1 month later (Feb 2024). Called the 'most important legal opinion related to web scraping to date.'",
+          "implication": "Keep the daily routine LOGGED OUT against public ad libraries / public pages. Never use venue Meta/Google/TikTok logins to harvest competitor data — logging in is what flips you from 'not a party to the contract' into 'a user breaching the ToS.' This single design choice removes most of the contract exposure.",
+          "sources": [
+            "https://www.fbm.com/publications/major-decision-affects-law-of-scraping-and-online-data-collection-meta-platforms-v-bright-data/",
+            "https://www.courthousenews.com/federal-judge-rules-against-meta-in-data-scraping-case/",
+            "https://brightdata.com/blog/web-data/court-rules-in-favor-of-bright-data-in-meta-v-bright-data-case"
+          ],
+          "verification": {
+            "claim": "Scraping PUBLIC ad-library / public pages while logged-OUT is not governed by Meta's Terms of Service — a US federal court ruled exactly this and Meta abandoned the case. (Cited: Meta v. Bright Data, N.D. Cal., Judge Chen, summary judgment Jan 23 2024; Meta dropped the suit ~Feb 2024; \"most important legal opinion related to web scraping to date.\")",
+            "verdict": "partially-correct",
+            "correctedClaim": "CORE IS TRUE, but imprecise on three points. PRECISE VERSION: In Meta Platforms, Inc. v. Bright Data Ltd. (No. 3:23-cv-00077-EMC, N.D. Cal., Judge Edward M. Chen, summary judgment Jan 23, 2024), the court held that Meta's Facebook/Instagram Terms — properly construed — do NOT PROHIBIT scraping of publicly available data performed while LOGGED OFF, because a logged-off scraper is not a \"user\" bound by the contract (the Terms apply to account holders while logged in). It also held Meta's \"survival\" clause could not bind Bright Data in perpetuity after account termination. Meta then dismissed its remaining tortious-interference claim without prejudice (~Feb 23, 2024) and waived appeal — effectively conceding. THREE CORRECTIONS: (1) \"not governed by ToS\" overstates it — the court interpreted the ToS and ruled they do not BAR logged-off public scraping; that is a contract-interpretation holding, not a statement that no terms apply. (2) The ruling decided only the BREACH-OF-CONTRACT (ToS) theory. It did NOT decide copyright, CFAA, trespass, misappropriation, or privacy/data-protection law — those remain separate, live risks, so ToS-clearance does not make scraping lawful across the board. (3) It is a DISTRICT-court summary judgment (persuasive, not binding precedent); there was no appellate ruling, and Meta signaled it could rewrite its Terms. The \"most important legal opinion to date\" label is commentator framing (e.g., Eric Goldman's blog called it an \"earthquake\"; some reserve \"most important\" for hiQ v. LinkedIn), not language from the court. Also note logged-IN scraping remains ToS-prohibited, and — critical for a Brazil-based operator — Brazil's LGPD still applies to publicly available PERSONAL data per ANPD regardless of this US ruling.",
+            "evidence": "Confirmed via primary-source legal analyses. Farella Braun + Martel and Quinn Emanuel client alerts confirm: Judge Chen, N.D. Cal., granted Bright Data summary judgment on Meta's breach-of-contract claim Jan 23 2024, holding the Terms apply only to \"users\" (account holders) while logged in and do not prohibit logged-off public scraping; the survival clause was unenforceable. Quinn Emanuel explicitly lists the caveats: scope is limited to Meta's terms (not binding precedent for other sites); the decision does NOT address logged-in scraping (still prohibited); and other doctrines — copyright, CFAA, privacy law — remain unaddressed. PRNewswire (Feb 23 2024) confirms Meta filed to dismiss the remaining tortious-interference claim without prejudice and waived appeal — not a settlement, no concession demanded of Bright Data. Eric Goldman's Technology & Marketing Law Blog confirms it is a district-court ruling and that other anti-scraping doctrines (CFAA, etc.) could still apply (\"a loss on any of the legal doctrines would still be a total loss for Bright Data\"); it characterizes the decision as an \"earthquake,\" not as the single \"most important legal opinion to date\" (that superlative is applied to hiQ v. LinkedIn). The 2024-2025 X Corp. v. Bright Data case (Judge Alsup) reinforces the public-data direction (X's contract/tort claims tossed, copyright preemption applied, Bright Data antitrust counterclaims survived, settled in principle 2025). Brazil ANPD / ICLG / DLA Piper sources confirm LGPD applies to publicly available personal data, so the US ToS holding does not clear LGPD exposure for a São Paulo operator.",
+            "sources": [
+              "https://www.fbm.com/publications/major-decision-affects-law-of-scraping-and-online-data-collection-meta-platforms-v-bright-data/",
+              "https://www.quinnemanuel.com/the-firm/news-events/client-alert-what-does-the-meta-v-bright-data-summary-judgment-ruling-mean-for-web-scraping/",
+              "https://www.prnewswire.com/news-releases/meta-files-notice-to-drop-web-scraping-case-against-bright-data-302071400.html",
+              "https://blog.ericgoldman.org/archives/2024/01/game-on-bright-data-scores-major-victory-in-web-scraping-dispute-with-meta-guest-blog-post.htm",
+              "https://blog.ericgoldman.org/archives/2024/02/facebook-drops-anti-scraping-lawsuit-against-bright-data-guest-blog-post.htm",
+              "https://www.courthousenews.com/federal-judge-rules-against-meta-in-data-scraping-case/",
+              "https://www.zyte.com/blog/california-court-meta-ruling/",
+              "https://www.courthousenews.com/judge-tosses-xs-contract-claims-against-data-scraping-company/",
+              "https://iclg.com/practice-areas/data-protection-laws-and-regulations/brazil/",
+              "https://fpf.org/blog/brazils-anpd-preliminary-study-on-generative-ai-highlights-the-dual-nature-of-data-protection-law-balancing-rights-with-technological-innovation/"
+            ]
+          }
+        },
+        {
+          "claim": "Scraping public data does NOT violate the CFAA (anti-hacking statute), but you can still LOSE on breach-of-contract for violating ToS — hiQ paid $500k and shut down.",
+          "confidence": "high",
+          "evidence": "hiQ v. LinkedIn: 9th Circuit (2019, reaffirmed Apr 2022) held the CFAA does not reach automated collection of publicly accessible data. But the Dec 2022 settlement: LinkedIn WON on breach-of-contract and trespass, hiQ paid $500,000, accepted a permanent injunction to stop scraping and delete code/data, and the company shut down. Distinction: logged-out public scraping (Bright Data) vs hiQ which had accepted LinkedIn's user agreement.",
+          "implication": "The risk is civil/contractual, not criminal. For a low-volume internal routine the practical odds of a contract suit are negligible — these actions target commercial-scale scrapers/resellers — but the lesson is concrete: don't accept and then breach a clickwrap/login agreement, and never resell or publicly republish the harvested data (selling/licensing scraped data is the conduct that draws suits).",
+          "sources": [
+            "https://www.morganlewis.com/blogs/sourcingatmorganlewis/2022/12/linkedin-v-hiq-landmark-data-scraping-suit-provides-guidance-to-data-scrapers-and-web-operators",
+            "https://www.zwillgen.com/alternative-data/hiq-v-linkedin-wrapped-up-web-scraping-lessons-learned/",
+            "https://www.privacyworld.blog/2022/12/linkedins-data-scraping-battle-with-hiq-labs-ends-with-proposed-judgment/"
+          ],
+          "verification": {
+            "claim": "Scraping public data does NOT violate the CFAA, but you can still LOSE on breach-of-contract for violating ToS — hiQ paid $500k and shut down.",
+            "verdict": "partially-correct",
+            "correctedClaim": "Broadly correct, with one important nuance. The 9th Circuit (hiQ v. LinkedIn, 2019; reaffirmed Apr 2022) held the CFAA's \"without authorization\" prong does NOT reach automated collection of data that is publicly accessible and not behind an authentication gate — so logged-out public scraping is not \"hacking\" under the CFAA. The live legal risk is breach of CONTRACT: on Nov 4, 2022 the N.D. Cal. granted summary judgment that hiQ breached LinkedIn's User Agreement (its anti-scraping and fake-profile terms), because hiQ had accepted that agreement when it created a corporate account. The Dec 2022 resolution was a STIPULATED/CONSENT judgment (agreed, non-precedential): $500,000 against hiQ plus a permanent injunction to stop scraping and destroy all source code, data, and algorithms; hiQ is now defunct. IMPRECISION TO FIX: the stipulation did NOT leave CFAA entirely off the table — it let LinkedIn establish CFAA liability too, but that CFAA piece was tied specifically to \"hiQ's direct access to password-protected pages on LinkedIn's platforms using fake accounts,\" i.e. auth-gated access, NOT to the public scraping. So the public-scraping CFAA safe harbor stands; hiQ's CFAA exposure came from logging in with fake accounts. The $500k bundled breach of contract + CFAA + California Penal Code 502 + trespass to chattels + misappropriation + spoliation sanctions, not breach-of-contract alone. The logged-out vs. logged-in/accepted-ToS distinction the claim draws is correct and was reinforced afterward: Meta v. Bright Data (Jan 23, 2024, Judge Chen, N.D. Cal.) held Facebook/Instagram Terms do not bar logged-OFF scraping of public data, and X Corp v. Bright Data had its scraping claims dismissed (May 2024, Copyright Act preemption) and then settled confidentially in mid-2025 with Bright Data continuing to operate. Practical takeaway for unattended competitor-ad/social monitoring in 2026: the loss vector is CONTRACT (triggered by accepting a platform's ToS, typically via having/using an account) and auth-gated access — not public scraping per se. Scraping while logged out, without an account, of genuinely public pages is the defensible posture; logging into an account whose ToS bans scraping (or using fake accounts to reach gated content) is where liability and CFAA exposure attach.",
+            "evidence": "9th Circuit hiQ v. LinkedIn (2019, reaffirmed Apr 18 2022): CFAA \"without authorization\" does not apply to \"websites that generally permitted public access to their data and took no steps to demarcate their data as private or require the use of an authorization system.\" Nov 4 2022 N.D. Cal. summary judgment: hiQ breached LinkedIn's User Agreement via (1) automated scraping of profiles and (2) hiring crowdsourced \"turkers\" to create fake profiles to access the platform; hiQ \"expressly agreed to the user agreement when it created its corporate account.\" Dec 7-8 2022 stipulated consent judgment: \"$500,000 judgment to be entered against hiQ for (1) a breach of contract based on LinkedIn's user agreement; (2) a violation of the Computer Fraud and Abuse Act (CFAA) 'based on hiQ's data collection practices and based on hiQ's direct access to password-protected pages on LinkedIn's platforms using fake accounts;' (3) a violation of California's law prohibiting unauthorized computer access; (4) violations of the common law torts of trespass to chattels and misappropriation; and (5) sanctions awarded to LinkedIn based on hiQ's spoliation,\" plus a permanent injunction to \"cease all data scraping on LinkedIn's websites and destroy all source code, data, and algorithms.\" Commentators note the CFAA stipulation is \"an agreement between the parties\" and does \"not serve as precedent.\" Meta v. Bright Data (Jan 23 2024): \"The Facebook and Instagram Terms do not bar logged-off scraping of public data; perforce it does not prohibit the sale of such public data\" — terms bind only an actively logged-in user. X Corp v. Bright Data: dismissed May 10 2024 (failed to allege a claim on access to its public site; copying public data preempted by Copyright Act); settled confidentially mid-2025, Bright Data continuing to operate.",
+            "sources": [
+              "https://en.wikipedia.org/wiki/HiQ_Labs_v._LinkedIn",
+              "https://www.zwillgen.com/alternative-data/hiq-v-linkedin-wrapped-up-web-scraping-lessons-learned/",
+              "https://natlawreview.com/article/linkedin-s-data-scraping-battle-hiq-labs-ends-proposed-judgment",
+              "https://www.privacyworld.blog/2022/12/linkedins-data-scraping-battle-with-hiq-labs-ends-with-proposed-judgment/",
+              "https://blog.ericgoldman.org/archives/2024/01/game-on-bright-data-scores-major-victory-in-web-scraping-dispute-with-meta-guest-blog-post.htm",
+              "https://www.mediapost.com/publications/article/392920/bright-data-didnt-violate-metas-terms-by-scrapin.html",
+              "https://natlawreview.com/article/x-corp-loses-battle-over-public-data-access",
+              "https://news.bloomberglaw.com/ip-law/musks-x-settles-data-scraping-dispute-against-israeli-data-firm"
+            ]
+          }
+        },
+        {
+          "claim": "Every platform's ToS formally prohibits automated scraping — Meta, Google, TikTok and Pinterest all bar it without express written permission.",
+          "confidence": "high",
+          "evidence": "Meta Automated Data Collection Terms: 'You will not engage in Automated Data Collection without first obtaining Meta's express written permission' and 'acceptance of these Terms alone does not constitute the required written permission.' Google ToS bars automated access exceeding what a human can produce. Pinterest ToS: 'You agree not to use any robot, spider, crawler, scraper... to access the Services or to extract data,' and even its API dev guidelines forbid data extraction. TikTok developer terms prohibit scraping.",
+          "implication": "There is no platform whose ToS lets you scrape — so 'is it allowed?' is always 'no.' The realistic question is enforcement, not permission. Treat ToS prohibition as a given and manage it by staying logged-out, low-volume, and internal-use-only rather than by trying to find a compliant scraping path (there isn't one).",
+          "sources": [
+            "https://www.facebook.com/legal/automated_data_collection_terms",
+            "https://policy.pinterest.com/en/terms-of-service",
+            "https://policy.pinterest.com/en/developer-guidelines"
+          ]
+        },
+        {
+          "claim": "There is NO official API exposing competitors' COMMERCIAL ad data usable from Brazil — the official ad-library APIs are political/social-issue-only or EU-only.",
+          "confidence": "high",
+          "evidence": "Meta Ad Library API returns only political & social-issue ads (commercial brand ads are visible in the browser UI but do not come back from /ads_archive, and no spend is exposed). TikTok Commercial Content Library API: 'only data from Europe is available' (built for EU DSA Art. 39), and access is denied to commercial entities, agencies and marketers. Google Ads Transparency Center has no official public API. So competitor wedding-venue commercial ads are reachable web-UI-only.",
+          "implication": "The routine cannot be built on a clean official API for the data that matters (competitors' commercial creatives/copy). Either scrape the public web UIs (the ToS-but-not-CFAA path above) or pay a third-party data vendor (Apify actors, SerpApi, BrightData, ad-intel SaaS) that absorbs the scraping infrastructure and some of the ToS exposure. The 'API where possible' goal mostly fails for competitor commercial data in Brazil.",
+          "sources": [
+            "https://www.facebook.com/ads/library/api",
+            "https://www.hyperfx.ai/blog/meta-ad-library-api-scraper-guide",
+            "https://newsroom.tiktok.com/en-gb/tiktoks-research-api-and-commercial-content-library",
+            "https://developers.tiktok.com/products/commercial-content-api"
+          ]
+        },
+        {
+          "claim": "Under Brazilian LGPD, scraping is regulated 'tratamento de dados' and the ANPD has made raspagem an active enforcement priority — public availability does NOT mean free to reuse.",
+          "confidence": "high",
+          "evidence": "ANPD Radar Tecnológico nº3 (Nov 2024) formalizes that web scraping is data processing subject to the full LGPD. Raspagem entered ANPD's 2025 regulatory agenda with a commitment to at least three enforcement actions, and the ANPD already applied its first sanction against a telemarketing company that scraped publicly available data without a valid basis. Public personal data may only be reused for the original purpose, or for a new purpose under a valid Art. 7 basis such as legítimo interesse (which requires a balancing/LIA and reasonable-expectation test).",
+          "implication": "Storing competitors' ad COPY and CREATIVES (the marketing artifact itself) is largely fine — it is corporate/marketing content, not personal data. The LGPD trigger is incidental personal data inside creatives: identifiable faces, real customer names/testimonials, a sole-proprietor competitor's personal identifiers. Mitigate by storing creative + copy + metadata, minimizing/redacting incidental personal data, documenting 'legítimo interesse' (competitive market intelligence) with a short LIA, keeping it strictly internal, and setting retention limits. Do not build a database keyed on real individuals.",
+          "sources": [
+            "https://www.grantthornton.com.br/insights/artigos-e-publicacoes/raspagem-de-dados-entenda-a-nova-prioridade-da-anpd-e-seus-efeitos/",
+            "https://www.baptista.com.br/commercial-exploitation-of-personal-data-application-of-the-first-fine-by-the-anpd-and-international-approaches-to-web-scraping/?lang=en",
+            "https://assisemendes.com.br/web-scraping-e-lgpd-entenda-os-riscos-juridicos-e-como-evitar-sancoes/"
+          ]
+        },
+        {
+          "claim": "Real-world enforcement for low-volume daily scraping is overwhelmingly TECHNICAL (IP blocks, CAPTCHAs, bans), not legal — lawsuits target high-volume commercial scrapers.",
+          "confidence": "medium",
+          "evidence": "Industry/legal analyses converge: violating ToS 'isn't automatically illegal' but invites technical enforcement (IP block, account suspension) and, for scale players, contract disputes. Platforms reserve legal action for high-volume extraction and for parties who resell/republish data. Scraping public business/marketing data is consistently described as lower-risk than scraping private personal data. The named lawsuits (hiQ, Bright Data, and others) are all against commercial-scale scraping operations, not small internal users.",
+          "implication": "For one venue pulling a small set of competitor pages once per day, expect at worst occasional IP blocks / CAPTCHA challenges — an engineering problem (rotate UA respectfully, throttle, cache, back off), not a legal one. Budget for graceful degradation when a source blocks you, and never escalate volume to the point you look like a commercial scraper. The pragmatic posture: proceed, logged-out, low-and-slow, internal-only.",
+          "sources": [
+            "https://www.browserless.io/blog/is-web-scraping-legal",
+            "https://www.grepsr.com/blog/commercial-web-scraping-best-practices/",
+            "https://profilespider.com/blog/website-scraping-legal"
+          ]
+        },
+        {
+          "claim": "Copyright is a non-issue for internal analysis of competitor creatives, but becomes a real issue the moment you reuse a creative in your own ads.",
+          "confidence": "medium",
+          "evidence": "Competitive-intelligence practice routinely stores competitors' ad creatives, copy, CTAs and images for analysis; this is treated as legitimate use of publicly available data. The line is reuse: 'legally there's no such thing as copying a competitor ad' as a free pass — building your own original creatives is fine, lifting theirs (or their trademarked names) is infringement.",
+          "implication": "Safe to store and analyze creatives/copy as a private intelligence corpus to inform VVF's own original work (tone, themes, offers). The routine must stay a read/store/analyze pipeline — it must never feed competitor assets directly into VVF-published material. This also keeps the brand-voice invariants intact (VVF copy must be original and on-brand, not derivative).",
+          "sources": [
+            "https://coinis.com/how-to/copy-competitor-google-ad-legally",
+            "https://www.g2.com/categories/digital-advertising-intelligence"
+          ]
+        }
+      ],
+      "brazilCaveats": "Brazil-specific reality is the decisive constraint, in two directions. (1) Coverage: the official ad-library APIs that would let you avoid scraping entirely are EU-centric — Meta's API is political/social-only outside the EU, TikTok's Commercial Content Library is EU-only and closed to marketers, and Google has no official ads-transparency API. So for Brazilian competitor commercial ads the only paths are web-UI scraping or a paid third-party vendor; there is no clean official-API route. (2) LGPD/ANPD: scraping is squarely 'tratamento de dados' under LGPD, ANPD formalized this in Radar Tecnológico nº3 (Nov 2024), put raspagem on its 2025 enforcement agenda (≥3 actions), and has already issued its first scraping-related fine. 'Dado público' is NOT a free pass — reuse needs a valid Art. 7 basis. For this use case the workable basis is legítimo interesse for internal competitive intelligence, documented with a short LIA, with aggressive minimization of any incidental personal data (faces, named individuals, testimonials) in stored creatives, internal-only use, and a retention limit. Note the US case law (hiQ, Bright Data) is persuasive on the contract/CFAA question but has zero authority over LGPD — a Brazilian business is governed by LGPD regardless of how favorable the US scraping precedents look.",
+      "bottomLine": "Feasible, with a clear-eyed posture: build the daily routine, but design it to keep risk in the 'technical annoyance' band rather than the 'breach of contract / LGPD violation' band. Concretely: (1) scrape competitor commercial ads from PUBLIC web UIs (Meta Ad Library, Google Ads Transparency Center, public TikTok/Pinterest/Instagram pages) LOGGED OUT — never with the venue's own platform logins — because logged-out public scraping is what the Bright Data ruling put outside Meta's ToS and outside the CFAA per hiQ. (2) Accept that every platform's ToS still formally forbids scraping; this is contract-grade, not criminal-grade, exposure and is realistically immaterial at low volume — enforcement at this scale is IP blocks/CAPTCHAs, which is an engineering problem. (3) Run low-and-slow (once daily, modest page counts, throttled, cached, graceful back-off) so you never resemble a commercial-scale scraper, which is who actually gets sued. (4) Use the official Meta Ad Library API only where it helps (it won't cover commercial ads outside the EU) and consider a paid third-party vendor (Apify/SerpApi/ad-intel SaaS) to offload scraping infrastructure and ToS exposure if reliability matters. (5) For LGPD, store ad copy + creatives + metadata for internal CI under documented legítimo interesse with a short LIA, minimize/redact incidental personal data (faces, named people, testimonials), keep it internal-only with a retention limit — and never resell, republish, or reuse competitors' creatives in VVF's own ads (that flips copyright + brand-voice invariants). Loop in counsel only to bless the LIA template once; the rest is process discipline. This is a green-light with guardrails, not a stop."
+    },
+    {
+      "dimension": "Claude Code routines and Agent SDK for daily competitor-ad monitoring",
+      "keyFindings": [
+        {
+          "claim": "Routines run headless in Anthropic cloud and survive laptop closed; local scheduled tasks do not.",
+          "confidence": "high",
+          "evidence": "Claude Code Routines (v2.1.105+, April 2026, research preview, beta header experimental-cc-routine-2026-04-01) run on Anthropic-managed VMs and keep working with the Mac closed. Desktop scheduled tasks fire only while the app is open; CLI loop and the in-session Cron tools are session-scoped and die when the terminal closes.",
+          "implication": "An unattended daily routine must use cloud Routines (Pro/Max/Team/Enterprise plus Claude Code on the web) or headless claude -p on GitHub Actions cron or your admin/api-server host. Do not rely on the desktop scheduler or in-session cron.",
+          "sources": [
+            "https://claudefa.st/blog/guide/development/routines-guide",
+            "https://wmedia.es/en/tips/claude-code-routines-cloud-agents"
+          ],
+          "verification": {
+            "claim": "Routines run headless in Anthropic cloud and survive laptop closed; local scheduled tasks do not. (Evidence: Claude Code Routines v2.1.105+, April 2026, research preview, beta header experimental-cc-routine-2026-04-01, run on Anthropic-managed VMs and keep working with the Mac closed; Desktop scheduled tasks fire only while the app is open; CLI /loop and in-session Cron tools are session-scoped and die when the terminal closes.)",
+            "verdict": "confirmed",
+            "correctedClaim": "CONFIRMED by Anthropic's official Claude Code docs (current as of June 2026), with one precision refinement. (1) Routines DO run headless/unattended on Anthropic-managed cloud infrastructure and survive a closed laptop: the routines doc states verbatim \"Routines execute on Anthropic-managed cloud infrastructure, so they keep working when your laptop is closed,\" and they \"run autonomously as full Claude Code cloud sessions: there is no permission-mode picker and no approval prompts during a run.\" (2) Version/preview/header details are all correct: Routines shipped in Week 16 (April 13-17, 2026, v2.1.105-v2.1.113), are flagged \"in research preview,\" and the /fire API endpoint ships under the exact beta header anthropic-beta: experimental-cc-routine-2026-04-01. (3) Both local mechanisms indeed do NOT survive a closed laptop, but they are TWO distinct things with different reasons -- the claim is right to say \"local does not,\" just imprecise to lump them: (a) Desktop scheduled tasks (the \"Local\" routine type) run on your machine and, per the official Desktop doc, \"only fire while the app is open and your computer is awake ... Closing the laptop lid still puts it to sleep\" -- note it is the APP that must be running, not a manual chat session (the comparison table lists Desktop as \"Requires open session: No\"); (b) the CLI /loop command and in-session Cron tools (CronCreate/CronList/CronDelete) are session-scoped: \"Tasks only fire while Claude Code is running and idle. Closing the terminal or letting the session exit stops them firing,\" and a fresh conversation clears them (a 7-day expiry also applies). No counter-evidence, recent reversal, or regional exception was found; the only caveats are access-level (Routines require a Pro/Max/Team/Enterprise plan with Claude Code on the web enabled, are billed against subscription usage with a daily run cap, and can be disabled org-wide by Team/Enterprise admins) -- these gate availability, not the run-location behavior the claim asserts. For the VVF competitor-monitoring use case, a cloud Routine is the correct mechanism for an unattended daily run that survives the laptop being closed; minimum schedule interval is 1 hour, and a cloud Routine has NO access to local files (fresh repo clone each run) and reaches external sites only through its environment's network allowlist or configured connectors.",
+            "evidence": "Official Anthropic Claude Code documentation, verified directly: (1) Routines doc (code.claude.com/docs/en/routines): \"Routines execute on Anthropic-managed cloud infrastructure, so they keep working when your laptop is closed\"; \"Routines run autonomously as full Claude Code cloud sessions: there is no permission-mode picker and no approval prompts during a run\"; note \"Routines are in research preview\"; /fire curl example includes header \"anthropic-beta: experimental-cc-routine-2026-04-01\" and a Warning block referencing the same dated beta header. (2) Desktop scheduled tasks doc (code.claude.com/docs/en/desktop-scheduled-tasks): \"A local task runs on your machine ... but only fires while the app is open and your computer is awake. A remote routine runs on Anthropic-managed cloud infrastructure even when your computer is off\"; \"Tasks only run while the desktop app is running and your computer is awake ... Closing the laptop lid still puts it to sleep.\" Comparison table: Desktop \"Requires machine on: Yes,\" \"Requires open session: No.\" (3) Scheduled-tasks/loop doc (code.claude.com/docs/en/scheduled-tasks): comparison table marks /loop \"Requires open session: Yes,\" \"Requires machine on: Yes\"; Limitations: \"Tasks only fire while Claude Code is running and idle. Closing the terminal or letting the session exit stops them firing\"; tools listed are CronCreate/CronList/CronDelete; 7-day expiry noted. (4) What's-new digest (code.claude.com/docs/en/whats-new): Week 16, April 13-17 2026, tags v2.1.105-v2.1.113: \"Routines on Claude Code on the web fire templated cloud agents from a schedule, GitHub event, or API call.\" GitHub release v2.1.105 dated April 13, 2026. Secondary sources (MindStudio, DataCamp, winbuzzer, wmedia, junia.ai) all corroborate; no counter-evidence found.",
+            "sources": [
+              "https://code.claude.com/docs/en/routines",
+              "https://code.claude.com/docs/en/desktop-scheduled-tasks",
+              "https://code.claude.com/docs/en/scheduled-tasks",
+              "https://code.claude.com/docs/en/whats-new",
+              "https://github.com/anthropics/claude-code/releases/tag/v2.1.105",
+              "https://www.mindstudio.ai/blog/claude-code-remote-routines-cloud-automations-laptop-closed",
+              "https://winbuzzer.com/2026/04/16/anthropic-claude-code-routines-scheduled-ai-automation-xcxwbn/",
+              "https://www.datacamp.com/tutorial/claude-code-routines"
+            ]
+          }
+        },
+        {
+          "claim": "WebFetch officially does not execute JavaScript and cannot retrieve SPA-rendered content.",
+          "confidence": "high",
+          "evidence": "Anthropic platform docs verbatim: the web fetch tool currently does not support websites dynamically rendered with JavaScript. It does an HTTP GET, returns text or PDF only, no JS, no cookies, no element interaction.",
+          "implication": "WebFetch can read static pages, RSS, sitemaps, JSON API endpoints and PDFs, but cannot open the Meta Ad Library UI or any modern SPA. Designing the routine around WebFetch against the UI is a dead end.",
+          "sources": [
+            "https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-fetch-tool"
+          ],
+          "verification": {
+            "claim": "WebFetch officially does not execute JavaScript and cannot retrieve SPA-rendered content.",
+            "verdict": "confirmed",
+            "correctedClaim": "CONFIRMED, with two precisions. The central assertion is directly stated in Anthropic's official docs, verbatim: \"The web fetch tool currently does not support websites dynamically rendered with JavaScript\" (platform.claude.com, web-fetch-tool page, current as of June 2026). It performs an HTTP retrieval plus automatic text extraction with NO rendering engine, so a React/Vue SPA returns the initial HTML shell, not the rendered DOM. Content types are restricted to text and PDF only — the documented error code `unsupported_content_type` reads \"Content type not supported (only text and PDF).\" For a daily unattended competitor-monitoring routine, this means WebFetch is useless against any modern JS-rendered competitor site or social feed (Instagram, Facebook, most Meta Ad Library surfaces, Wix/Squarespace SPA venue sites); you must route those through a headless-browser scraper (Playwright/Puppeteer), a rendering API (Firecrawl/Bright Data/ScrapingBee), or an official data API. PRECISIONS to the stated evidence: (1) The docs do NOT specify the HTTP verb — they say it 'retrieves the full text content from the specified URL'; calling it specifically a 'GET' is a reasonable inference but not documented. (2) 'no cookies, no element interaction, no clicking' are CORRECT by implication (the tool has no API surface for them and only fetches+extracts) but are NOT verbatim-documented limitations — the only explicitly stated limitations are the JavaScript one and the text/PDF-only content restriction. Also note the term 'WebFetch' covers two related surfaces that share this behavior: the Claude Code agent tool and the Anthropic API `web_fetch` server tool (latest version web_fetch_20260318); the official docs page documents the server tool, and both also block authenticated/private URLs.",
+            "evidence": "Anthropic platform docs (web-fetch-tool), fetched June 2026, state verbatim in a Note: \"The web fetch tool currently does not support websites dynamically rendered with JavaScript.\" The \"How web fetch works\" section describes only: (1) Claude decides to fetch, (2) the API retrieves full text content from the URL, (3) automatic text extraction for PDFs, (4) Claude analyzes — no rendering/JS-execution step exists. The documented error code list includes `unsupported_content_type`: \"Content type not supported (only text and PDF)\", confirming text+PDF are the sole outputs (response examples show media_type text/plain or application/pdf). URL validation restricts fetches to URLs already in context (no arbitrary navigation). The Claude Code WebFetch tool schema in-session corroborates: \"Fetches a URL, converts the page to markdown\" and \"Fails on authenticated/private URLs\" — consistent with no cookies/auth/JS. Independent third-party tests (Firecrawl, Bright Data, ScrapegraphAI blogs, June 2026 search) corroborate: SPAs/React/Vue pages return an empty shell. The docs page now lives at platform.claude.com (docs.anthropic.com and docs.claude.com 301/302 redirect there) — no 2025-2026 change removed the JS limitation; web_fetch_20260318 added dynamic filtering, cache bypass, and response inclusion, none of which is JS rendering.",
+            "sources": [
+              "https://platform.claude.com/docs/en/docs/agents-and-tools/tool-use/web-fetch-tool",
+              "https://docs.claude.com/en/docs/agents-and-tools/tool-use/web-fetch-tool",
+              "https://www.firecrawl.dev/blog/claude-web-fetch-vs-firecrawl",
+              "https://brightdata.com/blog/ai/anthropic-web-fetch-tool-vs-bright-data",
+              "https://scrapegraphai.com/blog/claude-web-fetch-tool",
+              "https://simonwillison.net/2025/Sep/10/claude-web-fetch-tool/"
+            ]
+          }
+        },
+        {
+          "claim": "The Meta Ad Library is a JS SPA that returns an empty shell to WebFetch, so WebFetch alone extracts no ad data.",
+          "confidence": "high",
+          "evidence": "Ad Library data is loaded via JavaScript; scrapers need full JS rendering via a headless browser with Playwright or Puppeteer. SPAs ship minimal HTML and render client-side, so the initial HTML has almost no useful data.",
+          "implication": "To get competitor ad creatives or copy you need a real rendered browser or the SPA JSON endpoint. A WebFetch-only routine returns nothing useful for this target.",
+          "sources": [
+            "https://scrapecreators.com/blog/best-web-scraping-apis-2025",
+            "https://www.firecrawl.dev/blog/claude-web-fetch-vs-firecrawl"
+          ]
+        },
+        {
+          "claim": "Headless cloud runs lack the Chrome extension and computer-use, but have Bash and a setup script, so a real headless browser can run inside the routine.",
+          "confidence": "medium",
+          "evidence": "The routine container has a full filesystem, network access, the Claude Code runtime, bash execution and a setup script that runs before the session to install dependencies. No source mentions a Chrome extension or computer-use in headless cloud runs. The sandbox egress and headed-browser policy is thinly documented in the preview.",
+          "implication": "A pure routine approach can work by installing Playwright in the setup script and scraping or calling the JSON API in Bash, then letting Claude reason over the JSON. Validate egress allowlist, Chromium permission and Meta anti-bot on the cloud IP; if blocked, run Playwright on admin/api-server and use the routine only to trigger and summarize.",
+          "sources": [
+            "https://dev.to/oscdev/run-claude-code-agents-on-a-schedule-in-the-cloud-2lcl",
+            "https://claudefa.st/blog/guide/development/routines-guide"
+          ]
+        },
+        {
+          "claim": "The robust pattern is a thin extractor (Playwright or official JSON API) plus Claude as the reasoning layer, not Claude as the scraper.",
+          "confidence": "high",
+          "evidence": "For SPAs the clean approach is to call the same JSON API the SPA calls or use Playwright; Claude Code strength is reasoning over structured content, with WebFetch reserved for static trusted pages.",
+          "implication": "Design the routine as a deterministic extractor producing structured JSON of competitor ads and posts, then Claude reads the JSON, writes the digest, dedupes, flags new creatives and feeds discovery. This isolates the brittle blockable part and fits the repo D-15 data-in-via-adapters split. Keep WebFetch for static slices only.",
+          "sources": [
+            "https://www.mindstudio.ai/blog/browser-automation-claude-code-playwright"
+          ]
+        },
+        {
+          "claim": "Routines are a research preview with limits that matter for a daily-forever job.",
+          "confidence": "medium",
+          "evidence": "Routines are explicitly research preview, gated to paid web-enabled plans. The in-session Cron and loop tools auto-expire after 7 days and are session-only. Cloud durability and quotas beyond the preview are not firmly documented.",
+          "implication": "Do not build the long-term monitor on in-session cron. Use cloud Routines if you accept preview risk, or build the durable version on GitHub Actions cron or a scheduled job on admin/api-server invoking headless claude -p or the Agent SDK, which removes the preview and plan dependency and gives an unrestricted browser and npm.",
+          "sources": [
+            "https://claudefa.st/blog/guide/development/scheduled-tasks",
+            "https://hidekazu-konishi.com/entry/claude_code_cicd_and_headless_automation.html"
+          ]
+        }
+      ],
+      "bottomLine": "Feasible, but not as a routine that WebFetches the ad libraries. WebFetch officially cannot render JS or SPAs, and the Meta Ad Library is exactly that, so it returns an empty shell for the primary target. The viable Claude-Code-native path is a cloud Routine (research preview; Pro/Max/Team/Enterprise plus Claude Code on the web; survives laptop closed) whose setup script installs Playwright and runs a headless-browser or JSON-API extractor in Bash, then has Claude synthesize the structured data into a daily market-intel digest. There is no Chrome extension or computer-use in headless cloud runs; Bash plus Playwright is the substitute. The more durable, preview-risk-free alternative is to run the same extractor plus headless claude -p or the Agent SDK on infrastructure you already have (GitHub Actions cron or a scheduled job on admin/api-server), giving an unrestricted browser and npm and avoiding preview and plan gating. Either way the winning architecture is a deterministic extractor feeding Claude as the reasoning layer, not Claude as the scraper.",
+      "officialApiForCompetitorData": "no",
+      "summary": "A Claude Code cloud Routine can run daily unattended with the laptop closed, but only on Pro/Max/Team/Enterprise with Claude Code on the web, and Routines is a research preview. The naive design of letting the routine WebFetch the Meta Ad Library does not work: Anthropic docs state WebFetch does not support JavaScript-rendered sites, and the Ad Library and competitor social pages are JS SPAs that return an empty HTML shell. The escape hatch is that a cloud routine is a full Claude Code container with Bash, filesystem, network and a pre-session setup script, so it can install Playwright and drive a real headless browser itself. There is no Chrome extension or computer-use in headless cloud runs; Bash plus Playwright replaces them. The realistic path is a scheduled cloud Routine that runs a Playwright or JSON-API extractor in Bash, then has Claude reason over the extracted JSON. WebFetch is only useful for static endpoints such as RSS, sitemaps, JSON APIs and PDFs, not the SPA UI.",
+      "brazilCaveats": "Nothing in Claude Code itself blocks Brazil use. WebSearch result sourcing is documented as US-only, but that does not block fetching or scraping non-US targets. Routines run on Anthropic US cloud, so the egress IP is US-based, which can trip geo and anti-bot heuristics on Meta properties and is a reason to run the extractor from a Brazil-resident host you control. Plans (Pro/Max/Team/Enterprise) are available in Brazil; billing is USD. The hard Brazil constraints (LGPD on personal data captured from competitor social pages, and whether an official competitor-data API exists) belong to the data-source dimensions, not this capability dimension, which assumes the legality and availability of the underlying data are resolved elsewhere."
+    }
+  ]
+}
