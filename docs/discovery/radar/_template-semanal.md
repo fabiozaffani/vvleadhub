@@ -8,6 +8,9 @@
 ## Movimentos relevantes
 - _Lançamentos, paradas, viradas de estratégia por concorrente._
 
+## Reputação & fraquezas observadas
+- _Reviews/prêmios novos; nota/sentimento por concorrente; fraquezas e sinais negativos acumulados; achados de cliente oculto da semana (preço/script/processo) — insumo do SWOT mensal._
+
 ## Modelos de LP / criativo observados
 - _Estrutura de LP, hero, prova social, CTA — padrões que informam nossas LPs (Fase 2)._
 
