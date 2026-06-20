@@ -75,6 +75,7 @@ próximo ciclo, em **levas de 3–4** (rajada grande re-bate no rate-limit 529 d
 | **Espaço Lago Novo + Vabene** | **Itupeva** (~15–20km) | mid | Acqua (lago/campo) | Estética de lago/campo a poucos km — monitorar pela **proximidade**. |
 | **Chácara Paraíso** | **Jundiaí** (~10km) | mid | Acqua (rústico-moderno) | Mesmo município. |
 | **Terras de Clara** | Morungaba | premium-partial | Acqua **e** Florest | Lago + envidraçado + **hospedagem + spa** — espelha o produto Hospedagem do VVF. |
+| **Villa Mantova** | **Santana de Parnaíba** (~40km Jundiaí) | premium-partial | Acqua (jardim/campo SP) | Jardim/campo metro-oeste, premiada 23–25, 18K. **Cidade corrigida** (não Vinhedo). |
 | **Villa Ásolo 1932** | Votorantim/Sorocaba | premium-partial | Serra (**Capela de Cristal**) | Vila italiana de 1932 + capela de vidro — match de feature com a Serra. |
 | **Dieters** | S. Bernardo (ABC) | **premium-full** | Acqua (lago) | All-inclusive, "1 evento por vez". Fora do catchment, mas **modelo VVF** — instrutivo. |
 | Casa Di Pietra | Serra Negra (~80km) | premium-partial | Serra (Toscana) | Villa toscana em pedra, curadoria Constance Zahn. |
@@ -114,7 +115,7 @@ checagem adversarial de homônimo ([`_raw/perfis-novos-b1.json`](_raw/perfis-nov
 
 **Espaço Brunholi — novo alvo-irmão** (onde mora o funil de casamento da família Brunholi): espacobrunholieventos.com.br · `@espacobrunholi` · salão **dedicado** a casamento/debutante/corporativo, ~150m do complexo Villa Brunholi (Caxambu/Jundiaí). `page_id` da Ad Library **pendente** (captura interrompida). Monitorar como par do Villa Brunholi — é o que tem o sinal de casamento.
 
-**Correção (leva 1) — Villa Mantova saiu do núcleo:** o `@villa.mantova` (18K — bate com o "18K" do panorama, é o mesmo ente) fica em **Santana de Parnaíba/SP** (corredor Castelo Branco, ~50min capital), **não** Vinhedo/Louveira — o "Estr. Estadual Vinhedo" era contaminação de snippet. Fora do catchment de Jundiaí (ver [`panorama.md`](panorama.md), não-objetivos). Não confundir com **Villa di Mantova Resort** (Águas de Lindóia, com "di", resort/spa).
+**Correção (leva 1) — Villa Mantova: a cidade, não a exclusão.** O `@villa.mantova` (18K — bate com o "18K" do panorama, é o mesmo ente) fica em **Santana de Parnaíba/SP**, **não** Vinhedo/Louveira (o "Estr. Estadual Vinhedo" era contaminação de snippet). Mas Santana de Parnaíba está a **~40 km / ~35 min de Jundiaí** (metro-oeste) — **dentro** do raio de ~100 km, então **segue no núcleo do catchment**, com tema re-ajustado (campo/jardim metro-oeste, não Vinhedo wine-country). `page_id` pendente — fica p/ a próxima leva. Não confundir com **Villa di Mantova Resort** (Águas de Lindóia, com "di", resort/spa).
 
 ---
 
@@ -175,5 +176,5 @@ checagem adversarial de homônimo ([`_raw/perfis-novos-b1.json`](_raw/perfis-nov
 - Verificar `@espacojardimsecreto_grs` (Sítio São Jorge) e o handle TikTok do Di Terrá.
 - **Perfil profundo dos NOVOS — leva 1 ✓ (20/jun):** `page_id` resolvido p/ Villa Brunholi,
   Castelo dos Vinhais e Terras de Clara (ver "Perfis resolvidos" acima). **Pendentes:** `page_id`
-  do **Espaço Brunholi** (captura interrompida) + perfil de **Espaço Lago Novo+Vabene** (Itupeva) e
-  **Chácara Paraíso** (Jundiaí) — próxima leva, em rajadas de 3–4 (529 transitório do servidor).
+  do **Espaço Brunholi** (captura interrompida) + perfil de **Espaço Lago Novo+Vabene** (Itupeva),
+  **Chácara Paraíso** (Jundiaí) e **Villa Mantova** (Santana de Parnaíba) — próxima leva, em rajadas de 3–4 (529 transitório do servidor).
