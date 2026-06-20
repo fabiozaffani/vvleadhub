@@ -14,6 +14,8 @@ export default tseslint.config(
       "**/.output/**",
       "**/coverage/**",
       "packages/contracts/generated/**",
+      "packages/api-zod/src/generated/**",
+      "packages/api-client/src/generated/**",
       // Diretórios de ambiente local / resíduo de tooling (não existem no repo/CI) — evita ruído de lint local.
       "**/.local/**",
       "**/.cache/**",

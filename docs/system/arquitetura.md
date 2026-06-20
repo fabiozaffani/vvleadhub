@@ -62,11 +62,26 @@ Fronteiras de propriedade:
 |---|---|---|
 | Site público | **Astro** (SSR/SSG/ilhas React) | mínimo JS por padrão → CWV agressivo por construção; A/B server-side sem flicker |
 | Admin/CMS | **Payload CMS** (Next-hosted) | blocks, versionamento, live preview, RBAC prontos; Postgres adapter (Drizzle por baixo) |
-| API operacional | **Express 5 + PostgreSQL + Drizzle** | build novo (greenfield — D-7); contrato **OpenAPI** como fonte de verdade + codegen → `packages/contracts/generated` |
+| API operacional | **Express 5 + PostgreSQL + Drizzle** | build novo (greenfield — D-7); contrato **OpenAPI** (`packages/api-spec`) como fonte de verdade + codegen Orval → `@vvf/api-zod`/`@vvf/api-client` (D-22) |
 | Eventos/análise | **PostHog** | self-hosted ou cloud, sob domínio próprio |
 | Linguagem | TypeScript end-to-end | contratos tipados = AI-buildable |
 | Edge | **Cloudflare** | CDN/WAF/cache/rate-limit na frente dos três runtimes |
 | Mídia (D-10) | **Cloudflare R2 + Images** | originais no R2 (plugin de storage do Payload; nada no filesystem do runtime); derivados responsivos AVIF/WebP on-the-fly via Images |
+
+### §3.1 — Codegen de contratos (D-22)
+
+Dois geradores, fontes distintas, alvos distintos — nada de tipo cruzado escrito à mão:
+
+```
+packages/api-spec/openapi.yaml ──Orval──┬─► @vvf/api-zod    (Zod de borda)      → api-server (valida req/params)
+   (contrato HTTP, fonte única)         └─► @vvf/api-client (hooks React Query) → admin (chama o api-server)
+
+admin (Payload collections) ──payload generate:types──► packages/contracts/generated/payload-types.ts → site (tipa respostas de conteúdo)
+
+packages/contracts/src (events · lead · http-errors) ──hand-written──► site · admin · api-server  (contratos de domínio)
+```
+
+Regra de ouro: **gerado do OpenAPI → `api-zod`/`api-client`; gerado do Payload → `contracts/generated`; authored de domínio → `contracts`.** Drift de ambos os geradores é travado no CI (`pnpm codegen:check` por lockfile SHA256 + drift dos tipos do Payload — ver [`system/engenharia.md`](engenharia.md) e [`specs/engenharia/fronteiras.md`](../specs/engenharia/fronteiras.md)).
 
 ---
 

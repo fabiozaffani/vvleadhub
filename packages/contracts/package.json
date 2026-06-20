@@ -9,7 +9,9 @@
     ".": "./src/index.ts",
     "./events": "./src/events.ts",
     "./lead": "./src/lead.ts",
-    "./shared": "./src/shared.ts"
+    "./shared": "./src/shared.ts",
+    "./http-errors": "./src/http-errors.ts",
+    "./generated": "./generated/payload-types.ts"
   },
   "scripts": {
     "build": "tsc -p tsconfig.json",

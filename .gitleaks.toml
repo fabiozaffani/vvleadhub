@@ -1,0 +1,8 @@
+# Manifestos de drift-check (SHA256 de fontes geradas) — não são segredos.
+# Ver scripts/lockfile.mjs e scripts/checks/check-codegen-fresh.mjs (D-22).
+title = "VVLEADHUB gitleaks allowlist"
+
+[allowlist]
+paths = [
+  '''(^|/)\\.lockfile\\.json$''',
+]

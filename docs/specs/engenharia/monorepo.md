@@ -14,13 +14,17 @@ Como o código é fisicamente organizado: a árvore do monorepo (pnpm workspaces
 ├── site/                      ← Astro (público; output:'server'; zero credencial de banco)
 ├── admin/                     ← Payload + Next (conteúdo + Tracker Hub views)
 ├── api-server/                ← Express 5 + Drizzle (cola fina: /collect, Kommo, loop, links)
-└── packages/
-    └── contracts/             ← schema de evento (`system/eventos.md`), contrato de lead
-                                 (`specs/landing-pages/contrato-lead.md`), tipos gerados
-                                 (OpenAPI + payload generate:types) — ÚNICA fonte de tipos cruzados
+└── packages/                 ← pacotes compartilhados (cada um com `package.json` + `tsconfig.json`)
+    ├── contracts/             ← contratos de DOMÍNIO: schema de evento (`system/eventos.md`), contrato de
+    │                            lead (`specs/landing-pages/contrato-lead.md`), `http-errors.ts` (ErrorCode,
+    │                            D-23) + `generated/` (SÓ `payload generate:types`) — gated por CODEOWNERS
+    ├── api-spec/              ← `openapi.yaml` (fonte de verdade do contrato HTTP) + `orval.config.ts`;
+    │                            NÃO importado em runtime — só insumo do codegen (D-22)
+    ├── api-zod/               ← Zod de borda gerado (Orval) — consumido SÓ pelo api-server
+    └── api-client/            ← hooks React Query gerados (Orval) + `custom-fetch.ts` — consumidos SÓ pelo admin
 ```
 
-Regras: nomes de pasta exatamente estes; cada runtime tem `package.json` próprio; nada fora do workspace pnpm. **`packages/ui` foi cortado da v1** (auditoria de delegação jun/2026): site Astro e admin React mal compartilham UI real, e "(opcional)" para um agente lê-se "construa". Criar só com dor dupla comprovada.
+Regras: nomes de pasta exatamente estes; cada runtime/pacote tem `package.json` próprio; nada fora do workspace pnpm. **Pipeline HTTP em 3 pacotes (D-22):** o contrato OpenAPI vive em `packages/api-spec` (desacoplado do runtime) e o codegen Orval desagua em `api-zod`/`api-client` — **não** mais em `contracts/generated/`, que ficou só para o Payload. **`packages/ui` foi cortado da v1** (auditoria de delegação jun/2026): site Astro e admin React mal compartilham UI real, e "(opcional)" para um agente lê-se "construa". Criar só com dor dupla comprovada — mesma régua para um eventual `packages/cms-types`.
 
 ## 1.1 Arquitetura interna dos runtimes (estrutura e camadas)
 
@@ -28,8 +32,7 @@ Regras: nomes de pasta exatamente estes; cada runtime tem `package.json` própri
 
 ```
 api-server/
-├── openapi.yaml             ← contrato (fonte de verdade; codegen p/ contracts)
-└── src/
+└── src/                     ← o contrato OpenAPI vive em `packages/api-spec` (D-22), não aqui
     ├── routes/              ← HTTP fino: valida entrada (Zod), chama service, responde. ZERO lógica de negócio
     ├── services/            ← lógica de negócio pura e testável (dedup D-11, loop fechado, xcode, ingestão D-13)
     ├── repositories/        ← acesso ao schema `app` (Drizzle). ÚNICO lugar que toca o banco
@@ -62,9 +65,22 @@ Distinção dura: **Bloco ≠ component.** Bloco é a unidade editorial das prim
 
 Segue a **convenção nativa do framework** — `collections/` (1 arquivo por entidade das primitivas da plataforma: subjects, subject-types via código, lps, templates, posts, media…), `blocks/` (espelho 1:1 dos blocos do site), `access/` (RBAC — D-12), `views/` (Tracker Hub), `hooks/` (purge de cache no publish, webhooks). Regra: onde o framework tem convenção, não se inventa estrutura própria.
 
-### `packages/contracts/`
+### `packages/contracts/` (contratos de domínio)
 
-`events.ts` (schema canônico de evento — ver `system/eventos.md`) · `lead.ts` (contrato de lead — ver `specs/landing-pages/contrato-lead.md`) · `generated/` (tipos do OpenAPI — nunca editados à mão).
+`events.ts` (schema canônico de evento — ver `system/eventos.md`) · `lead.ts` (contrato de lead — ver `specs/landing-pages/contrato-lead.md`) · `http-errors.ts` (`errorCodeSchema`/`ErrorCode` — fonte única do code do envelope HTTP, D-23) · `generated/` (**só** os tipos do `payload generate:types`, consumidos pelo `site` — nunca editados à mão). Gated por CODEOWNERS.
+
+### `packages/api-spec/` · `api-zod/` · `api-client/` (pipeline HTTP — D-22)
+
+Fluxo de codegen, espelhando o `lib/` do ERPVVF adaptado a `packages/`:
+
+```
+packages/api-spec/openapi.yaml   ← fonte de verdade (sem import em runtime)
+        │  pnpm codegen:api  (Orval 8.9.1)
+        ├─► packages/api-zod/src/generated/      → @vvf/api-zod   (validação de borda; SÓ api-server)
+        └─► packages/api-client/src/generated/   → @vvf/api-client (hooks React Query; SÓ admin)
+```
+
+Regra de ouro: **gerado do OpenAPI → `api-zod`/`api-client`; authored de domínio → `contracts`; gerado do Payload → `contracts/generated`.** Tudo sob `src/generated/` é saída do Orval — nunca editado à mão; as únicas partes hand-written são os barrels `src/index.ts` e o `custom-fetch.ts`. Editar o contrato = editar `openapi.yaml` + `pnpm codegen:api` (drift travado no CI por lockfile SHA256 — ver [`fronteiras.md`](fronteiras.md)/[`ci-gates.md`](ci-gates.md)).
 
 ### Testes
 

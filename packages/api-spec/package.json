@@ -1,0 +1,13 @@
+{
+  "name": "@vvf/api-spec",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Contrato OpenAPI do api-server — fonte de verdade do pipeline HTTP (D-22). Não importado em runtime; só codegen Orval.",
+  "scripts": {
+    "codegen": "orval --config ./orval.config.ts && node ../../scripts/codegen-write-lockfiles.mjs && pnpm --filter @vvf/api-zod --filter @vvf/api-client run typecheck"
+  },
+  "devDependencies": {
+    "orval": "^8.9.1"
+  }
+}

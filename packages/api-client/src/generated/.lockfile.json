@@ -1,0 +1,6 @@
+{
+  "version": 1,
+  "sources": {
+    "packages/api-spec/openapi.yaml": "985fb7272e6fbf859e0251635ad86cb0dc2dad102a8c20aff6043808e7df3cdf"
+  }
+}
