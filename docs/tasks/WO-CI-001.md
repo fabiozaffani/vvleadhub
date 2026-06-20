@@ -12,7 +12,7 @@ skills: [work-order]
 ## Objetivo
 Fechar dois furos do gate de qualidade que hoje não bloqueiam.
 
-## Arquivos
+## Arquivos permitidos (a cerca)
 `.github/workflows/ci.yml`, scripts de `package.json` / `packages/contracts`.
 
 ## Aceite

@@ -1,7 +1,9 @@
 ---
 id: WO-DOCS-001
-status: in_progress
+status: done
 traces: [_index.md]
+deps: []
+skills: [sync-governanca, doc-business-mapper, doc-specs-mapper, doc-system-mapper, doc-lexicon-keeper, doc-roadmap-keeper, doc-reconciler]
 ---
 # WO-DOCS-001 · Migração para a taxonomia canônica VV
 
@@ -9,6 +11,11 @@ traces: [_index.md]
 
 ## Objetivo
 Dissolver os docs numerados legados (`00–09`, `99`) e as pastas fora da taxonomia (`brand/`, `conteudo/`) na taxonomia canônica `discovery → business → specs → system → tasks-drafts → tasks` + `roadmap` + espinha `_index`/`_lexico`/`decisoes`. App greenfield — cross-refs reescritos, sem backward-compat.
+
+## Arquivos permitidos (a cerca)
+- `docs/**` — taxonomia canônica (business/specs/system/discovery/roadmap + espinha _index/_lexico/_decisoes)
+- `AGENTS.md`, `.cursor/rules/**` — reescrita de cross-refs
+- `.github/**`, `.agents/memory/**` — cross-refs/comentários
 
 ## Entregue por esta migração
 - `business/comercial/` (← 01, com Autoral corrigido para nível máximo), `discovery/auditoria-pre-build.md` (← 99).

@@ -2,6 +2,8 @@
 id: WO-INFRA-001
 status: pending
 traces: [system/arquitetura.md, specs/engenharia/ambientes-secrets.md, _decisoes.md]
+deps: [WO-CORE-001]
+skills: [work-order]
 ---
 # WO-INFRA-001 · Provisionamento + prova do isolamento D-9
 
@@ -10,7 +12,7 @@ traces: [system/arquitetura.md, specs/engenharia/ambientes-secrets.md, _decisoes
 ## Objetivo
 Provisionar Postgres + os 3 deployments sob subdomínios (Cloudflare na frente), Secrets, e **aplicar e provar** o isolamento de schema D-9.
 
-## Arquivos
+## Arquivos permitidos (a cerca)
 `infra/**`, configs de deploy/Secrets do provedor (a definir na Fase 0b — D-18). **Não tocar código de produto.**
 
 ## Aceite

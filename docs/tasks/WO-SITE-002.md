@@ -2,6 +2,8 @@
 id: WO-SITE-002
 status: in_progress
 traces: [specs/landing-pages/seo-canonico.md, specs/blog/seo-on-page.md, system/arquitetura.md, specs/engenharia/acessibilidade.md]
+deps: [WO-SITE-001, WO-SITE-004]
+skills: [work-order, app-seo-schema-org, app-a11y-axe]
 ---
 # WO-SITE-002 · SEO/CWV: structured data por tipo + gate axe + rotas no Lighthouse
 
@@ -16,7 +18,7 @@ Feito: JSON-LD `LocalBusiness` genérico, sitemap/robots/canonical/OG, `lighthou
 - Gate **axe** ativo: script `test:a11y` (`@axe-core/playwright`) no `site/` para o CI deixar de emitir `::warning::` e passar a **bloquear** (sem violação nova).
 - Lighthouse cobrindo **home + 1 espaço + 1 post** (depende das rotas de detalhe — [`WO-SITE-004`](WO-SITE-004.md) e a página de espaço, Fase 2).
 
-## Arquivos
+## Arquivos permitidos (a cerca)
 `site/**`, `lighthouserc.json`.
 
 ## Aceite

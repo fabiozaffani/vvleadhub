@@ -15,7 +15,7 @@ Subir o api-server real: Express 5 em camadas, `/health`, observabilidade e o co
 ## Estado atual
 Só existe stub de tipos + `db/schema.ts` (appSchema, D-9) + `drizzle.config.ts` + regras de fronteira dormentes. **Nada de runtime.**
 
-## Arquivos
+## Arquivos permitidos (a cerca)
 `api-server/**`; `packages/api-spec/**` (o `openapi.yaml` real) e `packages/api-zod/**`/`packages/api-client/**` (regenerados via `pnpm codegen:api`) só por PR gated.
 
 ## Aceite (F0/F1)

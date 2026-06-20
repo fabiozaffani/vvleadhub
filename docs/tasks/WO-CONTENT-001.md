@@ -2,6 +2,8 @@
 id: WO-CONTENT-001
 status: pending
 traces: [roadmap/inventario-conteudo.md, roadmap/fases.md]
+deps: []
+skills: [work-order, app-copy-marca]
 ---
 # WO-CONTENT-001 · Páginas legais + inventário + galerias reais
 
@@ -9,6 +11,10 @@ traces: [roadmap/inventario-conteudo.md, roadmap/fases.md]
 
 ## Objetivo
 Fechar as dependências não-técnicas que gate a Fase 0 (03/roadmap §7.1).
+
+## Arquivos permitidos (a cerca)
+- `site/src/pages/**` — páginas legais
+- `docs/roadmap/inventario-conteudo.md` — dono/prazo por item (preenchido pelo fundador)
 
 ## Aceite
 - Páginas legais publicadas (placeholder jurídico **aprovado pelo fundador** — exigência de ads).

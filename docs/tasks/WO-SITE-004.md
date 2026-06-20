@@ -2,6 +2,8 @@
 id: WO-SITE-004
 status: pending
 traces: [specs/blog/modelo-post.md, specs/blog/seo-on-page.md, roadmap/composicao-paginas.md]
+deps: [WO-SITE-001]
+skills: [work-order, app-seo-schema-org, app-copy-marca]
 ---
 # WO-SITE-004 · Rota de post de blog `/blog/{slug}`
 
@@ -10,7 +12,7 @@ traces: [specs/blog/modelo-post.md, specs/blog/seo-on-page.md, roadmap/composica
 ## Objetivo
 Construir a página de post (`/blog/{slug}`) — hoje os cards do índice linkam para `href="#"`. Fecha o critério "1 post" do Lighthouse em [`WO-SITE-002`](WO-SITE-002.md).
 
-## Arquivos
+## Arquivos permitidos (a cerca)
 `site/src/pages/blog/[slug].astro`, `site/src/lib/**`.
 
 ## Aceite

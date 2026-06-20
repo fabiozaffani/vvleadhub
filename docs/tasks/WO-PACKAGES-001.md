@@ -12,7 +12,7 @@ skills: [work-order, sync-governanca]
 ## Objetivo
 Reorganizar `packages/` para o modelo de pipeline HTTP em 3 pacotes (D-22), sem subir o Express ainda. Deixar contrato, codegen, fronteiras e drift-check prontos para o [`WO-API-001`](WO-API-001.md) só preencher os endpoints.
 
-## Arquivos
+## Arquivos permitidos (a cerca)
 `packages/api-spec/**`, `packages/api-zod/**`, `packages/api-client/**`, `packages/contracts/**`, `scripts/**`, `.dependency-cruiser.cjs`, `eslint.config.js`, `.prettierignore`, `package.json`, `site/tsconfig.json`, `.github/CODEOWNERS`, `.cursor/rules/**`, `AGENTS.md`, `docs/**`.
 
 ## Aceite

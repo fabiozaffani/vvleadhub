@@ -2,6 +2,8 @@
 id: WO-ADMIN-001
 status: done
 traces: [specs/admin/registros.md, specs/admin/rbac.md, specs/plataforma/primitivas.md, system/admin.md]
+deps: []
+skills: [work-order]
 ---
 # WO-ADMIN-001 · Payload base + registros do 02
 
@@ -10,7 +12,7 @@ traces: [specs/admin/registros.md, specs/admin/rbac.md, specs/plataforma/primiti
 ## Objetivo
 Payload (Next-hosted) no schema `payload` (D-9), com as collections do registro da plataforma e RBAC (D-12).
 
-## Arquivos
+## Arquivos permitidos (a cerca)
 `admin/**` (não tocar `site/`, `api-server/`, `packages/contracts`).
 
 ## Aceite (entregue)

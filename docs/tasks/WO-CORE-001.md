@@ -2,6 +2,8 @@
 id: WO-CORE-001
 status: done
 traces: [specs/engenharia/monorepo.md, specs/engenharia/fronteiras.md, specs/engenharia/ci-gates.md, specs/engenharia/ambientes-secrets.md, _decisoes.md]
+deps: []
+skills: [work-order]
 ---
 # WO-CORE-001 · Guardrails como código (Fase 0a)
 
