@@ -4,7 +4,7 @@ Alvos da vigília competitiva. Fonte: lista do fundador (jun/2026) + varredura a
 assets (`competitor-asset-sweep`, 19/06/2026 — 1 agente/concorrente + verificação de
 propriedade contra homônimos). Assets confirmados salvo nota de confiança.
 
-> Coleta (D-22, emenda à D-19): público ou não — cliente oculto no escopo. Cerca: meios legítimos; minimizar PII de indivíduos; alvo é a inteligência de negócio; sem reusar criativo alheio. Uso interno.
+> Coleta (D-24, emenda à D-19): público ou não — cliente oculto no escopo. Cerca: meios legítimos; minimizar PII de indivíduos; alvo é a inteligência de negócio; sem reusar criativo alheio. Uso interno.
 
 > **Companheiro:** [`panorama.md`](panorama.md) cruza ~60 venues por **estética × tier ×
 > espaço VVF** (quem disputa cada fantasia/espaço). Este arquivo é o **registro de alvos**
