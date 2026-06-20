@@ -20,10 +20,15 @@ dá o veredito (validar/congelar/descartar). O radar **coleta e sintetiza; não 
 ## Estrutura
 
 - [`concorrentes.md`](concorrentes.md) — registro de alvos (assets primários + secundários).
+- [`panorama.md`](panorama.md) — mapa competitivo amplo por **estética × tier × espaço VVF**
+  (~60 venues do catchment ~100 km). Companheiro do `concorrentes.md`: cruza quem disputa cada
+  fantasia/espaço; o registro guarda os assets/page_id.
 - [`fontes.md`](fontes.md) — catálogo de fontes × o que entrega × método × ressalva Brasil.
 - `diario/AAAA-MM-DD.md` — findings do dia: novo / parado / no ar por concorrente + sinais de tendência.
 - `semanal/AAAA-Www.md` · `mensal/AAAA-MM.md` · `anual/AAAA.md` — rollups.
 - `_template-{diario,semanal,mensal}.md` — moldes.
+- `_raw/*.json` — saídas brutas dos sweeps multi-agente (preservadas; o resumo curado vive em
+  `panorama.md`/`concorrentes.md`).
 
 ## Guardrails (D-19)
 

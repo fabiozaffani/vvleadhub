@@ -1,0 +1,471 @@
+{
+  "summary": "Garimpa venues de casamento premium num raio ~100km de Jundiaí/SP, classifica por tier (premium full-service vs parcial vs classe-abaixo), e perfila os comparáveis diretos + o Grupo Conti com verificação de propriedade",
+  "agentCount": 12,
+  "logs": [],
+  "result": {
+    "shortlist": {
+      "premiumComparables": [
+        {
+          "name": "Estação Fazenda",
+          "city": "Jarinu (bairro Pitangal, entre Jundiaí e Jarinu)",
+          "group": "Grupo Conti",
+          "instagram": "@estacaofazenda",
+          "url": "https://estacaofazenda.com/",
+          "why": "Comparável MAIS direto. All-inclusive real do Grupo Conti (pin do fundador): pacote único = locação exclusiva + buffet próprio + decoração + bar + DJ/som/iluminação + coordenação, ambiente natural (jardim, lago, capela, deck sobre o lago ao pôr do sol), até 200 convidados em 22.000+ m². Mesmo modelo do VVF (espaço+buffet+estrutura num pacote escalonado, ecoando Essential->Inspiração), ~1h de SP. VERIFICADO: estacaofazenda.com confirma pacote completo e buffet próprio."
+        },
+        {
+          "name": "Fazenda Santa Isabel",
+          "city": "Itatiba",
+          "group": "Grupo Conti",
+          "instagram": "@fazendaszaisabeleventos",
+          "url": "https://www.fazendasantaisabeleventos.com.br/",
+          "why": "Pin do fundador (Grupo Conti, irmã da Estação Fazenda). Fazenda histórica anos-1920, all-inclusive com buffet próprio: pacotes incluem decoração, buffet, bar, banda, iluminação; cerimônia ao ar livre com pérgula e lagos, casa-sede que hospeda até 20 + suíte dos noivos, até 260 convidados, <50min de SP. VERIFICADO: site próprio + casamentos.com.br confirmam buffet próprio e pacote completo. Mesmo modelo do VVF, mesmo grupo premium conhecido."
+        },
+        {
+          "name": "Espaço Lago Esmeralda",
+          "city": "Itu",
+          "group": "",
+          "instagram": "@lagoesmeraldawedding",
+          "url": "https://www.espacolagoesmeralda.com.br/",
+          "why": "Concorrente full-service mais comparável fora do Grupo Conti. ~12.000 m² de gramados de frente para lago privativo, gazebo, capela ampla, salão climatizado, cozinha industrial de 60m² em inox, oferta de buffet gourmet + decoração + segurança, 3 suítes + suíte master de hospedagem. Natureza + estrutura + pacote no mesmo eixo do VVF, ~75km de SP (no catchment). VERIFICADO: site confirma o ambiente natural premium, cozinha industrial e hospedagem; posiciona-se como topo de gama do interior."
+        },
+        {
+          "name": "Espaço La Forêt",
+          "city": "São Roque",
+          "group": "",
+          "instagram": "@espacolaforet",
+          "url": "https://espacolaforet.com.br/",
+          "why": "All-inclusive de verdade, modelo idêntico ao VVF: espaço + gastronomia (buffet próprio com cardápios clássico/premium/intermediário/veg) + hospedagem (hotel boutique exclusivo) + bar/chope + DJ + decoração sob um só teto, sem múltiplos fornecedores. 3 cenários de cerimônia em Mata Atlântica (bambuzal, mirante pôr do sol, capela de vidro), 13 anos, +1.100 casamentos, 8 Casamentos Awards consecutivos. VERIFICADO via Lápis de Noiva: confirma o 'tudo num lugar só' + hotel próprio. São Roque (corredor Castello/Alphaville), dentro do raio. Concorrente direto forte pelo público de SP/Alphaville."
+        }
+      ],
+      "tierBelowOrPartial": [
+        {
+          "name": "Ville La Rochelle",
+          "city": "Jarinu",
+          "note": "PREMIUM/LUXO mas modelo PARCIAL. Nome mais aspiracional da sub-região (featured Constance Zahn) — conceito de vilarejo francês, fazenda de café restaurada, hospedagem da família + suíte da noiva + Porsche. Concorre pela MESMA noiva premium em preço/prestígio, mas NÃO opera buffet próprio (locação de alto padrão + estrutura/hospedagem, buffets parceiros). Não é all-inclusive como o VVF."
+        },
+        {
+          "name": "Fazenda Quinta dos Pinheiros",
+          "city": "Jarinu",
+          "note": "PARTIAL-PACKAGE premium. Inaugurada 2021, arquitetura luso-italiana, capela, hospedagem (10 quartos), heliponto, ~60km de SP, 43K seguidores. Locação + estrutura cerimonial com buffet de parceiro (ex. L'Nôtre nas degustações) — não o pacote único do VVF."
+        },
+        {
+          "name": "Fazenda Tucunduva",
+          "city": "Cabreúva",
+          "note": "PARTIAL-PACKAGE premium. Fazenda de café centenária (1842), patrimônio histórico, 5 terraços, capela, 3 lagos, ~98km de SP (limite do catchment), marca forte (44K). Modelo locação + parceiros. Narrativa de fazenda histórica autêntica que o VVF (espaço criado, INV-01) não tem."
+        },
+        {
+          "name": "Espaço Apoema",
+          "city": "Atibaia",
+          "note": "PARTIAL-PACKAGE premium. Às margens do Rio Atibaia, +20.000 m² de vegetação nativa, lago com ilha. Fora das cidades-alvo mas dentro do raio ~100km. Locação + rede de parceiros (sem buffet próprio)."
+        },
+        {
+          "name": "Casa Magna Eventos",
+          "city": "Sorocaba",
+          "note": "PARTIAL-PACKAGE premium (perfil 'Casa Giardino'). 14.000 m² com mata nativa, arquitetura contemporânea, cerimônia sob Tipuana, valet/segurança. Estética e natureza de alto padrão, mas SÓ-LOCAÇÃO — buffet e serviços por fornecedor do casal."
+        },
+        {
+          "name": "Fazenda Alvorada Eventos",
+          "city": "Sorocaba",
+          "note": "PARTIAL-PACKAGE. Fazenda histórica (1960), Capela São Roque, 12 suítes 'de luxo'. Hospedagem própria e charme de fazenda aproximam do VVF, mas NÃO fornece buffet (catering do casal)."
+        },
+        {
+          "name": "Vila Tramonti",
+          "city": "Indaiatuba",
+          "note": "PARTIAL-PACKAGE. Cenário toscano de altíssimo apelo visual (50.000 m² com vinhedos), mas modelo só-locação — sem buffet próprio nem all-inclusive. Compete pela paisagem."
+        },
+        {
+          "name": "Fazenda Dona Catarina",
+          "city": "Mairinque (corredor Castello)",
+          "note": "PARTIAL-PACKAGE. Sesmaria 1841, tenda transparente, hotel próprio robusto (~44 quartos/~100 hóspedes). Hospedagem aproxima do VVF; buffets terceirizados (Jardins de Monet, Baracat) = pacote parcial."
+        },
+        {
+          "name": "Villa Della Luce",
+          "city": "Itu",
+          "note": "NOVO (não estava no scan; via Constance Zahn). PREMIUM em estética/prestígio — +40.000 m², capela, deck, salão contemporâneo climatizado, hospedagem, 50min de SP. Mas perfil locação + cozinha de buffet (parceiros), não all-inclusive próprio. Concorre pela noiva premium."
+        },
+        {
+          "name": "Alto das Palmeiras",
+          "city": "Vinhedo",
+          "note": "NOVO (via Constance Zahn). PREMIUM/luxo — paisagismo de palmeiras raras, salão de vidro p/300, deck suspenso, SPA L'Occitane, suítes premium. Mas é locação: 'cozinha de buffet' + lista de fornecedores parceiros para buffet/decoração. Não all-inclusive próprio."
+        },
+        {
+          "name": "Fazenda Santa Bárbara",
+          "city": "Itatiba",
+          "note": "NOVO (surgiu na busca). Salão 700m² sem colunas, 7 opções de cerimônia, capela, suítes, piscina decorativa, <50min de SP. Cozinha industrial com acesso planejado p/ buffet (terceirizado) = partial-package premium, não all-inclusive."
+        },
+        {
+          "name": "Fazenda Embaúva",
+          "city": "Itu",
+          "note": "PARTIAL-PACKAGE. Engenho de 1827/fazenda de café 1829, casa da noiva e do noivo, cozinha industrial, até 400, ~50min de SP. Apelo histórico forte, mas estrutura de locação + cozinha p/ buffet (sem buffet próprio claro)."
+        },
+        {
+          "name": "Quintas São Pedro",
+          "city": "Itu",
+          "note": "MID/premium urbano. Antiga Fiação São Pedro restaurada (910m², até 350), estética histórico-industrial-chic no centro de Itu. Não é 'ambiente natural' nem all-inclusive — compete por estética, não por experiência completa em natureza."
+        },
+        {
+          "name": "Sítio Raiar do Sol",
+          "city": "Itu",
+          "note": "MID. Tem buffet próprio (cardápios R$57-135/convidado) — mais perto do modelo VVF que os só-locação — mas ticket e posicionamento abaixo do alto padrão VVF. 3 salões + área aberta, até 300."
+        },
+        {
+          "name": "Casa Giardino",
+          "city": "Mogi das Cruzes",
+          "note": "PIN do fundador = pacote PARCIAL. Mata Atlântica, 4 áreas de cerimônia, salão de madeira/vidro, 1 evento/dia, <1h de SP / <30min de Guarulhos. Premium no espaço/natureza, mas locação (buffet do casal). Referência de tier 'partial-package' premium. Fica em Mogi — fora do catchment-alvo de Jundiaí, mas relevante como benchmark de modelo."
+        },
+        {
+          "name": "Espaço55 / Espaço Mais / VABENE / Espaço dos Sonhos / Sítio Enfesta",
+          "city": "Itupeva / Campo Limpo Paulista / Louveira",
+          "note": "MID. Chácaras/espaços de eventos com apelo de natureza ou estética de nicho (boho/rústico), autodeclaram sofisticação mas sem buffet próprio nem pacote premium curado. Faixa intermediária — comparabilidade fraca com o VVF."
+        },
+        {
+          "name": "Solar de Jundiaí / Speranza Eventos / Villa Traviú",
+          "city": "Jundiaí",
+          "note": "MID. Salões/espaços-evento tradicionais (paisagismo artificial no Solar; salão indoor 450m² no Speranza; antiga propriedade de uva no Traviú). Locação, sem buffet próprio, posicionamento de volume/conveniência — não o premium em natureza do VVF."
+        },
+        {
+          "name": "Buffet Callegari (Recanto Callegari / Espaço Itália / Sítio Recanto das Torres)",
+          "city": "Mairiporã (Serra da Cantareira)",
+          "note": "PIN do fundador = uma CLASSE ABAIXO. Buffet próprio (all-inclusive estruturalmente) na Serra da Cantareira, salões 230-830m² até 400, suítes p/ noivos. Mas posicionamento/estética abaixo do premium VVF — referência de tier 'below'. Fora do catchment-alvo (Mairiporã)."
+        },
+        {
+          "name": "Chácara 2 Lagos / Sítio Pula Pula / Chácara Vale dos Sonhos",
+          "city": "Itupeva / Campo Limpo Paulista",
+          "note": "BELOW. Chácaras de eventos/lazer (piscina, bilhar, brinquedos) com apelo de natureza ou buffet próprio popular/familiar. Não competem com o VVF — listados só para completude do levantamento."
+        }
+      ],
+      "notes": "DEDUP: nenhum venue aparecia duplicado entre as 6 sub-regiões do JSON (o scan já vinha consolidado por região); o JSON foi truncado no Espaço55 (Indaiatuba) — classifiquei-o pelo texto parcial disponível (sítio 8.000m², só-locação, buffet terceirizado = partial-package fraco).\n\nPINS DO FUNDADOR — todos verificados:\n- Grupo Conti: confirmadas DUAS marcas de casamento — Estação Fazenda (Jarinu) e Fazenda Santa Isabel (Itatiba), ambas all-inclusive com buffet próprio. O 'terceiro espaço' do grupo NÃO aparece publicamente como venue de casamento (o grupo tem braço corporativo — corporativo.estacaofazenda.com); provavelmente é um espaço corporativo/de eventos, não um 3º venue nupcial. Não inventei nome — fica registrado como lacuna a confirmar com o fundador.\n- Casa Giardino (Mogi) = confirmado partial-package (locação premium, buffet do casal). Fora do catchment de Jundiaí, mas é o benchmark de tier 'partial'.\n- Callegari (Mairiporã) = confirmado uma classe abaixo (buffet próprio, mas posicionamento abaixo do premium VVF).\n\nDEFINIÇÃO DE TIER (achado central): o modelo VVF (buffet PRÓPRIO + estrutura + hospedagem num pacote único escalonado, ambiente natural, alto padrão) é RARO na região. Só 4 venues batem de fato: Estação Fazenda, Fazenda Santa Isabel (Grupo Conti), Espaço Lago Esmeralda e Espaço La Forêt. A maioria dos 'premium' da região é PREMIUM-MAS-PARCIAL — locação de alto padrão + buffet/serviços terceirizados (Ville La Rochelle, Quinta dos Pinheiros, Tucunduva, Apoema, Casa Magna, Vila Tramonti, Dona Catarina, Villa Della Luce, Alto das Palmeiras, Santa Bárbara, Embaúva). Concorrem pela mesma noiva premium e pelo mesmo prestígio, mas NÃO pelo 'sem surpresas' de um pacote único gerenciado — esse é o diferencial competitivo do VVF (INV-03 experiência integrada, INV-08 sem surpresas).\n\nNOVOS CANDIDATOS fora do scan original (via Guia Constance Zahn + buscas), todos verificados: Villa Della Luce (Itu), Alto das Palmeiras (Vinhedo), Fazenda Santa Bárbara (Itatiba), Fazenda Embaúva (Itu). Constance Zahn também listou Casa Villela (Itatiba), Maison Terroir (Bragança Paulista) e Vila Manresa (Indaiatuba) na região — não aprofundados aqui (Bragança no limite do raio); valem um scan futuro se quiser cobertura total.\n\nRanking de ameaça competitiva direta ao VVF: (1) Estação Fazenda — clone do modelo, mesma micro-região, mesmo grupo premium; (2) Espaço La Forêt — all-inclusive idêntico, marca forte (8 awards), público SP/Alphaville; (3) Espaço Lago Esmeralda — full-service em natureza, Itu; (4) Fazenda Santa Isabel — mesmo grupo, Itatiba. Logo abaixo, como ameaça de PRESTÍGIO (não de modelo): Ville La Rochelle, pela noiva top de gama.\n\nHonestidade sobre dados: La Forêt teve o site próprio em manutenção na verificação — confirmação do all-inclusive veio de agregador editorial (Lápis de Noiva) + Casamentos.com.br, fontes consistentes. Para Lago Esmeralda o site confirma cozinha industrial + hospedagem + oferta de buffet gourmet, mas não detalha se o buffet é 100% próprio ou curadoria — tratado como premium-full pela oferta integrada declarada; vale confirmar na due diligence comercial."
+    },
+    "profiles": [
+      {
+        "competitor": "Grupo Conti",
+        "tier": "premium-full",
+        "facebookPageId": "61574656941025",
+        "confirmedPrimary": [
+          {
+            "type": "site",
+            "url": "https://www.contieventos.com.br/"
+          },
+          {
+            "type": "instagram",
+            "url": "https://www.instagram.com/grupocontieventos/"
+          },
+          {
+            "type": "facebook",
+            "url": "https://www.facebook.com/profile.php?id=61574656941025"
+          },
+          {
+            "type": "linkedin",
+            "url": "https://www.linkedin.com/company/99572907/"
+          },
+          {
+            "type": "youtube",
+            "url": "https://www.youtube.com/@ChefEvandroConti"
+          },
+          {
+            "type": "blog",
+            "url": "https://www.contieventos.com.br/blog"
+          }
+        ],
+        "discoveredSecondary": [
+          {
+            "type": "youtube",
+            "url": "https://www.youtube.com/@GrupoConti",
+            "confidence": "low",
+            "label": "YouTube channel '@GrupoConti'",
+            "ownershipNote": "Surfaced in search as 'Grupo Conti - YouTube'. The official site/blog link to @ChefEvandroConti instead. Could not scrape channel description to confirm same wedding group vs. homonym; treat as unverified."
+          },
+          {
+            "type": "site",
+            "url": "https://corporativo.estacaofazenda.com/",
+            "confidence": "high",
+            "label": "Estacao Fazenda - Eventos Corporativos (corporate sub-site)",
+            "ownershipNote": "Corporate-events landing for Estacao Fazenda; copy explicitly 'O Grupo Conti'. Webdesign by Marketeria Smart. B2B funnel for the same group, separate from the wedding site."
+          },
+          {
+            "type": "assessoria-profile",
+            "url": "https://assessorias.casar.com/estaofazendaeventos",
+            "confidence": "medium",
+            "label": "'Grupo Conti - Eventos' profile on Casar.com",
+            "ownershipNote": "Wedding-planning/assessoria directory profile branded 'Grupo Conti - Eventos', references Fazenda Santa Isabel. Third-party listing platform, not an owned domain."
+          },
+          {
+            "type": "linktree",
+            "url": "https://linktr.ee/chacara_recanto_das_palmeiras",
+            "confidence": "low",
+            "label": "Linktree 'chacara_recanto_das_palmeiras'",
+            "ownershipNote": "Appeared under a Recanto das Palmeiras IG search. NOT confirmed to be the Conti space; 'Recanto das Palmeiras' is a very common venue name across Brazil (Tres Marias/MG, Brasilia, Itaborai/RJ, Serra/ES, Ponta Grossa, Buzios, Sarzedo). Likely a homonym; do not attribute to Conti without verifying."
+          }
+        ],
+        "spacesSubBrands": [
+          {
+            "name": "Fazenda Santa Isabel",
+            "site": "https://www.fazendasantaisabeleventos.com.br/",
+            "instagram": "https://www.instagram.com/fazendasantaisabeleventos/",
+            "note": "Itatiba, SP (Rod. Romildo Prado, 100 - Km 13, 13255-750). Centennial farm (1920), imposing neoclassical mansion. Capacity up to 250-260 guests; Casa Sede lodges up to 20. ~25.000 m2 native vegetation. Full-service: own buffet (tiers Prata/Ouro/Diamante), custom floral decor, DJ/sound/lighting, planning (up to 4 meetings), security/parking/firefighter. IG bio: 'Uma empresa @grupocontieventos', ~24k followers. FB facebook.com/fazendasantaisabeleventos. Tier: premium-full."
+          },
+          {
+            "name": "Estacao Fazenda",
+            "site": "https://estacaofazenda.com/",
+            "instagram": "https://www.instagram.com/estacaofazenda/",
+            "note": "Jarinu/Pitangal, SP (Estrada Natal Lorencini, Km 3.5, 13240-000), between Jundiai and Jarinu, ~50 min from SP. Colonial-style farm, ~5.000 m2 venue / 22.000 m2 green area, 3 ceremony scenarios (garden, lake, chapel). Capacity 50-200 guests. Full-service: space + buffet (Prata/Ouro/Diamante) + decoration + DJ/sound/lighting. IG bio: 'Uma empresa @grupocontioficial', ~14k followers, 1.070 posts. FB facebook.com/estacaofazenda. Has a separate corporate sub-site corporativo.estacaofazenda.com. Tier: premium-full."
+          },
+          {
+            "name": "Recanto das Palmeiras",
+            "site": "https://www.contieventos.com.br/espacos/recanto-das-palmeiras",
+            "instagram": "https://www.instagram.com/recantodaspalmeiras_eventos/",
+            "note": "Jundiai, SP, ~40 min from SP. The 3rd / newest space. Industrial-style climatized hall with modern touches, up to 200-220 guests (min 50), outdoor garden ceremony. Own buffet signed by Chef Evandro Conti, custom decor, DJ, planning, partner vendors. IG @recantodaspalmeiras_eventos bio confirms 'part of Grupo Conti Eventos' (distinguishes it from many homonym venues nationwide). Menus quoted R$600-1.000/guest on casamentos.com.br. No standalone domain; lives under contieventos.com.br/espacos. Tier: premium-full."
+          }
+        ],
+        "notes": "GROUP STRUCTURE CONFIRMED. Grupo Conti (brand 'Conti', official site contieventos.com.br, email contato@conti.com.br, WhatsApp +55 11 93917-7766, '(c) 2026 Conti') is a Jundiai-region wedding group operating exactly THREE all-inclusive premium spaces, each ~40-50 min from SP capital, all sharing a single in-house gastronomy operation by Chef Evandro Conti: (1) Fazenda Santa Isabel - Itatiba; (2) Estacao Fazenda - Jarinu; (3) Recanto das Palmeiras - Jundiai (newest). The group site states '3 espacos exclusivos' and routes /espacos/santa-isabel, /espacos/estacao-fazenda, /espacos/recanto-das-palmeiras.\n\nTIER = premium-full and a DIRECT VVF competitor: full-service all-inclusive (space + own buffet + custom decoration + DJ/sound/lighting + planning + lodging at Santa Isabel), high-end natural/interior settings, no third-party buffet, squarely inside the VVF ~100km catchment, positioned on excellence/personalization (site copy: 'excelencia, autenticidade - nunca replicar experiencias - e inovacao'). Published reference prices (Santa Isabel from ~R$66k for 50 guests; Recanto menus R$600-1.000/guest) confirm premium, not budget.\n\nANTI-HOMONYM NOTES: (a) The group brands itself inconsistently across spaces - Santa Isabel IG says 'Uma empresa @grupocontieventos' while Estacao Fazenda IG says '@grupocontioficial'; the official site, blog and LinkedIn all canonicalize to @grupocontieventos, so that is the primary group IG. (b) 'Recanto das Palmeiras' is an EXTREMELY common venue name in Brazil - confirmed unrelated homonyms include Tres Marias/MG (@recantodaspalmeiras3m), Brasilia, Itaborai/RJ, Serra/ES, Ponta Grossa, Buzios, Sarzedo/MG, Humildes/BA. The Conti one is specifically @recantodaspalmeiras_eventos (bio cites Grupo Conti, Jundiai, Chef Evandro). Do NOT attribute @recantodaspalmeiras_vcc, @palmeiras_recanto, @recantodas_palmeiras, the linktr.ee/chacara_recanto_das_palmeiras, or any other '_xx' handle to Conti. (c) '@fazendasantaisabelpremium' (Santa Isabel city, SP) is a DIFFERENT venue/city - not this group. (d) Two distinct YouTube channels surfaced: @ChefEvandroConti (linked from the official site - treat as the group's channel) and a bare @GrupoConti (unverified, low confidence). (e) An 'Estacao Fazenda Eventos' LinkedIn page also exists alongside the group LinkedIn company/99572907 - both within the group's orbit; the numeric company is the canonical group page.\n\nASSETS NOT FOUND / NEGATIVE RESULTS: No Pinterest account found for the group or any space. No owned TikTok account found (only third-party TikTok 'discover' tags). Facebook Ad Library was not directly queryable here, but the group FB page (numeric ID 61574656941025) is the entity to search in Ad Library; each space also has its own legacy FB page (facebook.com/fazendasantaisabeleventos, facebook.com/estacaofazenda). Could not scrape Instagram/Facebook/YouTube body text (IG returns base64; FB returned 403/truncated) - IG bios and follower counts above come from search-result snippets, treat counts as approximate."
+      },
+      {
+        "competitor": "Estação Fazenda (Jarinu / Pitangal — Grupo Conti)",
+        "tier": "premium-full",
+        "confirmedPrimary": [
+          {
+            "type": "site",
+            "url": "https://estacaofazenda.com/"
+          },
+          {
+            "type": "instagram",
+            "url": "https://www.instagram.com/estacaofazenda/"
+          },
+          {
+            "type": "facebook",
+            "url": "https://www.facebook.com/estacaofazenda/"
+          }
+        ],
+        "discoveredSecondary": [
+          {
+            "type": "legal-entity",
+            "url": "https://cnpj.biz/20246814000118",
+            "label": "Estacao Fazenda Eventos LTDA — CNPJ 20.246.814/0001-18, fundada 14/05/2014",
+            "confidence": "high",
+            "ownershipNote": "Entidade legal do venue de Jarinu."
+          },
+          {
+            "type": "parent-group",
+            "url": "https://www.instagram.com/grupocontieventos/",
+            "label": "Grupo Conti Eventos (@grupocontieventos) — holding que opera Estação Fazenda + Fazenda Santa Isabel",
+            "confidence": "high",
+            "ownershipNote": "Tanto a Estação Fazenda quanto a Fazenda Santa Isabel são descritas como 'company under Grupo Conti / @grupocontieventos'. Handle do grupo inferido do padrão citado nas fontes; não validei o perfil IG diretamente."
+          },
+          {
+            "type": "facebook-profile",
+            "url": "https://www.facebook.com/people/Esta%C3%A7%C3%A3o-Fazenda/100092591580108/",
+            "label": "Perfil FB secundário 'Estação Fazenda | Jarinu SP' (id 100092591580108)",
+            "confidence": "medium",
+            "ownershipNote": "Perfil /people/ separado da página canônica /estacaofazenda. id 100092591580108 é de PERFIL, NÃO confirmado como page_id da Ad Library."
+          }
+        ],
+        "spacesSubBrands": [
+          {
+            "name": "Fazenda Santa Isabel Eventos",
+            "site": "https://www.fazendasantaisabeleventos.com.br/",
+            "instagram": "https://www.instagram.com/fazendasantaisabeleventos/",
+            "note": "VENUE IRMÃ (não sub-marca), Itatiba/SP. Mesmo Grupo Conti; cross-linkada no footer da Estação Fazenda. Fazenda centenária (1920), 25.000m², salão até 260, buffet próprio, casa para 20 hóspedes. IG ~24K. Também premium-full; concorrente direto por si só, ~50min de SP."
+          },
+          {
+            "name": "Jardim / Lago / Capela / Salão climatizado / Sala da Noiva",
+            "note": "Áreas INTERNAS do mesmo venue de Jarinu (não marcas separadas): três cenários de cerimônia (jardim, lago, capela), salão climatizado até 200 convidados, sala da noiva. 22.000m²."
+          }
+        ],
+        "notes": "TIER: premium-full, comparável ao VVF. Full-service real: buffet PRÓPRIO com chef executivo (tiers Prata/Ouro/Diamante), três cenários de cerimônia (jardim, lago, capela), salão climatizado até ~200-220, decoração, bar, DJ/som/luz, assessoria — pacotes completos R$68k (Prata) a R$117k (Diamante). 22.000m² de natureza. Não é salão de festa comum nem locação seca.\n\nLOCALIZAÇÃO: Estrada Mun. Natal Lorencini, Km 3,5 — Pitangal, Jarinu/SP, 13240-000. Entre Jundiaí e Jarinu, ~50min de SP. DENTRO do catchment-alvo do VVF (raio ~100km de Jundiaí). É concorrente direto de mercado — interior, não roll-up da capital.\n\nASSETS PRIMÁRIOS CONFIRMADOS pelo footer do próprio site (estacaofazenda.com/contato): site estacaofazenda.com · IG @estacaofazenda (~14K seguidores, rotulado 'Wedding', Jarinu SP) · FB facebook.com/estacaofazenda. WhatsApp +55 (11) 91549-4646. E-mail visto: estacaofazendajundiai@gmail.com.\n\nNÃO ENCONTRADO: canal YouTube, Pinterest ou TikTok PRÓPRIOS. O único hit de YouTube ('Estação Fazenda Jarinu - Teaser Juliana e Pedro', 2019) é de videomaker terceiro, não canal do venue. Nenhum link YT/Pinterest/TikTok no footer do site.\n\nFB page_id NÃO CONFIRMADO: a Ad Library do Meta bloqueou o WebFetch (socket fechado em 3 tentativas) e nenhuma busca retornou o page_id canônico. O único id numérico que apareceu (100092591580108) é de um PERFIL /people/ FB secundário rotulado 'Jarinu SP', distinto da página canônica /estacaofazenda — NÃO é o page_id verificado da Ad Library. Deixei o campo facebookPageId vazio para não inventar.\n\nOWNERSHIP / ANTI-HOMÔNIMO: o venue pertence ao Grupo Conti (@grupocontieventos), mesmo grupo da Fazenda Santa Isabel (Itatiba). Homônimos descartados: (1) 'Estação Fazenda Eventos' em Londrina/PR — cidade diferente, não é este venue; (2) handles IG @buffetfazendasantaisabel e @fazendasantaisabelpremium referem-se à cidade Santa Isabel/SP, NÃO à Fazenda Santa Isabel de Itatiba do Grupo Conti. CNPJ do venue de Jarinu: 20.246.814/0001-18 (Estacao Fazenda Eventos LTDA, desde 2014)."
+      },
+      {
+        "competitor": "Fazenda Santa Isabel — Itatiba",
+        "tier": "premium-full",
+        "confirmedPrimary": [
+          {
+            "type": "site",
+            "url": "https://www.fazendasantaisabeleventos.com.br/"
+          },
+          {
+            "type": "instagram",
+            "url": "https://www.instagram.com/fazendasantaisabeleventos/"
+          },
+          {
+            "type": "facebook",
+            "url": "https://www.facebook.com/fazendasantaisabeleventos/"
+          }
+        ],
+        "facebookPageId": "",
+        "discoveredSecondary": [
+          {
+            "type": "whatsapp",
+            "url": "https://wa.me/5511939177766",
+            "confidence": "high",
+            "label": "WhatsApp comercial (+55 11 93917-7766) listado no site oficial"
+          },
+          {
+            "type": "listing",
+            "url": "https://www.casamentos.com.br/chacara-casamento/santa-isabel-eventos--e161851",
+            "confidence": "high",
+            "label": "Perfil no Casamentos.com.br (venue de Itatiba)"
+          },
+          {
+            "type": "listing",
+            "url": "https://www.zankyou.com.br/f/santa-isabel-eventos-578344",
+            "confidence": "medium",
+            "label": "Perfil no Zankyou (Santa Isabel Eventos)"
+          },
+          {
+            "type": "facebook",
+            "url": "https://www.facebook.com/Estacaofazenda/",
+            "confidence": "low",
+            "label": "Estação Fazenda (Jundiaí) — site oficial cita como marca relacionada, mas vínculo de propriedade NÃO confirmado e fica em outra cidade; tratar como pista, não como sub-marca confirmada",
+            "ownershipNote": "Relação não verificada; possivelmente negócio distinto"
+          }
+        ],
+        "spacesSubBrands": [
+          {
+            "name": "Casa Sede",
+            "note": "Casa principal histórica (estate de 1920), hospedagem até ~20 pessoas / day-use da noiva até 16"
+          },
+          {
+            "name": "Salão de eventos",
+            "note": "Salão coberto para até 260 convidados (capacidade citada até 300 em alguns materiais)"
+          },
+          {
+            "name": "Sala da Noiva / Sala do Noivo",
+            "note": "Suítes de preparação do casal"
+          }
+        ],
+        "notes": "CONFIRMAÇÃO ANTI-HOMÔNIMO (crítico): existem DOIS venues distintos chamados \"Fazenda Santa Isabel\". (1) ALVO = o de ITATIBA, SP — @fazendasantaisabeleventos / fazendasantaisabeleventos.com.br, CNPJ 11.107.261/0001-21 (FAZENDA SANTA ISABEL ITATIBA LTDA), estate centenário (1920), 25.000 m² de mata nativa, Rod. Romildo Prado km 13. (2) HOMÔNIMO EXCLUÍDO = \"Fazenda Santa Isabel Premium\" / Buffet Santa Isabel — @buffetfazendasantaisabel, @fazendasantaisabelpremium, buffetsantaisabel.com — fica na CIDADE de Santa Isabel/SP (Grande SP, ~150km, fora do catchment), parte do Grupo Buffet 3 Amores (21-22 anos). É outro dono, outro negócio; NÃO incluir nos assets deste competidor.\n\nTIER = premium-full. É all-inclusive/full-service real, comparável ao VVF: buffet próprio (Chef Evandro), decoração floral, DJ/som/iluminação/LED, coordenação (até 4 reuniões), bolo + 5 doces finos por convidado, equipe completa (chef, garçom, segurança, bombeiro, manobrista). Pacotes em escada Prata/Ouro/Diamante (R$66,3k / R$73,8k / R$103,3k+ para 50 convidados sex/dom; sábado mais caro) — estrutura de escada de produto análoga ao Essential→Inspiração do VVF, com Diamante incluindo cobertura fotográfica. Ambiente natural, histórico, posicionamento premium. 200+ eventos realizados. Localização Itatiba (~50 min de SP capital; faz divisa com Jundiaí) está dentro do raio-alvo de ~100km. CONCORRENTE DIRETO legítimo.\n\nPEGADA SOCIAL: apenas site + Instagram (~24k seguidores, 1.162 posts) + Facebook. NÃO foram encontrados YouTube, Pinterest nem TikTok próprios do venue de Itatiba (buscas retornaram apenas conteúdo de terceiros / homônimos). \n\nfacebook_page_id: NÃO confirmado — o acesso ao Meta Ad Library foi bloqueado (403/socket fechado pela Meta via WebFetch) e não invento. Página FB confirmada existe (facebook.com/fazendasantaisabeleventos, \"Itatiba SP\"), mas o page_id numérico precisa ser extraído manualmente do Ad Library logado."
+      },
+      {
+        "competitor": "Espaço Lago Esmeralda — Itu",
+        "confirmedPrimary": [
+          {
+            "type": "website",
+            "url": "https://www.espacolagoesmeralda.com.br/"
+          },
+          {
+            "type": "instagram",
+            "url": "https://www.instagram.com/lagoesmeraldawedding/"
+          },
+          {
+            "type": "facebook",
+            "url": "https://www.facebook.com/lagoesmeraldawedding/"
+          }
+        ],
+        "discoveredSecondary": [
+          {
+            "type": "marketplace-listing",
+            "url": "https://www.casamentos.com.br/fazenda-casamento/espaco-lago-esmeralda--e162836",
+            "confidence": "high",
+            "label": "Casamentos.com.br listing (~98% recomendação, 19 avaliações)",
+            "ownershipNote": "Listagem de marketplace do próprio venue; retornou 403 no fetch direto mas confirmada por busca."
+          },
+          {
+            "type": "marketplace-listing",
+            "url": "https://espacosdefesta.casar.com/locais/espaco-lago-esmeralda",
+            "confidence": "high",
+            "label": "Casar.com / Espaços de Festa listing"
+          },
+          {
+            "type": "directory",
+            "url": "https://www.solutudo.com.br/empresas/sp/itu/atracao-servicos-para-eventos/espaco-lago-esmeralda-340312",
+            "confidence": "medium",
+            "label": "Solutudo (diretório de empresas) — categoria 'Atração/Serviços para Eventos'"
+          },
+          {
+            "type": "directory",
+            "url": "https://www.diariocidade.com/sp/itu/guia/espaco-lago-esmeralda-00004753000175/",
+            "confidence": "medium",
+            "label": "Diário Cidade guia local (slug contém fragmento de CNPJ 00004753000175 — não confirmado como CNPJ do venue)"
+          },
+          {
+            "type": "tiktok-topic",
+            "url": "https://www.tiktok.com/discover/lago-esmeralda-itu-valor-casamento",
+            "confidence": "low",
+            "label": "Página TikTok 'discover' (tópico, NÃO conta oficial do venue)",
+            "ownershipNote": "Não é perfil oficial; apenas agregação de conteúdo de terceiros sobre o venue."
+          }
+        ],
+        "facebookPageId": "",
+        "spacesSubBrands": [],
+        "tier": "mid",
+        "notes": "VENUE: Espaço Lago Esmeralda, Av. Bom Retiro 2660, Itu/SP (~75 km da capital, dentro do raio de ~100km de Jundiaí). Casa de eventos com foco em casamento ao ar livre. Estrutura: 12.000 m² total / ~6.000 m² de gramado, lago privativo esmeralda com gazebo central, salão envidraçado climatizado, 'catedral' de 760 m², cozinha industrial 60 m² em inox, 3 suítes + suíte master da noiva com hidromassagem, estacionamento 80 vagas com valet, gerador, segurança. Faz também 15 anos, formaturas, corporativo, renovação de votos.\\n\\nASSET SWEEP / ANTI-HOMÔNIMO: Site, Instagram e Facebook todos sob o mesmo handle 'lagoesmeraldawedding' e mesmo endereço (Av. Bom Retiro 2660, Itu) — propriedade CONFIRMADA, sem homônimo. IG @lagoesmeraldawedding ~16K seguidores, ~709 posts. FB vanity confirmada (lagoesmeraldawedding); o page_id NUMÉRICO não foi extraível — Instagram/Facebook/Ad Library bloqueiam por login/JS-render e a Ad Library async caiu (socket). NÃO ENCONTRADOS: canal YouTube oficial (todos os vídeos de YouTube são de terceiros — casais, videomakers como Jacques Tegani, bartender Pitanga); Pinterest; TikTok oficial (só uma página 'discover'/tópico). Sem sub-marcas ou espaços múltiplos — venue único.\\n\\nTIER (julgamento honesto = 'mid'): O SITE PRÓPRIO posiciona como espaço + cozinha industrial equipada PARA buffets externos (sinal de partial-package / locação). Porém as listagens agregadoras (casamentos.com.br, casar.com, diretórios) descrevem consistentemente 'buffet gourmet', decoração, fotografia e 'segurança de elite' como serviços OFERECIDOS — indicando operação full-service (provavelmente buffet in-house ou parceiro fechado). Posicionamento físico é premium-leaning (lago privativo, salão de vidro climatizado, suíte master com hidro, 12 mil m²), mas a sofisticação de marca/digital e a clareza do modelo all-inclusive ficam ABAIXO do padrão VVF: site simples, sem catálogo de pacotes estruturado, presença social moderada, modelo de buffet ambíguo. CONTATOS divergentes entre fontes (WhatsApp 11 98588-7156 / e-mail fabiochuairi@bol.com.br no site; tel 11 2331-9531 / henriqueale51@hotmail.com em diretório) — possível troca de gestão ou múltiplos responsáveis. Concorrente DIRETO regional real (raio-alvo, ambiente natural, casamento), mas classificado 'mid' e não 'premium-full' pela ambiguidade do full-service e marca mais fraca. Não é salão de festas comum: tem estrutura e narrativa de destino de casamento."
+      },
+      {
+        "competitor": "Espaço La Forêt — São Roque/SP",
+        "confirmedPrimary": [
+          {
+            "type": "site",
+            "url": "https://espacolaforet.com.br/"
+          },
+          {
+            "type": "instagram",
+            "url": "https://www.instagram.com/espacolaforet/"
+          },
+          {
+            "type": "facebook",
+            "url": "https://www.facebook.com/EspacoLaForet/"
+          },
+          {
+            "type": "pinterest",
+            "url": "https://www.pinterest.com/espacolaforet/"
+          },
+          {
+            "type": "whatsapp",
+            "url": "https://wa.me/5511930568132"
+          }
+        ],
+        "discoveredSecondary": [
+          {
+            "type": "linkedin",
+            "url": "https://www.linkedin.com/company/espa%C3%A7o-la-for%C3%AAt",
+            "confidence": "medium",
+            "label": "LinkedIn da empresa (verificado por busca; não fetchado diretamente)",
+            "ownershipNote": "Aparece como company page do venue; consistente com o nome oficial."
+          },
+          {
+            "type": "youtube",
+            "url": "https://www.youtube.com/results?search_query=Espa%C3%A7o+La+For%C3%AAt+S%C3%A3o+Roque",
+            "confidence": "low",
+            "label": "Sem canal oficial confirmado — vídeos no YouTube são de fotógrafos/cinegrafistas terceiros (Carla e Rodrigo, Aline e Lucas, @brenomartinsfoto)",
+            "ownershipNote": "Nenhum canal próprio do venue localizado; presença em vídeo é de terceiros. NÃO atribuir como asset próprio."
+          },
+          {
+            "type": "listing",
+            "url": "https://www.casamentos.com.br/sitio-casamento/espaco-la-foret--e130280",
+            "confidence": "high",
+            "label": "Perfil Casamentos.com.br (92% recomendação, 91 avaliações; HTTP 403 ao fetch, confirmado via busca)",
+            "ownershipNote": "Listing de marketplace, não asset proprietário."
+          },
+          {
+            "type": "listing",
+            "url": "https://lapisdenoiva.com/fornecedores/espaco-la-foret/",
+            "confidence": "high",
+            "label": "Perfil Lápis de Noiva (fonte editorial premium; confirma gastronomia in-house + hotel boutique)",
+            "ownershipNote": "Listing/editorial de terceiro."
+          }
+        ],
+        "facebookPageId": "",
+        "spacesSubBrands": [
+          {
+            "name": "Capela de Vidro",
+            "note": "Capela de arquitetura moderna, envidraçada, com luz natural — uma das 3 opções de cerimônia. Espaço nomeado, não sub-marca."
+          },
+          {
+            "name": "Bambuzal",
+            "note": "Cerimônia no coração da mata (bambuzal/Mata Atlântica) — espaço de cerimônia nomeado."
+          },
+          {
+            "name": "Mirante (pôr do sol)",
+            "note": "Mirante com vista para o pôr do sol — terceira opção de cerimônia."
+          },
+          {
+            "name": "Hotel boutique exclusivo on-site",
+            "note": "Hospedagem própria que transforma o casamento em um fim de semana de celebrações. Um snippet de agregador citou o nome 'Chez Botanique', mas NÃO foi confirmado em fonte autoritativa — materiais do próprio venue dizem apenas 'hotel boutique exclusivo' sem marca nomeada. Confiança BAIXA no nome; a existência do hotel é ALTA."
+          }
+        ],
+        "tier": "premium-full",
+        "notes": "PERFIL CONFIRMADO — concorrente direto premium-full, comparável ao VVF. Localização: São Roque/SP (R. Yucca, 18, bairro São João Novo), ~40 min de São Paulo capital; dentro do catchment de ~100km de Jundiaí (São Roque fica a ~30km de Jundiaí). Modelo all-inclusive/full-service: gastronomia in-house com chef e equipe próprios (interativa, personalizada, com restrições alimentares), bar (incl. cerveja artesanal), DJ, coordenação de evento — 'tudo em um só lugar'. Ambiente natural (vale cercado pela Mata Atlântica, araucárias, pinheiros). Hotel boutique próprio on-site (destination wedding de fim de semana). Política de UM evento por dia (atenção dedicada — alinhado ao 'sem surpresas' do VVF). Escala/reputação: 13 anos, 1.100+ casamentos, 8 prêmios Casamentos.com.br consecutivos, 49K seguidores no IG (~1.318 posts), 92% de recomendação / 91 avaliações. Três cenários de cerimônia nomeados (bambuzal, mirante do pôr do sol, capela de vidro). Site em manutenção no momento do sweep (conteúdo parcial via /site/). VERIFICAÇÃO ANTI-HOMÔNIMO: endereço (R. Yucca 18, São Roque), handles (@espacolaforet em IG/FB/Pinterest) e domínio (espacolaforet.com.br) batem entre si — mesma entidade, sem homônimo. ATENÇÃO: existem hotéis 'Botaniq' (Mojácar/ES) e 'Botanique' (Campos do Jordão) que NÃO têm relação com este venue — descartados. LACUNAS: (1) facebookPageId numérico não extraído — páginas FB e Ad Library exigem auth/JS, fora do alcance do WebFetch; handle /EspacoLaForet/ confirmado. (2) Nome do hotel boutique não confirmado ('Chez Botanique' é hipótese de baixa confiança). (3) Sem canal YouTube oficial; vídeos são de terceiros. (4) Capacidade e ticket não divulgados publicamente. Pinterest oficial confirmado em pinterest.com/espacolaforet/."
+      }
+    ]
+  }
+}
