@@ -7,3 +7,5 @@ build/
 coverage/
 pnpm-lock.yaml
 packages/contracts/generated/
+packages/api-zod/src/generated/
+packages/api-client/src/generated/

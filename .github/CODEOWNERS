@@ -2,6 +2,9 @@
 # Mudança de contrato afeta os três runtimes; doc é canônico; conduta é a fonte de regras.
 
 /packages/contracts/   @fabiozaffani
+/packages/api-spec/    @fabiozaffani
+/packages/api-zod/     @fabiozaffani
+/packages/api-client/  @fabiozaffani
 /docs/                 @fabiozaffani
 /AGENTS.md             @fabiozaffani
 /CLAUDE.md             @fabiozaffani

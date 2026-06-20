@@ -1,0 +1,92 @@
+openapi: 3.1.0
+info:
+  # Não altere o title: o codegen assume "Api" (saída = api.schemas.ts).
+  # O orval.config.ts força isso via transformer; manter aqui por clareza.
+  title: Api
+  version: 0.1.0
+  description: |
+    Contrato HTTP do api-server da VVLEADHUB — fonte de verdade do pipeline
+    de codegen (D-22). Edite este arquivo e rode `pnpm codegen:api` para
+    regenerar `@vvf/api-zod` (validação de borda) e `@vvf/api-client`
+    (hooks React Query).
+
+    Envelope de erro (specs/engenharia/contrato-http.md): toda resposta de
+    erro segue `ErrorEnvelope`. O valor de `error.code` tem fonte única em
+    `@vvf/contracts` (`errorCodeSchema`) — aqui é `string` por design (D-23),
+    com os códigos válidos listados na descrição do campo.
+servers:
+  - url: /
+    description: Base da API (o host real é injetado no cliente via setBaseUrl)
+tags:
+  - name: health
+    description: Liveness/health do runtime
+paths:
+  /healthz:
+    get:
+      operationId: healthCheck
+      tags: [health]
+      summary: Health check
+      description: Retorna o status de saúde do api-server.
+      responses:
+        "200":
+          description: Saudável
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthStatus"
+        "500":
+          description: Erro interno
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+components:
+  schemas:
+    HealthStatus:
+      type: object
+      additionalProperties: false
+      required: [status]
+      properties:
+        status:
+          type: string
+          enum: [ok]
+        uptime_s:
+          type: number
+          description: Segundos desde o boot do processo.
+    ErrorDetail:
+      type: object
+      additionalProperties: false
+      required: [path, message]
+      properties:
+        path:
+          type: string
+          description: Caminho do campo que falhou (ex.- "phone").
+        message:
+          type: string
+    ErrorEnvelope:
+      type: object
+      additionalProperties: false
+      required: [error]
+      properties:
+        error:
+          type: object
+          additionalProperties: false
+          required: [code, message]
+          properties:
+            code:
+              type: string
+              description: >
+                Código estável de erro. Fonte única em @vvf/contracts
+                (errorCodeSchema, D-23). Valores- VALIDATION_FAILED,
+                UNAUTHORIZED, FORBIDDEN, NOT_FOUND, CONFLICT, RATE_LIMITED,
+                INTERNAL. O cliente ramifica por este code, não pelo status.
+            message:
+              type: string
+              description: Mensagem dev-facing (log/Sentry). Nunca é copy de marca.
+            details:
+              type: array
+              items:
+                $ref: "#/components/schemas/ErrorDetail"
+        request_id:
+          type: string
+          description: Id de correlação ecoado (observabilidade).

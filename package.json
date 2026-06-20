@@ -9,12 +9,14 @@
     "node": ">=21"
   },
   "scripts": {
-    "verify": "pnpm typecheck && pnpm lint && pnpm boundaries && pnpm test && pnpm build",
+    "verify": "pnpm typecheck && pnpm lint && pnpm codegen:check && pnpm boundaries && pnpm test && pnpm build",
     "typecheck": "pnpm -r --if-present typecheck",
     "lint": "eslint .",
     "format": "prettier --check .",
     "format:write": "prettier --write .",
     "boundaries": "depcruise --config .dependency-cruiser.cjs site admin api-server packages",
+    "codegen:api": "pnpm --filter @vvf/api-spec run codegen",
+    "codegen:check": "node scripts/checks/check-codegen-fresh.mjs",
     "test": "pnpm -r --if-present test",
     "build": "pnpm -r --if-present build",
     "dev": "pnpm --parallel --stream --filter @vvf/admin --filter @vvf/site dev",
