@@ -6,7 +6,7 @@ sweep multi-agente (jun/2026). Tiers: `premium-full` (all-inclusive, modelo VVF)
 `premium-partial` (locação/buffet de parceiros) · `mid` · `below`.
 
 > Guardrails D-19 (ver [`README.md`](README.md)). LGPD: só público. Sem me-too (INV-01).
-> **Leva 1 (20/jun):** page_id resolvido p/ Villa Brunholi/Castelo dos Vinhais/Terras de Clara (ver [`concorrentes.md`](concorrentes.md)); Villa Mantova **corrigida** p/ fora do catchment. Demais NOVOS pendentes.
+> **Leva 1 (20/jun):** page_id resolvido p/ Villa Brunholi/Castelo dos Vinhais/Terras de Clara (ver [`concorrentes.md`](concorrentes.md)); Villa Mantova com **cidade corrigida** p/ Santana de Parnaíba (~40km Jundiaí, **segue no catchment**). Demais NOVOS pendentes.
 > Dados brutos completos (~60 venues, 8 temas) no output do workflow `panorama-competitivo`.
 
 ## Espaços do VVF e seus temas (âncora do cruzamento)
@@ -32,6 +32,7 @@ sweep multi-agente (jun/2026). Tiers: `premium-full` (all-inclusive, modelo VVF)
 ### ⭐ ACQUA (campo/lago/villa/romântico/gazebo de vidro)
 | Venue | Cidade | Tier | Nota |
 |---|---|---|---|
+| **Villa Mantova** | Santana de Parnaíba (~40km Jundiaí) | premium-partial | Jardim/campo SP (metro-oeste), premiada 23-25, 18K. Buffet parceiro. **Cidade corrigida** — não Vinhedo. |
 | **Terras de Clara** | Morungaba | premium-partial | Lago + envidraçado + **hospedagem + spa**. Bate Acqua **e** Florest; espelha Hospedagem VVF. |
 | **Lago Esmeralda** | Itu | premium-partial | "Exatamente o eixo Acqua": salão de vidro sobre lago privativo. |
 | **Espaço Apoema** | Atibaia | premium-partial | Ilha do Lago (cerimônia cercada de água), rio/jardim/bosque. |
@@ -58,7 +59,7 @@ sweep multi-agente (jun/2026). Tiers: `premium-full` (all-inclusive, modelo VVF)
 2. **Hospedagem própria** (espelha seu produto Hospedagem): **La Forêt**, **Terras de Clara**, **Fazenda Capoava**, **Fazenda Dona Carolina**, **Hotel Villa Rossa**.
 
 ## Prioridade de monitoramento (núcleo do catchment, NOVOS)
-**Villa Brunholi** (Jundiaí) · **Castelo dos Vinhais** (Vinhedo) · **Espaço Lago Novo + Vabene** (Itupeva) · **Terras de Clara** (Morungaba) · **Chácara Paraíso** (Jundiaí).
+**Villa Brunholi** (Jundiaí) · **Castelo dos Vinhais** (Vinhedo) · **Espaço Lago Novo + Vabene** (Itupeva) · **Terras de Clara** (Morungaba) · **Chácara Paraíso** (Jundiaí) · **Villa Mantova** (Santana de Parnaíba, ~40km).
 
 ---
 
@@ -76,4 +77,4 @@ sweep multi-agente (jun/2026). Tiers: `premium-full` (all-inclusive, modelo VVF)
 ---
 
 ## Não-objetivos / fora do catchment (registrar, não priorizar)
-Vecchia Toscana (Campos do Jordão), Haras Buona Fortuna (Cotia), Espaço Acuri (Vale do Paraíba), Castelo Marílias (Embu) — estética on-theme, geografia desalinhada. · **Villa Mantova** (Santana de Parnaíba — corredor Castelo Branco, ~50min capital): **correção leva 1 (20/jun)** — o panorama a colocara em Vinhedo/Louveira por contaminação de snippet de busca; o `@villa.mantova` (18K) real está em Santana de Parnaíba, fora do catchment. Não confundir com Villa di Mantova Resort (Águas de Lindóia, com "di", resort/spa).
+Vecchia Toscana (Campos do Jordão), Haras Buona Fortuna (Cotia), Espaço Acuri (Vale do Paraíba), Castelo Marílias (Embu) — estética on-theme, geografia desalinhada.
