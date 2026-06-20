@@ -36,3 +36,36 @@ _Boa ideia, com casa na governança (estende a D-17), mas o **build** não pode 
 **Próximo passo:**
 - **Validado (agora):** → `doc-roadmap-keeper` posiciona a capacidade (Fase 3-adjacente) + → registrar **D-19** (estende D-17) + → `doc-business-mapper` mapeia o domínio + o **radar v0** começa a rodar.
 - **Congelado (build do módulo no app):** revisitar quando **(a)** admin/Tracker Hub existir **e (b)** o radar v0 provar insight usável (≥3 ideias sobreviventes). Até lá, mapeia-se mas não se constrói.
+
+---
+
+## Emenda (2026-06-20) — extensão sales-enablement + coleta ampliada
+
+**Gatilho:** o radar v0 (test de mapeamento, `radar/_raw/`) revelou inteligência reutilizável pelo comercial. Estende esta D-19 de *"observar para estratégia"* para *"empoderar o comercial"*. Plano aprovado pelo fundador: `~/.claude/plans/como-parte-do-projeto-encapsulated-unicorn.md`. Esta rodada é **discovery + business** (não produz specs/system/WO); o **build segue congelado** (gate inalterado).
+
+### Ideia A — KB de Competidor p/ empoderar o comercial — ✅ Validar (faseado)
+SWOT + reviews/reputação + fraquezas + **munição comercial** (objeção típica → argumento de defesa) para SDR/Closer na conversão, com gancho futuro Kommo+IA.
+
+**Gate de invariantes:** ✅ passou — sem violação nova; os 3 guardrails da D-19, mais afiados (abaixo).
+
+| Critério | Sinal | Análise |
+|---|---|---|
+| Alinhamento estratégico | 🟡 | Operacionaliza a **confiabilidade/"sem surpresas"** (INV-04, diferencial §9 atravessador) como arma de conversão (funil M-04) — usa o pilar da marca, não dilui. Casa o Herói-da-retaguarda. 🟡 porque a segurança **depende dos guardrails**: sem eles vira guerra de componente (INV-03)/preço (INV-05). |
+| Problema real | 🟡 | Objeção de concorrente é real na venda premium, mas a **magnitude é hipótese** (sem deal-perdido documentado; funil/atores nem mapeados — `business/comercial/lacunas.md`). Fato + achismo na magnitude. |
+| Capacidade & gates | 🟡 | Nenhum gate §8 disparado. Rodada **só doc** (barata, reversível, não toca build). Build do KB-no-admin **congelado** p/ Fase 3. |
+| Retorno | 🟡 | Move **M-04** (conversão) se funcionar; secundário **M-02** (defende ticket vs. preço). Afiação de 2ª ordem, não step-change. |
+| Risco & reversibilidade | 🟢 | Escopo doc é barato/reversível. Drift (guardrails), KB stale (cadência do radar), build cedo (freeze) — mitigados. Coleta ampliada dentro da cerca mínima. |
+
+**O que precisaria ser verdade:** comercial usar a munição e mover o close (≥3 argumentos usáveis + feedback de closer) · guardrails como regra escrita no business/spec · funil/atores mapeados (B1).
+**Lacunas:** onde o vendedor consome a KB (card Kommo? admin?) · custo/cadência de **manter** a KB curada · ownership da entidade `Competidor`.
+**Próximo passo:** → `doc-business-mapper` (B1 funil/atores + B2 KB/Competidor) → `doc-domain-architect` (ownership) → `doc-roadmap-keeper` (Fase 3-adjacente) → `sync-governanca` (emenda da coleta).
+
+### Ideia B — Afiar LP/campanha a partir do concorrente — ✅ Já coberto pela D-19
+Não é ideia nova (é o retorno já previsto: LPs/campanhas mais afiadas → M-04/M-02). **Sem novo registro.** Roteia como handoff recorrente **radar → `nova-lp`/specs de LP** (Fase 2). Alimenta o gate ≥3. Guardrail INV-01 (adaptar, não copiar) já é da D-19.
+
+### Guardrails — refinados/emendados com o fundador (2026-06-20)
+1. ⚠️ **COLETA AMPLIADA — emenda à D-19 (registrada como D-22):** coletar é **público OU não** — **cliente oculto/mystery shopping no escopo** (preço real, script de venda, processo, pontos fracos do atendimento; é a fonte mais rica p/ fraquezas/SWOT/munição). **Substitui** o guardrail *"só conteúdo público de negócio"* da avaliação de 2026-06-19 (e a linha equivalente no `radar/README.md` §Guardrails). **Cerca mínima que permanece:** meios **legítimos** (sem meio ilícito/invasão/quebra de NDA); **LGPD sobre dado pessoal de indivíduos** — minimizar PII (rostos/nomes de vendedores, depoimentos de casais reais), alvo é a inteligência **de negócio** do concorrente; **nunca reusar criativo alheio nos nossos ads** (copyright). **Registrado:** a emenda à D-19 é a **D-22** em `../_decisoes.md`; os guardrails ativos do radar (`radar/README.md` + `radar/concorrentes.md`) foram alinhados via **WO-RADAR-002**.
+2. **INV-03 — distinção fina:** força **objetiva e comprovável** é defesa **válida** quando sobe para *experiência integrada / sem surpresas / confiabilidade* (ex.: zeladoria + manutenção superiores → espaço impecável no dia → §9 #2 + INV-04/INV-08). **Proibido** só: comparação de **componente isolado** ("nosso DJ é melhor") e defender por **preço** (INV-05). Teste: escala para um diferencial §9 / eixo "sem surpresas"? ✅ — senão ❌.
+
+### Gate (inalterado)
+≥3 ideias usáveis sobreviventes ao `doc-discovery-mapper` **+** admin/Tracker Hub no ar. Build congelado p/ Fase 3.
