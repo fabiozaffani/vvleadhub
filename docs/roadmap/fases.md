@@ -57,6 +57,7 @@ Roadmap de build do VVLEADHUB. A sequência de tasks segue esta ordem; cada fase
 - [ ] Tracker Hub: inspetor realtime filtra por `test`; saúde por destino; replay restrito a Admin
 - [ ] **Single pane of glass — Nível 1 (D-17, ver [`system/eventos.md`](../system/eventos.md) — painel)**: investimento por canal/dia puxado de ≥ 1 plataforma e blendado com qualificado+valor → **CAC e custo-por-lead-qualificado por canal** no painel, com **fonte de cada métrica rotulada**; build-vs-buy do reporting completo (Nível 2) decidido com custo como input (ver [`discovery/auditoria-pre-build.md`](../discovery/auditoria-pre-build.md) §3.5)
 - [ ] **Inteligência competitiva L3 (D-19) — SÓ se o gate de congelamento abriu** (admin/Tracker Hub no ar + radar v0 com ≥3 ideias usáveis sobreviventes ao `doc-discovery-mapper`): coleta de ≥1 concorrente (Apify/YouTube) indexada e renderizada como **L3** no Tracker Hub, com **fonte rotulada**. Senão, permanece em discovery (`../discovery/radar/`) — não bloqueia a fase.
+- [ ] **Casa-de-dados do radar (D-20, emenda à D-19) — descongelada, fora do gate L3:** o **registro curado** (Concorrente/Canal/Estética em collections Payload + seed bootstrap) é mapeado (business→specs→system) e construído **agora** (WO-INTEL-001), independente do gate acima. A **coleta automatizada** (Apify/YouTube) e o **render L3** seguem congelados.
 
 **Fase 4 — Escala & diferidos (etapa final):**
 - [ ] Build LGPD: CMP, consent gate ativo (de pass-through a efetivo), Consent Mode, retenção/mascaramento
