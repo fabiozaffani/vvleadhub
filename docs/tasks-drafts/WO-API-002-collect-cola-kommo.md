@@ -1,7 +1,9 @@
 ---
 id: WO-API-002
-status: pending
+status: draft
 traces: [system/eventos.md, specs/eventos/schema-evento.md, specs/eventos/collector.md, specs/landing-pages/contrato-lead.md]
+deps: [WO-API-001]
+skills: [work-order, eventos-tracking]
 ---
 # WO-API-002 · Collector + `/collect` + cola fina Kommo (Fase 1) — RASCUNHO
 
@@ -10,7 +12,7 @@ traces: [system/eventos.md, specs/eventos/schema-evento.md, specs/eventos/collec
 ## Objetivo (proposto)
 Ligar a mensuração first-party: collector batched no site (analytics via proxy CF — D-15), endpoint `/collect` no api-server para eventos de negócio, e a cola bidirecional com Kommo (lead in / desfecho out → loop fechado).
 
-## Escopo proposto
+## Arquivos permitidos (a cerca)
 `site/src/lib/` (collector), `api-server/src/{routes,services,integrations/kommo}`. Click IDs/UTM/xcode em cookie first-party (D-14, sem retrofit). Consent pass-through (gancho D-5).
 
 ## Critério de aceite (de `roadmap/fases.md` §7.1 — Fase 1)

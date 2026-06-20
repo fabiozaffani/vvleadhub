@@ -2,6 +2,8 @@
 id: WO-SITE-001
 status: done
 traces: [system/landing-pages.md, specs/design-system/tokens.md, specs/design-system/tipografia.md, system/blog.md, roadmap/composicao-paginas.md]
+deps: []
+skills: [work-order, app-copy-marca, app-react-best-practices]
 ---
 # WO-SITE-001 · Astro base + design system + institucional/blog
 
@@ -10,7 +12,7 @@ traces: [system/landing-pages.md, specs/design-system/tokens.md, specs/design-sy
 ## Objetivo
 Site `output:'server'`, tokens espelho do design-system, home + blog index conforme a planta, renderizando da API do Payload.
 
-## Arquivos
+## Arquivos permitidos (a cerca)
 `site/**`.
 
 ## Aceite (entregue)

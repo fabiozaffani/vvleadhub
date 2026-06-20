@@ -2,6 +2,8 @@
 id: WO-SITE-003
 status: pending
 traces: [system/arquitetura.md, specs/admin/editor-lp.md, specs/admin/tracker-hub.md]
+deps: [WO-SITE-001, WO-ADMIN-001]
+skills: [work-order]
 ---
 # WO-SITE-003 · publish→purge + preview de draft
 
@@ -10,7 +12,7 @@ traces: [system/arquitetura.md, specs/admin/editor-lp.md, specs/admin/tracker-hu
 ## Objetivo
 Fechar o loop de publicação: editar no Payload reflete no site; preview de draft seguro.
 
-## Arquivos
+## Arquivos permitidos (a cerca)
 `admin/src/hooks/**`, `site/src/pages/preview/**`, `site/src/lib/**`.
 
 ## Aceite

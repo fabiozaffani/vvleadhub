@@ -1,6 +1,6 @@
 ---
 id: WO-CORE-002
-status: pending
+status: done
 traces: [_decisoes.md]
 deps: []
 skills: [sync-governanca]

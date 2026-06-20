@@ -46,7 +46,7 @@ ao vivo provada) — esta WO só codifica o procedimento numa skill reutilizáve
 4. Rodar **um ciclo assistido** ponta a ponta (a captura Di Terrá de 19/06 serve de validação) e
    confirmar que produz um `diario/` válido com ≥1 handoff.
 
-## 5. Arquivos permitidos (a cerca)
+## Arquivos permitidos (a cerca)
 - `.agents/skills/discovery-radar/**` (criar)
 
 ## 6. Fora de escopo
