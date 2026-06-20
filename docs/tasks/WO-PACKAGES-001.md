@@ -1,6 +1,6 @@
 ---
 id: WO-PACKAGES-001
-status: in_progress
+status: done
 traces: [specs/engenharia/monorepo.md, specs/engenharia/fronteiras.md, specs/engenharia/contrato-http.md, specs/engenharia/ci-gates.md, _decisoes.md]
 deps: []
 skills: [work-order, sync-governanca]
