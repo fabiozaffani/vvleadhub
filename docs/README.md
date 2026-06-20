@@ -8,7 +8,7 @@ Os MD da raiz do repo ([`../AGENTS.md`](../AGENTS.md), [`../CLAUDE.md`](../CLAUD
 |---|---|
 | [`_index.md`](_index.md) | índice load-first (módulos + espinha + ordem de leitura) |
 | [`_lexico.md`](_lexico.md) | termos canônicos (um por conceito; ponteiro ao doc dono) |
-| [`_decisoes.md`](_decisoes.md) | ledger ADR (D-1..D-19 + diferidos) |
+| [`_decisoes.md`](_decisoes.md) | ledger ADR (D-1..D-21 + diferidos) |
 | [`business/`](business/) | verdade do negócio, tech-neutral (domínio `comercial/`) |
 | [`specs/`](specs/) | ingredientes técnicos granulares, por domínio |
 | [`system/`](system/) | a coesão: agrega as specs de cada domínio no todo integrado |

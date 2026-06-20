@@ -4,6 +4,8 @@
 **Origem:** ideia do fundador (jun/2026) + pesquisa de viabilidade adversarial (9 dimensões).
 
 > Registro de discovery (exploratório — §6.4). Não alimenta léxico/business/specs até promovido pelo pipeline.
+>
+> **Atualização D-20 (jun/2026):** a fatia de **registro curado** (casa-de-dados no Payload + seed) foi **descongelada** e está em build via **WO-INTEL-001** — o domínio é promovido ao pipeline (business→specs→system). A **coleta automatizada** (Apify/YouTube) e o **render L3** seguem congelados atrás do gate. Lacuna "dono de schema" **resolvida: Payload** (D-9).
 
 ## Inteligência competitiva como L3 do single pane — Veredito: ✅ Validar (faseado)
 
