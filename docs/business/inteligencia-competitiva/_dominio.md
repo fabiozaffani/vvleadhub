@@ -16,7 +16,7 @@ A função que dá à VVF uma **leitura intencional do mercado** — observar, r
 
 ## §2 — Tipo de domínio e fronteiras
 
-**Funcional** — tem processo e cadência próprios (o ciclo de inteligência), não é só um papel. A unidade observada central é o **Concorrente-Espaço** (ver §3 e [`coleta.md`](coleta.md)).
+**Funcional** — tem processo e cadência próprios (o ciclo de inteligência), não é só um papel. A unidade observada central é o **Espaço-Concorrente** (ver §3 e [`coleta.md`](coleta.md)).
 
 - **É:** a captura curada e recorrente de inteligência sobre concorrentes (radar); a síntese dessa inteligência em leitura acionável (análise/estratégia); a munição que arma a venda (enablement).
 - **Não é:** o funil comercial (domínio comercial); o registro de Espaços/produtos da VVF (domínio comercial); a camada de identidade de pessoas (cross-domain — ver [`lacunas.md`](lacunas.md)).
@@ -32,7 +32,7 @@ O domínio se organiza em **dois anéis de centralidade** (peso diferente, unido
 ```mermaid
 flowchart TB
     subgraph A1["Anel 1 — Núcleo de Coleta (recorrente, robô; serve o norte)"]
-        GR["Grupo"] -->|1:N| CE["Concorrente-Espaço<br/>(raiz observada)"]
+        GR["Grupo"] -->|1:N| CE["Espaço-Concorrente<br/>(raiz observada)"]
         CE -->|1:N| CA["Canal (procedência)"]
         CA --> OB["Observação datada + Fonte<br/>tipos (ilustrativos): anúncio · review · casamento-real · preço · orgânico · movimento de negócio · …"]
         OB --> FI["Finding"]
@@ -47,7 +47,7 @@ flowchart TB
     end
 ```
 
-- **Anel 1 — Núcleo de Coleta** (a espinha): Grupo, Concorrente-Espaço, Canal, Observação, Estética, Disputa, Finding. Detalhe em [`coleta.md`](coleta.md).
+- **Anel 1 — Núcleo de Coleta** (a espinha): Grupo, Espaço-Concorrente, Canal, Observação, Estética, Disputa, Finding. Detalhe em [`coleta.md`](coleta.md).
 - **Anel 2 — Leitura / Análise humana**: Pergunta de Inteligência, SWOT (inclui a célula Fraqueza) / Reputação (saídas de síntese), Ganho/Perda (conexão com o comercial), Mapa de posicionamento — em [`analise.md`](analise.md); e a Munição — em [`municao.md`](municao.md).
 
 ---
@@ -131,23 +131,23 @@ O **baseline recorrente não depende de pergunta prévia** (`INTEL-ANL-01`): o r
 
 ## §8 — Glossário
 
-- **Grupo** *(também Operador)* — a entidade econômica (a dona): faz aporte, define playbook, agrega sub-marcas. Pode ter N Concorrente-Espaços.
-- **Concorrente-Espaço** — a **unidade observada** que disputa um casal por estética, nível de mercado e tema (ex.: um espaço específico). É a raiz da faceta Coleta.
-- **Relação competitiva** {direto, indireto} e **nível de mercado** (a faixa; ex.: premium-full · premium-partial · mid · below, *extensível por dado*) — os dois eixos ortogonais que classificam um Concorrente-Espaço (substituem o antigo "tier" guarda-chuva). "Aspiracional" não é nível.
-- **Canal** — a *procedência*: a superfície onde se observa um Concorrente-Espaço (perfil social, ficha de marketplace, fonte de review, biblioteca de anúncios, site, feira — ilustrativos, extensíveis por dado).
-- **Observação** — uma captura **datada** de um estado/fato de um Concorrente-Espaço, com Fonte e confiabilidade. Tem **tipos** ilustrativos e extensíveis por dado (anúncio, review, casamento-real, preço, orgânico, movimento de negócio…), não entidades separadas.
+- **Grupo** *(também Operador)* — a entidade econômica (a dona): faz aporte, define playbook, agrega sub-marcas. Pode ter N Espaços-Concorrentes.
+- **Espaço-Concorrente** — a **unidade observada** que disputa um casal por estética, nível de mercado e tema (ex.: um espaço específico). É a raiz da faceta Coleta.
+- **Relação competitiva** {direto, indireto} e **nível de mercado** (a faixa; ex.: premium-full · premium-partial · mid · below, *extensível por dado*) — os dois eixos ortogonais que classificam um Espaço-Concorrente (substituem o antigo "tier" guarda-chuva). "Aspiracional" não é nível.
+- **Canal** — a *procedência*: a superfície onde se observa um Espaço-Concorrente (perfil social, ficha de marketplace, fonte de review, biblioteca de anúncios, site, feira — ilustrativos, extensíveis por dado).
+- **Observação** — uma captura **datada** de um estado/fato de um Espaço-Concorrente, com Fonte e confiabilidade. Tem **tipos** ilustrativos e extensíveis por dado (anúncio, review, casamento-real, preço, orgânico, movimento de negócio…), não entidades separadas.
 - **Finding** *(síntese curada e legível)* — interpretação curada ("o que isto significa") que cita as Observações de origem. *(Síntese, sem maiúscula, nomeia a etapa/atividade do ciclo, não a entidade.)*
 - **SWOT** (Forças, Fraquezas, Oportunidades, Ameaças) — consolidado derivado da síntese; a **Fraqueza** é o componente W do SWOT, **não** um conceito irmão (nutrido sobretudo pelo negativo de reviews + cliente oculto).
 - **Reputação** — saída de síntese: agregado derivado das Observações de review.
-- **Estética** — eixo de classificação do Concorrente-Espaço (rústico, clássico, boho…); um rival pode ter mais de uma.
-- **Disputa** — a relação "este Concorrente-Espaço compete com tal Espaço/categoria da VVF".
+- **Estética** — eixo de classificação do Espaço-Concorrente (rústico, clássico, boho…); um rival pode ter mais de uma.
+- **Disputa** — a relação "este Espaço-Concorrente compete com tal Espaço/categoria da VVF".
 - **Pergunta de Inteligência** — a pergunta de negócio que direciona o esforço caro de coleta (equivale ao *Key Intelligence Topic*, KIT).
 - **Munição** — a inteligência empacotada para o comercial usar na venda (objeção típica → argumento de defesa).
 - **Battlecard** — resumo curado VVF vs. rival que agrega a munição no nível da Disputa.
 - **Prova** — evidência reutilizável (case, depoimento, número) que sustenta um diferencial.
 - **PII** — dados pessoais identificáveis (autor de review, casal, vendedor).
 
-> **Termos novos ainda não no léxico** (`_lexico.md`): Grupo, Concorrente-Espaço, Observação, Finding, Estética, Disputa, Pergunta de Inteligência, Battlecard, e os rótulos dos eixos (nível de mercado, movimento de negócio). Pendência registrada para o `doc-lexicon-keeper` (WO-INTEL-001 passo D) — não fixar antes da validação (§6.4).
+> **Termos no léxico** (`_lexico.md`): Grupo, Espaço-Concorrente, Observação, Finding, Estética, Disputa, Pergunta de Inteligência, Battlecard, e os rótulos dos eixos (nível de mercado, movimento de negócio) — **fixados no passo D** (WO-INTEL-001, jun/2026). O antigo `Concorrente-Espaço` foi renomeado para `Espaço-Concorrente` (`doc-reconciler`).
 
 ---
 

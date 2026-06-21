@@ -1,6 +1,6 @@
 ---
 name: intel-competitiva-dominio-convergente
-description: WO-INTEL-001 passos C+D+D-25 FEITOS — Domain Map + léxico do intel + D-25 (régua P1). Pendente: rename Concorrente-Espaço→Espaço-Concorrente (doc-reconciler). Próximo: passo E (specs).
+description: WO-INTEL-001 passos C+D+D-25 FEITOS — Domain Map + léxico do intel + D-25 (régua P1); rename Concorrente-Espaço→Espaço-Concorrente aplicado. Próximo: passo E (specs).
 metadata:
   node_type: memory
   type: project
@@ -39,10 +39,10 @@ relação competitiva e nível de mercado); **Finding mantido EN**; **Serviço**
 (head + sufixo):** `Espaço` (canônico; no comercial sempre VVF) × `Espaço-VVF` (qualificado, cross-domain) ×
 `Espaço-Concorrente` (rival). Proscritos: `tier`, `Aspiracional`.
 
-**PENDENTE — fila do `doc-reconciler`:** propagar o rename **`Concorrente-Espaço` → `Espaço-Concorrente`** pela
-árvore (business docs do intel, `_domain-map.md`, ADR `D-25`, notas de pendência de léxico). Decidido no léxico,
-**não aplicado** (a skill decide o termo; o reconciler espalha com grep). Checar colisão com o nome de
-collection `Concorrentes` (WO-INTEL-001 §G, congelado).
+**FEITO — `doc-reconciler` aplicou** o rename **`Concorrente-Espaço` → `Espaço-Concorrente`** pela árvore
+(business docs do intel, `_domain-map.md`, notas de pendência de léxico; o ADR `D-25` não continha o termo).
+Fila do `_lexico.md` fechada (resolvido jun/2026). **Pendente p/ passo E:** checar colisão do termo com o
+nome de collection `Concorrentes` (WO-INTEL-001 §G, congelado).
 
 **PRÓXIMO:** rodar `doc-reconciler` (o rename) → passo **E** (specs `docs/specs/inteligencia/` — modelo de dados
 + status registry; **não** congelado, serve o registro curado D-20) → **F** (system) → **G** (impl).
