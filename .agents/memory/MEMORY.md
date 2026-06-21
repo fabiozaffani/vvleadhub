@@ -8,4 +8,5 @@
 - [Hook-wo-fence trava governança](wo-fence-edicao-governanca.md) — promover WO via Bash (`docs/tasks/` é deny ao Edit); editar superfície de governança exige WO promovido cobrindo a cerca.
 - [Commitlint: #N no corpo estoura footer](commitlint-hash-no-corpo.md) — `#N` no corpo do commit vira issue-ref → `footer-max-line-length`; use hash ou "PR N" e corpo em linhas curtas.
 - [Ad Library via Chrome](ad-library-chrome-captura.md) — page_id sai da URL no typeahead; screenshot trava na grade de resultados (use `find`); landing leve p/ screenshot; permissão pendente bloqueia 300s.
-- [Domínio intel-competitiva convergente](intel-competitiva-dominio-convergente.md) — WO-INTEL-001 (radar) e o KB de Competidor (sales-enablement) precisam do mesmo business doc; mapear um só, duas facetas. Coordenação aberta.
+- [Intel-competitiva: domínio mapeado](intel-competitiva-dominio-convergente.md) — WO-INTEL-001 passo B FEITO (PR 62): business doc escrito (dois anéis; Grupo+Concorrente-Espaço; Ganho/Perda é do comercial; munição em dois níveis). Próximo: passo C (Domain Map).
+- [Worktree: caminho de escrita](worktree-write-path.md) — escrever via `C:\Github\VVLEADHUB\...` cai no main, não no worktree da sessão; use o caminho com prefixo do worktree p/ o trabalho entrar no branch/PR.
