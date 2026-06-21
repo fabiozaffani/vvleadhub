@@ -29,7 +29,7 @@ Assim qualquer agente novo **se auto-denuncia** em vez de rodar cego — validam
 ## Antes de qualquer código
 
 1. Leia, nesta ordem: o canon de marca (`CONTEXTO-IA`, vvcore, via `@import`) → [`docs/_index.md`](docs/_index.md) → [`docs/_lexico.md`](docs/_lexico.md) → [`docs/_decisoes.md`](docs/_decisoes.md) → [`docs/business/comercial/_dominio.md`](docs/business/comercial/_dominio.md) → [`docs/specs/plataforma/`](docs/specs/plataforma/) → [`docs/system/arquitetura.md`](docs/system/arquitetura.md) → a spec do domínio da tarefa em `docs/specs/<domínio>/` → o work-order em `docs/tasks/`.
-2. O controle do repo vive na espinha de `docs/`: [`_index.md`](docs/_index.md) (índice/ordem), [`_lexico.md`](docs/_lexico.md) (glossário), [`_decisoes.md`](docs/_decisoes.md) (índice ADR D-1..D-24) e [`decisoes/`](docs/decisoes/) (corpo). Diferidos: [`roadmap/deferidos.md`](docs/roadmap/deferidos.md). **Decisões fechadas não se rediscutem** — implementam-se. Se uma decisão parecer errada na prática, pare e pergunte ao fundador; não contorne em silêncio.
+2. O controle do repo vive na espinha de `docs/`: [`_index.md`](docs/_index.md) (índice/ordem), [`_lexico.md`](docs/_lexico.md) (glossário), [`_decisoes.md`](docs/_decisoes.md) (índice ADR D-1..D-25) e [`decisoes/`](docs/decisoes/) (corpo). Diferidos: [`roadmap/deferidos.md`](docs/roadmap/deferidos.md). **Decisões fechadas não se rediscutem** — implementam-se. Se uma decisão parecer errada na prática, pare e pergunte ao fundador; não contorne em silêncio.
 3. Em conflito entre docs: a camada de marca (CONTEXTO-IA) vence em marca/estratégia; no resto, vence o **dono único** do conceito (business → specs → system; ver [`docs/_index.md`](docs/_index.md)).
 4. Leia o work-order da sua tarefa em `docs/tasks/` antes de escrever qualquer linha. Não existe "construa a Fase N" — existe um work-order por tarefa, com escopo, arquivos permitidos e critérios de aceite.
 
@@ -79,7 +79,7 @@ Skills locais deste app a criar **quando a fase abrir a lacuna** (nascem em `.ag
 
 ## Quando perguntar ao fundador (aval obrigatório)
 
-- Qualquer mudança em decisão fechada (D-1..D-23) ou em invariante.
+- Qualquer mudança em decisão fechada (D-1..D-25) ou em invariante.
 - Trade-off não coberto pelos docs (registre a pergunta + recomendação; não decida sozinho).
 - Promoção de preview → produção (loop de validação humana).
 - Qualquer alteração em `packages/contracts`, `packages/api-{spec,zod,client}` ou `docs/` (gated por CODEOWNERS).
