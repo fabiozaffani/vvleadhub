@@ -335,12 +335,12 @@ Reconcilia o "padrão universal" do fundador (mesma estrutura em todo repo VV) c
 - **`CLAUDE.md`** (raiz) — ponteiro que faz **hard-import garantido** `@AGENTS.md` + os dois contexts; **zero conhecimento** de projeto. Em conflito, o `AGENTS.md` vence.
 - **`/docs`** com as **7 subpastas canônicas**: `discovery · business · specs · system · tasks-drafts · tasks · roadmap`. **Pipeline:** `discovery → business → specs → system → tasks-drafts → tasks`; `roadmap/` costura tudo em paralelo. Semântica de cada camada:
   - **`business/`** — a verdade do negócio, **agnóstica a implementação** (atores, domínios, ciclos de vida, regras). Insumo de tudo abaixo.
-  - **`specs/`** — os **ingredientes técnicos granulares** derivados do business, organizados **por domínio**: a ponte negócio→digital. **Vários specs por domínio** (ex.: o domínio Usuários pode ter um spec de modelo de dados, outro de papéis, outro de auth).
+  - **`specs/`** — os **ingredientes técnicos granulares** derivados do business, organizados **por domínio**: a ponte negócio→digital. **Vários specs por domínio** (ex.: o domínio Usuários pode ter um spec de modelo de dados, outro de papéis, outro de auth). **`specs/_seeds/`** — staging de descritores verbatim tech-specific parados pelo `doc-business-mapper` durante o mapeamento (não são spec final); o `doc-specs-mapper` consome e materializa em `specs/<dom>/*.md`.
   - **`system/`** — a **coesão**: cada `system/<domínio>.md` **agrega as specs daquele domínio** no todo integrado (o System Doc do domínio — o que ele é, como as specs se compõem, fronteiras). O **detalhe** (modelo de dados, status registry, contratos) mora nas **specs**; o system **não recopia, linka**.
   - **`tasks/`** — os **work-orders desmembrados do system**: sempre **múltiplos e de escopo estreito** (um WO por tarefa, com escopo/arquivos/critério de aceite) para facilitar merge e validação humana. Um domínio nasce com dezenas de WOs (montagem inicial) e escala para centenas (ajustes) e milhares (novas features, correções) conforme evolui.
   - **Nota de vocabulário:** "domínio" aparece em **três camadas** — `business/<dom>/_dominio.md` (domínio de **negócio**), `specs/<dom>/` (os **ingredientes técnicos** granulares) e `system/<dom>.md` (a **coesão** técnica do mesmo domínio). Mesma palavra, camadas distintas.
   - **O recorte técnico pode reorganizar o de negócio.** O conjunto de domínios em `specs/`/`system/` **não precisa ser 1:1** com os de `business/`: um domínio de negócio pode desdobrar-se em vários técnicos (no VVLEADHUB, o business `comercial` desdobra em `plataforma`/`eventos`/`landing-pages`/…), ou o inverso. O que amarra as camadas **não é o nome da pasta** e sim o campo **`Origem`** de cada spec (rastreia a regra/entidade de negócio que ela realiza). O `doc-specs-mapper` decide esse recorte com o usuário; o `doc-domain-architect` segue dono do ownership de entidade.
-- **Espinha transversal na raiz de `docs/`** (obrigatória em **todo** repo, prefixo `_` para ordenar no topo): **`_index.md`** (índice + ordem de leitura), **`_lexico.md`** (glossário canônico — um termo por conceito) e **`_decisoes.md`** (ledger de decisões estilo ADR). São transversais à doc inteira; existem mesmo que enxutos no início (exceção só documentada em §5.3).
+- **Espinha transversal na raiz de `docs/`** (obrigatória em **todo** repo, prefixo `_` para ordenar no topo): **`_index.md`** (índice + ordem de leitura), **`_lexico.md`** (glossário canônico — um termo por conceito) e **`_decisoes.md`** (índice fino do ledger de decisões — IDs, status, link). O **corpo** de cada ADR vive em **`docs/decisoes/D-N-slug.md`** (template em `decisoes/_template.md`). São transversais à doc inteira; existem mesmo que enxutos no início (exceção só documentada em §5.3).
 - **README em toda pasta** (explica o propósito, mesmo vazia). *Equivalência aceita:* um **arquivo-entry** que já cumpre o papel — `_dominio.md` (domínio de business), `SKILL.md` (skill), `<comando>.md` (command) — dispensa README; registre a equivalência no README do nível acima.
 - **O conhecimento mora em `/docs`.** Os MD da raiz são **roteador + livro de regras**, não onde o conhecimento mora.
 
@@ -375,7 +375,7 @@ skills: [<skills a carregar>] # donas §6.1 (obrigatórias se a cerca toca canon
 - **Relatório:** `vvcore/bin/tasks-report.sh [repo]` varre o frontmatter e conta por status — sem grep frágil, sem contar à mão.
 
 ### §5.5 — Repo novo = um comando
-`vvcore/bin/new-repo.sh <nome> <app|docs/solo>` gera o **núcleo comum** (AGENTS/CLAUDE com os imports certos, árvore `docs/` canônica com READMEs **+ a espinha `_index`/`_lexico`/`_decisoes`**, hook SessionStart, `.gitignore`, `.agents/{memory,skills}`) — para o "modelo universal" **não nascer copiado-e-adaptado** (a fonte nº1 de drift). Skills/context continuam vindo do vvcore por junction/`@import`; o scaffold só prepara o repo para o `setup-links.sh` do primeiro SessionStart.
+`vvcore/bin/new-repo.sh <nome> <app|docs/solo>` gera o **núcleo comum** (AGENTS/CLAUDE com os imports certos, árvore `docs/` canônica com READMEs **+ a espinha `_index`/`_lexico`/`_decisoes` + pasta `decisoes/`**, hook SessionStart, `.gitignore`, `.agents/{memory,skills}`) — para o "modelo universal" **não nascer copiado-e-adaptado** (a fonte nº1 de drift). Skills/context continuam vindo do vvcore por junction/`@import`; o scaffold só prepara o repo para o `setup-links.sh` do primeiro SessionStart.
 
 ### §5.6 — Débito estrutural e estado-futuro (registrado)
 A estrutura/nomenclatura desta §5 é **obrigatória em todos os repos desde já** — mesmo onde o conteúdo ainda não existe — para que, ao pagar o débito de documentação, o agente já tenha o **guia correto** a seguir. Os repos **iniciaram em estágios distintos**; a discrepância de preenchimento é **débito conhecido**, não desenho final:
@@ -406,10 +406,10 @@ A skill dona é a **única** que muta o artefato — é ela que traz o `prefligh
 | Roadmap · `docs/roadmap/` | `doc-roadmap-keeper` | posiciona/reflete |
 | Propagação cross-doc · refs órfãs | `doc-reconciler` | correção **decidida** → grep da árvore |
 | **Execução de implementação** (código, propagação, config, infra, mudança no vvcore) | **`work-order`** | draft → aprovar → promover → executar → validar → finalizar (§6.5) |
-| Superfície de governança (`AGENTS.md`/`CLAUDE.md`/`.cursor`/`_decisoes.md`/regra/termo) | `sync-governanca` | após editar → propõe changeset sincronizado |
+| Superfície de governança (`AGENTS.md`/`CLAUDE.md`/`.cursor`/`_decisoes.md`/`docs/decisoes/`/regra/termo) | `sync-governanca` | após editar → propõe changeset sincronizado |
 | Editar/melhorar uma skill | `skill-auditor` | após um ciclo; **nunca** mid-process |
 
-`_decisoes.md` (ADR) não tem skill exclusiva: **quem opera registra** a decisão; o `sync-governanca` propaga os ecos.
+`_decisoes.md` + `docs/decisoes/` (ADR) não têm skill exclusiva: **quem opera registra** a decisão (1 linha no índice + ADR em `decisoes/`); o `sync-governanca` propaga os ecos.
 
 ### §6.2 — Regra dura
 Nenhuma mutação de artefato canônico sem **carregar a skill dona primeiro**. `"nenhuma skill"` só vale **fora** de `docs/` canônico (código de app, script em `bin/`). Tocar artefato canônico por fora da skill dona é falha de processo, não atalho.
