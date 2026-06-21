@@ -14,7 +14,7 @@ Monorepo (pnpm workspaces) com três runtimes desacoplados: **site público em A
 
 ## §1 — Decisões fechadas
 
-As decisões de arquitetura (D-1 híbrido, D-2 Cloudflare/Astro, D-3 PostHog, D-4/D-6 Kommo+WhatsApp, D-14 atribuição, D-15 split de ingestão, e os diferidos com gancho — LGPD/consent pass-through, join key/`correlation_id`) vivem no ledger canônico em [`_decisoes.md`](../_decisoes.md), que é o dono. Não se replicam aqui — cite-as por ID (D-N) quando relevante ao contexto.
+As decisões de arquitetura (D-1 híbrido, D-2 Cloudflare/Astro, D-3 PostHog, D-4/D-6 Kommo+WhatsApp, D-14 atribuição, D-15 split de ingestão) vivem no índice [`_decisoes.md`](../_decisoes.md) + ADRs em [`decisoes/`](../decisoes/). **Diferidos** (LGPD, join key, mapa 301, edge-cache): [`roadmap/deferidos.md`](../roadmap/deferidos.md). Não se replicam aqui — cite por ID (D-N).
 
 ---
 
