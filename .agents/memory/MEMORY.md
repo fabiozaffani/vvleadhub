@@ -12,3 +12,4 @@
 - [Ad Library via Chrome](ad-library-chrome-captura.md) — page_id sai da URL no typeahead; screenshot trava na grade de resultados (use `find`); landing leve p/ screenshot; permissão pendente bloqueia 300s.
 - [Intel-competitiva: domínio mapeado](intel-competitiva-dominio-convergente.md) — WO-INTEL-001 passos C+D+D-25 FEITOS: Domain Map + léxico do intel + régua P1 (D-25: comercial vende, não cria). Rename Concorrente-Espaço→Espaço-Concorrente aplicado (doc-reconciler). Próximo: passo E (specs).
 - [Worktree: caminho de escrita](worktree-write-path.md) — escrever via `C:\Github\VVLEADHUB\...` cai no main, não no worktree da sessão; use o caminho com prefixo do worktree p/ o trabalho entrar no branch/PR.
+- [git sync limpa branch órfão](git-sync-branches-orfaos.md) — branch local "divergente" pós-squash-merge agora podado **automaticamente** no SessionStart (WO-CORE-024, `hook-session-sync.sh` VV-wide); alias `git sync` é o fallback manual.
