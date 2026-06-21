@@ -1,7 +1,7 @@
 ---
 id: WO-INTEL-001
-status: pending
-traces: [D-19, D-20]
+status: in_progress
+traces: [D-19, D-20, D-25]
 deps: []
 skills: [sync-governanca, doc-business-mapper, doc-domain-architect, doc-lexicon-keeper, doc-specs-mapper, doc-system-mapper, doc-roadmap-keeper, skill-auditor]
 ---

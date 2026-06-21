@@ -27,7 +27,7 @@
 - `INTEL-MUN-02` (Restrição): toda Objeção→Argumento se ancora em **Prova/experiência**, NUNCA em preço (herda `INTEL-GERAL-03`).
 - `INTEL-MUN-03` (Política): a munição tem **dono único** (o fundador) e é aprovada em **dois níveis** — **autonomia** para munição em-tom/ancorada em prova (revisão a posteriori, padrão D-1); **aval explícito** para munição **sensível** (deriva de cliente oculto/PII ou nomeia/ataca o rival). *Intel de campo cru não é munição.*
 - `INTEL-MUN-04` (Política): a munição é **consumível no ponto-de-uso** — onde o comercial já trabalha o lead (D-11); munição que só vive num painel à parte é tratada como **não-entregue**.
-- `INTEL-MUN-05` (Política): a munição **vence** — um Delta material no Concorrente marca a munição ancorada nele como "em revisão" (**gatilho primeiro**; o tempo é só a rede de segurança); munição em revisão não é servida como diferencial vigente até ser reconfirmada.
+- `INTEL-MUN-05` (Política): a munição **vence** — um Delta material no Espaço-Concorrente marca a munição ancorada nele como "em revisão" (**gatilho primeiro**; o tempo é só a rede de segurança); munição em revisão não é servida como diferencial vigente até ser reconfirmada.
 - `INTEL-MUN-06` (Heurística): a **Prova** é reutilizável entre Disputas; sempre distinguir a prova **citável-ao-casal** da **inteligência-interna-de-discurso** (ver §1.2).
 
 ---

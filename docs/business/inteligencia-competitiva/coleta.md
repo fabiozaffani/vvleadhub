@@ -46,7 +46,7 @@ stateDiagram-v2
 
 Notas por tipo:
 - **anúncio** — a **longevidade** (quanto tempo fica no ar) é proxy de "vencedor" — anúncio que persiste sinaliza oferta que funciona.
-- **review** — fonte assimétrica: a nota média é índice de superfície; o **valor está no negativo** (o verbatim sobre o serviço alimenta a célula Fraqueza — o quadrante W do SWOT, *Forças/Fraquezas/Oportunidades/Ameaças* — que sustenta a munição). Guarda-se o **conteúdo de negócio**, nunca o autor (`INTEL-FONTE-03`).
+- **review** — fonte assimétrica: a nota média é índice de superfície; o **valor está no negativo** (o verbatim sobre o serviço alimenta a célula Fraqueza — o quadrante W do SWOT, *Forças/Fraquezas/Oportunidades/Ameaças* — que sustenta a munição). Guarda-se o **conteúdo de negócio** + o **autor/origem** (contato-origem de visibilidade interna, para prospecção — `INTEL-FONTE-03` emendada), nunca divulgado.
 - **casamento-real** — **sinal agregado** (contagem/estética/data como proxy de volume de eventos), sem identificar o casal.
 - **preço** — Observação datada com procedência e confiabilidade herdada da fonte (não atributo fixo); é inteligência interna (`INTEL-GERAL-03`), conecta à métrica de ticket (M-02).
 

@@ -2,7 +2,7 @@
 
 **Camada:** business · **Dominio:** inteligencia-competitiva · **Origem:** WO-INTEL-001 (passo B) · **Tom:** trabalho
 
-> Status: **Rascunho v1 — precisa de validação** · Última atualização: 2026-06-20
+> Status: **Validado** (Full Review do `doc-process-reviewer` + aval do fundador) · Última atualização: 2026-06-21
 >
 > **Origem do conteúdo:** descrição direta do negócio pelo fundador (clean-room), validada em ciclo de perguntas, enriquecida por (a) uma varredura de mercado externa (disciplina de inteligência competitiva, battlecards de venda, mercado de casamento premium no Brasil, monitoramento competitivo) trazida **só como candidatos**, e (b) uma análise adversarial multi-agente cujos achados foram confrontados contra os **dados já coletados** do radar v0 ([`docs/discovery/radar/`](../../discovery/radar/)). Os registros de discovery são exploratórios (§6.4 da Arquitetura) — informam, mas a verdade validada é esta camada business. Decisões de coordenação e modelagem batidas com o fundador (jun/2026).
 
@@ -19,7 +19,7 @@ A função que dá à VVF uma **leitura intencional do mercado** — observar, r
 **Funcional** — tem processo e cadência próprios (o ciclo de inteligência), não é só um papel. A unidade observada central é o **Espaço-Concorrente** (ver §3 e [`coleta.md`](coleta.md)).
 
 - **É:** a captura curada e recorrente de inteligência sobre concorrentes (radar); a síntese dessa inteligência em leitura acionável (análise/estratégia); a munição que arma a venda (enablement).
-- **Não é:** o funil comercial (domínio comercial); o registro de Espaços/produtos da VVF (domínio comercial); a camada de identidade de pessoas (cross-domain — ver [`lacunas.md`](lacunas.md)).
+- **Não é:** o funil comercial (domínio comercial); o registro de Espaços/produtos da VVF (domínio comercial); a camada **canônica** de identidade de pessoas (cross-domain — ver [`lacunas.md`](lacunas.md); o intel guarda só um **contato-origem leve** de uso interno, `INTEL-FONTE-03`).
 
 **Escopo curado-agora × motor congelado (D-19/D-20).** Mapeia-se **todo** o domínio aqui (mapear é liberado). O que se **constrói agora** é só o **núcleo curável** — registro manual no admin + seed (D-20). O **motor de coleta automatizada** (os robôs) e a detecção de mudança ao longo do tempo seguem **congelados atrás do gate** (D-19): descritos como destino do domínio, **não** construídos. "Anúncio entra no ar / para / volta", "longevo = vencedor", "o que mudou desde o último ciclo" são **verdade de negócio** mapeada — sem virar máquina de estados, fórmula ou limiar no corpo (isso é da spec).
 
@@ -93,7 +93,7 @@ Regras de marca e de coleta que valem em **todo** o domínio. As regras por anel
 
 - `INTEL-FONTE-01` (Política): a coleta admite conteúdo **público OU não-público** — cliente oculto/*mystery shopping* no escopo (preço real, script de venda, processo, pontos fracos do atendimento).
 - `INTEL-FONTE-02` (Restrição): SOMENTE por **meios legítimos** — sem ato ilícito, invasão ou quebra de NDA.
-- `INTEL-FONTE-03` (Restrição): **minimização de PII** (dados pessoais identificáveis) — guarda-se o *conteúdo de negócio* da Observação (nota, sentimento, verbatim sobre o serviço, fonte, data), NUNCA a identidade do indivíduo (autor de review, casal, vendedor). O alvo é a inteligência **de negócio** do concorrente.
+- `INTEL-FONTE-03` (Restrição): a Observação guarda o *conteúdo de negócio* (nota, sentimento, verbatim sobre o serviço), a **origem/proveniência** (link/print da fonte pública) e a **identidade + contato de quem originou** (autor do comentário/review) — para **uso interno**: validar a informação e **prospectar o lead** (ex.: abordar quem reclamou de um rival). A identidade e o contato são de **visibilidade interna** e **NUNCA são divulgados nem viram copy público**. Base: dado **público** + **legítimo interesse** (D-19); mantém-se o gancho de retenção/visibilidade (LGPD diferida). *(emendada jun/2026 — antes: minimização total de PII; o fundador validou a captura para validação + prospecção.)*
 - `INTEL-FONTE-04` (Restrição): NUNCA reusar criativo alheio nos nossos anúncios (copyright).
 - `INTEL-FONTE-05` (Política): toda Observação carrega **Fonte + confiabilidade**; a confiabilidade herda da fonte (público < inferido-de-anúncio < cliente-oculto).
 
@@ -125,7 +125,7 @@ O **baseline recorrente não depende de pergunta prévia** (`INTEL-ANL-01`): o r
 | comercial (registro de Espaço VVF) | a **Disputa** liga ao registro de Espaço/categoria da VVF | → | por identidade; mecânica fica na spec (D-9) |
 | landing-pages / plataforma | afiar LP/campanha a partir do rival | → | handoff recorrente p/ `nova-lp`, **só via Prova/diferencial** (`INTEL-MUN-01`) |
 | marketing/growth + operações internas | inteligência → assets (Criador) + melhoria de produto (ex.: buffet) | → | consumidores estratégicos |
-| camada Pessoa/Party | vendedor do rival, autor de review, casal | — | **Lacuna ALTA** — não modelar aqui; a regra é `INTEL-FONTE-03` (guardar o conteúdo de negócio, não a pessoa) |
+| camada Pessoa/Party | vendedor do rival, autor de review, casal | — | a camada **canônica** de identidade é cross-domain (**Lacuna ALTA**, não modelar aqui); o intel guarda um **contato-origem leve** de uso interno (`INTEL-FONTE-03` emendada) |
 
 ---
 
