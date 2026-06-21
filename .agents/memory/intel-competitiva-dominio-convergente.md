@@ -62,4 +62,4 @@ tipo-de-serviço[] × relação-com-VVF) servindo intel+curadoria+parceria — m
 **Limpezas pendentes:** Domain Map §8 (passo D/E→feito + residual) via `doc-domain-architect`; `_lexico.md`
 l.105 (colisão→`espacos-concorrentes`); `docs/business/README.md` stale (não lista o domínio); WO-INTEL-001
 (status→in_progress, traces +D-25, §G 4→7 collections). Nada commitado — fundador controla o push.
-Ver [[wo-fence-allowlist-heading]] · [[sed-mangles-markdown]] · [[pr-auto-merge-armar]].
+Ver [[pr-auto-merge-armar]] (contrato da cerca do wo-fence e o gotcha do `sed` agora no canon ARQUITETURA-IA §5.4/§3).
