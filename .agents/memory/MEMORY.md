@@ -8,6 +8,6 @@
 - [Commitlint: #N no corpo estoura footer](commitlint-hash-no-corpo.md) — `#N` no corpo do commit vira issue-ref → `footer-max-line-length`; use hash ou "PR N" e corpo em linhas curtas.
 - [Ad Library via Chrome](ad-library-chrome-captura.md) — page_id sai da URL no typeahead; screenshot trava na grade de resultados (use `find`); landing leve p/ screenshot; permissão pendente bloqueia 300s.
 - [Intel-competitiva: domínio mapeado](intel-competitiva-dominio-convergente.md) — WO-INTEL-001 passos C+D+D-25 FEITOS: Domain Map + léxico do intel + régua P1 (D-25: comercial vende, não cria). Rename Concorrente-Espaço→Espaço-Concorrente aplicado (doc-reconciler). Próximo: passo E (specs).
-- [git sync limpa branch órfão](git-sync-branches-orfaos.md) — branch local "divergente" pós-squash-merge agora podado **automaticamente** no SessionStart (WO-CORE-024, `hook-session-sync.sh` VV-wide); alias `git sync` é o fallback manual.
+- [git sync limpa branch órfão](git-sync-branches-orfaos.md) — branch local "divergente" pós-squash-merge agora podado **automaticamente** no SessionStart (WO-CORE-024, `hook-session-sync.sh` VV-wide); alias `git sync` é o fallback manual. **Gotcha:** cópia derivada suja perene (`.cursor/rules/00-canon-vvf.mdc` sem commit) mantém a árvore suja e rebloqueia a poda — órfão "volta" toda sessão; fix = commitar a cópia.
 
 > Gotchas de harness VV-wide (cerca do wo-fence, promoção de WO, `sed`/markdown, worktree write-path) foram **promovidos ao canon** `ARQUITETURA-IA` (§3/§5.4/§6.5, WO-CORE-025) e chegam por `@import` — não duplicar aqui.
