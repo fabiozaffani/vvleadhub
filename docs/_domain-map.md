@@ -32,7 +32,7 @@ O mapa cobre os domínios de negócio **deste repo (vvleadhub)**; entidades cuja
 
 Princípios cross-domain capturados nesta camada (separados do ownership de entidade).
 
-- **P1 — O comercial é domínio de VENDA, não de criação.** Tudo que a empresa **provê** (Serviço, Espaço, Hospedagem) **nasce e é vetado na operação** (análise de viabilidade, existência, processos internos) — o comercial **só empacota e comercializa** o que é disponibilizado. O que o comercial **possui** é a construção da venda: Pacote/oferta, funil, Ganho/Perda. *(Decisão do fundador, jun/2026 — candidata a registro como decisão; ver §8.)*
+- **P1 — O comercial é domínio de VENDA, não de criação.** Tudo que a empresa **provê** (Serviço, Espaço, Hospedagem) **nasce e é vetado na operação** (análise de viabilidade, existência, processos internos) — o comercial **só empacota e comercializa** o que é disponibilizado. O que o comercial **possui** é a construção da venda: Pacote/oferta, funil, Ganho/Perda. *(Decisão do fundador, jun/2026 — registrada como [D-25](_decisoes.md).)*
 - **P2 — Handoff Auditável: não se aplica neste mapa (ainda).** Os fluxos cross-domain hoje são referência de catálogo + feedback agregado, sem transferência de responsabilidade contábil (ver §5). O padrão surge quando domínios operacionais com débito contábil (ex.: Buffet↔Estoque, no vvdomain) forem mapeados — ou se o comercial passar a **escrever de volta** em artefatos da inteligência (ver §7).
 
 ---
@@ -136,4 +136,4 @@ flowchart LR
 
 - **Passo D — léxico (`doc-lexicon-keeper`):** fixar **"Espaço-VVF"** como canônico (vs **Concorrente-Espaço**, para o seed por id não errar o alvo); registrar **"Serviço"** com a nota de dois sentidos (entidade operacional × representação de venda); + os termos novos do intel (Grupo, Concorrente-Espaço, Observação, Finding, Estética, Disputa, Pergunta de Inteligência, Battlecard, Prova).
 - **Passo E — specs (`doc-specs-mapper`):** a fonte de PK vem do ownership acima; a relação Disputa→Espaço-VVF é **por id** (D-9); decidir materialização/versionamento das saídas derivadas (§3.4) **sem** reabrir a classificação business; status registry resolve os ciclos de §5.
-- **Decisão candidata (§2/P1):** a régua *"o comercial vende, não cria — o que a empresa provê é da operação"* é estruturante; vale registrá-la em [`_decisoes.md`](_decisoes.md) (próxima `D-NN`) + propagar com `sync-governanca`. *Pendente de aval do fundador.*
+- **Decisão registrada (§2/P1):** a régua *"o comercial vende, não cria — o que a empresa provê é da operação"* foi formalizada como **[D-25](_decisoes.md)** (ADR em [`decisoes/D-25-comercial-vende-nao-cria.md`](decisoes/D-25-comercial-vende-nao-cria.md)), propagada por `sync-governanca` (WO-DOCS-002).

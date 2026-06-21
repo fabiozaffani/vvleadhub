@@ -34,3 +34,4 @@
 | D-22 | jun/2026 | Pipeline HTTP — api-spec → api-zod + api-client | fechada | stack | [D-22](decisoes/D-22-estrutura-de-packages-pipeline-http-em-3-pa.md) |
 | D-23 | jun/2026 | ErrorCode — fonte única em @vvf/contracts | fechada | stack | [D-23](decisoes/D-23-sincronizacao-do-errorcode-envelope-de-erro-h.md) |
 | D-24 | jun/2026 | Coleta ampliada — mystery shopping no escopo | fechada | produto | [D-24](decisoes/D-24-coleta-ampliada-da-inteligencia-competitiva-eme.md) |
+| D-25 | jun/2026 | Comercial vende, não cria (régua de ownership) | fechada | gov, arquitetura | [D-25](decisoes/D-25-comercial-vende-nao-cria.md) |
