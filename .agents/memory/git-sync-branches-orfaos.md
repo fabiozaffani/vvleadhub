@@ -18,4 +18,4 @@ git config --global alias.sync "!git checkout main && git fetch --prune && git p
 
 **Why:** "gone" é sinal confiável de mergeado (D-21 auto-merge no verde + `--delete-branch`); `-D` em branch gone é seguro e recuperável via reflog (90 dias).
 
-**How to apply:** normalmente **nada** — o hook resolve no SessionStart. Se um branch órfão escapar (ou numa máquina sem o vvcore linkado), `git sync` faz a faxina. Relacionado: [[worktree-write-path]], [[pr-auto-merge-armar]].
+**How to apply:** normalmente **nada** — o hook resolve no SessionStart. Se um branch órfão escapar (ou numa máquina sem o vvcore linkado), `git sync` faz a faxina. Relacionado: [[pr-auto-merge-armar]] (worktree write-path agora no canon ARQUITETURA-IA §3).

@@ -5,11 +5,9 @@
 - [Next+Payload build needs --webpack](next-payload-build.md) — Turbopack hangs on the Payload admin build; admin build script must be `next build --webpack`.
 - [payload run quebra no Node 24](payload-run-node24-tsx.md) — `payload run` quebra no Node 24 (tsx trata `node:` como arquivo); usar `node --import tsx/esm` + `--env-file`.
 - [Auto-merge: docs sim, sensíveis não](pr-auto-merge-armar.md) — `main` sem required review (D-21): armar `--auto` em docs/código; **NUNCA** em caminhos sensíveis (contracts/.claude/AGENTS/infra) — esses ficam p/ merge manual do fundador.
-- [Hook-wo-fence trava governança](wo-fence-edicao-governanca.md) — promover WO via Bash `mv` (`docs/tasks/` é deny ao Write-**novo**; Edit em WO existente é OK); editar superfície de governança exige WO promovido cobrindo a cerca.
-- [Cerca do WO: heading sem número](wo-fence-allowlist-heading.md) — o hook só lê a cerca se o heading for exatamente `## Arquivos permitidos` (numerar zera a extração e bloqueia tudo); um token em backtick por linha; lê o WO **commitado**.
-- [sed -i mangla markdown](sed-mangles-markdown.md) — um linter de fundo corrompe markdown escrito por `sed -i` (reposiciona backticks, dropa o `---` do frontmatter); use Write/Edit. `git add` antes salva a versão staged.
 - [Commitlint: #N no corpo estoura footer](commitlint-hash-no-corpo.md) — `#N` no corpo do commit vira issue-ref → `footer-max-line-length`; use hash ou "PR N" e corpo em linhas curtas.
 - [Ad Library via Chrome](ad-library-chrome-captura.md) — page_id sai da URL no typeahead; screenshot trava na grade de resultados (use `find`); landing leve p/ screenshot; permissão pendente bloqueia 300s.
 - [Intel-competitiva: domínio mapeado](intel-competitiva-dominio-convergente.md) — WO-INTEL-001 passos C+D+D-25 FEITOS: Domain Map + léxico do intel + régua P1 (D-25: comercial vende, não cria). Rename Concorrente-Espaço→Espaço-Concorrente aplicado (doc-reconciler). Próximo: passo E (specs).
-- [Worktree: caminho de escrita](worktree-write-path.md) — escrever via `C:\Github\VVLEADHUB\...` cai no main, não no worktree da sessão; use o caminho com prefixo do worktree p/ o trabalho entrar no branch/PR.
 - [git sync limpa branch órfão](git-sync-branches-orfaos.md) — branch local "divergente" pós-squash-merge agora podado **automaticamente** no SessionStart (WO-CORE-024, `hook-session-sync.sh` VV-wide); alias `git sync` é o fallback manual.
+
+> Gotchas de harness VV-wide (cerca do wo-fence, promoção de WO, `sed`/markdown, worktree write-path) foram **promovidos ao canon** `ARQUITETURA-IA` (§3/§5.4/§6.5, WO-CORE-025) e chegam por `@import` — não duplicar aqui.
