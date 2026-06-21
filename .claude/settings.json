@@ -44,7 +44,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "git pull --ff-only || echo \"[session] pull pulou: branch divergente ou alteracoes locais — sincronize a mao\"",
+            "command": "D=$(git rev-parse --show-toplevel 2>/dev/null); H=\"${D%/*}/vvcore/bin/hook-session-sync.sh\"; if [ -n \"$D\" ] && [ -f \"$H\" ]; then bash \"$H\"; else git pull --ff-only || echo \"[session] pull pulou: branch divergente - sincronize a mao\"; fi",
             "shell": "bash",
             "timeout": 30,
             "statusMessage": "Puxando ultimas mudancas do GitHub..."
