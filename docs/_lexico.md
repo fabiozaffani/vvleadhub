@@ -55,9 +55,31 @@
 |---|---|---|
 | **Tipo de Evento** | Casamento (núcleo) · Aniversário · Debutante · Corporativo | [`business/comercial/_dominio.md`](business/comercial/_dominio.md) |
 | **Pacote** | o que se vende; espectro locação pura → completo | [`business/comercial/_dominio.md`](business/comercial/_dominio.md) |
-| **Serviço** | componente do pacote; atributo `papel: padrão \| adicional` | [`business/comercial/_dominio.md`](business/comercial/_dominio.md) |
-| **Espaço** | local; atributo `categoria: festa \| hospedagem` | [`business/comercial/_dominio.md`](business/comercial/_dominio.md) |
+| **Serviço** | componente do pacote (`papel: padrão \| adicional`); **dono canônico = operação (vvdomain); no comercial é representação de venda** (D-25) | [`business/comercial/_dominio.md`](business/comercial/_dominio.md) |
+| **Espaço** | local (`categoria: festa \| hospedagem`); no comercial **sempre VVF**. Formas qualificadas cross-domain: **Espaço-VVF** × **Espaço-Concorrente** (intel) | [`business/comercial/_dominio.md`](business/comercial/_dominio.md) |
 | **Hospedagem** | produto ortogonal ligado a Espaços `hospedagem` | [`business/comercial/_dominio.md`](business/comercial/_dominio.md) |
+
+## Termos do domínio inteligência-competitiva
+
+> Fixados no passo D da WO-INTEL-001. Definições no doc dono (`business/inteligencia-competitiva/`); aqui só ponteiro. **`Espaço-Concorrente`** substitui o antigo `Concorrente-Espaço` — rename na fila do `doc-reconciler` (fim do arquivo).
+
+| Termo | Língua | Significa | Definição (ponteiro) |
+|---|---|---|---|
+| **Grupo** | pt | entidade econômica dona de N Espaços-Concorrentes (alias: *Operador*) | [`coleta.md §1.1`](business/inteligencia-competitiva/coleta.md) |
+| **Espaço-Concorrente** | pt | unidade observada que disputa o casal; raiz da coleta (ex-`Concorrente-Espaço`) | [`coleta.md §1.2`](business/inteligencia-competitiva/coleta.md) |
+| **Canal** | pt | procedência: a superfície onde se observa um Espaço-Concorrente | [`coleta.md §1.3`](business/inteligencia-competitiva/coleta.md) |
+| **Observação** | pt | captura **datada** de um fato, com Fonte + confiabilidade (átomo do radar) | [`coleta.md §1.4`](business/inteligencia-competitiva/coleta.md) |
+| **Estética** | pt | eixo de classificação (rústico/clássico/boho…), N:N | [`coleta.md §1.5`](business/inteligencia-competitiva/coleta.md) |
+| **Disputa** | pt | relação Espaço-Concorrente × Espaço-VVF disputado (por id, D-9) | [`coleta.md §1.6`](business/inteligencia-competitiva/coleta.md) |
+| **Finding** | EN | síntese curada e legível ("o que isto significa"); cita as Observações de origem | [`coleta.md §1.7`](business/inteligencia-competitiva/coleta.md) |
+| **Pergunta de Inteligência** | pt | a pergunta que direciona o esforço caro de coleta (alias: *KIT*) | [`analise.md §1.1`](business/inteligencia-competitiva/analise.md) |
+| **SWOT** · **Reputação** | EN · pt | saídas de síntese **derivadas** (não entidades primárias) | [`analise.md §1.2`](business/inteligencia-competitiva/analise.md) |
+| **Relação competitiva** · **Nível de mercado** | pt | os dois eixos ortogonais que classificam um Espaço-Concorrente (substituem o "tier") | [`coleta.md §1.6`](business/inteligencia-competitiva/coleta.md) |
+| **Munição** | pt | inteligência empacotada p/ a venda (objeção → argumento) | [`municao.md §1.1`](business/inteligencia-competitiva/municao.md) |
+| **Prova** | pt | evidência reutilizável que sustenta um diferencial (citável-ao-casal × interna) | [`municao.md §1.2`](business/inteligencia-competitiva/municao.md) |
+| **Battlecard** | EN | resumo curado VVF vs rival, ancorado no nível da Disputa | [`municao.md §1.3`](business/inteligencia-competitiva/municao.md) |
+
+> **`Espaço` × `Espaço-VVF` × `Espaço-Concorrente`:** o head é sempre **Espaço**, o qualificador vem por **sufixo**. **`Espaço`** nu = canônico (no comercial, sempre VVF). **`Espaço-VVF`** = forma qualificada p/ prosa cross-domain (ex.: a Disputa). **`Espaço-Concorrente`** = o local do rival (intel).
 
 ## Depreciados (proibidos)
 
@@ -69,3 +91,15 @@
 | **"intenção × unidade"** | "Molde × Assunto × Objetivo" |
 | **Foco** (sentido plataforma) | **Assunto** |
 | **TipoDeFoco** | **TipoDeAssunto** |
+| **tier** (guarda-chuva de classificação) | **relação competitiva** + **nível de mercado** (2 eixos ortogonais) |
+| **Aspiracional** (como nível/tier) | **nível de mercado** |
+
+## Fila de renomes → doc-reconciler
+
+> Renomes canônicos **decididos** aqui, a **propagar** pela árvore via `/doc-reconciler` (grep do repo inteiro). O item fica `pendente` até o reconciler aplicar — **ou** voltar com colisão (ex.: nome de collection/seed). Enquanto pendente, o termo antigo ainda aparece nos docs.
+
+| De | Para | Escopo | Status |
+|---|---|---|---|
+| `Concorrente-Espaço` | `Espaço-Concorrente` | `business/inteligencia-competitiva/*`, `_domain-map.md`, `decisoes/D-25-*`, e a nota de pendência de léxico nos business docs | **pendente** |
+
+> Nota p/ as specs (passo E, congelado): a collection/seed que materializa o Espaço-Concorrente herda o termo canônico; checar colisão com o nome `Concorrentes` previsto na WO-INTEL-001 §G.

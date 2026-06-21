@@ -1,6 +1,6 @@
 ---
 name: intel-competitiva-dominio-convergente
-description: WO-INTEL-001 passo C FEITO — docs/_domain-map.md criado (1º do repo); régua P1 (comercial vende, não cria) reposiciona ownership. Próximo é passo D (léxico).
+description: WO-INTEL-001 passos C+D+D-25 FEITOS — Domain Map + léxico do intel + D-25 (régua P1). Pendente: rename Concorrente-Espaço→Espaço-Concorrente (doc-reconciler). Próximo: passo E (specs).
 metadata:
   node_type: memory
   type: project
@@ -32,8 +32,18 @@ operacional/identidade é do **vvdomain** (externo).
 (acoplamento por DADO, não MODELO); SWOT/Reputação/Mapa/Delta = saídas derivadas (não-entidades);
 Pergunta = 2 ciclos; seam futura Coleta×Munição; Handoff Auditável não se aplica (vigiar B1).
 
-**PRÓXIMO:** **passo D = léxico** (`doc-lexicon-keeper`): fixar **Espaço-VVF** canônico (vs Concorrente-Espaço),
-**Serviço** com nota de dois sentidos (entidade operacional × representação de venda) + termos novos do intel
-(Grupo/Concorrente-Espaço/Observação/Finding/Estética/Disputa/Pergunta de Inteligência/Battlecard/Prova).
-Depois E (specs `docs/specs/inteligencia/`), F (system), G (impl). **Aval pendente:** registrar a régua P1
-como decisão (`sync-governanca`). Ver [[wo-fence-edicao-governanca]] · [[pr-auto-merge-armar]] · [[worktree-write-path]].
+**Passos D-25 + D FEITOS (jun/2026):** D-25 (régua P1) registrada — ADR + ecos de range D-N, PR #67 mesclado.
+Léxico do intel fixado (`doc-lexicon-keeper`, PR #68): termos canônicos (Grupo/Espaço-Concorrente/Canal/
+Observação/Estética/Disputa/Finding/Pergunta de Inteligência/Munição/Prova/Battlecard/SWOT/Reputação + eixos
+relação competitiva e nível de mercado); **Finding mantido EN**; **Serviço** com nota D-25. **Tríade de espaço
+(head + sufixo):** `Espaço` (canônico; no comercial sempre VVF) × `Espaço-VVF` (qualificado, cross-domain) ×
+`Espaço-Concorrente` (rival). Proscritos: `tier`, `Aspiracional`.
+
+**PENDENTE — fila do `doc-reconciler`:** propagar o rename **`Concorrente-Espaço` → `Espaço-Concorrente`** pela
+árvore (business docs do intel, `_domain-map.md`, ADR `D-25`, notas de pendência de léxico). Decidido no léxico,
+**não aplicado** (a skill decide o termo; o reconciler espalha com grep). Checar colisão com o nome de
+collection `Concorrentes` (WO-INTEL-001 §G, congelado).
+
+**PRÓXIMO:** rodar `doc-reconciler` (o rename) → passo **E** (specs `docs/specs/inteligencia/` — modelo de dados
++ status registry; **não** congelado, serve o registro curado D-20) → **F** (system) → **G** (impl).
+Ver [[wo-fence-allowlist-heading]] · [[sed-mangles-markdown]] · [[pr-auto-merge-armar]].
