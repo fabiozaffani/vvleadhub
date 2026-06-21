@@ -3,7 +3,7 @@
 Princípio organizador (padrão VV, ARQUITETURA-IA §5): pipeline **`discovery → business → specs → system → tasks-drafts → tasks`**; `roadmap/` costura tudo em paralelo. **Um dono por conceito**, referência por nome (nunca recópia). Conduta do agente é o [`../AGENTS.md`](../AGENTS.md) (fonte única tool-neutral).
 
 ## Espinha (raiz de docs/)
-- [`_index.md`](_index.md) (este) · [`_lexico.md`](_lexico.md) (termos canônicos) · [`_decisoes.md`](_decisoes.md) (índice ADR D-1..D-24) · [`decisoes/`](decisoes/) (corpo) · [`roadmap/deferidos.md`](roadmap/deferidos.md) (ganchos adiados).
+- [`_index.md`](_index.md) (este) · [`_lexico.md`](_lexico.md) (termos canônicos) · [`_decisoes.md`](_decisoes.md) (índice ADR D-1..D-24) · [`decisoes/`](decisoes/) (corpo) · [`_domain-map.md`](_domain-map.md) (ownership cross-domain) · [`roadmap/deferidos.md`](roadmap/deferidos.md) (ganchos adiados).
 - **Contexto/marca da empresa vem do vvcore** (`CONTEXTO-IA` + `ARQUITETURA-IA`, via `@import` no [`../CLAUDE.md`](../CLAUDE.md)) — não vive aqui.
 
 ## Módulos (padrão VV)

@@ -1,33 +1,39 @@
 ---
 name: intel-competitiva-dominio-convergente
-description: WO-INTEL-001 passo B FEITO — business doc de inteligência-competitiva escrito (um doc, dois anéis), convergindo radar + KB de Competidor; próximo é passo C (Domain Map).
+description: WO-INTEL-001 passo C FEITO — docs/_domain-map.md criado (1º do repo); régua P1 (comercial vende, não cria) reposiciona ownership. Próximo é passo D (léxico).
 metadata:
   node_type: memory
   type: project
   originSessionId: c0bb13b7-a089-465f-8970-db181d729e07
 ---
 
-**RESOLVIDO (jun/2026).** A convergência radar (WO-INTEL-001) + KB de Competidor (sales-enablement)
-foi mapeada como **UM** business doc em `docs/business/inteligencia-competitiva/` (âncora `_dominio.md`
-+ `coleta.md` / `analise.md` / `municao.md` / `lacunas.md`). Decisão de escopo: um doc, **só** o domínio
-intel nesta rodada (funil/atores comercial = B1, adiado). **Passo B mesclado em `origin/main` (PR 62).**
+**Passo C FEITO (jun/2026, branch `docs/wo-intel-001-domain-map`).** `docs/_domain-map.md` criado
+(1º Domain Map do repo), ligado na espinha do `_index.md`. Skill dona `doc-domain-architect` + preflight;
+proposta vetada por verificação adversarial (3 lentes) **e** corrigida por aval do fundador no chat.
 
-**Modelo (refinado por análise adversarial multi-agente que confrontou os dados já coletados do radar):**
-- **Dois anéis**, não 3 facetas de peso igual: Anel 1 = núcleo de coleta (serve o norte: recorrente,
-  fácil acesso, robô); Anel 2 = leitura/análise humana (incremental, parte em Lacuna/congelada).
-- **Reframe-raiz:** "Concorrente" ⇒ **Grupo** (entidade econômica) + **Concorrente-Espaço** (raiz
-  observada que disputa o casal), Grupo(1):Concorrente-Espaço(N) — porque **4/5 dos alvos do radar são
-  roll-ups**. Captura = **uma** `Observação` datada+Fonte (anúncio/review/preço = tipos, não entidades);
-  Delta/SWOT/Reputação = **saídas derivadas**, não entidades/atributos. 29 regras `INTEL-<FACETA>-NN`.
-- **Decisões batidas:** Grupo+Concorrente-Espaço (sim); "aspiracional" cortado do tier; aprovação de
-  munição = **dono único (fundador) + dois níveis** (reverte o "comitê de gestão" inicial, alinha D-1);
-  **Ganho/Perda é do comercial** (intel consome por conexão).
+**Descoberta estruturante — régua P1 (correção do fundador, candidata a `D-NN`):** o **comercial é domínio
+de VENDA, não de criação**. Tudo que a empresa **provê** (Serviço, Espaço-VVF, Hospedagem) **nasce e é
+vetado na operação (vvdomain)** — o comercial **só representa e vende**, nunca cria (gate de viabilidade/
+processo interno é da operação). O que é do comercial são as **construções de venda**: Pacote/escada, funil,
+Ganho/Perda. Isso reposiciona o vvleadhub: **comercial (vende) + inteligência (observa)**; o backbone
+operacional/identidade é do **vvdomain** (externo).
 
-**Norte do fundador (peso alto):** inteligência recorrente, de fácil acesso, robôs coletando; a estrutura
-do banco firma com o tempo — não super-projetar. Build segue **faseado** (só registro curado + seed agora,
-D-20; motor automatizado + render L3 congelados, D-19). Coleta ampliada por **D-24** (cliente oculto;
-cerca: meios legítimos, minimizar PII, não reusar criativo).
+**Ownership cravado (lacunas):**
+- **L1 (Party):** Pessoa/Organização = transversal, **dono provável = vvdomain** (em mapeamento lá); NÃO
+  cristalizar aqui; intel guarda conteúdo, nunca identidade (INTEL-FONTE-03). Gatilho de uso real: ≥2
+  domínios persistirem identidade.
+- **L2 (Ganho/Perda):** dono = **comercial** (DR5/INTEL-ANL-02/D-9); intel consome o agregado por conexão.
+  Definição hoje **reside nos docs de intel** → **Reconciliação R1** (revisitar no B1/funil).
+- **L3 (Observação/Finding):** = **intel** (confirmado, resiste).
+- **Reconciliação R2:** Serviço/Espaço-VVF/Hospedagem aparecem como entidades no comercial, mas a fonte
+  canônica é **operações (vvdomain)** — reconciliar quando vvdomain for mapeado.
 
-**PRÓXIMO:** passo C = Domain Map (`doc-domain-architect`, agora há 2 business docs: comercial + intel);
-depois D (léxico — termos Grupo/Concorrente-Espaço/Observação/Finding/Estética/Disputa), E (specs), F
-(system), G (impl). Ver [[wo-fence-edicao-governanca]] · [[pr-auto-merge-armar]] · [[worktree-write-path]].
+**Refinamentos no mapa:** Disputa→Espaço-VVF = "Referência de Catálogo por id (D-9)", não Partnership
+(acoplamento por DADO, não MODELO); SWOT/Reputação/Mapa/Delta = saídas derivadas (não-entidades);
+Pergunta = 2 ciclos; seam futura Coleta×Munição; Handoff Auditável não se aplica (vigiar B1).
+
+**PRÓXIMO:** **passo D = léxico** (`doc-lexicon-keeper`): fixar **Espaço-VVF** canônico (vs Concorrente-Espaço),
+**Serviço** com nota de dois sentidos (entidade operacional × representação de venda) + termos novos do intel
+(Grupo/Concorrente-Espaço/Observação/Finding/Estética/Disputa/Pergunta de Inteligência/Battlecard/Prova).
+Depois E (specs `docs/specs/inteligencia/`), F (system), G (impl). **Aval pendente:** registrar a régua P1
+como decisão (`sync-governanca`). Ver [[wo-fence-edicao-governanca]] · [[pr-auto-merge-armar]] · [[worktree-write-path]].
