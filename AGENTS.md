@@ -29,7 +29,7 @@ Assim qualquer agente novo **se auto-denuncia** em vez de rodar cego — validam
 ## Antes de qualquer código
 
 1. Leia, nesta ordem: o canon de marca (`CONTEXTO-IA`, vvcore, via `@import`) → [`docs/_index.md`](docs/_index.md) → [`docs/_lexico.md`](docs/_lexico.md) → [`docs/_decisoes.md`](docs/_decisoes.md) → [`docs/business/comercial/_dominio.md`](docs/business/comercial/_dominio.md) → [`docs/specs/plataforma/`](docs/specs/plataforma/) → [`docs/system/arquitetura.md`](docs/system/arquitetura.md) → a spec do domínio da tarefa em `docs/specs/<domínio>/` → o work-order em `docs/tasks/`.
-2. O controle do repo vive na espinha de `docs/`: [`_index.md`](docs/_index.md) (índice/ordem), [`_lexico.md`](docs/_lexico.md) (glossário canônico) e [`_decisoes.md`](docs/_decisoes.md) (log de decisões D-1..D-23 + diferidos). **Decisões fechadas não se rediscutem** — implementam-se. Se uma decisão parecer errada na prática, pare e pergunte ao fundador; não contorne em silêncio.
+2. O controle do repo vive na espinha de `docs/`: [`_index.md`](docs/_index.md) (índice/ordem), [`_lexico.md`](docs/_lexico.md) (glossário), [`_decisoes.md`](docs/_decisoes.md) (índice ADR D-1..D-24) e [`decisoes/`](docs/decisoes/) (corpo). Diferidos: [`roadmap/deferidos.md`](docs/roadmap/deferidos.md). **Decisões fechadas não se rediscutem** — implementam-se. Se uma decisão parecer errada na prática, pare e pergunte ao fundador; não contorne em silêncio.
 3. Em conflito entre docs: a camada de marca (CONTEXTO-IA) vence em marca/estratégia; no resto, vence o **dono único** do conceito (business → specs → system; ver [`docs/_index.md`](docs/_index.md)).
 4. Leia o work-order da sua tarefa em `docs/tasks/` antes de escrever qualquer linha. Não existe "construa a Fase N" — existe um work-order por tarefa, com escopo, arquivos permitidos e critérios de aceite.
 
@@ -48,7 +48,7 @@ Conhecimento durável e específico deste repo (gotchas técnicos, convenções,
 - **Fronteiras e estrutura ([`specs/engenharia/monorepo.md`](docs/specs/engenharia/monorepo.md) · [`specs/engenharia/fronteiras.md`](docs/specs/engenharia/fronteiras.md)):** `site` não importa de `admin`/`api-server`; **tipos de domínio** cruzados só via `packages/contracts`; o **contrato HTTP é gerado do OpenAPI** (`packages/api-spec` → `@vvf/api-zod` no api-server / `@vvf/api-client` no admin — D-22); `site` jamais acessa Postgres; cada schema é migrado só pelo seu dono (D-9); dados de outro runtime sempre via API. **Essas fronteiras são travadas no CI (dependency-cruiser) — violá-las quebra o build, não é estilo.**
 - **Sem preço:** nenhuma LP, post ou copy usa preço/promoção como argumento (INV-05) — nem como placeholder.
 - **Segredos:** só em Secrets do ambiente (secret store do provedor de hospedagem / GitHub Actions secrets). Nunca em código, log ou doc. `gitleaks` roda no CI.
-- **Diferidos ([`docs/_decisoes.md`](docs/_decisoes.md)):** LGPD, value-mapping do join key, mapa 301, edge-cache de variante são de etapa final — **mantenha os ganchos** (`consent` pass-through, `correlation_id`, opt-in mínimo no form), não os implemente antes nem os remova.
+- **Diferidos ([`docs/roadmap/deferidos.md`](docs/roadmap/deferidos.md)):** LGPD, value-mapping do join key, mapa 301, edge-cache de variante são de etapa final — **mantenha os ganchos** (`consent` pass-through, `correlation_id`, opt-in mínimo no form), não os implemente antes nem os remova.
 
 ## Como trabalhar
 
