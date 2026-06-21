@@ -1,6 +1,6 @@
 ---
 name: intel-competitiva-dominio-convergente
-description: WO-INTEL-001 passos C+D+D-25 FEITOS — Domain Map + léxico do intel + D-25 (régua P1); rename Concorrente-Espaço→Espaço-Concorrente aplicado. Próximo: passo E (specs).
+description: WO-INTEL-001 — passos B(validado)/C/D/D-25/E FEITOS. Business Doc validado + FONTE-03 emendada; specs em docs/specs/inteligencia/ (venue-only, 7 collections). PAUSA antes do System (F) p/ mapear a generalização Operador-de-mercado + Assessoria (DR6/L10).
 metadata:
   node_type: memory
   type: project
@@ -41,9 +41,25 @@ relação competitiva e nível de mercado); **Finding mantido EN**; **Serviço**
 
 **FEITO — `doc-reconciler` aplicou** o rename **`Concorrente-Espaço` → `Espaço-Concorrente`** pela árvore
 (business docs do intel, `_domain-map.md`, notas de pendência de léxico; o ADR `D-25` não continha o termo).
-Fila do `_lexico.md` fechada (resolvido jun/2026). **Pendente p/ passo E:** checar colisão do termo com o
-nome de collection `Concorrentes` (WO-INTEL-001 §G, congelado).
+Fila do `_lexico.md` fechada (resolvido jun/2026). **Resolvido no passo E:** a collection do rival é
+**`espacos-concorrentes`** (honra o head=Espaço; o WO §G dizia `Concorrentes`, pré-rename — atualizar o §G).
 
-**PRÓXIMO:** rodar `doc-reconciler` (o rename) → passo **E** (specs `docs/specs/inteligencia/` — modelo de dados
-+ status registry; **não** congelado, serve o registro curado D-20) → **F** (system) → **G** (impl).
+**Passo E FEITO (jun/2026):** Business Doc **validado** (review `doc-process-reviewer` adversarial — sólido,
+zero blocking; banner promovido) + **FONTE-03 emendada** (guarda origem + quem-originou p/ uso interno/
+prospecção, nunca divulga — D-19 legítimo interesse). 5 specs em `docs/specs/inteligencia/` (`modelo-de-dados`/
+`status-registry`/`seed-bootstrap`/`guardrails-coleta`/`saidas-derivadas`), **venue-only**, **7 collections**
+materializadas (grupos, espacos-concorrentes, canais, esteticas, disputas, observacoes[slice], citacoes).
+Decisões-chave: Canal unifica superfícies (owner polimórfico Grupo|EC); Grupo `arquivado`+`absorvido_por`;
+Disputa→Espaço-VVF por `espacos.slug` (D-9); Fonte=enum ordinal→confiabilidade derivada; `localizacao`=endereço
++coordenada geo; **citação→intensidade da Disputa** (DR7 — captura interina no intel, feed do funil B1 = futuro).
+
+**PAUSA antes do System (DR6):** a entidade-raiz vai **generalizar** p/ `operadores-de-mercado` (eixos
+tipo-de-serviço[] × relação-com-VVF) servindo intel+curadoria+parceria — motivada pela **vertical Assessoria**
+(futura, leads perdidos + curadoria + parceria). Sequência: `doc-discovery-mapper` (Assessoria) →
+`doc-domain-architect` (re-root + banco de endereços agnóstico L11) → léxico → **F** (System, abrangendo ambos)
+→ **G** (impl). **NÃO** fazer o System sobre venue-only.
+
+**Limpezas pendentes:** Domain Map §8 (passo D/E→feito + residual) via `doc-domain-architect`; `_lexico.md`
+l.105 (colisão→`espacos-concorrentes`); `docs/business/README.md` stale (não lista o domínio); WO-INTEL-001
+(status→in_progress, traces +D-25, §G 4→7 collections). Nada commitado — fundador controla o push.
 Ver [[wo-fence-allowlist-heading]] · [[sed-mangles-markdown]] · [[pr-auto-merge-armar]].
