@@ -100,6 +100,6 @@
 
 | De | Para | Escopo | Status |
 |---|---|---|---|
-| `Concorrente-Espaço` | `Espaço-Concorrente` | `business/inteligencia-competitiva/*`, `_domain-map.md`, `decisoes/D-25-*`, e a nota de pendência de léxico nos business docs | **pendente** |
+| `Concorrente-Espaço` | `Espaço-Concorrente` | `business/inteligencia-competitiva/*`, `_domain-map.md`, notas de pendência de léxico | **resolvido (jun/2026)** — ADR D-25 não usava o termo |
 
 > Nota p/ as specs (passo E, congelado): a collection/seed que materializa o Espaço-Concorrente herda o termo canônico; checar colisão com o nome `Concorrentes` previsto na WO-INTEL-001 §G.

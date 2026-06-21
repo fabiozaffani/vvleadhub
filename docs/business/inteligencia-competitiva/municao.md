@@ -17,7 +17,7 @@
 **Distinção crítica:** Prova **citável-ao-casal** (própria, verificável, sem PII) × **inteligência-interna-de-discurso** (vinda de cliente oculto / com PII — calibra o argumento, mas **nunca** se cita como "soube que lá...", sob risco de difamação e de violar `INTEL-FONTE-03`).
 
 ### §1.3 — `Battlecard`
-**O que é:** o resumo "VVF vs. rival" que agrega a munição. Ancora-se no nível da **Disputa** (Espaço-VVF disputado × Concorrente-Espaço/serviço rival; ver [`coleta.md`](coleta.md) §1.6), porque o casal decide por **espaço/fantasia**, não por grupo; o Grupo é só o guarda-chuva de playbook compartilhado. Mantido leve — build congelado.
+**O que é:** o resumo "VVF vs. rival" que agrega a munição. Ancora-se no nível da **Disputa** (Espaço-VVF disputado × Espaço-Concorrente/serviço rival; ver [`coleta.md`](coleta.md) §1.6), porque o casal decide por **espaço/fantasia**, não por grupo; o Grupo é só o guarda-chuva de playbook compartilhado. Mantido leve — build congelado.
 
 ---
 

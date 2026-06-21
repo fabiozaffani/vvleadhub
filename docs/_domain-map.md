@@ -55,7 +55,7 @@ Princípios cross-domain capturados nesta camada (separados do ownership de enti
 | Entidade | Fonte canônica | Representação/Consumo | Nota |
 |----------|----------------|-----------------------|------|
 | **Serviço** (Buffet · Decoração · Cerimonial · Planejamento · Som & Iluminação · Bartender · Entretenimento/DJ · …) | **operações (vvdomain)** | comercial: item vendável no Pacote (`papel: padrão\|adicional`) | **P1** — comercial não cria serviço; representação de venda |
-| **Espaço-VVF** (Acqua · Florest · Serra · Morada · Villa) | **operações (vvdomain)** | comercial: catálogo de venda (record no payload, render no site) · inteligência: **referência na Disputa por id** (D-9) | sempre qualificar **"Espaço-VVF"** (≠ Concorrente-Espaço) |
+| **Espaço-VVF** (Acqua · Florest · Serra · Morada · Villa) | **operações (vvdomain)** | comercial: catálogo de venda (record no payload, render no site) · inteligência: **referência na Disputa por id** (D-9) | sempre qualificar **"Espaço-VVF"** (≠ Espaço-Concorrente) |
 | **Hospedagem** (Morada · Villa) | **operações (vvdomain)** | comercial: produto ortogonal vendável | **P1** — provido pela operação |
 
 ### §3.3 — Núcleo da inteligência (Anel 1 — coleta · Anel 2 — análise/munição)
@@ -63,8 +63,8 @@ Princípios cross-domain capturados nesta camada (separados do ownership de enti
 | Entidade | Fonte canônica | Consumido por | Nota |
 |----------|----------------|---------------|------|
 | **Grupo** | inteligencia-competitiva | — | ciclo `ativo → absorvido/arquivado` (lado-Grupo do re-parentamento) |
-| **Concorrente-Espaço** *(raiz observada)* | inteligencia-competitiva | — | re-parentamento sem perder identidade (INTEL-COL-03) |
-| **Canal** (procedência) | inteligencia-competitiva | — | toda Observação aponta para um Canal + um Concorrente-Espaço |
+| **Espaço-Concorrente** *(raiz observada)* | inteligencia-competitiva | — | re-parentamento sem perder identidade (INTEL-COL-03) |
+| **Canal** (procedência) | inteligencia-competitiva | — | toda Observação aponta para um Canal + um Espaço-Concorrente |
 | **Observação** *(átomo do radar)* | inteligencia-competitiva | síntese | **[L3]** captura datada — resiste à refutação |
 | **Estética** | inteligencia-competitiva | — | eixo N:N |
 | **Disputa** *(associativa N:N)* | inteligencia-competitiva | — | referencia **Espaço-VVF** por id (D-9); eixo central do radar (INTEL-COL-11) |
@@ -111,7 +111,7 @@ flowchart LR
 | Conceito | Definição canônica | Notas |
 |----------|--------------------|-------|
 | **Pessoa/Organização (Party)** | **provável: vvdomain (em mapeamento)** | Casal · Fornecedor · Assessoria/Wedding Planner · Influenciador · vendedor-do-rival · autor-de-review. **Não cristalizar aqui.** A inteligência guarda **conteúdo-de-negócio, nunca identidade** (INTEL-FONTE-03) — vendedor-do-rival/autor-de-review **jamais** viram registro de identidade no intel. Gatilho de uso real: quando **≥2 domínios persistirem identidade** (ex.: o funil cadastra o Casal como cliente). |
-| **Status** (gestão de estado) | status registry (spec — `doc-specs-mapper`, **passo E**) | Ciclos a alinhar: Concorrente-Espaço (`candidato→ativo→dormente→arquivado`), Grupo (`ativo→absorvido/arquivado`), Finding (`rascunho→curado→obsoleto`), Objeção→Argumento (`rascunho→publicada→em revisão/aposentada`), Pergunta de Inteligência (**dois ciclos**). |
+| **Status** (gestão de estado) | status registry (spec — `doc-specs-mapper`, **passo E**) | Ciclos a alinhar: Espaço-Concorrente (`candidato→ativo→dormente→arquivado`), Grupo (`ativo→absorvido/arquivado`), Finding (`rascunho→curado→obsoleto`), Objeção→Argumento (`rascunho→publicada→em revisão/aposentada`), Pergunta de Inteligência (**dois ciclos**). |
 
 ---
 
@@ -134,6 +134,6 @@ flowchart LR
 
 ## §8 — Notas para o pipeline (WO-INTEL-001)
 
-- **Passo D — léxico (`doc-lexicon-keeper`):** fixar **"Espaço-VVF"** como canônico (vs **Concorrente-Espaço**, para o seed por id não errar o alvo); registrar **"Serviço"** com a nota de dois sentidos (entidade operacional × representação de venda); + os termos novos do intel (Grupo, Concorrente-Espaço, Observação, Finding, Estética, Disputa, Pergunta de Inteligência, Battlecard, Prova).
+- **Passo D — léxico (`doc-lexicon-keeper`):** fixar **"Espaço-VVF"** como canônico (vs **Espaço-Concorrente**, para o seed por id não errar o alvo); registrar **"Serviço"** com a nota de dois sentidos (entidade operacional × representação de venda); + os termos novos do intel (Grupo, Espaço-Concorrente, Observação, Finding, Estética, Disputa, Pergunta de Inteligência, Battlecard, Prova).
 - **Passo E — specs (`doc-specs-mapper`):** a fonte de PK vem do ownership acima; a relação Disputa→Espaço-VVF é **por id** (D-9); decidir materialização/versionamento das saídas derivadas (§3.4) **sem** reabrir a classificação business; status registry resolve os ciclos de §5.
 - **Decisão registrada (§2/P1):** a régua *"o comercial vende, não cria — o que a empresa provê é da operação"* foi formalizada como **[D-25](_decisoes.md)** (ADR em [`decisoes/D-25-comercial-vende-nao-cria.md`](decisoes/D-25-comercial-vende-nao-cria.md)), propagada por `sync-governanca` (WO-DOCS-002).
