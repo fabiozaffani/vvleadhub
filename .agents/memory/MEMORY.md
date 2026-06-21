@@ -5,7 +5,9 @@
 - [Next+Payload build needs --webpack](next-payload-build.md) — Turbopack hangs on the Payload admin build; admin build script must be `next build --webpack`.
 - [payload run quebra no Node 24](payload-run-node24-tsx.md) — `payload run` quebra no Node 24 (tsx trata `node:` como arquivo); usar `node --import tsx/esm` + `--env-file`.
 - [Auto-merge: docs sim, sensíveis não](pr-auto-merge-armar.md) — `main` sem required review (D-21): armar `--auto` em docs/código; **NUNCA** em caminhos sensíveis (contracts/.claude/AGENTS/infra) — esses ficam p/ merge manual do fundador.
-- [Hook-wo-fence trava governança](wo-fence-edicao-governanca.md) — promover WO via Bash (`docs/tasks/` é deny ao Edit); editar superfície de governança exige WO promovido cobrindo a cerca.
+- [Hook-wo-fence trava governança](wo-fence-edicao-governanca.md) — promover WO via Bash `mv` (`docs/tasks/` é deny ao Write-**novo**; Edit em WO existente é OK); editar superfície de governança exige WO promovido cobrindo a cerca.
+- [Cerca do WO: heading sem número](wo-fence-allowlist-heading.md) — o hook só lê a cerca se o heading for exatamente `## Arquivos permitidos` (numerar zera a extração e bloqueia tudo); um token em backtick por linha; lê o WO **commitado**.
+- [sed -i mangla markdown](sed-mangles-markdown.md) — um linter de fundo corrompe markdown escrito por `sed -i` (reposiciona backticks, dropa o `---` do frontmatter); use Write/Edit. `git add` antes salva a versão staged.
 - [Commitlint: #N no corpo estoura footer](commitlint-hash-no-corpo.md) — `#N` no corpo do commit vira issue-ref → `footer-max-line-length`; use hash ou "PR N" e corpo em linhas curtas.
 - [Ad Library via Chrome](ad-library-chrome-captura.md) — page_id sai da URL no typeahead; screenshot trava na grade de resultados (use `find`); landing leve p/ screenshot; permissão pendente bloqueia 300s.
 - [Intel-competitiva: domínio mapeado](intel-competitiva-dominio-convergente.md) — WO-INTEL-001 passo C FEITO: `_domain-map.md` criado; régua P1 (comercial vende, não cria → Serviço/Espaço/Hospedagem são da operação/vvdomain); Ganho/Perda=comercial, Observação/Finding=intel, Party=vvdomain. Próximo: passo D (léxico).
