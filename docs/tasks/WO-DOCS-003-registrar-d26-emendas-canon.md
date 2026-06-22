@@ -1,6 +1,9 @@
 ---
 id: WO-DOCS-003
-status: in_progress
+status: done
+review: pass
+reviewed_by: claude-fresh-context (revisor independente D-4)
+reviewed_sha: e83873615855945cd664e84e5792ced952790a7d
 traces: [D-26, CONTEXTO-IA§2.2, CONTEXTO-IA§7, CONTEXTO-IA§9, docs/discovery/curadoria-desintermediacao.md]
 deps: []
 skills: [sync-governanca]

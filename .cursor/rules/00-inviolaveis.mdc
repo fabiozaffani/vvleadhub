@@ -5,7 +5,7 @@ alwaysApply: true
 
 # Invioláveis VVF (sempre ativos)
 
-A fonte única de conduta é `AGENTS.md` na raiz — **leia-o antes de qualquer código**, junto com a canon CONTEXTO-IA (vvcore, via `@import`) → `docs/_index.md` → `docs/_lexico.md` → `docs/_decisoes.md` → `docs/business/comercial/_dominio.md` → `docs/specs/plataforma/` → `docs/system/arquitetura.md` → a spec do domínio → o work-order em `docs/tasks/`. Em conflito, `AGENTS.md` vence. Decisões fechadas (D-1..D-25) e invariantes não se rediscutem.
+A fonte única de conduta é `AGENTS.md` na raiz — **leia-o antes de qualquer código**, junto com a canon CONTEXTO-IA (vvcore, via `@import`) → `docs/_index.md` → `docs/_lexico.md` → `docs/_decisoes.md` → `docs/business/comercial/_dominio.md` → `docs/specs/plataforma/` → `docs/system/arquitetura.md` → a spec do domínio → o work-order em `docs/tasks/`. Em conflito, `AGENTS.md` vence. Decisões fechadas (D-1..D-26) e invariantes não se rediscutem.
 
 **Contexto canônico completo (verbatim):** as invariantes **INV-01..INV-10** e a doutrina VV-wide de engenharia estão em [`00-canon-vvf.mdc`](00-canon-vvf.mdc) (sempre ativo, **gerado** do vvcore por `sync-cursor-rules.sh` — não editar à mão). Este arquivo é o complemento **específico do VVLEADHUB**.
 
