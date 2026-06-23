@@ -10,4 +10,6 @@
 - [Intel-competitiva: domínio mapeado](intel-competitiva-dominio-convergente.md) — WO-INTEL-001 passos C+D+D-25 FEITOS: Domain Map + léxico do intel + régua P1 (D-25: comercial vende, não cria). Rename Concorrente-Espaço→Espaço-Concorrente aplicado (doc-reconciler). Próximo: passo E (specs).
 - [git sync limpa branch órfão](git-sync-branches-orfaos.md) — branch local "divergente" pós-squash-merge agora podado **automaticamente** no SessionStart (WO-CORE-024, `hook-session-sync.sh` VV-wide); alias `git sync` é o fallback manual. **Gotcha:** cópia derivada suja perene (`.cursor/rules/00-canon-vvf.mdc` sem commit) mantém a árvore suja e rebloqueia a poda — órfão "volta" toda sessão; fix = commitar a cópia.
 
+- [WO done exige veredito no commit da cerca](wo-done-verdict-same-commit.md) — gate D-4: WO high-stakes→`done` precisa de `review:pass` + `reviewed_sha` (hash da cerca **staged**) no **mesmo commit** da cerca; commitar o canon separado → flip pra `done` **bloqueado** (VVLEADHUB bloqueia, vvcore advisory). Fix: `reset --soft` + `vv_fence_sha` + commitar junto.
+
 > Gotchas de harness VV-wide (cerca do wo-fence, promoção de WO, `sed`/markdown, worktree write-path) foram **promovidos ao canon** `ARQUITETURA-IA` (§3/§5.4/§6.5, WO-CORE-025) e chegam por `@import` — não duplicar aqui.
