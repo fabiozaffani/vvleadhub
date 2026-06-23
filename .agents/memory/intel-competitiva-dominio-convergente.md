@@ -1,6 +1,6 @@
 ---
 name: intel-competitiva-dominio-convergente
-description: WO-INTEL-001 — passos B(validado)/C/D/D-25/E FEITOS. Business Doc validado + FONTE-03 emendada; specs em docs/specs/inteligencia/ (venue-only, 7 collections). PAUSA antes do System (F) p/ mapear a generalização Operador-de-mercado + Assessoria (DR6/L10).
+description: WO-INTEL-001 — B/C/D/D-25/E + re-root Operador-de-mercado + System Doc F FEITOS (PRs #77 re-root / #78 roadmap, abertos, merge do fundador, sem auto-merge). EC=recorte venue-only; Operador+Endereços=transversais modelado-não-construído (§6.4). Próximo: G (impl build, 7 collections Payload).
 metadata:
   node_type: memory
   type: project
@@ -53,13 +53,6 @@ Decisões-chave: Canal unifica superfícies (owner polimórfico Grupo|EC); Grupo
 Disputa→Espaço-VVF por `espacos.slug` (D-9); Fonte=enum ordinal→confiabilidade derivada; `localizacao`=endereço
 +coordenada geo; **citação→intensidade da Disputa** (DR7 — captura interina no intel, feed do funil B1 = futuro).
 
-**PAUSA antes do System (DR6):** a entidade-raiz vai **generalizar** p/ `operadores-de-mercado` (eixos
-tipo-de-serviço[] × relação-com-VVF) servindo intel+curadoria+parceria — motivada pela **vertical Assessoria**
-(futura, leads perdidos + curadoria + parceria). Sequência: `doc-discovery-mapper` (Assessoria) →
-`doc-domain-architect` (re-root + banco de endereços agnóstico L11) → léxico → **F** (System, abrangendo ambos)
-→ **G** (impl). **NÃO** fazer o System sobre venue-only.
+**Re-root FEITO (jun/2026) — PRs #77 (re-root) + #78 (roadmap estratégico) ABERTOS, aguardando merge do fundador (sem `--auto`).** A entidade observada generalizou p/ **Operador de mercado** (transversal, eixos `tipo_de_servico[]` × `relacao_com_vvf[]`, **ambos multi** — o multi sustenta o caso "venue que é também fornecedor curado"); Espaço-Concorrente = **recorte venue-only** (`tipo ⊇ {espaço} ∧ relação ⊇ {concorrente}`). Operador + banco de **Endereços** (L11) entraram como **conceitos transversais (`_domain-map.md` §5), modelado-não-construído** — NÃO entidade intel em §3, **SEM** novo Business Doc (§6.4: Curadoria/Assessoria/2º-funil é Fase 1, exige B1 mapeado). Passos: `doc-domain-architect` (Map §3.3/§5/§8) → `doc-lexicon-keeper` (termo + desambigua homônimo "Operador" do Grupo + colisão→`espacos-concorrentes`) → `doc-system-mapper` (**System Doc F escrito**: `system/inteligencia-competitiva.md`, duas altitudes) → `doc-reconciler` (`business/README` lista o intel + notas-forward leave-and-annotate, "raiz observada" PERMANECE nos business docs venue-only). WO §G 4→7 collections, traces +D-26, cerca +`business/README.md`. Tese de curadoria posicionada em **novo** `roadmap/estrategico.md` (Fase 1 **estratégica** ≠ Fase 1 de **build**=Eventos).
 
-**Limpezas pendentes:** Domain Map §8 (passo D/E→feito + residual) via `doc-domain-architect`; `_lexico.md`
-l.105 (colisão→`espacos-concorrentes`); `docs/business/README.md` stale (não lista o domínio); WO-INTEL-001
-(status→in_progress, traces +D-25, §G 4→7 collections). Nada commitado — fundador controla o push.
-Ver [[pr-auto-merge-armar]] (contrato da cerca do wo-fence e o gotcha do `sed` agora no canon ARQUITETURA-IA §5.4/§3).
+**Próximo = G (impl build): 7 collections Payload (`grupos`/`espacos-concorrentes`/`canais`/`esteticas`/`disputas`/`observacoes`/`citacoes`) + seed externalizado + regen contracts + `pnpm verify`** — fora do escopo do re-root (Cursor é o builder; Claude auxiliar). WO segue `in_progress`. Aval no merge (não bloqueia): rebaixar o alias "Operador" do Grupo nos business docs é decisão do fundador; sem novo ADR (re-root executa DR6/L10/L11+D-26). Ver [[pr-auto-merge-armar]] e [[wo-done-verdict-same-commit]] (o gate D-4 `done` só dispara no fechamento final da WO, após G).
