@@ -1,7 +1,7 @@
 # Domain Map — Vale Verde (VVLEADHUB)
 
 > ⚠️ Ownership e edições deste mapa: **só via `doc-domain-architect`** (ARQUITETURA-IA §6.1).
-> Última atualização: 2026-06-21 · **Origem:** WO-INTEL-001 passo C (1º Domain Map do repo) · **Tom:** trabalho
+> Última atualização: 2026-06-22 · **Origem:** WO-INTEL-001 passo C (1º Domain Map do repo); re-root **Operador de mercado** aplicado (jun/2026, DR6/L10/L11 + D-26) · **Tom:** trabalho
 >
 > Este documento é um **ÍNDICE DE NAVEGAÇÃO**, não uma camada de doc.
 > Regras de negócio → o Business Doc de cada domínio. Implementação → o System Doc.
@@ -63,7 +63,7 @@ Princípios cross-domain capturados nesta camada (separados do ownership de enti
 | Entidade | Fonte canônica | Consumido por | Nota |
 |----------|----------------|---------------|------|
 | **Grupo** | inteligencia-competitiva | — | ciclo `ativo → absorvido/arquivado` (lado-Grupo do re-parentamento) |
-| **Espaço-Concorrente** *(raiz observada)* | inteligencia-competitiva | — | re-parentamento sem perder identidade (INTEL-COL-03) |
+| **Espaço-Concorrente** *(recorte materializado venue-only)* | inteligencia-competitiva | — | **recorte do Operador de mercado (§5):** `tipo_de_servico ⊇ {espaço} ∧ relacao_com_vvf ⊇ {concorrente}`. É o que se **constrói** no v1 (a collection `espacos-concorrentes`); a raiz conceitual ampla é transversal (§5, L10/DR6). Ownership segue intel. Re-parentamento sem perder identidade (INTEL-COL-03) |
 | **Canal** (procedência) | inteligencia-competitiva | — | toda Observação aponta para um Canal + um Espaço-Concorrente |
 | **Observação** *(átomo do radar)* | inteligencia-competitiva | síntese | **[L3]** captura datada — resiste à refutação |
 | **Estética** | inteligencia-competitiva | — | eixo N:N |
@@ -104,6 +104,8 @@ flowchart LR
 
 > **Por que intel↔comercial NÃO é Partnership/Coordena:** o acoplamento é por **DADO** (catálogo/evento), não por **MODELO** — cada lado é dono do seu artefato (Munição = intel; Ganho/Perda = comercial), nenhum modelo compartilhado muda junto. São **dois Publica→Consome opostos**, não um par sincronizado.
 
+> *Forward-note (re-root):* o **Operador de mercado** e os **Endereços** (§5) serão consumidos por **curadoria + parceria** quando a Fase 1 for mapeada (precedida por discovery+business da Curadoria e pelo funil B1). Hoje existe **só o recorte intel** (Espaço-Concorrente) — por isso não há linha de relação nova: a relação cross-domain nasce com os domínios consumidores, não agora.
+
 ---
 
 ## §5 — Conceitos transversais
@@ -111,7 +113,9 @@ flowchart LR
 | Conceito | Definição canônica | Notas |
 |----------|--------------------|-------|
 | **Pessoa/Organização (Party)** | **provável: vvdomain (em mapeamento)** | Casal · Fornecedor · Assessoria/Wedding Planner · Influenciador · vendedor-do-rival · autor-de-review. **Não cristalizar aqui.** A inteligência guarda **conteúdo-de-negócio, nunca identidade** (INTEL-FONTE-03) — vendedor-do-rival/autor-de-review **jamais** viram registro de identidade no intel. Gatilho de uso real: quando **≥2 domínios persistirem identidade** (ex.: o funil cadastra o Casal como cliente). |
-| **Status** (gestão de estado) | status registry (spec — `doc-specs-mapper`, **passo E**) | Ciclos a alinhar: Espaço-Concorrente (`candidato→ativo→dormente→arquivado`), Grupo (`ativo→absorvido/arquivado`), Finding (`rascunho→curado→obsoleto`), Objeção→Argumento (`rascunho→publicada→em revisão/aposentada`), Pergunta de Inteligência (**dois ciclos**). |
+| **Operador de mercado** *(conceitual; modelado-não-construído)* | **home deferido — transversal (família Party)** | ator econômico do mercado de casamento; eixos ortogonais **`tipo_de_servico[]`** (espaço, buffet, decoração, bar, som/DJ, foto, filmagem, assessoria… — multi) × **`relacao_com_vvf[]`** (concorrente · parceiro · fornecedor · referência-de-curadoria — **multi**). Serve **intel + curadoria + parceria** (D-26). **`Espaço-Concorrente` (§3.3) é o recorte venue-only** (`tipo ⊇ {espaço} ∧ relação ⊇ {concorrente}`); a v1 (`espacos-concorrentes`) **não** ganha colunas `tipo`/`relacao` — multi-valued é propriedade do root conceitual. Gatilho de cristalização: **≥2 domínios** persistirem o operador (intel + curadoria). **Não modelar Curadoria/Assessoria aqui** (§6.4 — é Fase 1, exige o funil B1). Ref **L10/DR6**, [D-26](_decisoes.md). |
+| **Endereços** *(banco agnóstico; modelado-não-construído)* | **home deferido — transversal (família Party)** | registro de endereços agnóstico que qualquer entidade referencia; habilita o **mapa geolocalizado** dos rivais (e depois dos operadores). v1: `localizacao` embutido em `espacos-concorrentes` (endereço completo + **coordenada geo**, SYS-INTEL-08); a promoção a referência compartilhada é futura. Ref **L11**. |
+| **Status** (gestão de estado) | status registry ([`specs/inteligencia/status-registry.md`](specs/inteligencia/status-registry.md) — passo E **feito**) | Ciclos a alinhar: Espaço-Concorrente (`candidato→ativo→dormente→arquivado`), Grupo (`ativo→absorvido/arquivado`), Finding (`rascunho→curado→obsoleto`), Objeção→Argumento (`rascunho→publicada→em revisão/aposentada`), Pergunta de Inteligência (**dois ciclos**). |
 
 ---
 
@@ -127,6 +131,7 @@ flowchart LR
 ## §7 — Lacunas
 
 - **Missing Stubs (referenciados, sem Business Doc):** **operações** (vvdomain — externo, dono de Serviço/Espaço/Hospedagem); **funil comercial** (SDR/Closer — B1 adiado); **Pessoa/Party** (vvdomain, em mapeamento).
+- **Transversais modelados-não-construídos (§5):** **Operador de mercado** + **Endereços** — o build é **Fase 1**, precedido por discovery+business da **Curadoria** (D-26 §6) e pelo **funil B1** (família Party). O intel usa hoje **só o recorte venue-only** (Espaço-Concorrente); o `operadores-de-mercado` completo segue fora do v1 (`specs/inteligencia/modelo-de-dados.md` §6).
 - **Seam de subdivisão futura:** dentro da inteligência, **Coleta** (anel 1) × **Munição** (enablement) podem virar dois domínios quando a munição **descongelar** (D-19) e ganhar volume — **não** subdividir no v1 (abstração prematura sobre fatia congelada).
 - **Vigiar (P2):** se no B1 o comercial passar a **escrever de volta** em artefatos do intel (ex.: marcar uma Objeção→Argumento como "usada/funcionou"), nasce um handoff bidirecional que pede **Handoff Auditável** — hoje não existe.
 
@@ -134,6 +139,7 @@ flowchart LR
 
 ## §8 — Notas para o pipeline (WO-INTEL-001)
 
-- **Passo D — léxico (`doc-lexicon-keeper`):** fixar **"Espaço-VVF"** como canônico (vs **Espaço-Concorrente**, para o seed por id não errar o alvo); registrar **"Serviço"** com a nota de dois sentidos (entidade operacional × representação de venda); + os termos novos do intel (Grupo, Espaço-Concorrente, Observação, Finding, Estética, Disputa, Pergunta de Inteligência, Battlecard, Prova).
-- **Passo E — specs (`doc-specs-mapper`):** a fonte de PK vem do ownership acima; a relação Disputa→Espaço-VVF é **por id** (D-9); decidir materialização/versionamento das saídas derivadas (§3.4) **sem** reabrir a classificação business; status registry resolve os ciclos de §5.
+- **Passo D — léxico — FEITO** (jun/2026): termos do intel fixados (Grupo, Espaço-Concorrente, Observação, Finding, Estética, Disputa, Pergunta de Inteligência, Battlecard, Prova) + "Espaço-VVF"/"Serviço" (nota D-25). O **re-root** acrescenta **Operador de mercado** + **Endereços** ao léxico e **reclassifica** Espaço-Concorrente de "raiz observada" para **recorte venue-only** do Operador.
+- **Passo E — specs — FEITO** (jun/2026): specs em [`specs/inteligencia/`](specs/inteligencia/), **venue-only**, **7 collections** materializadas (SYS-INTEL-01..08). O re-root **não reabre** as specs — `operadores-de-mercado` e o banco de endereços seguem **modelados-não-construídos** ([`modelo-de-dados.md`](specs/inteligencia/modelo-de-dados.md) §6); a materialização do recorte é `espacos-concorrentes`.
+- **Passo F — System Doc (`doc-system-mapper`) — pendente:** compor as specs venue-only num todo coeso, **enquadrado** no re-root (recorte venue **construído** × root Operador **modelado-não-construído**); linka as specs, não recopia.
 - **Decisão registrada (§2/P1):** a régua *"o comercial vende, não cria — o que a empresa provê é da operação"* foi formalizada como **[D-25](_decisoes.md)** (ADR em [`decisoes/D-25-comercial-vende-nao-cria.md`](decisoes/D-25-comercial-vende-nao-cria.md)), propagada por `sync-governanca` (WO-DOCS-002).
