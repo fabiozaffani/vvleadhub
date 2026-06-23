@@ -35,3 +35,4 @@
 | D-23 | jun/2026 | ErrorCode — fonte única em @vvf/contracts | fechada | stack | [D-23](decisoes/D-23-sincronizacao-do-errorcode-envelope-de-erro-h.md) |
 | D-24 | jun/2026 | Coleta ampliada — mystery shopping no escopo | fechada | produto | [D-24](decisoes/D-24-coleta-ampliada-da-inteligencia-competitiva-eme.md) |
 | D-25 | jun/2026 | Comercial vende, não cria (régua de ownership) | fechada | gov, arquitetura | [D-25](decisoes/D-25-comercial-vende-nao-cria.md) |
+| D-26 | jun/2026 | Emendas de canon — tese de curadoria (INV-05 crise · M-02 gate · desintermediação) | fechada | marca, gov, estratégia | [D-26](decisoes/D-26-emendas-canon-tese-curadoria.md) |
