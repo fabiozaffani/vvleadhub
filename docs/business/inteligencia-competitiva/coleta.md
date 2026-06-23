@@ -78,7 +78,7 @@ Notas por tipo:
 ## §3 — Regras de negócio (`INTEL-COL-`)
 
 - `INTEL-COL-01` (Restrição): a coleta bruta é registrada e **separada** da interpretação; o Finding cita a(s) Observação(ões) de origem.
-- `INTEL-COL-02` (Política): a entidade-raiz observada é o **Espaço-Concorrente**; o **Grupo** é o agregador econômico. Cardinalidade Grupo (1) : Espaço-Concorrente (N), com o grupo de um só espaço coberto.
+- `INTEL-COL-02` (Política): a entidade-raiz observada é o **Espaço-Concorrente** *(no recorte venue-only deste Business Doc — a generalização para Operador de mercado é transversal; ver a nota-forward em §1.2)*; o **Grupo** é o agregador econômico. Cardinalidade Grupo (1) : Espaço-Concorrente (N), com o grupo de um só espaço coberto.
 - `INTEL-COL-03` (Restrição): um Espaço-Concorrente pertence a **um** Grupo e pode **trocar de Grupo** numa aquisição **sem perder a identidade** longitudinal (re-parentamento); o Grupo de origem pode ir a "absorvido/arquivado".
 - `INTEL-COL-04` (Restrição): toda Observação pertence a **um** Espaço-Concorrente e tem **um** Canal de procedência.
 - `INTEL-COL-05` (Política): a **Estética** é um eixo de classificação (um Espaço-Concorrente pode ter mais de uma); a **classificação competitiva** tem dois eixos ortogonais — a **relação competitiva** {direto, indireto} (fechado) e o **nível de mercado** (a faixa; ilustrado por premium-full / premium-partial / mid / below, *extensível por dado*). *("Aspiracional" não é nível — convida ao me-too, atrita com `INTEL-GERAL-01`.)*
