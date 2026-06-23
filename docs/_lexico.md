@@ -61,12 +61,14 @@
 
 ## Termos do domínio inteligência-competitiva
 
-> Fixados no passo D da WO-INTEL-001. Definições no doc dono (`business/inteligencia-competitiva/`); aqui só ponteiro. **`Espaço-Concorrente`** substitui o antigo `Concorrente-Espaço` — rename na fila do `doc-reconciler` (fim do arquivo).
+> Fixados no passo D da WO-INTEL-001. Definições no doc dono (`business/inteligencia-competitiva/`); aqui só ponteiro. **`Espaço-Concorrente`** substitui o antigo `Concorrente-Espaço` — rename na fila do `doc-reconciler` (fim do arquivo). O **re-root** (jun/2026, D-26/L10) acrescentou **Operador de mercado** (transversal, `_domain-map.md` §5) e reclassificou Espaço-Concorrente como seu **recorte venue-only**.
 
 | Termo | Língua | Significa | Definição (ponteiro) |
 |---|---|---|---|
-| **Grupo** | pt | entidade econômica dona de N Espaços-Concorrentes (alias: *Operador*) | [`coleta.md §1.1`](business/inteligencia-competitiva/coleta.md) |
-| **Espaço-Concorrente** | pt | unidade observada que disputa o casal; raiz da coleta (ex-`Concorrente-Espaço`) | [`coleta.md §1.2`](business/inteligencia-competitiva/coleta.md) |
+| **Grupo** | pt | entidade econômica dona de N Espaços-Concorrentes (alias informal: *Operador* — **≠ Operador de mercado** §5; preferir "Grupo") | [`coleta.md §1.1`](business/inteligencia-competitiva/coleta.md) |
+| **Operador de mercado** | pt | **conceito transversal — root da entidade observada**: ator econômico do mercado de casamento, eixos `tipo_de_servico[]` × `relacao_com_vvf[]` (ambos **multi**). **Modelado-não-construído** (build = Fase 1). Espaço-Concorrente é o **recorte venue-only**. **≠ o alias informal "Operador" do Grupo** — usar sempre o termo cheio | [`_domain-map.md §5`](_domain-map.md) |
+| **Tipo de serviço** · **Relação com a VVF** | pt | os dois eixos do **Operador de mercado**: `tipo_de_servico[]` (espaço, buffet, decoração, foto, filmagem, assessoria… — multi) × `relacao_com_vvf[]` (concorrente · parceiro · fornecedor · referência-de-curadoria — multi). **Distintos** dos eixos do recorte EC (relação competitiva × nível de mercado) | [`_domain-map.md §5`](_domain-map.md) |
+| **Espaço-Concorrente** | pt | **recorte venue-only do Operador de mercado** (`tipo ⊇ {espaço} ∧ relação ⊇ {concorrente}`); a unidade que de fato se materializa no radar v1 (ex-`Concorrente-Espaço`) | [`coleta.md §1.2`](business/inteligencia-competitiva/coleta.md) · [`_domain-map.md §3.3`](_domain-map.md) |
 | **Canal** | pt | procedência: a superfície onde se observa um Espaço-Concorrente | [`coleta.md §1.3`](business/inteligencia-competitiva/coleta.md) |
 | **Observação** | pt | captura **datada** de um fato, com Fonte + confiabilidade (átomo do radar) | [`coleta.md §1.4`](business/inteligencia-competitiva/coleta.md) |
 | **Estética** | pt | eixo de classificação (rústico/clássico/boho…), N:N | [`coleta.md §1.5`](business/inteligencia-competitiva/coleta.md) |
@@ -102,4 +104,4 @@
 |---|---|---|---|
 | `Concorrente-Espaço` | `Espaço-Concorrente` | `business/inteligencia-competitiva/*`, `_domain-map.md`, notas de pendência de léxico | **resolvido (jun/2026)** — ADR D-25 não usava o termo |
 
-> Nota p/ as specs (passo E, congelado): a collection/seed que materializa o Espaço-Concorrente herda o termo canônico; checar colisão com o nome `Concorrentes` previsto na WO-INTEL-001 §G.
+> Nota p/ as specs — **resolvida (jun/2026, passo E)**: a collection que materializa o Espaço-Concorrente é **`espacos-concorrentes`** (honra o head `Espaço-`; o esboço inicial da WO dizia `Concorrentes`). A WO-INTEL-001 §G foi atualizada para as **7 collections** (`grupos`/`espacos-concorrentes`/`canais`/`esteticas`/`disputas`/`observacoes`/`citacoes`).

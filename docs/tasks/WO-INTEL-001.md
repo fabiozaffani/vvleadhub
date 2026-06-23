@@ -1,7 +1,7 @@
 ---
 id: WO-INTEL-001
 status: in_progress
-traces: [D-19, D-20, D-25]
+traces: [D-19, D-20, D-25, D-26]
 deps: []
 skills: [sync-governanca, doc-business-mapper, doc-domain-architect, doc-lexicon-keeper, doc-specs-mapper, doc-system-mapper, doc-roadmap-keeper, skill-auditor]
 ---
@@ -57,15 +57,25 @@ C. **Domain Map** (`/doc-domain-architect`): `docs/_domain-map.md` (1º do repo;
 D. **Léxico** (`/doc-lexicon-keeper`): termos canônicos em `docs/_lexico.md`.
 E. **Specs** (`/doc-specs-mapper`): `docs/specs/inteligencia/` — modelo de dados + status registry.
 F. **System Doc** (`/doc-system-mapper`): `docs/system/inteligencia-competitiva.md`.
-G. **Implementação:** collections em `admin/src/collections/` (Concorrentes, Canais, Esteticas,
-   Classificacao) no padrão `Espacos.ts`, registradas em `payload.config.ts`; seed externalizado em
+G. **Implementação:** **7 collections** em `admin/src/collections/` — `grupos`, `espacos-concorrentes`
+   (ex-"Concorrentes"; rename `Concorrente-Espaço`→`Espaço-Concorrente`, passo D), `canais`, `esteticas`,
+   `disputas` (ex-"Classificacao"), `observacoes` (slice mínimo manual) e `citacoes` (intensidade da
+   Disputa, DR7) — no padrão `Espacos.ts`, registradas em `payload.config.ts`; seed externalizado em
    `admin/src/seed/radar/*.json` (migrado de `_raw`/`concorrentes.md`/`panorama.md`); `seed.ts`
    estendido; `pnpm --filter @vvf/admin generate:types` regenera os contracts. **Toca contracts →
-   gated.**
+   gated.** *(O modelo refinado do passo E pediu 7 materializadas — ver [`specs/inteligencia/modelo-de-dados.md`](../specs/inteligencia/modelo-de-dados.md) §2/§3; substituiu as 4 collections do esboço original.)*
 H. **Aposentar fonte git:** remover `docs/discovery/radar/_raw/*.json`; reduzir `concorrentes.md` e
    `panorama.md` a **ponteiros/views** do DB.
 I. **Skill** (`/skill-auditor`): `discovery-radar` passa a escrever no DB/admin. Diário/semanal/
    mensal (síntese narrativa) **permanecem** discovery docs.
+
+> **Re-root "Operador de mercado" (jun/2026, DR6/L10/L11 + D-26).** Antes do passo F, a entidade
+> observada **generaliza** de `Espaço-Concorrente` (venue-only) para **Operador de mercado** (eixos
+> `tipo_de_servico[]` × `relacao_com_vvf[]`), com Espaço-Concorrente como **recorte** (`tipo ⊇ {espaço}
+> ∧ relação ⊇ {concorrente}`) + a camada transversal de **endereços** (L11). O re-root vive no **Domain
+> Map (§5 transversal)** e no **léxico** — **sem novo Business Doc** (modelar Curadoria/Assessoria é Fase 1,
+> exige o funil B1; Arquitetura §6.4). As specs do passo E **não reabrem** (seguem venue-only; o
+> `operadores-de-mercado` completo é modelado-não-construído). Passos C/D/F incorporam o re-root.
 
 ## Arquivos permitidos (a cerca)
 
@@ -73,6 +83,7 @@ I. **Skill** (`/skill-auditor`): `discovery-radar` passa a escrever no DB/admin.
 - `docs/_lexico.md`
 - `docs/_domain-map.md`
 - `docs/business/inteligencia-competitiva/`
+- `docs/business/README.md`
 - `docs/specs/inteligencia/`
 - `docs/system/inteligencia-competitiva.md`
 - `AGENTS.md`
@@ -102,8 +113,8 @@ I. **Skill** (`/skill-auditor`): `discovery-radar` passa a escrever no DB/admin.
 
 - [ ] D-20 registrado em `_decisoes.md`, D-19 marcada `(emendada pela D-20)`, ecos sincronizados.
 - [ ] Business Doc, Domain Map, léxico, specs e System Doc do domínio existem, cada um pela skill dona.
-- [ ] Collections Payload (Concorrentes/Canais/Esteticas/Classificacao) + seed externalizado; `pnpm seed`
-      idempotente (2× sem duplicar); contracts regenerados.
+- [ ] **7 collections** Payload (`grupos`/`espacos-concorrentes`/`canais`/`esteticas`/`disputas`/`observacoes`/`citacoes`)
+      + seed externalizado; `pnpm seed` idempotente (2× sem duplicar); contracts regenerados.
 - [ ] `pnpm verify` verde (typecheck + lint + boundaries + test + build).
 - [ ] `_raw/*.json` removido; `concorrentes.md`/`panorama.md` reduzidos a ponteiros do DB.
 - [ ] Skill `discovery-radar` atualizada para escrever no DB.

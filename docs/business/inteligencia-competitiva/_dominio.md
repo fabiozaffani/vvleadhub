@@ -18,6 +18,8 @@ A função que dá à VVF uma **leitura intencional do mercado** — observar, r
 
 **Funcional** — tem processo e cadência próprios (o ciclo de inteligência), não é só um papel. A unidade observada central é o **Espaço-Concorrente** (ver §3 e [`coleta.md`](coleta.md)).
 
+> *Nota-forward (re-root jun/2026):* o Espaço-Concorrente é a unidade observada **do recorte venue-only**; ele é o **recorte** `tipo ⊇ {espaço} ∧ relação ⊇ {concorrente}` do **Operador de mercado** (conceito transversal — [`_domain-map.md §5`](../../_domain-map.md), [`lacunas.md`](lacunas.md) L10/DR6). A modelagem do operador (curadoria/parceria) é Fase 1 (§6.4) — aqui o domínio segue venue-only.
+
 - **É:** a captura curada e recorrente de inteligência sobre concorrentes (radar); a síntese dessa inteligência em leitura acionável (análise/estratégia); a munição que arma a venda (enablement).
 - **Não é:** o funil comercial (domínio comercial); o registro de Espaços/produtos da VVF (domínio comercial); a camada **canônica** de identidade de pessoas (cross-domain — ver [`lacunas.md`](lacunas.md); o intel guarda só um **contato-origem leve** de uso interno, `INTEL-FONTE-03`).
 
