@@ -16,6 +16,9 @@
 **Fora do núcleo (Lacuna):** atributos econômicos ricos — aporte, playbook de mídia (centralizado × por-espaço), sub-marcas de serviço que atendem terceiros — **não** se cravam agora; firmam-se com a coleta (ver [`lacunas.md`](lacunas.md)).
 
 ### §1.2 — `Espaço-Concorrente` *(raiz observada)*
+
+> *Nota-forward (re-root jun/2026):* no v1 **venue-only**, o Espaço-Concorrente é a raiz observada do radar — e **assim permanece** neste Business Doc. A generalização para **Operador de mercado** (conceito transversal, do qual o Espaço-Concorrente é o **recorte** `tipo ⊇ {espaço} ∧ relação ⊇ {concorrente}`) vive no [`_domain-map.md §5`](../../_domain-map.md) e em [`lacunas.md`](lacunas.md) (L10/DR6); **não** se modela aqui (Arquitetura §6.4).
+
 **O que é:** a unidade que **disputa um casal** por estética, nível de mercado e tema. É o nível que de fato compete; é nele que moram estética, nível de mercado e os ponteiros de observação.
 **Atributos essenciais (núcleo — o que o robô precisa para apontar):** nome; apelido(s) anterior(es); as **superfícies onde se observa** (perfis, ficha de marketplace, presença em biblioteca de anúncios, site); o Grupo a que pertence.
 **Perfil estratégico (cresce com a curadoria, não bloqueia o núcleo):** capacidade, modelo de pacote, hospedagem on-site, rede de fornecedores, anos de operação, posicionamento de preço *(inteligência interna)*. Parte por pesquisa de fontes públicas (desk-research), parte por cliente oculto (D-24).
