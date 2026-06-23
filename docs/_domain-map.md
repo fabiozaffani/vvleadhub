@@ -23,7 +23,7 @@ O mapa cobre os domínios de negócio **deste repo (vvleadhub)**; entidades cuja
 | # | Domínio | Categoria | Propósito (1 frase) | Business Doc | System Doc |
 |---|---------|-----------|---------------------|--------------|------------|
 | 1 | **comercial** | Funcional (venda) | Vende a experiência VVF: empacota a oferta (Pacote/escada Essential→Inspiração→Autoral), conduz o funil e registra Ganho/Perda. **Não cria o que vende.** | [`business/comercial/`](business/comercial/_dominio.md) | — (desdobra em [`specs/plataforma/`](specs/plataforma/); system não consolidado) |
-| 2 | **inteligencia-competitiva** | Funcional | Observa, registra e sintetiza o que os concorrentes fazem (radar) e arma o comercial (munição). | [`business/inteligencia-competitiva/`](business/inteligencia-competitiva/_dominio.md) | — pendente (passo F) |
+| 2 | **inteligencia-competitiva** | Funcional | Observa, registra e sintetiza o que os concorrentes fazem (radar) e arma o comercial (munição). | [`business/inteligencia-competitiva/`](business/inteligencia-competitiva/_dominio.md) | [`system/inteligencia-competitiva.md`](system/inteligencia-competitiva.md) |
 | — | **operações** | Externo (vvdomain) | Cria/vet a/opera serviços, espaços e hospedagem (gate de viabilidade/processo interno). | vvdomain (não mapeado aqui) | — |
 
 ---
