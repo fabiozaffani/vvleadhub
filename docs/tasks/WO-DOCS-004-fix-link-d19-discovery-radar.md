@@ -1,6 +1,9 @@
 ---
 id: WO-DOCS-004
-status: in_progress
+status: done
+review: pass
+reviewed_by: wo-review/panel-3
+reviewed_sha: 38493497f8001d598aae68260b9cd2049bcfff03
 traces: [docs/decisoes/D-19-inteligencia-competitiva-como-l3-do-single-pane.md, vvcore-doc-quality-audit-wf_73cb6861]
 deps: []
 skills: [doc-reconciler]
