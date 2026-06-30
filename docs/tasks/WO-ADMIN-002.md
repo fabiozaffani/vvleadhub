@@ -7,7 +7,7 @@ skills: [work-order]
 ---
 # WO-ADMIN-002 · Validação `Objetivo` ↔ `objectiveSchema`
 
-**Quem executa:** Cursor Composer. **Camada de tom:** trabalho. **Origem:** divergência da auditoria (jun/2026).
+**Quem executa:** Claude Code (ambiente primário atual). **Camada de tom:** trabalho. **Origem:** divergência da auditoria (jun/2026).
 
 ## Objetivo
 Fechar o drift: a collection `Objetivos` é livre (nome/slug/descrição), mas o canônico (`objectiveSchema` em `packages/contracts`) é um enum fechado. Hoje nada impede criar um Objetivo fora do enum — o seed acerta os 5 valores, mas sem trava.

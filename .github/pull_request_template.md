@@ -3,9 +3,9 @@
 ## O quê / Por quê
 <!-- 1–3 linhas. Qual work-order (docs/tasks/) e qual critério de aceite (docs/roadmap/fases.md §7.1) este PR atende? -->
 
-## Autor (D-16, emendada pela D-18)
-- [ ] Cursor Composer (builder primário)
-- [ ] Claude Code (auxiliar — auditoria/revisão/gates; build escopado quando delegado)
+## Autor (D-16, emendada pela D-18/D-27)
+- [ ] Claude Code (ambiente primário atual)
+- [ ] Outro agente via `AGENTS.md`
 - [ ] Toca `packages/contracts` ou `docs/` → **requer aval do fundador (CODEOWNERS)**
 
 ## Checklist (DoD — AGENTS.md)

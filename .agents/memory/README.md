@@ -7,7 +7,7 @@ absoluto **por máquina** — escrito pelo `setup-links.sh` do vvcore), então o
 sozinho** aqui durante o trabalho, em formato nativo.
 
 Por que `.agents/` e não `.claude/`: a pasta é **tool-neutral** — qualquer agente lê (o
-Claude via `autoMemoryDirectory`; Cursor/Codex via referência no `AGENTS.md` / `.cursor/rules`).
+Claude via `autoMemoryDirectory`; outros agentes via referência no `AGENTS.md`).
 
 ## Modelo: rascunho → promoção
 

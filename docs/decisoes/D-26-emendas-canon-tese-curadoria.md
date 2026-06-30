@@ -16,7 +16,7 @@ Três emendas ao `CONTEXTO-IA.md` (vvcore), cada uma marcada `(emenda jun/2026 �
 
 ## Consequências
 
-- **Canon VV-wide:** a edição é em `vvcore/plugins/vvcore/context/CONTEXTO-IA.md` (aplicada via **WO-CORE-030**, PR vvcore); chega a todos os repos por `@import`/junction `.agents/context`. As **cópias derivadas** (`.cursor/rules/00-canon-vvf.mdc`, docsify) regeneram **pós-merge** via `sync-cursor-rules.sh`/`sync-context.sh` — nunca à mão.
+- **Canon VV-wide:** a edição é em `vvcore/plugins/vvcore/context/CONTEXTO-IA.md` (aplicada via **WO-CORE-030**, PR vvcore); chega a todos os repos por `@import`/junction `.agents/context`. As cópias derivadas históricas de Cursor foram descontinuadas pela D-27; docsify/VVROADMAP fica fora do escopo deste repo.
 - **Escopo fechado:** só estes 3 pontos sobem ao canon. O restante da tese (**segundo funil/pool**, **menu de sonhos**, **governança anti-BV**, Cenário 1/2, etc.) **segue em discovery** (§6.4), não promovido — sobe via `business → specs → system` quando for construído (estratégia de **Fase 1**, depende do funil comercial B1 e do core no ar).
 - **Reconciliar:** a tese cita um doc companheiro "VVF — Metas & Crescimento" (≈ CONTEXTO-IA §7/§8) — alinhar quando aquele doc entrar no escopo.
 - **Provisórios a fechar quando operados:** o **gatilho numérico** da exceção INV-05 e o **desenho + métricas-de-abortar** do teste de elasticidade (gate de preço).

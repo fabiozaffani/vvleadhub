@@ -58,7 +58,7 @@ O JSON canônico do lead → Kommo, a captura fora do site e a regra de dedup (D
 
 ## §10 — Marca na LP (resumo dos eixos)
 
-A camada de marca é canônica no CONTEXTO-IA (entregue por @import no `CLAUDE.md`) — aqui só o resumo dos eixos que toda LP respeita por construção, com os guardrails por Bloco em [`../specs/landing-pages/blocos.md`](../specs/landing-pages/blocos.md):
+A camada de marca é canônica no CONTEXTO-IA (entregue via `.agents/context/`; Claude Code importa pelo adapter `CLAUDE.md`) — aqui só o resumo dos eixos que toda LP respeita por construção, com os guardrails por Bloco em [`../specs/landing-pages/blocos.md`](../specs/landing-pages/blocos.md):
 
 Sem preço (INV-05) · experiência integrada, nunca componente (INV-03) · exclusividade pela história, customização total só como campanha de exceção (INV-07) · confiabilidade de frente sem soar operacional (INV-04) · tranquilidade na jornada inteira (OP-03) · tokens visuais (CONTEXTO-IA §5), brand-locked no editor (ver [`admin.md`](admin.md)).
 

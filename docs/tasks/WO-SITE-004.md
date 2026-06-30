@@ -7,7 +7,7 @@ skills: [work-order, app-seo-schema-org, app-copy-marca]
 ---
 # WO-SITE-004 · Rota de post de blog `/blog/{slug}`
 
-**Quem executa:** Cursor Composer. **Camada de tom:** trabalho. **Origem:** lacuna da auditoria (fecha a Fase 0 do site).
+**Quem executa:** Claude Code (ambiente primário atual). **Camada de tom:** trabalho. **Origem:** lacuna da auditoria (fecha a Fase 0 do site).
 
 ## Objetivo
 Construir a página de post (`/blog/{slug}`) — hoje os cards do índice linkam para `href="#"`. Fecha o critério "1 post" do Lighthouse em [`WO-SITE-002`](WO-SITE-002.md).

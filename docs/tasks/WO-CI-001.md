@@ -7,7 +7,7 @@ skills: [work-order]
 ---
 # WO-CI-001 · Drift-check de `generated/` + gate `prettier --check`
 
-**Quem executa:** Cursor Composer. **Camada de tom:** trabalho. **Origem:** gap da auditoria (jun/2026) — caminho gated por CODEOWNERS (`.github/`, `packages/contracts`).
+**Quem executa:** Claude Code (ambiente primário atual). **Camada de tom:** trabalho. **Origem:** gap da auditoria (jun/2026) — caminho gated por CODEOWNERS (`.github/`, `packages/contracts`).
 
 ## Objetivo
 Fechar dois furos do gate de qualidade que hoje não bloqueiam.

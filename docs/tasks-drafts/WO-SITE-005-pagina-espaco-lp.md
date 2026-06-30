@@ -7,7 +7,7 @@ skills: [work-order, nova-lp, app-seo-schema-org, app-copy-marca]
 ---
 # WO-SITE-005 · Página de espaço / LP de conversão (Fase 2) — RASCUNHO
 
-**Pré-promoção.** Builder: Cursor Composer. **Fase:** 2 (depende do editor — [`WO-ADMIN-003`](WO-ADMIN-003-editor-lp.md)).
+**Pré-promoção.** Executor: Claude Code (ambiente primário atual). **Fase:** 2 (depende do editor — [`WO-ADMIN-003`](WO-ADMIN-003-editor-lp.md)).
 
 ## Objetivo (proposto)
 Construir a página de espaço/LP (não existe no protótipo): Molde "Conversão" + Assunto tipo `espaço`. Ordem da planta §4 (hero+galeria+vídeo → Experiência Integrada → Diferenciais → Depoimentos → FAQ → Form/CTA WhatsApp). Indexável, canônica (um Assunto = uma página).

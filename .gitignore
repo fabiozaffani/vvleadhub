@@ -47,12 +47,12 @@ replit.nix
 # Proxy de dev legado (Replit single-port) — produção usa subdomínios no Cloudflare (D-18)
 proxy.mjs
 
-# Junction per-maquina para o .agents/skills (recriado pelo setup-links.sh do vvcore).
+# Link por máquina para .agents/skills (junction no Windows, symlink no macOS/Linux; recriado pelo setup-links.sh do vvcore).
 /.claude/skills/
 
-# Junction per-maquina para o .agents/context -> vvcore/plugins/vvcore/context (canon via @import).
-# Recriado pelo setup-links.sh do vvcore (link_repo_context — WO-08). Versionar copiaria os 3
-# arquivos do vvcore (git nao entende junction, copia incondicionalmente) e furaria a fonte unica (D-16/D-18).
+# Link por máquina para .agents/context -> vvcore/plugins/vvcore/context (junction no Windows, symlink no macOS/Linux; canon via @import).
+# Recriado pelo setup-links.sh do vvcore (link_repo_context — WO-08). Versionar copiaria os arquivos
+# do vvcore e furaria a fonte única (D-16/D-18).
 /.agents/context/
 
 # Config per-maquina do Claude (autoMemoryDirectory absoluto + permissions locais).

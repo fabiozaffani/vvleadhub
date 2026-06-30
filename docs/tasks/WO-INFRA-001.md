@@ -7,7 +7,7 @@ skills: [work-order]
 ---
 # WO-INFRA-001 · Provisionamento + prova do isolamento D-9
 
-**Quem executa:** Cursor Composer / fundador. **Camada de tom:** trabalho. **Origem:** ex-WO-06.
+**Quem executa:** Claude Code / fundador. **Camada de tom:** trabalho. **Origem:** ex-WO-06.
 
 ## Objetivo
 Provisionar Postgres + os 3 deployments sob subdomínios (Cloudflare na frente), Secrets, e **aplicar e provar** o isolamento de schema D-9.

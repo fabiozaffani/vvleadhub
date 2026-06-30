@@ -8,7 +8,7 @@ Como o código é fisicamente organizado: a árvore do monorepo (pnpm workspaces
 
 ```
 /
-├── AGENTS.md                  ← manual de conduta do agente (fonte única — D-16; CLAUDE.md/.cursor/rules são ponteiros)
+├── AGENTS.md                  ← manual de conduta do agente (fonte única — D-16/D-27; CLAUDE.md é adapter)
 ├── docs/                      ← este conjunto de docs + tasks/ (work-orders)
 ├── infra/                     ← provisionamento (db/roles.sql — isolamento de schema D-9)
 ├── site/                      ← Astro (público; output:'server'; zero credencial de banco)

@@ -4,8 +4,8 @@
 >
 > Índice de termos canônicos do repo. Um termo por conceito. As definições moram no
 > doc dono (system/specs/business); aqui só ponteiro. Termos de marca/negócio são
-> canônicos no [`CONTEXTO-IA.md`](../CLAUDE.md) (vvcore, entregue por `@import` no
-> `CLAUDE.md`) — aqui só ponteiro.
+> canônicos no `CONTEXTO-IA.md` (vvcore, entregue por `.agents/context/` e importado pelo
+> adapter `CLAUDE.md`) — aqui só ponteiro.
 
 ## Convenção de língua (EN × pt-BR)
 
@@ -44,7 +44,7 @@
 
 | Termo | Significa | Onde é canônico |
 |---|---|---|
-| **Arquétipo** | a voz da marca: **Herói da retaguarda · Cuidador · Romântico** | [`CONTEXTO-IA.md`](../CLAUDE.md) §4.1 |
+| **Arquétipo** | a voz da marca: **Herói da retaguarda · Cuidador · Romântico** | `CONTEXTO-IA.md` §4.1 |
 
 > `Arquétipo` é **exclusivamente** da marca. O esqueleto de LP é **Molde**. Nunca usar
 > "arquétipo" para falar de estrutura de página.

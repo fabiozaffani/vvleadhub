@@ -1,11 +1,11 @@
 # .agents/ — camada agnóstica de agentes (tool-neutral)
 
-Memória, skills e contexto que **qualquer** agente (Cursor Composer, Claude Code, Codex…) consome — sem nada específico de uma ferramenta. [`../.claude`](../.claude/README.md) e [`../.cursor`](../.cursor/README.md) são thin wrappers que apontam para cá; a fonte mora aqui.
+Memória, skills locais e contexto compartilhado que qualquer agente (Claude Code, Codex ou outro) pode consumir sem acoplar o repo a uma ferramenta. `.claude/` é adapter/thin wrapper quando existir; a fonte tool-neutral mora aqui.
 
 | Subpasta | O que é |
 |---|---|
-| `memory/` | Auto-memória versionada do repo (store única, modelo Path 2). Ver [`memory/README.md`](memory/README.md). |
-| `skills/` | Skills **locais** deste app (fonte versionada). O Claude as vê via junction `.claude/skills → .agents/skills`. Ver [`skills/README.md`](skills/README.md). |
-| `context/` | **Junction per-máquina** → `vvcore/plugins/vvcore/context` (criada pelo `setup-links.sh`). Entrega o canon (`CONTEXTO-IA.md`, `ARQUITETURA-IA.md`) por `@import`. **Não versionada** (gitignored) — é link, não cópia. |
+| `memory/` | Auto-memória versionada do repo (store única, modelo Path 2). Ver `memory/README.md` quando existir. |
+| `skills/` | Skills locais versionadas, quando o repo tiver skills próprias. Claude Code pode vê-las por link `.claude/skills → .agents/skills`, criado pelo `setup-links.sh`. |
+| `context/` | Link por máquina → `vvcore/plugins/vvcore/context` (junction no Windows, symlink no macOS/Linux), criado pelo `setup-links.sh` quando o repo importa `.agents/context`. Disponibiliza `CONTEXTO-IA.md` e `ARQUITETURA-IA.md` por `@import`; `CONSTITUICAO-IA.md` entra aqui quando for promovida no vvcore. Não versionar. |
 
-> `context/` é junction (não pasta real): **some num clone** até o `setup-links.sh` rodar no `SessionStart`. Conduta no [`../AGENTS.md`](../AGENTS.md); doutrina em `ARQUITETURA-IA.md` §1.
+> `context/` é link local, não pasta real versionada: some num clone até `setup-links.sh` rodar no `SessionStart`. Conduta local fica em `../AGENTS.md`; contexto compartilhado fica em `.agents/context/`.

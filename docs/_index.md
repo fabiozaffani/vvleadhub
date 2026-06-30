@@ -4,7 +4,7 @@ Princípio organizador (padrão VV, ARQUITETURA-IA §5): pipeline **`discovery �
 
 ## Espinha (raiz de docs/)
 - [`_index.md`](_index.md) (este) · [`_lexico.md`](_lexico.md) (termos canônicos) · [`_decisoes.md`](_decisoes.md) (índice ADR D-1..D-26) · [`decisoes/`](decisoes/) (corpo) · [`_domain-map.md`](_domain-map.md) (ownership cross-domain) · [`roadmap/deferidos.md`](roadmap/deferidos.md) (ganchos adiados).
-- **Contexto/marca da empresa vem do vvcore** (`CONTEXTO-IA` + `ARQUITETURA-IA`, via `@import` no [`../CLAUDE.md`](../CLAUDE.md)) — não vive aqui.
+- **Contexto/marca da empresa vem do vvcore** (`CONTEXTO-IA` + `ARQUITETURA-IA`, via `.agents/context/`; o Claude Code importa pelo [`../CLAUDE.md`](../CLAUDE.md)) — não vive aqui.
 
 ## Módulos (padrão VV)
 | Módulo | Status | O quê |
@@ -24,4 +24,4 @@ marca (CONTEXTO-IA, vvcore) → [`_index.md`](_index.md) → [`_lexico.md`](_lex
 - Um conceito = um dono; docs de baixo referenciam os de cima, nunca recopiam.
 - Decisões fechadas (D-1..D-26) não se rediscutem — implementam-se; dúvida real → fundador.
 - Escopo da doc = **arquitetura, lógica e estratégia**; operação (quem opera, cadências, campanhas) fica para pós-go-live.
-- `business`/`specs`/`system`/`AGENTS.md`/`CLAUDE.md`/`.cursor` são gated por CODEOWNERS.
+- `business`/`specs`/`system`/`AGENTS.md`/`CLAUDE.md` são gated por CODEOWNERS.
