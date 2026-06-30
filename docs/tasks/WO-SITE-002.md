@@ -7,7 +7,7 @@ skills: [work-order, app-seo-schema-org, app-a11y-axe]
 ---
 # WO-SITE-002 · SEO/CWV: structured data por tipo + gate axe + rotas no Lighthouse
 
-**Quem executa:** Cursor Composer. **Camada de tom:** trabalho. **Origem:** ex-WO-03 (parcial).
+**Quem executa:** Claude Code (ambiente primário atual). **Camada de tom:** trabalho. **Origem:** ex-WO-03 (parcial).
 
 ## Objetivo
 Fechar o baseline de SEO/CWV e ligar o gate de qualidade como bloqueio real.

@@ -7,7 +7,7 @@ skills: [work-order, eventos-tracking]
 ---
 # WO-API-002 · Collector + `/collect` + cola fina Kommo (Fase 1) — RASCUNHO
 
-**Pré-promoção.** Builder: Cursor Composer. **Fase:** 1 (Eventos).
+**Pré-promoção.** Executor: Claude Code (ambiente primário atual). **Fase:** 1 (Eventos).
 
 ## Objetivo (proposto)
 Ligar a mensuração first-party: collector batched no site (analytics via proxy CF — D-15), endpoint `/collect` no api-server para eventos de negócio, e a cola bidirecional com Kommo (lead in / desfecho out → loop fechado).

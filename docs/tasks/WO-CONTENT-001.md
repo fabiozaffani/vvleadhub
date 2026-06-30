@@ -7,7 +7,7 @@ skills: [work-order, app-copy-marca]
 ---
 # WO-CONTENT-001 · Páginas legais + inventário + galerias reais
 
-**Quem executa:** Cursor Composer / fundador (conteúdo). **Camada de tom:** trabalho. **Origem:** ex-WO-05.
+**Quem executa:** Claude Code / fundador (conteúdo). **Camada de tom:** trabalho. **Origem:** ex-WO-05.
 
 ## Objetivo
 Fechar as dependências não-técnicas que gate a Fase 0 (03/roadmap §7.1).

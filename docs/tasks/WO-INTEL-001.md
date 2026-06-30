@@ -43,14 +43,14 @@ business→specs→system → implementação → atualização da skill. PRs te
 - **Pipeline fiel** (escolha do fundador): cada artefato canônico mutado pela **skill dona** (§6.1),
   com `preflight-protocol` onde aplicável.
 - **Merge (D-21):** PRs de `docs/` puros (business/specs/system/léxico/domain-map) **auto-mescla no
-  CI verde, sem review**; a PR de governança (toca `AGENTS.md`/`.cursor`) e a de implementação (toca
+  CI verde, sem review**; a PR de governança (toca `AGENTS.md`) e a de implementação (toca
   `packages/contracts`) **não armam `--auto`** — ficam para o merge explícito do fundador.
 
 ## 4. Passos (cada um = PR temático sob esta WO)
 
 A. **Emenda D-20** (`/sync-governanca`): registra D-20 em `_decisoes.md` (emenda à D-19); ecoa em
    `roadmap/fases.md`, `AGENTS.md` (range D-1..D-21 + nota no backlog `intel-competitiva`),
-   `_index.md`, `docs/README.md`, `.cursor/rules/00-inviolaveis.mdc`, e nota leve nos índices de
+   `_index.md`, `docs/README.md`, `AGENTS.md`, e nota leve nos índices de
    discovery. **PR de governança — não auto-mergeia.**
 B. **Business Doc** (`/doc-business-mapper`, preflight antes): `docs/business/inteligencia-competitiva/_dominio.md`.
 C. **Domain Map** (`/doc-domain-architect`): `docs/_domain-map.md` (1º do repo; 2 Business Docs).
@@ -87,7 +87,6 @@ I. **Skill** (`/skill-auditor`): `discovery-radar` passa a escrever no DB/admin.
 - `docs/specs/inteligencia/`
 - `docs/system/inteligencia-competitiva.md`
 - `AGENTS.md`
-- `.cursor/rules/00-inviolaveis.mdc`
 - `docs/_index.md`
 - `docs/README.md`
 - `docs/roadmap/fases.md`

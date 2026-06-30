@@ -1,19 +1,19 @@
 # AGENTS.md — Manual de conduta do agente construtor (VVF)
 
-<!-- vvcore:preamble:start --><!-- GERADO de vvcore/plugins/vvcore/context/AGENTS-PREAMBLE.md — nao editar entre os marcadores; rode bin/sync-agents-preamble.sh -->
+<!-- vvcore:preamble:start -->
 ## ⚠️ LEIA PRIMEIRO — parte do contexto canônico NÃO está neste arquivo
 
 A fundação obrigatória são **dois arquivos que vivem no vvcore** (fonte única, sem cópia):
 - **`CONTEXTO-IA.md`** — negócio, marca e as **invariantes INV-01..INV-10 (§2)** contra as quais toda recomendação é validada.
 - **`ARQUITETURA-IA.md`** — doutrina VV-wide de engenharia/tooling: core, memória, git/PR, **estrutura de repo (§1–§5)** e **roteamento de skills / ato canônico (§6)**.
 
-Eles entram no contexto via **`@import` de `.agents/context/`** — uma junction por máquina para o vvcore, criada pelo `setup-links.sh` (`link_repo_context`), que **só o Claude Code expande**. **Não** use o caminho externo `../vvcore/...`: ele resolve fora da raiz do repo e o Claude o descarta **em silêncio** (sem aprovação manual). Não há cópia local — é decisão de fonte única.
+Eles entram no contexto via **`.agents/context/`** — link por máquina para o vvcore (junction no Windows, symlink no macOS/Linux), criado pelo `setup-links.sh` (`link_repo_context`). O Claude Code carrega por `@import` no `CLAUDE.md`; outros agentes devem abrir explicitamente esses arquivos. **Não** use o caminho externo `../vvcore/...`: em alguns harnesses ele resolve fora da raiz do repo e pode ser descartado em silêncio. Não há cópia local — é decisão de fonte única.
 
 **Auto-checagem (antes de qualquer coisa):** você está vendo o texto **completo** desses dois arquivos agora — as INV-01..INV-10, os três arquétipos (§4.1 do CONTEXTO-IA), a §4 (Git & PR) e a §5 (estrutura de repo) da Arquitetura?
 
-- ✅ **Sim** → você é o Claude Code (ou recebeu o contexto de outra forma). Prossiga.
+- ✅ **Sim** → o contexto foi carregado (por Claude Code ou por leitura explícita). Prossiga.
 - 🛑 **Não** → você está com instruções **PARCIAIS** e vai violar invariantes sem perceber. **PARE, não produza nada** e avise o usuário, literalmente:
-  > "Sou um agente diferente do Claude Code e **não tenho o contexto canônico do VV** (CONTEXTO-IA + ARQUITETURA-IA) — entregue por um `@import` que só o Claude expande. Antes de eu continuar, configure a entrega desse contexto pra mim."
+  > "Não tenho o contexto canônico completo do VV (CONTEXTO-IA + ARQUITETURA-IA). Antes de eu continuar, preciso ler `.agents/context/CONTEXTO-IA.md` e `.agents/context/ARQUITETURA-IA.md` ou receber esse conteúdo."
 
 **2ª trava — roteamento de skills (Arquitetura §6).** Antes de **editar qualquer artefato canônico** em `docs/` (espinha `_lexico`/`_decisoes`, business/specs/system, `_domain-map`) ou de **executar uma implementação**, carregue a **skill dona** primeiro — é ela que traz o `preflight-protocol` e os guardrails (tabela em `ARQUITETURA-IA §6.1`). Implementação **nasce como work-order** (rascunho em `docs/tasks-drafts/`, promovido após aval — §6.5). Tocar artefato canônico por fora da skill dona é falha de processo, não atalho.
 
@@ -22,9 +22,9 @@ Assim qualquer agente novo **se auto-denuncia** em vez de rodar cego — validam
 
 ---
 
-**Fonte única, tool-neutral, de instruções de qualquer agente neste repositório** (Cursor Composer, Claude Code, ou outro). Promovido do antigo `CLAUDE.md` por decisão **D-16**, emendada pela **D-18** (ver [`docs/_decisoes.md`](docs/_decisoes.md)). Se algo aqui conflitar com outro arquivo de instruções de agente, **este vence**. `CLAUDE.md` (que carrega este arquivo via `@import`) e `.cursor/rules/*` são ponteiros para cá — em conflito, o texto completo aqui prevalece.
+**Fonte única, tool-neutral, de instruções de qualquer agente neste repositório** (Claude Code, Codex ou outro). Promovido do antigo `CLAUDE.md` por decisão **D-16**, emendada pela **D-18**, **D-21** e **D-27** (ver [`docs/_decisoes.md`](docs/_decisoes.md)). Se algo aqui conflitar com outro arquivo de instruções de agente, **este vence**. `CLAUDE.md` é só o adapter do Claude Code que carrega este arquivo via `@import`.
 
-**Tipo de repo: `app`.** A doutrina **VV-wide** de engenharia/tooling (core compartilhado, memória, config/hooks, fluxo git/PR multi-agente) vive em `.agents/context/ARQUITETURA-IA.md` (junction por máquina → vvcore) — **leia-a junto com este arquivo** (o Claude Code carrega via `@import` no `CLAUDE.md`; demais agentes — ver o alerta no topo). Aqui fica só o que é **específico do VVLEADHUB**.
+**Tipo de repo: `app`.** A doutrina **VV-wide** de engenharia/tooling (core compartilhado, memória, config/hooks, fluxo git/PR multi-agente) vive em `.agents/context/ARQUITETURA-IA.md` (link por máquina → vvcore) — **leia-a junto com este arquivo**. O Claude Code carrega via `@import` no `CLAUDE.md`; outros agentes devem abrir explicitamente os arquivos em `.agents/context/`. Aqui fica só o que é **específico do VVLEADHUB**.
 
 ## Antes de qualquer código
 
@@ -38,7 +38,7 @@ Assim qualquer agente novo **se auto-denuncia** em vez de rodar cego — validam
 Conhecimento durável e específico deste repo (gotchas técnicos, convenções, decisões operacionais) vive em **`.agents/memory/`** — store única, tool-neutral, versionada. Comece pelo índice [`.agents/memory/MEMORY.md`](.agents/memory/MEMORY.md) e abra o arquivo do fato quando for relevante à tarefa; **não substitui esta doc, alimenta-a**.
 
 - **Claude Code** lê e escreve a pasta nativamente (auto-memória via `autoMemoryDirectory`) — drafta fatos sozinho durante o trabalho.
-- **Cursor e outros** leem o índice por aqui e pelo ponteiro em `.cursor/rules`; registre à mão um fato durável que descobrir (formato nativo `name`/`description`/`type`; detalhe no README da pasta).
+- **Outros agentes** leem o índice por aqui e pelos arquivos em `.agents/memory/`; registre à mão um fato durável que descobrir (formato nativo `name`/`description`/`type`; detalhe no README da pasta).
 - **Promoção:** fato que vira conduta sobe para este `AGENTS.md` (ou `docs/`); fato que vale em todo repo VV sobe para o **vvcore**.
 
 ## Regras invioláveis
@@ -54,7 +54,7 @@ Conhecimento durável e específico deste repo (gotchas técnicos, convenções,
 
 - Construa **pela ordem do roadmap** ([`docs/roadmap/fases.md`](docs/roadmap/fases.md) §7) e declare pronto **somente** pelos critérios de aceite da fase ([`docs/roadmap/fases.md`](docs/roadmap/fases.md) §7.1). Não pule de fase.
 - PRs pequenos e temáticos; conventional commits (validados por `commitlint` no CI); todo bug corrigido ganha teste ([`docs/specs/engenharia/testes.md`](docs/specs/engenharia/testes.md)).
-- **Todo trabalho entra por branch + Pull Request**, com `/code-review` antes do merge. A `main` tem **branch protection** (jun/2026): os checks do CI (`verify`/`gitleaks`/`conventional commits`/`CWV+a11y`) são **obrigatórios** — nada entra vermelho. **Não há required review na `main` (D-21):** o CODEOWNERS auto-solicita revisor, mas **não barra o merge**. **Auto-merge:** PR de **código** (`site`/`admin`/`api-server`) **e de `docs/`** mescla sozinho ao ficar verde (`pnpm ship`) — docs **sem cerimônia de review**. **Caminhos sensíveis gated por CODEOWNERS** (`packages/contracts`, `packages/api-{spec,zod,client}`, `.claude/`, `AGENTS.md`/`CLAUDE.md`, `.cursor/rules`, `.github/`, `infra/`; ver §Instanciação) **não recebem auto-merge — por convenção, o agente não arma `--auto` neles** (a branch protection não trava), ficando para o **merge explícito do fundador** — preserva o aval da **D-1**. Nunca commitar direto na `main`.
+- **Todo trabalho entra por branch + Pull Request**, com `/code-review` antes do merge. A `main` tem **branch protection** (jun/2026): os checks do CI (`verify`/`gitleaks`/`conventional commits`/`CWV+a11y`) são **obrigatórios** — nada entra vermelho. **Não há required review na `main` (D-21):** o CODEOWNERS auto-solicita revisor, mas **não barra o merge**. **Auto-merge:** PR de **código** (`site`/`admin`/`api-server`) **e de `docs/`** mescla sozinho ao ficar verde (`pnpm ship`) — docs **sem cerimônia de review**. **Caminhos sensíveis gated por CODEOWNERS** (`packages/contracts`, `packages/api-{spec,zod,client}`, `.claude/`, `AGENTS.md`/`CLAUDE.md`, `.github/`, `infra/`; ver §Instanciação) **não recebem auto-merge — por convenção, o agente não arma `--auto` neles** (a branch protection não trava), ficando para o **merge explícito do fundador** — preserva o aval da **D-1**. Nunca commitar direto na `main`.
 - **Definition of done mecânico:** antes de declarar qualquer tarefa pronta, rode `pnpm verify` na raiz (typecheck + lint + codegen:check + boundaries + test + build) e ele precisa passar. "Parece ok" não existe.
 - **Qualidade de diff:** todo PR passa por `/code-review` antes do merge — sem exceção de tamanho. Quem dispara depende do harness (ver §Governança multi-agente). `/simplify` roda quando o diff atender a qualquer um: > 150 linhas líquidas de código real (excluindo lockfile, seeds, migrações geradas e snapshots) · 5+ arquivos de código tocados · abstração nova criada (componente, helper, tipo em `contracts`) · o PR cresceu além do escopo planejado. Pequenas correções dispensam o `/simplify`.
 - Tudo que é business-concreto é **dado, não código** ([`specs/plataforma/primitivas.md`](docs/specs/plataforma/primitivas.md)) — espaços, serviços, campanhas, moldes e objetivos entram por registro/seed, nunca hardcoded. Exceção registrada: TipoDeAssunto novo = collection nova.
@@ -66,10 +66,56 @@ Conhecimento durável e específico deste repo (gotchas técnicos, convenções,
 
 A doutrina multi-agente e o fluxo git/PR são **VV-wide** (ARQUITETURA-IA §4 · `app`, no vvcore). Aqui fica só o concreto deste repo:
 
-- **Módulos e papéis:** o app é `site/` · `admin/` · `api-server/`; o **Cursor Composer** é o builder primário na IDE, o **Claude Code** o auxiliar (`/code-review` em todo PR, `/security-review` quando couber, build escopado quando delegado; nos gates, `/app-audit-quality`·`/app-checklist-fase`·`/app-auditar <área>` — impl × spec dona, read-only — **disparados por você**, pois são `disable-model-invocation`). Quem editar código segue fronteiras/marca/`pnpm verify` em branch + PR própria.
-- **CODEOWNERS (caminhos gated):** `packages/contracts`, `packages/api-{spec,zod,client}`, `docs/`, `AGENTS.md`/`CLAUDE.md`, `.claude/`, `.cursor/rules`, `.github/`, `infra/` — auto-solicitam o fundador como revisor. **Sem required review na `main` (D-21):** `docs/` **auto-mescla no verde** (sem cerimônia); os **sensíveis** (todos os demais acima) **não recebem auto-merge por convenção** (o agente não arma `--auto`) → **merge explícito do fundador**. (`.claude/` gated por D-1 — gate de merge do `settings.json` editado pelo agente; o aval é preservado pela convenção + a aprovação Bash em tempo de edição, já que a branch protection não trava.)
+- **Módulos e papéis:** o app é `site/` · `admin/` · `api-server`; **Claude Code é o ambiente primário atual** de construção/revisão, e outros agentes podem atuar quando carregarem `AGENTS.md` + `.agents/context/`. Todo PR passa por `/code-review`; use `/security-review` quando couber e, nos gates, `/app-audit-quality` · `/app-checklist-fase` · `/app-auditar <área>` (impl × spec dona, read-only, disparados por você quando o harness não invocar sozinho). Quem editar código segue fronteiras/marca/`pnpm verify` em branch + PR própria.
+- **CODEOWNERS (caminhos gated):** `packages/contracts`, `packages/api-{spec,zod,client}`, `docs/`, `AGENTS.md`/`CLAUDE.md`, `.claude/`, `.github/`, `infra/` — auto-solicitam o fundador como revisor. **Sem required review na `main` (D-21):** `docs/` **auto-mescla no verde** (sem cerimônia); os **sensíveis** (todos os demais acima) **não recebem auto-merge por convenção** (o agente não arma `--auto`) → **merge explícito do fundador**. (`.claude/` gated por D-1 — gate de merge do `settings.json` editado pelo agente; o aval é preservado pela convenção + a aprovação Bash em tempo de edição, já que a branch protection não trava.)
 - **Deploy/runtime:** alvo a definir na Fase 0b (D-18). Cloudflare no edge (site SSR, R2, proxy de analytics — D-2/D-10/D-15 intactos); serviços Node (`admin`/`api-server`) + Postgres gerenciado num host a escolher; deploy desacoplado do GitHub. (D-18 aposentou o builder na nuvem — sem `replit/work` nem "Publish ≠ push".)
-- Ajustar os papéis = editar [`docs/roadmap/fases.md`](docs/roadmap/fases.md) e o README de [`docs/tasks/`](docs/tasks/) (e os ponteiros), não improvisar no meio de uma tarefa.
+- Ajustar os papéis = editar [`docs/roadmap/fases.md`](docs/roadmap/fases.md), o README de [`docs/tasks/`](docs/tasks/) e este `AGENTS.md`, não improvisar no meio de uma tarefa.
+
+## Regras operacionais por área
+
+Estas regras consolidam o conteúdo útil dos antigos wrappers de IDE; a fonte agora é este `AGENTS.md` + os docs donos.
+
+### `site/` — Astro público
+
+Specs donas: [`docs/system/arquitetura.md`](docs/system/arquitetura.md), [`docs/system/landing-pages.md`](docs/system/landing-pages.md), [`docs/system/blog.md`](docs/system/blog.md), [`docs/specs/landing-pages/`](docs/specs/landing-pages/), [`docs/specs/engenharia/monorepo.md`](docs/specs/engenharia/monorepo.md), [`docs/specs/design-system/`](docs/specs/design-system/).
+
+- `output: 'server'` com adapter Node, cache agressivo no Cloudflare e purge por URL no publish; não inventar SSG/ISR.
+- Zero JS por default; ilha React só onde houver interação real.
+- No site, sem Framer Motion para entradas/scroll-reveal; use CSS + IntersectionObserver. shadcn/ui é do `admin/`, não do site.
+- Imagens via pipeline D-10/R2/Cloudflare Images + `astro:assets`; AVIF/WebP responsivo, dimensões explícitas e prioridade no LCP.
+- Estrutura: `pages/`, `layouts/`, `blocks/`, `components/`, `lib/`, `styles/`; bloco é unidade editorial, componente não aparece no editor.
+- Tipos de resposta vêm de `packages/contracts/generated`; não escrever tipo de Payload à mão no site.
+
+### `admin/` — Payload CMS / Next
+
+Specs donas: [`docs/system/admin.md`](docs/system/admin.md), [`docs/specs/plataforma/`](docs/specs/plataforma/), [`docs/system/eventos.md`](docs/system/eventos.md), D-9 e D-12.
+
+- Siga a convenção nativa do Payload: `collections/`, `blocks/`, `access/`, `views/`, `hooks/`.
+- TipoDeAssunto novo = collection nova; instância de Assunto = dado.
+- O Payload é dono apenas do schema `payload`; nunca leia/escreva schema `app` direto.
+- Editor é brand-locked: tokens, guardrails de copy e live preview com token assinado + `noindex`.
+- Tracker Hub opera capacidades de outros docs; não redefine eventos/status.
+
+### `api-server/` — Express + Drizzle
+
+- Camadas: `routes` → `services` → `repositories`/`integrations`; `routes` nunca importa `repositories`/`integrations` direto.
+- Banco: só schema `app`; nunca schema `payload`; migração só por Drizzle.
+- Schema de evento e contrato de lead vêm de `packages/contracts`.
+- `/collect` é público com rate-limit, validação de schema, WAF, fila/idempotência/retry/dead-letter.
+
+### Pipeline HTTP — `api-spec` → `api-zod` + `api-client`
+
+- `@vvf/api-spec` contém `openapi.yaml` e `orval.config.ts`; ninguém importa em runtime.
+- `@vvf/api-zod` valida requests no `api-server`; `@vvf/api-client` serve hooks React Query para o `admin`; o `site` não usa.
+- `src/generated/` é saída de Orval; edite `openapi.yaml` e rode `pnpm codegen:api`.
+- Fronteiras: `site` não importa `api-zod`/`api-client`; `admin` não importa `api-zod`; `api-server` não importa `api-client`; runtime não importa `api-spec`.
+
+### `packages/contracts`
+
+- É a única ponte de tipos de domínio entre `site`, `admin` e `api-server`.
+- Alteração aqui exige aval do fundador; campo novo em contrato não é mudança local.
+- `events.ts`, `lead.ts`, `http-errors.ts` e `generated/` são as fontes esperadas; OpenAPI vive em `packages/api-spec`.
+- CI falha se gerados divergem do commitado (`payload generate:types` e codegen OpenAPI).
 
 ### Skills a criar por fase (backlog)
 Skills locais deste app a criar **quando a fase abrir a lacuna** (nascem em `.agents/skills/`):

@@ -7,7 +7,7 @@ skills: [work-order]
 ---
 # WO-SITE-003 · publish→purge + preview de draft
 
-**Quem executa:** Cursor Composer. **Camada de tom:** trabalho. **Origem:** ex-WO-04.
+**Quem executa:** Claude Code (ambiente primário atual). **Camada de tom:** trabalho. **Origem:** ex-WO-04.
 
 ## Objetivo
 Fechar o loop de publicação: editar no Payload reflete no site; preview de draft seguro.

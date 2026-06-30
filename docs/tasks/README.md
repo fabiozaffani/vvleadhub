@@ -3,7 +3,7 @@
 Um **roadmap não é um prompt.** "Construa a Fase 0" é como nasce espaguete bem documentado: o agente "ajuda" refatorando o que não pediu. Cada tarefa entregue a um agente vive aqui como um **work-order** com escopo cercado.
 
 ## Anatomia de um work-order
-- **Quem executa** (D-16/D-18): o **Cursor Composer** (builder primário) por padrão, dirigido pelo fundador na IDE. O Claude Code entra em auditoria/review/gates e em WO de build escopada quando delegado.
+- **Quem executa** (D-16/D-18/D-27): **Claude Code é o ambiente primário atual**; outro agente pode executar quando carregar `AGENTS.md` + contextos canônicos.
 - **Objetivo:** 1–2 frases.
 - **Arquivos permitidos:** o agente não escreve fora disso sem novo work-order. Tocar `packages/contracts`/`docs` exige aval do fundador (CODEOWNERS).
 - **Critérios de aceite:** subconjunto verificável de [`../roadmap/fases.md`](../roadmap/fases.md) §7.1.
@@ -20,4 +20,4 @@ Contagem viva por status (sem lista manual a driftar): `bash ../../../vvcore/bin
 - Faixa = arquivo permitido. **Dois agentes nunca tocam o mesmo pacote na mesma fase.**
 
 ## Os papéis são ajustáveis
-O modelo corrente (D-16, emendada pela D-18): **Cursor Composer é o builder primário** (o fundador desenvolve na IDE); **Claude Code é auxiliar** (auditoria, revisão, gates, build escopado quando delegado). O Replit foi removido da operação. Mudar é editar este diretório + os ponteiros (`.cursor/rules/`, `CLAUDE.md`) — não improvisar no meio de uma tarefa.
+O modelo corrente (D-16, emendada pela D-18/D-27): **Claude Code é o ambiente primário atual**, mas a governança é `AGENTS.md` para permitir troca de agente sem reescrever o repo. O Replit foi removido da operação. Mudar é editar este diretório + `AGENTS.md`/`CLAUDE.md` — não improvisar no meio de uma tarefa.

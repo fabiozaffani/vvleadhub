@@ -27,7 +27,7 @@ Então `--auto` **mescla no CI verde SEM aprovação**, mesmo em caminho de CODE
 PRs #49/#50 de `docs/` auto-mergearam sem review; `reviewDecision` vazio). O claim antigo — "o
 `--auto` só dispara após a review obrigatória do fundador" — era **FALSO**. Logo: armar livre em
 `docs/`/código; **NUNCA armar** em caminhos sensíveis (`packages/contracts`, `.claude`,
-`AGENTS.md`/`CLAUDE.md`, `.cursor/rules`, `.github`, `infra`) — nesses, **deixar p/ o merge manual
+`AGENTS.md`/`CLAUDE.md`, `.github`, `infra`) — nesses, **deixar p/ o merge manual
 do fundador** (a convenção é o gate, já que o branch protection não trava; preserva a D-1). Ver
 `AGENTS.md` §Como trabalhar + D-21 no `_decisoes.md`.
 

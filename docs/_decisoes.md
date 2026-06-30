@@ -25,14 +25,15 @@
 | D-13 | — | Captura multi-plataforma (lead forms + audiências) | fechada | produto | [D-13](decisoes/D-13-captura-multi-plataforma-varredura-competitiva.md) |
 | D-14 | jun/2026 | Atribuição de plataforma (click IDs, CTWA, visitas) | fechada | produto | [D-14](decisoes/D-14-atribuicao-de-plataforma-auditoria-growth-jun-2.md) |
 | D-15 | jun/2026 | Split de ingestão (PostHog proxy vs /collect) | fechada | stack | [D-15](decisoes/D-15-split-de-ingestao-resolve-item-da-auditoria-pre.md) |
-| D-16 | jun/2026 | Governança multi-agente — AGENTS.md fonte única | fechada · emendada por D-18, D-21 | gov | [D-16](decisoes/D-16-governanca-multi-agente-emenda-a-d-7-emendada.md) |
+| D-16 | jun/2026 | Governança multi-agente — AGENTS.md fonte única | fechada · emendada por D-18, D-21, D-27 | gov | [D-16](decisoes/D-16-governanca-multi-agente-emenda-a-d-7-emendada.md) |
 | D-17 | jun/2026 | Tracker Hub — single pane (L1 + L2 faseado) | fechada · estendida por D-19 | produto | [D-17](decisoes/D-17-painel-como-single-pane-of-glass-ingestao-de-r.md) |
-| D-18 | jun/2026 | Replit removido — builder local + host TBD | fechada | gov, stack | [D-18](decisoes/D-18-replit-removido-da-operacao-emenda-a-d-2-e-a-d.md) |
+| D-18 | jun/2026 | Replit removido — builder local + host TBD | fechada · emendada por D-27 | gov, stack | [D-18](decisoes/D-18-replit-removido-da-operacao-emenda-a-d-2-e-a-d.md) |
 | D-19 | jun/2026 | Inteligência competitiva — L3 do single pane | fechada · emendada por D-20, D-24 | produto | [D-19](decisoes/D-19-inteligencia-competitiva-como-l3-do-single-pane.md) |
 | D-20 | jun/2026 | Casa-de-dados do radar descongelada (Payload) | fechada | produto | [D-20](decisoes/D-20-casa-de-dados-do-radar-descongelada-emenda-a-d.md) |
-| D-21 | jun/2026 | Auto-merge × CODEOWNERS — enforcement real | fechada | gov | [D-21](decisoes/D-21-auto-merge-codeowners-enforcement-real-emen.md) |
+| D-21 | jun/2026 | Auto-merge × CODEOWNERS — enforcement real | fechada · emendada por D-27 | gov | [D-21](decisoes/D-21-auto-merge-codeowners-enforcement-real-emen.md) |
 | D-22 | jun/2026 | Pipeline HTTP — api-spec → api-zod + api-client | fechada | stack | [D-22](decisoes/D-22-estrutura-de-packages-pipeline-http-em-3-pa.md) |
 | D-23 | jun/2026 | ErrorCode — fonte única em @vvf/contracts | fechada | stack | [D-23](decisoes/D-23-sincronizacao-do-errorcode-envelope-de-erro-h.md) |
 | D-24 | jun/2026 | Coleta ampliada — mystery shopping no escopo | fechada | produto | [D-24](decisoes/D-24-coleta-ampliada-da-inteligencia-competitiva-eme.md) |
 | D-25 | jun/2026 | Comercial vende, não cria (régua de ownership) | fechada | gov, arquitetura | [D-25](decisoes/D-25-comercial-vende-nao-cria.md) |
 | D-26 | jun/2026 | Emendas de canon — tese de curadoria (INV-05 crise · M-02 gate · desintermediação) | fechada | marca, gov, estratégia | [D-26](decisoes/D-26-emendas-canon-tese-curadoria.md) |
+| D-27 | jun/2026 | AGENTS.md canônico sem Cursor | fechada | gov, agentes | [D-27](decisoes/D-27-agents-canonico-sem-cursor.md) |

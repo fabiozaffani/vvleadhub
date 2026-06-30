@@ -7,7 +7,7 @@ skills: [work-order]
 ---
 # WO-API-001 · api-server: esqueleto em camadas + observabilidade + OpenAPI
 
-**Quem executa:** Cursor Composer. **Camada de tom:** trabalho. **Origem:** ex-WO-07 (só scaffold de tipos hoje).
+**Quem executa:** Claude Code (ambiente primário atual). **Camada de tom:** trabalho. **Origem:** ex-WO-07 (só scaffold de tipos hoje).
 
 ## Objetivo
 Subir o api-server real: Express 5 em camadas, `/health`, observabilidade e o contrato OpenAPI como fonte de verdade.
