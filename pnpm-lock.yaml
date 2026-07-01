@@ -47,6 +47,12 @@ importers:
 
   admin:
     dependencies:
+      '@fontsource/playfair-display':
+        specifier: ^5.2.8
+        version: 5.2.8
+      '@fontsource/work-sans':
+        specifier: ^5.2.8
+        version: 5.2.8
       '@payloadcms/db-postgres':
         specifier: ^3.85.1
         version: 3.85.1(payload@3.85.1(graphql@16.14.2)(typescript@5.9.3))

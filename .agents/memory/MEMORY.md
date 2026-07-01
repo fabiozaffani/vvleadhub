@@ -11,5 +11,6 @@
 - [git sync limpa branch órfão](git-sync-branches-orfaos.md) — branch local "divergente" pós-squash-merge agora podado **automaticamente** no SessionStart (WO-CORE-024, `hook-session-sync.sh` VV-wide); alias `git sync` é o fallback manual. **Gotcha:** qualquer diff local perene mantém a árvore suja e rebloqueia a poda — órfão "volta" toda sessão; fix = resolver o diff em branch/PR apropriado ou descartar manualmente com aval.
 
 - [WO done exige veredito no commit da cerca](wo-done-verdict-same-commit.md) — gate D-4: WO high-stakes→`done` precisa de `review:pass` + `reviewed_sha` (hash da cerca **staged**) no **mesmo commit** da cerca; commitar o canon separado → flip pra `done` **bloqueado** (VVLEADHUB bloqueia, vvcore advisory). Fix: `reset --soft` + `vv_fence_sha` + commitar junto.
+- [Login admin: 401 por autofill](payload-admin-login-autofill-401.md) — login do admin "falha" no navegador (401 "senha incorreta") por autofill de senha antiga, enquanto `curl` com a senha certa dá 200; diagnostique pelo log do dev server, não re-resetando.
 
 > Gotchas de harness VV-wide (cerca do wo-fence, promoção de WO, `sed`/markdown, worktree write-path) foram **promovidos ao canon** `ARQUITETURA-IA` (§3/§5.4/§6.5, WO-CORE-025) e chegam por `@import` — não duplicar aqui.
