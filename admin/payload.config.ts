@@ -36,6 +36,15 @@ export default buildConfig({
   admin: {
     user: Users.slug,
     meta: { titleSuffix: ' · Vale Verde' },
+    // WO-ADMIN-004: branding VV. Tema travado claro (marca creme-dominante) + logo/ícone
+    // de marca. Paleta/tipografia vêm do custom.css do route group (payload).
+    theme: 'light',
+    components: {
+      graphics: {
+        Logo: '@/components/graphics/Logo#Logo',
+        Icon: '@/components/graphics/Icon#Icon',
+      },
+    },
   },
   collections: [
     Users,

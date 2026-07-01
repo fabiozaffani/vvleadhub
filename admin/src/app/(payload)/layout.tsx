@@ -1,6 +1,14 @@
 import type { ServerFunctionClient } from 'payload'
 import config from '@payload-config'
 import '@payloadcms/next/css'
+// WO-ADMIN-004 — fontes da marca + tema VV, importados APÓS o CSS do Payload.
+import '@fontsource/playfair-display/500.css'
+import '@fontsource/playfair-display/600.css'
+import '@fontsource/playfair-display/700.css'
+import '@fontsource/work-sans/400.css'
+import '@fontsource/work-sans/500.css'
+import '@fontsource/work-sans/600.css'
+import './custom.css'
 import { RootLayout } from '@payloadcms/next/layouts'
 import React from 'react'
 

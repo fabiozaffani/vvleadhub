@@ -1,0 +1,57 @@
+/*
+  WO-ADMIN-004 — Branding do admin (Payload) com os tokens do design-system VV.
+  Overrides SEM @layer: vencem o `@layer payload-default` do Payload por definição
+  de camadas (unlayered > layered), independente da ordem de import.
+  Valores: docs/specs/design-system/tokens.md + CONTEXTO-IA §5. Tema travado claro.
+*/
+
+:root {
+  /* Espaçamento — respiração modesta (base 20 -> 22). */
+  --base-px: 22;
+
+  /* Tipografia da marca (famílias carregadas via @fontsource no layout). */
+  --font-body:
+    'Work Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    sans-serif;
+  --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+
+  /* Raio funcional (admin CRUD) — NÃO a pílula 30px do site público. */
+  --style-radius-s: 4px;
+  --style-radius-m: 6px;
+  --style-radius-l: 10px;
+
+  /* Superfícies claras -> família creme (#FFFBF7). elevation-0 = bg/cards/inputs. */
+  --color-base-0: rgb(255, 251, 247);
+  --color-base-50: rgb(248, 243, 236);
+  --color-base-100: rgb(240, 233, 223);
+  --color-base-150: rgb(228, 219, 207);
+  --color-base-200: rgb(213, 204, 191);
+
+  /* Extremo escuro -> verde de marca (#143C37 texto -> #031916 superfícies). */
+  --color-base-750: rgb(41, 74, 68);
+  --color-base-800: rgb(20, 60, 55); /* #143C37 — texto principal */
+  --color-base-850: rgb(14, 49, 44);
+  --color-base-900: rgb(9, 39, 35);
+  --color-base-950: rgb(5, 31, 27);
+  --color-base-1000: rgb(3, 25, 22); /* #031916 */
+}
+
+/* Títulos em Playfair (o corpo já usa --font-body = Work Sans). */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-serif);
+}
+
+/* Realce de seleção em champanhe (dourado #C69F3F @ 28%), texto verde. */
+::selection {
+  background: rgba(198, 159, 63, 0.28);
+  color: rgb(20, 60, 55);
+}
+::-moz-selection {
+  background: rgba(198, 159, 63, 0.28);
+  color: rgb(20, 60, 55);
+}
