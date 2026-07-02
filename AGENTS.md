@@ -7,7 +7,7 @@ A fundação obrigatória são **dois arquivos que vivem no vvcore** (fonte úni
 - **`CONTEXTO-IA.md`** — negócio, marca e as **invariantes INV-01..INV-10 (§2)** contra as quais toda recomendação é validada.
 - **`ARQUITETURA-IA.md`** — doutrina VV-wide de engenharia/tooling: core, memória, git/PR, **estrutura de repo (§1–§5)** e **roteamento de skills / ato canônico (§6)**.
 
-Eles entram no contexto via **`.agents/context/`** — link por máquina para o vvcore (junction no Windows, symlink no macOS/Linux), criado pelo `setup-links.sh` (`link_repo_context`). O Claude Code carrega por `@import` no `CLAUDE.md`; outros agentes devem abrir explicitamente esses arquivos. **Não** use o caminho externo `../vvcore/...`: em alguns harnesses ele resolve fora da raiz do repo e pode ser descartado em silêncio. Não há cópia local — é decisão de fonte única.
+Eles entram no contexto via **`.agents/context/`** — uma junction por máquina para o vvcore, criada pelo `setup-links.sh` (`link_repo_context`). O Claude Code carrega por `@import` no `CLAUDE.md`; outros agentes devem abrir explicitamente esses arquivos. **Não** use o caminho externo `../vvcore/...`: em alguns harnesses ele resolve fora da raiz do repo e pode ser descartado em silêncio. Não há cópia local — é decisão de fonte única.
 
 **Auto-checagem (antes de qualquer coisa):** você está vendo o texto **completo** desses dois arquivos agora — as INV-01..INV-10, os três arquétipos (§4.1 do CONTEXTO-IA), a §4 (Git & PR) e a §5 (estrutura de repo) da Arquitetura?
 
